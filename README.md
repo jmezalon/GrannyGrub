@@ -17,6 +17,7 @@ Well, It provides the user with a variety of unique takes on culturally traditio
 The MVP for Granny’s Grub will need to be completed in ~250 hours. The important components we tend to complete within that time frame are as follow:
 
   1. Create Express Backend ~ 30
+
       - Create Database with following tables ~8hrs
       - Grandmas
       - Grandchildren (users)
@@ -25,18 +26,21 @@ The MVP for Granny’s Grub will need to be completed in ~250 hours. The importa
       - Rating
 
   2. Create a seed.js file to seed the database with temporary data ~2hrs
+
       -Create route JS files for above tables ~1hr
       -Create Delete/Get/Post/Patch Queries for above routes ~8hrs
 
   3. UserAuth ~10hrs
 
   4. Figure out how to get the google maps api to work with the front end ~8hrs
+
     - Geolocate users
     - Populate the map with all the grandmas
     - Display filtered grandmas based on the criteria
 
 
   5. Frontend Features/Components
+
     - UserAuth ~4-5 hrs
     - User Signup/login page
     - Landing Page ~3-4hrs
@@ -44,6 +48,7 @@ The MVP for Granny’s Grub will need to be completed in ~250 hours. The importa
     - Button “Get a Taste” to direct user to rest of the site
 
   6. Grandmas view page (map displaying all the grandmas in the area)
+
     - Map area in the middle of the page that shows all the grandmas available in the area
     - Search bar that allows users to filter grandmas based on search terms for cuisine or dishes
     - Sidebar that allows users to filter based on location, cuisine, availability
@@ -51,19 +56,19 @@ The MVP for Granny’s Grub will need to be completed in ~250 hours. The importa
 
 # Sprint
 
-1. Week 1
+Week 1
   - Set up and planning
   - Project proposal
   - Work on  logo
   - Setting team expectations and roles
 
-2. Week 2
+Week 2
   - Prototype
 
-3. Week 3
+Week 3
   - Revised Prototype
 
-4. Week 4
+Week 4
   - MVP completed
 
 
@@ -81,3 +86,5 @@ The MVP for Granny’s Grub will need to be completed in ~250 hours. The importa
   - Offerings page for grandma
   - Add recipes offered
   - Pick times offered for pickup or dine-in
+
+# wireframes
