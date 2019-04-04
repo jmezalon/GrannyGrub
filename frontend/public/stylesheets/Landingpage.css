@@ -21,3 +21,8 @@
   margin: 2%;
   padding: 10px;
 }
+
+.logInBtn {
+  width: 160px;
+  height: 40px;
+}
