@@ -4,15 +4,27 @@ import AppBar from '@material-ui/core/AppBar';
 
 class Navbar extends Component {
   render() {
+    const divStyle = {
+      color: "red",
+      textDecoration: "none"
+    };
     return (
       <div className="navbar-parent">
-        <nav>
-          <NavLink to="/">Home</NavLink>{' '}
-          <NavLink to="/brooklyn">Brooklyn</NavLink>{' '}
-          <NavLink to="/queens">Queens</NavLink>{' '}
-          <NavLink to="/manhattan">Manhattan</NavLink>{' '}
-          <NavLink to="/bronx">Bronx</NavLink>{' '}
-          <NavLink to="/statenisland">Staten Island</NavLink>
+        <nav style={divStyle}>
+          <div className="logo-div">
+            <NavLink to="/">Logo</NavLink>{" "}
+          </div>
+          <div className="links-in-middle">
+            <NavLink to="/brooklyn">Brooklyn</NavLink>{" "}
+            <NavLink to="/queens">Queens</NavLink>{" "}
+            <NavLink to="/manhattan">Manhattan</NavLink>{" "}
+            <NavLink to="/bronx">Bronx</NavLink>{" "}
+            <NavLink to="/statenisland">Staten Island</NavLink>{" "}
+          </div>
+          <div className="auth-div">
+            <NavLink to="/auth/signup">Sign Up</NavLink>{" "}
+            <NavLink to="/auth/login">Log In</NavLink>
+          </div>
         </nav>
       </div>
     );
