@@ -1,0 +1,23 @@
+#lpImg {
+  margin: 2%;
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.landingPage {
+  margin: 2%;
+  border: 1px solid darkgreen;
+}
+
+.userPortal {
+  border: 1px solid pink;
+  margin: 2%;
+  padding: 10px;
+}
+
+.cookPortal {
+  border: 1px solid orange;
+  margin: 2%;
+  padding: 10px;
+}
