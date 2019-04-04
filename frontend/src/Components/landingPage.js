@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 class LandingPage extends React.Component {
   render() {
     return (
@@ -10,6 +10,11 @@ class LandingPage extends React.Component {
           alt="granny being cute"
           id="lpImg"
         />
+        <div>
+          <Link to="/mainpage">
+            <button> get a taste </button>
+          </Link>
+        </div>
       </>
     );
   }

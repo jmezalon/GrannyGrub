@@ -1,4 +1,6 @@
 #lpImg {
-  width: 400px;
-  height: 400px;
+  margin: 2%;
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
 }
