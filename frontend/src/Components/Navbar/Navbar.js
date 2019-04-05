@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 class Navbar extends Component {
   render() {
@@ -7,7 +8,9 @@ class Navbar extends Component {
       <div className="navbar-parent">
         <nav>
           <div className="logo-div">
-            <NavLink to="/">Logo</NavLink>{" "}
+            <NavLink to="/">
+              <img id="logo" alt="" src={logo} />
+            </NavLink>{" "}
           </div>
         </nav>
 
