@@ -1,14 +1,16 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 const {
   getAllGrandmas,
   getOneGrandma,
   getDishesByGrandmaId,
-} = require('../db/queries/grandmaQueries.js');
+  addGrandma
+} = require("../db/queries/grandmaQueries.js");
 
-router.get('/', getAllGrandmas);
-router.get('/:grandma_id', getOneGrandma);
-router.get('/:grandma_id/dishes', getDishesByGrandmaId);
+router.get("/", getAllGrandmas);
+router.get("/:grandma_id", getOneGrandma);
+router.get("/:grandma_id/dishes", getDishesByGrandmaId);
+router.post("/", addGrandma);
 
 module.exports = router;
