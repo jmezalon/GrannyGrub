@@ -4,7 +4,12 @@ const getAllDishesByGrandma = (req, res, next) => {
   let grandmaId = parseInt(req.params.id);
 
   db.any(
-    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price, grandmas.id AS grandma_id, cuisines.id AS cuisine_Id, first_name,last_name, profile_pic, type FROM dishes JOIN grandmas on(grandmas.id = dishes.grandma_id) JOIN cuisines ON(cuisines.id = dishes.cuisine_id) WHERE dishes.grandma_id = $1",
+    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price, grandmas.id AS grandma_id, first_name,last_name, COUNT(DISTINCT favorites.id )AS all_faves, profile_pic
+FROM dishes
+JOIN grandmas ON grandmas.id = dishes.grandma_id
+LEFT JOIN favorites ON favorites.dish_id = dishes.id
+WHERE dishes.grandma_id = $1 
+GROUP BY dishes.id, grandmas.id",
     [grandmaId]
   )
     .then(dishes => {
