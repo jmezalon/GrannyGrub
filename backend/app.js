@@ -10,6 +10,7 @@ var dishesRouter = require("./routes/dishes");
 
 var grandmasRouter = require("./routes/grandmas");
 var favoritesRouter = require("./routes/favorites");
+var cuisinesRouter = require("./routes/cuisines");
 
 var app = express();
 
@@ -30,6 +31,8 @@ app.use("/users", usersRouter);
 app.use("/grandmas", grandmasRouter);
 app.use("/favorites", favoritesRouter);
 app.use("/dishes", dishesRouter);
+app.use("/cuisines", cuisinesRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
