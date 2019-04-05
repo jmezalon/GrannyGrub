@@ -43,20 +43,9 @@ const getDishesByGrandmaId = (req, res, next) => {
     .catch(err => next(err));
 };
 
-// id  SERIAL PRIMARY KEY,
-// first_name VARCHAR NOT NULL,
-// last_name VARCHAR NOT NULL,
-// address VARCHAR NOT NUlL,
-// email VARCHAR NOT NULL UNIQUE,
-// password_digest VARCHAR,
-// profile_pic VARCHAR,
-// bio TEXT NOT NULL,
-// latitude FLOAT NOT NULL,
-// longitude FLOAT NOT NULL
-
 const addGrandma = (req, res, next) => {
-  db.one(
-    "INSERT INTO grandmas(first_name, last_name, address, email, password_digest, profile_pic, bio, latitude, longitude)VALUES (${first_name}, ${last_name}, ${address}, ${email}, ${profile_pic}, ${password_digest}, ${bio}, ${latitude}, ${longitude}) RETURNING title",
+  db.none(
+    "INSERT INTO grandmas(first_name, last_name, address, email, password_digest, profile_pic, bio, latitude, longitude)VALUES (${first_name}, ${last_name}, ${address}, ${email}, ${profile_pic}, ${password_digest}, ${bio}, ${latitude}, ${longitude})",
     {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -69,10 +58,8 @@ const addGrandma = (req, res, next) => {
       longitude: req.body.longitude
     }
   )
-    .then(grandma => {
+    .then(() => {
       res.status(200).json({
-        status: "success",
-        grandma: grandma,
         message: "Granny Added"
       });
     })
@@ -83,9 +70,21 @@ const addGrandma = (req, res, next) => {
     });
 };
 
+const recordNaturalCauses = (req, res, next) => {
+  let grannyId = parseInt(req.params.grandma_id);
+  db.none("DELETE FROM grandmas WHERE id = ${grannyId}", { grannyId })
+    .then(() => {
+      res.status(200).json({
+        message: "granny rest in peace"
+      });
+    })
+    .catch(err => next(err));
+};
+
 module.exports = {
   getOneGrandma,
   getAllGrandmas,
   getDishesByGrandmaId,
-  addGrandma
+  addGrandma,
+  recordNaturalCauses
 };
