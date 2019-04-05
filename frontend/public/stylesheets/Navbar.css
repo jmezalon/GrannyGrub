@@ -1,0 +1,23 @@
+.navbar-parent {
+  display: grid;
+  grid-template-columns: 15% 65% 20%;
+  text-decoration: none;
+  padding-top: 10px;
+}
+
+.logo-div {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 18px;
+}
+
+.links-in-middle {
+  display: flex;
+  justify-content: space-around;
+  padding-right: 8px;
+}
+
+.auth-div {
+  display: flex;
+  justify-content: space-around;
+}
