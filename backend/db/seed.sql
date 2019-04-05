@@ -68,14 +68,11 @@ CREATE TABLE orders(
 );
 
 
-
 CREATE TABLE status(
   id SERIAL PRIMARY KEY,
   order_id  INT REFERENCES orders(id) ON DELETE CASCADE,
   completed  BOOLEAN
 );
-
-
 
 
 
