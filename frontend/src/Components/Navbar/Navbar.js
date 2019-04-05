@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
 class Navbar extends Component {
   render() {
@@ -10,8 +10,15 @@ class Navbar extends Component {
             <NavLink to="/">Logo</NavLink>{" "}
           </div>
         </nav>
+
         <nav>
-          <div className="links-in-middle">
+          <div
+            className={
+              this.props.location.pathname !== "/"
+                ? "links-in-middle"
+                : "links-in-middle-null"
+            }
+          >
             <NavLink to="/brooklyn">Brooklyn</NavLink>{" "}
             <NavLink to="/queens">Queens</NavLink>{" "}
             <NavLink to="/manhattan">Manhattan</NavLink>{" "}
@@ -19,6 +26,7 @@ class Navbar extends Component {
             <NavLink to="/statenisland">Staten Island</NavLink>{" "}
           </div>
         </nav>
+
         <nav>
           <div className="auth-div">
             <NavLink to="/auth/signup">Sign Up</NavLink>{" "}
@@ -30,4 +38,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
