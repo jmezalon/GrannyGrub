@@ -25,27 +25,27 @@ const db = require("../connection");
 //     });
 // };
 
-const getAllDishesByCuisine = (req, res, next) => {
-  cuisineId = parseInt(req.params.id);
+// const getAllDishesByCuisine = (req, res, next) => {
+//   cuisineId = parseInt(req.params.id);
+//
+//   db.any(
+//     'SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price, grandmas.id AS grandma_id, latitude, longitude, cuisines.id AS cuisine_Id, type FROM dishes JOIN grandmas on(grandmas.id = dishes.grandma_id) JOIN cuisines ON(cuisines.id = dishes.cuisine_id) WHERE dishes.cuisine_id = $1',
+//     [cuisineId]
+//   )
+//     .then(dishes => {
+//       res.status(200).json({
+//         status: 'success',
+//         dishes: dishes,
+//         message: 'Got All dishes by cuisine',
+//       });
+//     })
+//     .catch(err => {
+//       console.log('error', err);
+//       next(err);
+//     });
+// };
 
-  db.any(
-    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price, grandmas.id AS grandma_id, latitude, longitude, cuisines.id AS cuisine_Id, type FROM dishes JOIN grandmas on(grandmas.id = dishes.grandma_id) JOIN cuisines ON(cuisines.id = dishes.cuisine_id) WHERE dishes.cuisine_id = $1",
-    [cuisineId]
-  )
-    .then(dishes => {
-      res.status(200).json({
-        status: "success",
-        dishes: dishes,
-        message: "Got All dishes by cuisine"
-      });
-    })
-    .catch(err => {
-      console.log("error", err);
-      next(err);
-    });
-};
-
-const AddNewDish = (req, res, next) => {
+const addNewDish = (req, res, next) => {
   db.none(
     "INSERT INTO dishes( name, description, grandma_id, cuisine_id, img_url, price) VALUES( ${name}, ${description}, ${grandma_id}, ${cuisine_id}, ${img_url}, ${price})",
     {
@@ -80,4 +80,4 @@ const deleteDish = (req, res, next) => {
     });
 };
 
-module.exports = { getAllDishesByCuisine, AddNewDish, deleteDish };
+module.exports = { addNewDish, deleteDish };
