@@ -11,7 +11,7 @@ class LandingPage extends React.Component {
         <div className="landingPage">
           <h1> Welcome to GrannyGrub! </h1>
           <img
-            src="https://cdn5.eyeem.com/thumb/cedbeecf8be48ed904d400f4e3767e43c29d2c20-1516553584991/w/900"
+            src="https://cdn.dribbble.com/users/28275/screenshots/5369506/shostudio_grandma-1.gif"
             alt="granny being cute"
             id="lpImg"
           />

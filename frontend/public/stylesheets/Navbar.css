@@ -17,7 +17,16 @@
   padding-right: 8px;
 }
 
+#logo {
+  height: 25px;
+  width: 35px;
+}
+
 .auth-div {
   display: flex;
   justify-content: space-around;
+}
+
+.links-in-middle-null {
+  display: none;
 }
