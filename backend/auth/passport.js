@@ -8,17 +8,16 @@ const db = require("../db/connection");
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
+    console.log("serialize", user);
     done(null, user.email);
   });
 
-  passport.deserializeUser((user, done) => {
-    db.one("SELECT * FROM users WHERE email = ${email}", {
-      email: user.email
+  passport.deserializeUser((email, done) => {
+    db.one("SELECT * FROM grandmas WHERE email = ${email}", {
+      email: email
     })
       .then(user => {
-        done(null, {
-          email: user.email
-        });
+        done(null, user.email);
       })
       .catch(err => {
         done(err, null);
