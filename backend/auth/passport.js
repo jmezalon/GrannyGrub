@@ -8,7 +8,6 @@ const db = require("../db/connection");
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
-    console.log("serialize", user);
     done(null, user.email);
   });
 
