@@ -5,14 +5,25 @@ const {
   getAllGrandmas,
   getOneGrandma,
   getDishesByGrandmaId,
-  addGrandma,
-  recordNaturalCauses
+
+  createNewGrandma,
+  logUserOut,
+  logUserIn,
+  isLoggedIn
 } = require("../db/queries/grandmaQueries.js");
+
+const { loginRequired } = require("../auth/helpers");
+const passport = require("../auth/locals");
 
 router.get("/", getAllGrandmas);
 router.get("/:grandma_id", getOneGrandma);
 router.get("/:grandma_id/dishes", getDishesByGrandmaId);
-router.post("/", addGrandma);
+router.post("/new", createNewGrandma);
+
+router.post("/login", passport.authenticate("local", {}), logUserIn);
+router.post("/logout", loginRequired, logUserOut);
+router.post("/isLoggedIn", isLoggedIn);
 router.delete("/:grandma_id", recordNaturalCauses);
+
 
 module.exports = router;
