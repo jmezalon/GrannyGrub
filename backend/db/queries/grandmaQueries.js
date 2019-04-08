@@ -69,7 +69,9 @@ const createNewGrandma = (req, res, next) => {
     })
     .catch(err => {
       console.log("error", err);
-      return next(err);
+      res.status(500).json({
+        message: err
+      });
     });
 };
 
@@ -84,7 +86,7 @@ const logUserIn = (req, res) => {
 
 const isLoggedIn = (req, res) => {
   if (req.grandma) {
-    res.json({ email: req.grandma });
+    res.json({ email: req.grandma.email });
   } else {
     res.json({ message: "noone is logged in" });
   }
