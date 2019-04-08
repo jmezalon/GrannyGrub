@@ -81,14 +81,14 @@ const logUserOut = (req, res) => {
 };
 
 const logUserIn = (req, res) => {
-  res.json(req.grandma);
+  res.json(req.user);
 };
 
 const isLoggedIn = (req, res) => {
-  if (req.grandma) {
-    res.json({ email: req.grandma.email });
+  if (req.user) {
+    res.json({ email: req.user.email });
   } else {
-    res.json({ message: "noone is logged in" });
+    res.json({ message: "no one is logged in" });
   }
 };
 

@@ -11,7 +11,7 @@ function createHash(password) {
 }
 
 function loginRequired(req, res, next) {
-  if (!req.grandma) {
+  if (!req.user) {
     res.status(401).json({ status: "Forbidden - please log in." });
     return;
   }
