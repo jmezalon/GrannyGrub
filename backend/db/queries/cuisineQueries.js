@@ -6,6 +6,7 @@ const getAllCuisines = (req, res, next) => {
       res.status(200).json({
         status: "success",
         cuisines: cuisines,
+
         message: "Got All cuisine"
       });
     })
@@ -70,5 +71,6 @@ module.exports = {
   getAllCuisines,
   getAllDishesByCuisine,
   addNewCuisine,
-  deleteCuisine
-};
+  deleteCuisine}
+  
+    

@@ -7,32 +7,30 @@ class Navbar extends Component {
     const { loggedIn } = this.props;
     return (
       <div className="navbar-parent">
-        <nav>
-          <div className="logo-div">
-            <NavLink to="/">
-              <img id="logo" alt="" src={logo} />
-            </NavLink>{" "}
-          </div>
-        </nav>
+        <div className="logo-div">
+          <NavLink to="/">
+            <img id="logo" alt="" src={logo} />
+          </NavLink>
+        </div>
 
         {loggedIn ? (
-          <nav>
-            <div>
-              <NavLink to="/brooklyn">Brooklyn</NavLink>{" "}
-              <NavLink to="/queens">Queens</NavLink>{" "}
-              <NavLink to="/manhattan">Manhattan</NavLink>{" "}
-              <NavLink to="/bronx">Bronx</NavLink>{" "}
-              <NavLink to="/statenisland">Staten Island</NavLink>{" "}
-              <NavLink to="/">Log Out</NavLink>
+          <>
+            <div className="middle-options">
+              <NavLink to="/brooklyn">Brooklyn</NavLink>
+              <NavLink to="/queens">Queens</NavLink>
+              <NavLink to="/manhattan">Manhattan</NavLink>
+              <NavLink to="/bronx">Bronx</NavLink>
+              <NavLink to="/statenisland">Staten Island</NavLink>
+              <div id="Logout">
+                <NavLink to="/">Log Out</NavLink>
+              </div>
             </div>
-          </nav>
+          </>
         ) : (
-          <nav>
-            <div className="auth-div">
-              <NavLink to="/auth/signup">Sign Up</NavLink>{" "}
-              <NavLink to="/auth/login">Log In</NavLink>
-            </div>
-          </nav>
+          <div className="auth-div">
+            <NavLink to="/auth/signup">Sign Up</NavLink>{" "}
+            <NavLink to="/auth/login">Log In</NavLink>
+          </div>
         )}
       </div>
     );
