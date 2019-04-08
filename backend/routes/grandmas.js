@@ -12,15 +12,14 @@ const {
 } = require("../db/queries/grandmaQueries.js");
 
 const { loginRequired } = require("../auth/helpers");
-const passport = require("../auth/locals");
+const passport = require("../auth/local");
 
+router.post("/login", passport.authenticate("local", {}), logUserIn);
+router.post("/logout", loginRequired, logUserOut);
+router.get("/getuser", loginRequired, isLoggedIn);
 router.get("/", getAllGrandmas);
 router.get("/:grandma_id", getOneGrandma);
 router.get("/:grandma_id/dishes", getDishesByGrandmaId);
 router.post("/new", createNewGrandma);
-
-router.post("/login", passport.authenticate("local", {}), logUserIn);
-router.post("/logout", loginRequired, logUserOut);
-router.post("/isLoggedIn", isLoggedIn);
 
 module.exports = router;

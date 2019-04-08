@@ -86,9 +86,14 @@ const logUserIn = (req, res) => {
 
 const isLoggedIn = (req, res) => {
   if (req.user) {
-    res.json({ email: req.user.email });
+    db.one("SELECT * FROM grandmas WHERE email=$1", [req.user]).then(user => {
+      res.status(200).json({
+        user: user
+      });
+    });
+    // res.json({ username: req.user });
   } else {
-    res.json({ message: "no one is logged in" });
+    res.json({ email: null });
   }
 };
 

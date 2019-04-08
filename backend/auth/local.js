@@ -14,9 +14,7 @@ passport.use(
         if (!helpers.comparePass(password, user.password_digest)) {
           return done(null, false);
         } else {
-          return done(null, {
-            email: user.email
-          });
+          return done(null, user);
         }
       })
       .catch(err => {
