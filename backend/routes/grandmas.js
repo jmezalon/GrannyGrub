@@ -5,6 +5,7 @@ const {
   getAllGrandmas,
   getOneGrandma,
   getDishesByGrandmaId,
+
   createNewGrandma,
   logUserOut,
   logUserIn,
@@ -22,5 +23,7 @@ router.post("/new", createNewGrandma);
 router.post("/login", passport.authenticate("local", {}), logUserIn);
 router.post("/logout", loginRequired, logUserOut);
 router.post("/isLoggedIn", isLoggedIn);
+router.delete("/:grandma_id", recordNaturalCauses);
+
 
 module.exports = router;

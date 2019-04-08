@@ -44,6 +44,7 @@ const getDishesByGrandmaId = (req, res, next) => {
     .catch(err => next(err));
 };
 
+
 const createNewGrandma = (req, res, next) => {
   const hash = authHelpers.createHash(req.body.password);
 
@@ -54,26 +55,30 @@ const createNewGrandma = (req, res, next) => {
 
   db.none(
     "INSERT INTO grandmas( first_name, last_name, address, email, password_digest) VALUES( ${first_name}, ${last_name}, ${address}, ${email}, ${password})",
+
     {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       address: req.body.address,
       email: req.body.email,
       password: hash
+
     }
   )
     .then(() => {
       res.status(200).json({
+
         message: "success"
       });
     })
+ 
     .catch(err => {
-      console.log("error", err);
       res.status(500).json({
         message: err
       });
     });
 };
+
 
 const logUserOut = (req, res) => {
   req.logout();
@@ -90,14 +95,28 @@ const isLoggedIn = (req, res) => {
   } else {
     res.json({ message: "no one is logged in" });
   }
+
+const recordNaturalCauses = (req, res, next) => {
+  let grannyId = parseInt(req.params.grandma_id);
+  db.none("DELETE FROM grandmas WHERE id = ${grannyId}", { grannyId })
+    .then(() => {
+      res.status(200).json({
+        message: "granny rest in peace"
+      });
+    })
+    .catch(err => next(err));
+
 };
 
 module.exports = {
   getOneGrandma,
   getAllGrandmas,
   getDishesByGrandmaId,
+
   createNewGrandma,
   logUserOut,
   logUserIn,
   isLoggedIn
+  recordNaturalCauses
+
 };
