@@ -21,9 +21,9 @@ CREATE TABLE grandmas (
 	email VARCHAR NOT NULL UNIQUE,
 	password_digest VARCHAR,
 	profile_pic VARCHAR,
-	bio TEXT NOT NULL,
-	latitude FLOAT NOT NULL,
-	longitude FLOAT NOT NULL
+	bio TEXT,
+	latitude FLOAT,
+	longitude FLOAT
 );
 
 CREATE TABLE cuisines (
