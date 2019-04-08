@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import AppContainer from "./AppContainer.js";
+import App from "./App.js";
 
 import thunk from "redux-thunk";
 import logger from "redux-logger";
@@ -14,7 +14,7 @@ const store = createStore(RootReducer, {}, applyMiddleware(thunk, logger));
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <AppContainer />
+      <App />
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

@@ -44,7 +44,6 @@ const getDishesByGrandmaId = (req, res, next) => {
     .catch(err => next(err));
 };
 
-
 const createNewGrandma = (req, res, next) => {
   const hash = authHelpers.createHash(req.body.password);
 
@@ -62,23 +61,20 @@ const createNewGrandma = (req, res, next) => {
       address: req.body.address,
       email: req.body.email,
       password: hash
-
     }
   )
     .then(() => {
       res.status(200).json({
-
         message: "success"
       });
     })
- 
+
     .catch(err => {
       res.status(500).json({
         message: err
       });
     });
 };
-
 
 const logUserOut = (req, res) => {
   req.logout();
@@ -100,7 +96,7 @@ const isLoggedIn = (req, res) => {
   } else {
     res.json({ email: null });
   }
-
+};
 const recordNaturalCauses = (req, res, next) => {
   let grannyId = parseInt(req.params.grandma_id);
   db.none("DELETE FROM grandmas WHERE id = ${grannyId}", { grannyId })
@@ -110,7 +106,6 @@ const recordNaturalCauses = (req, res, next) => {
       });
     })
     .catch(err => next(err));
-
 };
 
 module.exports = {
@@ -121,7 +116,6 @@ module.exports = {
   createNewGrandma,
   logUserOut,
   logUserIn,
-  isLoggedIn
+  isLoggedIn,
   recordNaturalCauses
-
 };

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import grandmaReducer from "./grandmaReducer";
+import { grandmaReducer } from "./grandmaReducer";
 
 const RootReducer = combineReducers({ grandmas: grandmaReducer });
 

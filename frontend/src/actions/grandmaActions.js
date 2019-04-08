@@ -15,7 +15,7 @@ export const receiveAllGrandmas = grandmas => {
   };
 };
 
-export const gotAllGrandmas = () => dispatch => {
+export const getAllGrandmas = () => dispatch => {
   axios
     .get("/grandmas")
     .then(res => {
