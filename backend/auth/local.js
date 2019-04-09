@@ -7,7 +7,7 @@ const db = require("../db/connection");
 
 passport.use(
   new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
-    db.one("SELECT * FROM grandmas WHERE email = ${email}", {
+    db.one("SELECT * FROM users WHERE email = ${email}", {
       email: email
     })
       .then(user => {
