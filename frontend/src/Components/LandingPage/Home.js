@@ -2,6 +2,13 @@ import React from "react";
 
 class Home extends React.Component {
   render() {
+    const allCuisines = props.cuisines((food, i) => {
+      return (
+        <div key={food.id}>
+          <h3>{food.type}</h3>
+        </div>
+      );
+    });
     return (
       <>
         <div className="home">
@@ -22,6 +29,7 @@ class Home extends React.Component {
               wireframe, mapview.png
             </h5>
           </div>
+          <>{allCuisines}</>
         </div>
       </>
     );
