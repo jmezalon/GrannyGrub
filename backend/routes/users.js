@@ -17,15 +17,14 @@ const passport = require("../auth/local");
 router.get("/", async (req, res, next) => {
   try {
     const users = await getAllUsers();
+    return res.status(200).json({
+      status: "success",
+      users,
+      message: "all users"
+    });
   } catch (e) {
-    console.log("err");
     next(e);
   }
-  return res.status(200).json({
-    status: "success",
-    users,
-    message: "all users"
-  });
 });
 
 router.get("/:user_id", getOneUser);

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
 class MainPage extends Component {
-  componentDidMount = () => {
+  componentDidMount() {
     debugger;
     this.props.getAllUsers();
-  };
+  }
 
   render() {
     debugger;
