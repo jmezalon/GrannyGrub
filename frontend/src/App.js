@@ -10,6 +10,7 @@ class App extends Component {
   state = {
     loggedIn: true
   };
+  // cheking
   render() {
     const { loggedIn } = this.state;
     return (
