@@ -1,15 +1,15 @@
 import { connect } from "react-redux";
-import { getAllGrandmas } from "../actions/grandmaActions";
+import { getAllUsers } from "../actions/userActions";
 import MainPage from "../Components/MainPage.js";
 
 const mapStateToProps = state => {
-  return { grandmas: state.grandmas };
+  return { users: state.users };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllGrandmas: () => {
-      dispatch(getAllGrandmas());
+    getAllUsers: () => {
+      dispatch(getAllUsers());
     }
   };
 };

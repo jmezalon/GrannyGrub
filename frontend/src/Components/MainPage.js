@@ -2,12 +2,12 @@ import React, { Component } from "react";
 
 class MainPage extends Component {
   componentDidMount = () => {
-    // debugger;
-    this.props.getAllGrandmas();
+    debugger;
+    this.props.getAllUsers();
   };
 
   render() {
-    // debugger;
+    debugger;
     return <div>Main Page</div>;
   }
 }

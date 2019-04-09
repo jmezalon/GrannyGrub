@@ -11,12 +11,14 @@ module.exports = () => {
     done(null, user.email);
   });
 
-  passport.deserializeUser((email, done) => {
-    db.one("SELECT * FROM grandmas WHERE email = ${email}", {
-      email: email
+  passport.deserializeUser((user, done) => {
+    db.one("SELECT * FROM users WHERE email = ${email}", {
+      email: user.email
     })
       .then(user => {
-        done(null, user.email);
+        done(null, {
+          email: user.email
+        });
       })
       .catch(err => {
         done(err, null);
