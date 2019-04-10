@@ -76,6 +76,8 @@ const addNewDish = (req, res, next) => {
   }
 };
 
+//no description
+
 const getSingleDish = (req, res, next) => {
   const dish_id = parseInt(req.params.dish_id);
 
@@ -93,6 +95,25 @@ const getSingleDish = (req, res, next) => {
     });
 };
 
+const fixDish = (req, res, next) => {
+  let queryStringArray = [];
+  let bodyKeys = Object.keys(req.body);
+  bodyKeys.forEach(key => {
+    queryStringArray.push(key + "=${" + key + "}");
+  });
+  let queryString = queryStringArray.join(", ");
+  db.none(
+    "UPDATE dishes SET " + queryString + " WHERE id=" + req.params.id,
+    req.body
+  )
+    .then(() => {
+      res.status(200).json({
+        status: "success",
+        message: "Updated a user!"
+      });
+    })
+    .catch(err => next(err));
+};
 // const getDishesByGrandmaId = (req, res, next) => {
 //   let userId = parseInt(req.params.user_id);
 //
@@ -121,13 +142,9 @@ const deleteDish = (req, res, next) => {
     });
 };
 
-<<<<<<< HEAD
 module.exports = {
   addNewDish,
   getSingleDish,
-  getDishesByGrandmaId,
+  fixDish,
   deleteDish
 };
-=======
-module.exports = { addNewDish, deleteDish };
->>>>>>> 1f3467a078409718b27ef2d6c7706753ea068512

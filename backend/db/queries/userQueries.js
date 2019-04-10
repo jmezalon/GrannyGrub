@@ -13,10 +13,17 @@ const getAllUsers = (req, res, next) => {
     .catch(err => next(err));
 };
 
+//get single grandma
+//no info
+//cuisine type
+
 const getOneGrandmaInfo = (req, res, next) => {
-  db.one("SELECT * FROM users WHERE id = ${id}", {
-    id: parseInt(req.params.user_id)
-  })
+  db.one(
+    "SELECT users.id AS user_id, first_name, last_name, profile_pic, bio, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = ${id} GROUP BY users.id, cuisines.id",
+    {
+      id: parseInt(req.params.user_id)
+    }
+  )
     .then(user => {
       res.status(200).json({
         status: "success",
@@ -28,10 +35,10 @@ const getOneGrandmaInfo = (req, res, next) => {
 };
 
 const getDishesByGrandmaId = (req, res, next) => {
-  let userId = parseInt(req.params.user_id);
+  let userId = parseInt(req.params.id);
 
   db.any(
-    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe, isGrandma, users.id AS user_id, first_name,last_name, profile_pic, labels.id AS label_id, type FROM dishes JOIN users ON users.id = dishes.user_id LEFT JOIN labels on labels.dish_id = dishes.id WHERE dishes.user_id=$1 GROUP BY dishes.id, users.id",
+    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe, isGrandma, users.id AS user_id, first_name,last_name, profile_pic, labels.id AS label_id, type FROM dishes JOIN users ON users.id = dishes.user_id LEFT JOIN labels on labels.dish_id = dishes.id WHERE dishes.user_id=$1 GROUP BY dishes.id, users.id, labels.id",
     [userId]
   )
     .then(dishes => {
@@ -43,6 +50,22 @@ const getDishesByGrandmaId = (req, res, next) => {
     })
     .catch(err => next(err));
 };
+
+const getAllUsersListView = (req, res, next) => {
+  db.any(
+    "SELECT users.id AS user_id, first_name, last_name,timeframe, cuisines.type AS cuisine_type FROM users JOIN dishes ON dishes.user_id = users.id JOIN cuisines ON cuisines.id = users.cuisine_id"
+  )
+    .then(users => {
+      res.status(200).json({
+        status: "success",
+        users: users,
+        message: "all users"
+      });
+    })
+    .catch(err => next(err));
+};
+
+// add dish type and location to this.
 
 // const getDishesByUserId = (req, res, next) => {
 //   let userId = parseInt(req.params.user_id);
@@ -114,7 +137,7 @@ const fixGrandma = (req, res, next) => {
     .then(() => {
       res.status(200).json({
         status: "success",
-        message: "Updated a user!"
+        message: "Updated a dish!"
       });
     })
     .catch(err => next(err));
@@ -157,5 +180,6 @@ module.exports = {
   logoutUser,
   loginUser,
   isLoggedIn,
-  recordNaturalCauses
+  recordNaturalCauses,
+  getAllUsersListView
 };

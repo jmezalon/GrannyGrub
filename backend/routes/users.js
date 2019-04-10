@@ -10,6 +10,7 @@ const {
   fixGrandma,
   logoutUser,
   loginUser,
+  getAllUsersListView,
   isLoggedIn
 } = require("../db/queries/UserQueries.js");
 
@@ -17,6 +18,8 @@ const { loginRequired } = require("../auth/helpers");
 const passport = require("../auth/local");
 
 router.get("/", getAllUsers);
+
+router.get("/listview", getAllUsersListView);
 
 router.get("/isLoggedIn", isLoggedIn);
 

@@ -6,11 +6,13 @@ const {
   addNewDish,
   deleteDish,
   getSingleDish,
-  getDishesByGrandmaId
+  fixDish
 } = require("../db/queries/dishQueries");
 
 router.post("/new", addNewDish);
+router.patch("/update/:id", fixDish);
 router.get("/:dish_id", getSingleDish);
+
 //router.get("/:userid", getDishesByGrandmaId);
 
 router.delete("/:id", deleteDish);
