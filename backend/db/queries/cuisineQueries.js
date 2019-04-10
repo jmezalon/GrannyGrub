@@ -71,6 +71,5 @@ module.exports = {
   getAllCuisines,
   getAllDishesByCuisine,
   addNewCuisine,
-  deleteCuisine}
-  
-    
+  deleteCuisine
+};

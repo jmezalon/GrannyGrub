@@ -11,7 +11,7 @@ export const gotError = err => {
 export const receiveAllUsers = users => {
   return {
     type: GET_ALL_USERS,
-    users
+    payload: users
   };
 };
 
@@ -19,8 +19,10 @@ export const getAllUsers = () => dispatch => {
   axios
     .get("/users")
     .then(res => {
-      debugger;
-      dispatch(receiveAllUsers(res.data.users));
+      let users = res.data.users.filter(user => {
+        return !user.isgrandma;
+      });
+      dispatch(receiveAllUsers(users));
     })
     .catch(err => {
       dispatch(gotError(err));
