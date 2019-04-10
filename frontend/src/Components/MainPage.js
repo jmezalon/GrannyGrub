@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import MapContainer from "./Map/MapContainer";
 
 class MainPage extends Component {
   componentDidMount() {
-    debugger;
     this.props.getAllUsers();
     this.props.getAllGrandmas();
   }
@@ -12,9 +12,11 @@ class MainPage extends Component {
     const locations = this.props.grandmas.grandmas.map(granny => {
       return { lat: granny.latitude, lng: granny.longitude };
     });
-    debugger;
-    console.log(locations);
-    return <div>Main Page</div>;
+    return (
+      <div>
+        <MapContainer locations={locations} />
+      </div>
+    );
   }
 }
 
