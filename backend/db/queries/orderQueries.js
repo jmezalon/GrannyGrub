@@ -1,28 +1,22 @@
 const db = require("../connection");
 
 const postNewOrder = (req, res, next) => {
-  if (req.body.isGrandma === "false") {
-    db.none(
-      "INSERT INTO orders (dish_id, user_id) VALUES (${dish_id}, ${user_id})",
-      {
-        dish_id: Number(req.body.dish_id),
-        user_id: Number(req.body.user_id)
-      }
-    )
-      .then(() => {
-        res.status(200).json({
-          message: "success"
-        });
-      })
-      .catch(err => {
-        console.log("err", err);
-        return next(err);
+  db.none(
+    "INSERT INTO orders (dish_id, user_id) VALUES (${dish_id}, ${user_id})",
+    {
+      dish_id: Number(req.body.dish_id),
+      user_id: Number(req.body.user_id)
+    }
+  )
+    .then(() => {
+      res.status(200).json({
+        message: "success"
       });
-  } else {
-    res.status(401).json({
-      message: "no."
+    })
+    .catch(err => {
+      console.log("err", err);
+      return next(err);
     });
-  }
 };
 
 const deleteOrder = (req, res, next) => {
