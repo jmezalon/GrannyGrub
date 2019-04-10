@@ -38,7 +38,7 @@ CREATE TABLE dishes (
   cuisine_id  INT REFERENCES cuisines(id) ON DELETE CASCADE,
   img_url  VARCHAR NOT NULL,
   price  FLOAT NOT NULL,
-  type VARCHAR,
+  type VARCHAR NOT NULL,
   timeframe VARCHAR NOT NULL
 );
 
@@ -95,16 +95,16 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 
 
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, timeframe) VALUES
-('chinese orange chicken', 'white rice with chicken and scallion', 7, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 5.73, 'lunch'),
-('egg rolls', 'great egg rools, you can even add chicken to it.', 5, 1, 'https://i.ytimg.com/vi/MoZAkumC7ps/hqdefault.jpg', 3.75, 'dinner'),
-('rice with beans gravy and legume', 'the name says it all, now just taste it and see', 6, 2, 'https://i.ytimg.com/vi/ojqGPMv4rBw/maxresdefault.jpg', 9.99, 'lunch'),
-('fritay', 'you will enjoy this, better than mcdonals fries', 5, 2, 'https://pbs.twimg.com/media/C5eanfJWMAAV4Ot.jpg', 7.89, 'dinner'),
-('lasagna', 'the best one ever', 7, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-I9R_mZmC8hPg9bml5_sP3YEHjwTpsiLGrwoGkUx8dJDuFkIqQw', 6.89, 'dinner'),
-('pasta with muscles', 'the best pasta joined together with fresh muscles', 6, 3, 'https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/smallpasta-with-mussel-and-tomato-s-27497546.jpg?itok=JdjVqu9i', 8.98, 'lunch');
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
+('chinese orange chicken', 'white rice with chicken and scallion', 7, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 5.73, 'pick-up', 'lunch'),
+('egg rolls', 'great egg rools, you can even add chicken to it.', 5, 1, 'https://i.ytimg.com/vi/MoZAkumC7ps/hqdefault.jpg', 3.75, 'sit-down', 'dinner'),
+('rice with beans gravy and legume', 'the name says it all, now just taste it and see', 6, 2, 'https://i.ytimg.com/vi/ojqGPMv4rBw/maxresdefault.jpg', 9.99, 'sit-down','lunch'),
+('fritay', 'you will enjoy this, better than mcdonals fries', 5, 2, 'https://pbs.twimg.com/media/C5eanfJWMAAV4Ot.jpg', 7.89, 'sit-down','dinner'),
+('lasagna', 'the best one ever', 7, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-I9R_mZmC8hPg9bml5_sP3YEHjwTpsiLGrwoGkUx8dJDuFkIqQw', 6.89,'pick-up','dinner'),
+('pasta with muscles', 'the best pasta joined together with fresh muscles', 6, 3, 'https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/smallpasta-with-mussel-and-tomato-s-27497546.jpg?itok=JdjVqu9i', 8.98,'pick-up', 'lunch');
 
 
-INSERT INTO labels (dish_id, type) VALUES (1, 'Kosher'), (2, 'Vegetarian'), (3, 'Vegan'), (6, 'Halal');
+-- INSERT INTO labels (dish_id, type) VALUES (1, 'Kosher'), (2, 'Vegetarian'), (3, 'Vegan'), (6, 'Halal');
 --
 -- INSERT INTO reviews (stars, comment, user_id) VALUES
 -- (4, 'I enjoyed the meal very much', 6),
