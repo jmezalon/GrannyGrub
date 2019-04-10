@@ -34,9 +34,10 @@ class MainPage extends Component {
 
   render() {
     if (!this.props.grandmas.grandmas.length) return null;
-    const locations = this.props.grandmas.grandmas.map(granny => {
+    const locations = this.props.grandmas.grandmas.map((granny, i) => {
       return (
         <Marker
+          key={i}
           onClick={this.onMarkerClick}
           pic={granny.profile_pic}
           name={granny.last_name}
