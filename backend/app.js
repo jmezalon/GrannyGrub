@@ -49,7 +49,7 @@ app.use("/users", usersRouter);
 app.use("/labels", labelsRouter);
 app.use("/dishes", dishesRouter);
 app.use("/cuisines", cuisinesRouter);
-app.use("/order", ordersRouter);
+app.use("/orders", ordersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
