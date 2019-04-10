@@ -20,7 +20,7 @@
 //     const users = await getAllUsers();
 //   } catch (e) {
 //     next(e);
-//   }
+//   }``
 //   return res.status(200).json({
 //     status: "success",
 //     users,

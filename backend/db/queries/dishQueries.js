@@ -47,14 +47,15 @@ const db = require("../connection");
 
 const addNewDish = (req, res, next) => {
   db.none(
-    "INSERT INTO dishes( name, description, grandma_id, cuisine_id, img_url, price) VALUES( ${name}, ${description}, ${grandma_id}, ${cuisine_id}, ${img_url}, ${price})",
+    "INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, timeframe) VALUES( ${name}, ${description}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${timeframe})",
     {
       name: req.body.name,
       description: req.body.description,
-      grandma_id: req.body.grandma_id,
+      user_id: req.body.user_id,
       cuisine_id: req.body.cuisine_id,
       img_url: req.body.img_url,
       price: req.body.price,
+      timeframe: req.body.timeframe,
       id: Number(req.body.id)
     }
   )
@@ -69,6 +70,40 @@ const addNewDish = (req, res, next) => {
     });
 };
 
+const getDishesByGrandmaId = (req, res, next) => {
+  let userId = parseInt(req.params.user_id);
+
+  db.any(
+    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe, isGrandma, users.id AS user_id, first_name,last_name, profile_pic, labels.id AS label_id, type FROM dishes JOIN users ON users.id = dishes.user_id LEFT JOIN labels on labels.dish_id = dishes.id WHERE dishes.user_id=$1 GROUP BY dishes.id, users.id",
+    [userId]
+  )
+    .then(dishes => {
+      res.status(200).json({
+        status: "success",
+        dishes: dishes,
+        message: "all dishes for a grandma"
+      });
+    })
+    .catch(err => next(err));
+};
+
+// const getDishesByGrandmaId = (req, res, next) => {
+//   let userId = parseInt(req.params.user_id);
+//
+//   db.any(
+//     "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe, isGrandma, users.id AS user_id, first_name,last_name, profile_pic, labels.id AS label_id, type FROM dishes JOIN users ON users.id = dishes.user_id LEFT JOIN labels on labels.dish_id = dishes.id WHERE dishes.user_id=$1 GROUP BY dishes.id, users.id",
+//     [userId]
+//   )
+//     .then(dishes => {
+//       res.status(200).json({
+//         status: "success",
+//         dishes: dishes,
+//         message: "all dishes for a grandma"
+//       });
+//     })
+//     .catch(err => next(err));
+// };
+
 const deleteDish = (req, res, next) => {
   const dish_id = parseInt(req.params.id);
   db.none("DELETE FROM dishes WHERE id= $1", [dish_id])
@@ -80,4 +115,4 @@ const deleteDish = (req, res, next) => {
     });
 };
 
-module.exports = { addNewDish, deleteDish };
+module.exports = { addNewDish, getDishesByGrandmaId, deleteDish };
