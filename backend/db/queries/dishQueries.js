@@ -46,27 +46,50 @@ const db = require("../connection");
 // };
 
 const addNewDish = (req, res, next) => {
-  db.none(
-    "INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, timeframe) VALUES( ${name}, ${description}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${timeframe})",
-    {
-      name: req.body.name,
-      description: req.body.description,
-      user_id: req.body.user_id,
-      cuisine_id: req.body.cuisine_id,
-      img_url: req.body.img_url,
-      price: req.body.price,
-      timeframe: req.body.timeframe,
-      id: Number(req.body.id)
-    }
-  )
-    .then(() => {
+  if (req.body.isGrandma === "true") {
+    db.none(
+      "INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, timeframe) VALUES( ${name}, ${description}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${timeframe})",
+      {
+        name: req.body.name,
+        description: req.body.description,
+        user_id: req.body.user_id,
+        cuisine_id: req.body.cuisine_id,
+        img_url: req.body.img_url,
+        price: req.body.price,
+        timeframe: req.body.timeframe,
+        id: Number(req.body.id)
+      }
+    )
+      .then(() => {
+        res.status(200).json({
+          message: "success"
+        });
+      })
+      .catch(err => {
+        console.log("error", err);
+        return next(err);
+      });
+  } else {
+    res.status(401).json({
+      message: "no."
+    });
+  }
+};
+
+const getSingleDish = (req, res, next) => {
+  const dish_id = parseInt(req.params.dish_id);
+
+  db.one("SELECT * FROM dishes WHERE id=$1", [dish_id])
+    .then(dish => {
       res.status(200).json({
-        message: "success"
+        status: "success",
+        dish: dish,
+        message: "got single dish"
       });
     })
     .catch(err => {
       console.log("error", err);
-      return next(err);
+      // next(err);
     });
 };
 
@@ -115,4 +138,9 @@ const deleteDish = (req, res, next) => {
     });
 };
 
-module.exports = { addNewDish, getDishesByGrandmaId, deleteDish };
+module.exports = {
+  addNewDish,
+  getSingleDish,
+  getDishesByGrandmaId,
+  deleteDish
+};
