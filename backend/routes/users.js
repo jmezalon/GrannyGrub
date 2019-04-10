@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const {
+  getDishesByGrandmaId,
   getAllUsers,
-  getOneUser,
+  getOneGrandmaInfo,
   recordNaturalCauses,
   createNewUser,
+  fixGrandma,
   logoutUser,
   loginUser,
   isLoggedIn
@@ -20,15 +22,15 @@ router.get("/isLoggedIn", isLoggedIn);
 
 router.post("/new", createNewUser);
 
+router.patch("/update/:id", fixGrandma);
+
 router.post("/login", passport.authenticate("local", {}), loginUser);
 
 router.post("/logout", loginRequired, logoutUser);
-// router.post("/new", createNewUser);
-// router.post("/logout", loginRequired, logUserOut);
-// router.get("/isLoggedIn", isLoggedIn);
-// router.post("/login", passport.authenticate("local", {}), logUserIn);
-// router.get("/:user_id", getOneUser);
+
+router.get("/grandma/:user_id", getOneGrandmaInfo);
 // router.get("/:user_id/dishes", getDishesByUSerId);
+router.get("/:id/dishes", getDishesByGrandmaId);
 
 router.delete("/:user_id", recordNaturalCauses);
 
