@@ -1,0 +1,38 @@
+.navbar-parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  margin-top: 0px;
+  text-decoration: none;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.navbar-parent a {
+  text-decoration: none;
+}
+
+#Logout {
+  margin-left: 60px;
+  margin-right: 30px;
+}
+
+#logo {
+  height: 50px;
+  width: 60px;
+}
+
+.logo-div {
+  margin-left: 30px;
+}
+.middle-options {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth-div {
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+}
