@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import secret from "../secret.js";
 import icon from "../assets/icon.png";
+import axios from "axios";
 
 class MainPage extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
-    selectedPlace: {}
+    selectedPlace: {},
+    coords: {}
   };
 
   onMarkerClick = (props, marker, e) => {
@@ -16,6 +18,20 @@ class MainPage extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
+  };
+
+  getCoords = address => {
+    axios
+      .get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${
+          secret.apiKey
+        }`
+      )
+      .then(res => {
+        this.setState({
+          coords: res.data.results[0].geometry.location
+        });
+      });
   };
 
   onMapClicked = props => {
@@ -32,12 +48,19 @@ class MainPage extends Component {
     this.props.getAllGrandmas();
   }
 
+  // 40.7484405, lng: -73.9856643999999
+
   render() {
+    !this.state.coords.lat
+      ? this.getCoords("870 Nostrand Ave")
+      : console.log(this.state.coords);
+
     if (!this.props.grandmas.grandmas.length) return null;
-    const locations = this.props.grandmas.grandmas.map((granny, i) => {
+    const locations = this.props.grandmas.grandmas.map(granny => {
       return (
         <Marker
-          key={i}
+          key={granny.id}
+
           onClick={this.onMarkerClick}
           pic={granny.profile_pic}
           name={granny.last_name}
