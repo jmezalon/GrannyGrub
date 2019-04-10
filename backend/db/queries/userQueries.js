@@ -13,7 +13,7 @@ const getAllUsers = (req, res, next) => {
     .catch(err => next(err));
 };
 
-const getOneUser = (req, res, next) => {
+const getOneGrandmaInfo = (req, res, next) => {
   db.one("SELECT * FROM users WHERE id = ${id}", {
     id: parseInt(req.params.user_id)
   })
@@ -22,6 +22,23 @@ const getOneUser = (req, res, next) => {
         status: "success",
         user: user,
         message: "single user"
+      });
+    })
+    .catch(err => next(err));
+};
+
+const getDishesByGrandmaId = (req, res, next) => {
+  let userId = parseInt(req.params.user_id);
+
+  db.any(
+    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe, isGrandma, users.id AS user_id, first_name,last_name, profile_pic, labels.id AS label_id, type FROM dishes JOIN users ON users.id = dishes.user_id LEFT JOIN labels on labels.dish_id = dishes.id WHERE dishes.user_id=$1 GROUP BY dishes.id, users.id",
+    [userId]
+  )
+    .then(dishes => {
+      res.status(200).json({
+        status: "success",
+        dishes: dishes,
+        message: "all dishes for a grandma"
       });
     })
     .catch(err => next(err));
@@ -83,6 +100,26 @@ const createNewUser = (req, res, next) => {
     .catch(err => next(err));
 };
 
+const fixGrandma = (req, res, next) => {
+  let queryStringArray = [];
+  let bodyKeys = Object.keys(req.body);
+  bodyKeys.forEach(key => {
+    queryStringArray.push(key + "=${" + key + "}");
+  });
+  let queryString = queryStringArray.join(", ");
+  db.none(
+    "UPDATE users SET " + queryString + " WHERE id=" + req.params.id,
+    req.body
+  )
+    .then(() => {
+      res.status(200).json({
+        status: "success",
+        message: "Updated a user!"
+      });
+    })
+    .catch(err => next(err));
+};
+
 function logoutUser(req, res, next) {
   req.logout();
   res.status(200).send("log out success");
@@ -112,9 +149,11 @@ const recordNaturalCauses = (req, res, next) => {
 };
 
 module.exports = {
-  getOneUser,
+  getOneGrandmaInfo,
   getAllUsers,
   createNewUser,
+  getDishesByGrandmaId,
+  fixGrandma,
   logoutUser,
   loginUser,
   isLoggedIn,
