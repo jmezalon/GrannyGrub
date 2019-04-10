@@ -102,7 +102,7 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, time
 ('pasta with muscles', 'the best pasta joined together with fresh muscles', 6, 3, 'https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/smallpasta-with-mussel-and-tomato-s-27497546.jpg?itok=JdjVqu9i', 8.98, 'lunch');
 
 
-INSERT INTO labels (dish_id, type) VALUES (1, 'Kosher'), (2, 'Vegetarian'), (3, 'Vegan'), (6, 'Halal');3
+INSERT INTO labels (dish_id, type) VALUES (1, 'Kosher'), (2, 'Vegetarian'), (3, 'Vegan'), (6, 'Halal');
 --
 -- INSERT INTO reviews (stars, comment, user_id) VALUES
 -- (4, 'I enjoyed the meal very much', 6),
