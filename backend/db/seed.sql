@@ -40,6 +40,12 @@ CREATE TABLE dishes (
   timeframe VARCHAR NOT NULL
 );
 
+CREATE TABLE labels(
+  id SERIAL PRIMARY KEY,
+  dish_id  INT REFERENCES dishes(id) ON DELETE CASCADE,
+  type VARCHAR
+);
+
 
 CREATE TABLE orders(
   id SERIAL PRIMARY KEY,
@@ -95,6 +101,9 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, time
 ('lasagna', 'the best one ever', 7, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-I9R_mZmC8hPg9bml5_sP3YEHjwTpsiLGrwoGkUx8dJDuFkIqQw', 6.89, 'dinner'),
 ('pasta with muscles', 'the best pasta joined together with fresh muscles', 6, 3, 'https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/smallpasta-with-mussel-and-tomato-s-27497546.jpg?itok=JdjVqu9i', 8.98, 'lunch');
 
+
+INSERT INTO labels (dish_id, type) VALUES (1, 'Kosher'), (2, 'Vegetarian'), (3, 'Vegan'), (6, 'Halal');3
+--
 -- INSERT INTO reviews (stars, comment, user_id) VALUES
 -- (4, 'I enjoyed the meal very much', 6),
 -- (5, 'her food is very delicious', 4),
