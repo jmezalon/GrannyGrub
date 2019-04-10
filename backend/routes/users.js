@@ -6,34 +6,30 @@ const {
   getOneUser,
   recordNaturalCauses,
   createNewUser,
-  logUserOut,
-  logUserIn,
+  logoutUser,
+  loginUser,
   isLoggedIn
 } = require("../db/queries/UserQueries.js");
 
 const { loginRequired } = require("../auth/helpers");
 const passport = require("../auth/local");
 
-router.get("/", async (req, res, next) => {
-  try {
-    const users = await getAllUsers();
-    return res.status(200).json({
-      status: "success",
-      users,
-      message: "all users"
-    });
-  } catch (e) {
-    next(e);
-  }
-});
+router.get("/", getAllUsers);
 
-router.get("/:user_id", getOneUser);
-// router.get("/:user_id/dishes", getDishesByUSerId);
+router.get("/isLoggedIn", isLoggedIn);
+
 router.post("/new", createNewUser);
 
-router.post("/login", passport.authenticate("local", {}), logUserIn);
-router.post("/logout", loginRequired, logUserOut);
-router.post("/isLoggedIn", isLoggedIn);
+router.post("/login", passport.authenticate("local", {}), loginUser);
+
+router.post("/logout", loginRequired, logoutUser);
+// router.post("/new", createNewUser);
+// router.post("/logout", loginRequired, logUserOut);
+// router.get("/isLoggedIn", isLoggedIn);
+// router.post("/login", passport.authenticate("local", {}), logUserIn);
+// router.get("/:user_id", getOneUser);
+// router.get("/:user_id/dishes", getDishesByUSerId);
+
 router.delete("/:user_id", recordNaturalCauses);
 
 module.exports = router;

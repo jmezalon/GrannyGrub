@@ -18,4 +18,8 @@ function loginRequired(req, res, next) {
   next();
 }
 
-module.exports = { comparePass, createHash, loginRequired };
+module.exports = {
+  comparePass,
+  createHash,
+  loginRequired
+};
