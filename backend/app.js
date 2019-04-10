@@ -11,8 +11,9 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var dishesRouter = require("./routes/dishes");
 // var grandmasRouter = require("./routes/grandmas");
-var favoritesRouter = require("./routes/favorites");
+var labelsRouter = require("./routes/labels");
 var cuisinesRouter = require("./routes/cuisines");
+var ordersRouter = require("./routes/orders");
 
 var app = express();
 
@@ -45,9 +46,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 // app.use("/grandmas", grandmasRouter);
-app.use("/favorites", favoritesRouter);
+app.use("/labels", labelsRouter);
 app.use("/dishes", dishesRouter);
 app.use("/cuisines", cuisinesRouter);
+app.use("/orders", ordersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

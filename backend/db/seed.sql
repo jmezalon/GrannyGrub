@@ -38,6 +38,7 @@ CREATE TABLE dishes (
   cuisine_id  INT REFERENCES cuisines(id) ON DELETE CASCADE,
   img_url  VARCHAR NOT NULL,
   price  FLOAT NOT NULL,
+  type VARCHAR,
   timeframe VARCHAR NOT NULL
 );
 
