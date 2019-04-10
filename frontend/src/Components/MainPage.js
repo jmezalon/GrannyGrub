@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import secret from "../secret.js";
+import icon from "../assets/icon.png";
 
 class MainPage extends Component {
   state = {
@@ -39,10 +40,7 @@ class MainPage extends Component {
           onClick={this.onMarkerClick}
           pic={granny.profile_pic}
           name={granny.last_name}
-          icon={{
-            url: "https://furtaev.ru/preview/current_location_small.png",
-            scaledSize: { width: 40, height: 40 }
-          }}
+          icon={icon}
           position={{
             lat: granny.latitude,
             lng: granny.longitude
@@ -53,6 +51,10 @@ class MainPage extends Component {
     const divStyle = {
       width: "500px",
       height: "500px"
+    };
+    const imgStyle = {
+      width: "50px",
+      height: "50px"
     };
     return (
       <div>
@@ -72,7 +74,7 @@ class MainPage extends Component {
             visible={this.state.showingInfoWindow}
           >
             <div>
-              <img src={this.state.selectedPlace.pic} />
+              <img style={imgStyle} src={this.state.selectedPlace.pic} alt="" />
               <p>{this.state.selectedPlace.name}</p>
             </div>
           </InfoWindow>
@@ -84,5 +86,5 @@ class MainPage extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: `${secret.apikey}`
+  apiKey: `${secret.apiKey}`
 })(MainPage);

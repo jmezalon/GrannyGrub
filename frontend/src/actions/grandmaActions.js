@@ -22,7 +22,6 @@ export const getAllGrandmas = () => dispatch => {
       let grandmas = res.data.users.filter(user => {
         return user.isgrandma;
       });
-      debugger;
       dispatch(receiveAllGrandmas(grandmas));
     })
     .catch(err => {
