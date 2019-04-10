@@ -1,28 +1,17 @@
 const db = require("../connection");
 const authHelpers = require("../../auth/helpers");
 
-const getAllUsers = () => db.any("SELECT * FROM users");
-// .then(users => {
-//   res.status(200).json({
-//     status: "success",
-//     users: users,
-//     message: "all users"
-//   });
-// })
-// .catch(err => next(err));
-// };
-
-// const getAllUsers = (req, res, next) => {
-//   db.any("SELECT * FROM users");
-//   // .then(users => {
-//   //   res.status(200).json({
-//   //     status: "success",
-//   //     users: users,
-//   //     message: "all users"
-//   //   });
-//   // })
-//   // .catch(err => next(err));
-// };
+const getAllUsers = (req, res, next) => {
+  db.any("SELECT * FROM users")
+    .then(users => {
+      res.status(200).json({
+        status: "success",
+        users: users,
+        message: "all users"
+      });
+    })
+    .catch(err => next(err));
+};
 
 const getOneUser = (req, res, next) => {
   db.one("SELECT * FROM users WHERE id = ${id}", {
@@ -59,51 +48,57 @@ const createNewUser = (req, res, next) => {
   const hash = authHelpers.createHash(req.body.password);
 
   req.body.profile_pic = req.body.profile_pic ? req.body.profile_pic : null;
+  req.body.building_number = req.body.building_number
+    ? req.body.building_number
+    : null;
+  req.body.address = req.body.address ? req.body.address : null;
+  req.body.zip_code = req.body.zip_code ? req.body.zip_code : null;
   req.body.bio = req.body.bio ? req.body.bio : null;
-  req.body.longitude = req.body.longitude ? req.body.longitude : null;
   req.body.latitude = req.body.latitude ? req.body.latitude : null;
+  req.body.longitude = req.body.longitude ? req.body.longitude : null;
+  req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
-  db.none(
-    "INSERT INTO users( first_name, last_name, address, email, password_digest) VALUES( ${first_name}, ${last_name}, ${address}, ${email}, ${password})",
+  db.one(
+    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}) RETURNING *",
 
     {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      address: req.body.address,
       email: req.body.email,
-      password: hash
+      phone_number: req.body.phone_number,
+      isGrandma: req.body.isGrandma,
+      password: hash,
+      building_number: req.body.building_number,
+      address: req.body.address,
+      zip_code: req.body.zip_code
     }
   )
-    .then(() => {
+    .then(user => {
       res.status(200).json({
         message: "success",
+        user,
         isGrandma: true
       });
     })
-
-    .catch(err => {
-      res.status(500).json({
-        message: err
-      });
-    });
+    .catch(err => next(err));
 };
 
-const logUserOut = (req, res) => {
+function logoutUser(req, res, next) {
   req.logout();
   res.status(200).send("log out success");
-};
+}
 
-const logUserIn = (req, res) => {
+function loginUser(req, res) {
   res.json(req.user);
-};
+}
 
-const isLoggedIn = (req, res) => {
+function isLoggedIn(req, res) {
   if (req.user) {
-    res.json({ email: req.user.email });
+    res.json({ email: req.user });
   } else {
-    res.json({ message: "no one is logged in" });
+    res.status(401).json({ err: "Nobody logged in" });
   }
-};
+}
 
 const recordNaturalCauses = (req, res, next) => {
   let userId = parseInt(req.params.user_id);
@@ -120,8 +115,8 @@ module.exports = {
   getOneUser,
   getAllUsers,
   createNewUser,
-  logUserOut,
-  logUserIn,
+  logoutUser,
+  loginUser,
   isLoggedIn,
   recordNaturalCauses
 };
