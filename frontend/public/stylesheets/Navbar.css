@@ -1,32 +1,38 @@
 .navbar-parent {
-  display: grid;
-  grid-template-columns: 15% 65% 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  margin-top: 0px;
   text-decoration: none;
-  padding-top: 10px;
+  border-bottom: 1px solid whitesmoke;
 }
 
-.logo-div {
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 18px;
+.navbar-parent a {
+  text-decoration: none;
 }
 
-.links-in-middle {
-  display: flex;
-  justify-content: space-around;
-  padding-right: 8px;
+#Logout {
+  margin-left: 60px;
+  margin-right: 30px;
 }
 
 #logo {
-  height: 25px;
-  width: 5px;
+  height: 50px;
+  width: 60px;
+}
+
+.logo-div {
+  margin-left: 30px;
+}
+.middle-options {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .auth-div {
+  width: 20%;
   display: flex;
   justify-content: space-around;
-}
-
-.links-in-middle-null {
-  display: none;
 }
