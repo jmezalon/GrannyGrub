@@ -1,13 +1,18 @@
 const express = require("express");
-
 const router = express.Router();
 
-const { orderSummary } = require("../db/queries/ordersQueries");
+const {
+  postNewOrder,
+  deleteOrder,
+  orderSummary,
+  getAllOrderForSingleUser,
+  allOrdersForGrandma
+} = require("../db/queries/orderQueries.js");
 
-router.get("/", orderSummary);
-// router.get("/:dish_id", getSingleDish);
-//router.get("/:userid", getDishesByGrandmaId);
-//
-// router.delete("/:id", deleteDish);
+router.post("/new", postNewOrder);
+router.get("/ordersummary", orderSummary);
+router.get("/user/:user_id", getAllOrderForSingleUser);
+router.get("/grandma/:grandma_id", allOrdersForGrandma);
+router.delete("/:id", deleteOrder);
 
 module.exports = router;
