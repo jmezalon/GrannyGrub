@@ -80,7 +80,8 @@ class MainPage extends Component {
       height: "50px"
     };
     return (
-      <div>
+      <div className="maainpage">
+        <h2>Grandmas near you</h2>
         <Map
           onClick={this.onMapClicked}
           style={divStyle}
@@ -102,7 +103,6 @@ class MainPage extends Component {
             </div>
           </InfoWindow>
         </Map>
-        Main Page
       </div>
     );
   }
