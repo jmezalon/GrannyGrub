@@ -60,7 +60,6 @@ class MainPage extends Component {
       return (
         <Marker
           key={granny.id}
-
           onClick={this.onMarkerClick}
           pic={granny.profile_pic}
           name={granny.last_name}
