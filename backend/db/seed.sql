@@ -46,7 +46,7 @@ CREATE TABLE labels(
   id SERIAL PRIMARY KEY,
   dish_id  INT REFERENCES dishes(id) ON DELETE CASCADE,
   type VARCHAR
-);
+); 
 
 
 CREATE TABLE orders(
