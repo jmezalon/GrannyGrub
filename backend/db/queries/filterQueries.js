@@ -1,11 +1,30 @@
 const db = require("../connection");
 
+const filterByCuisineMap = (req, res, next) => {
+  cuisine_id = parseInt(req.params.id);
+
+  db.any(
+    "SELECT users.id AS user_id, longitude, latitude, first_name, last_name, profile_pic, cuisines.type AS cuisine_type FROM users LEFT JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.cuisine_id = $1 GROUP BY users.id, longitude, latitude, first_name, last_name, cuisines.type",
+    [cuisine_id]
+  )
+    .then(grandma => {
+      res.status(200).json({
+        status: "success",
+        grandma: grandma,
+        message: "filtered by cuisine"
+      });
+    })
+    .catch(err => {
+      console.log("error", err);
+      next(err);
+    });
+};
+
 const filterByCuisine = (req, res, next) => {
   cuisine_id = parseInt(req.params.id);
 
   db.any(
-    "SELECT dishes.id AS dish_id, cuisines.type AS cuisine_type, longitude, latitude, cuisines.id AS cuisine_id, first_name, last_name, dishes.type AS dish_type, timeframe, cuisines.id AS cuisine_Id FROM cuisines JOIN users ON users.cuisine_id = cuisines.id JOIN dishes ON dishes.cuisine_id = cuisines.id WHERE users.cuisine_id = $1",
-
+    "SELECT users.id AS user_id, longitude, latitude, first_name, last_name, ARRAY_AGG(dishes.timeframe) AS timeframes, cuisines.type AS cuisine_type, ARRAY_AGG(dishes.type) AS dish_type FROM users LEFT JOIN dishes ON users.id = dishes.user_id JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.cuisine_id = $1 GROUP BY users.id, longitude, latitude, first_name, last_name, cuisines.type",
     [cuisine_id]
   )
     .then(grandma => {
@@ -83,5 +102,6 @@ const filterByLabel = (req, res, next) => {
 module.exports = {
   filterByCuisine,
   filterByLabel,
-  filterByType
+  filterByType,
+  filterByCuisineMap
 };
