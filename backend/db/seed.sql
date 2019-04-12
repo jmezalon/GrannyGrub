@@ -98,8 +98,17 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 
 ('Debra ', 'Wei', 'grannanna@gmail.com', '123-999-4567', true, 1234, 'http://economists-pick-research.hktdc.com/resources/MI_Portal/Article/rp/2015/07/470473/1436836534321_eChinaSeniors2-p2i_470473.jpg', 47-10, 'Austell Pl, Long Island City', 11101, 'I love cooking and taking care of my young people.', 40.742442, -73.941235, 1),
 ('Lindy', 'Joseph', 'granbubbu@yahoo.com', '123-999-0987', true, 1234, 'http://www.historymiami.org/wp-content/uploads/2017/12/gg-e1512752178541-265x300.jpg', 1463, 'E 96th St, Brooklyn NY', 11236, 'My grandson told me that my meals are delicious and I wanted to share my good cooking with everyone else to see themselves.',  40.637195, -73.894472, 2),
-('Kaira', 'Olivier', 'mandygrannyu@hotmail.com', '123-219-4567', true, 1234,'https://steamuserimages-a.akamaihd.net/ugc/498028597176892886/1D8DB1CBEB5BF1F5BECEADB535572E4CBEDB1918/', 1250, 'Rogers Ave, Brooklyn NY', 11226, 'cooking is my life.', 40.639286, -73.951499, 3);
+('Kaira', 'Olivier','mandygrannyu@hotmail.com', '123-219-4567', true, 1234,'https://steamuserimages-a.akamaihd.net/ugc/498028597176892886/1D8DB1CBEB5BF1F5BECEADB535572E4CBEDB1918/', 1250, 'Rogers Ave, Brooklyn NY', 11226, 'cooking is my life.', 40.639286, -73.951499, 3);
 
+
+INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, cuisine_id) VALUES ('Asil ', 'Demir', 'Asildemir@gmail.com', '323-909-4062', true, 1234,'https://external-preview.redd.it/cPPIF6OlEUUtLBovAUghOlj3ghBc-xbWzaFOsCX_N40.jpg?auto=webp&s=4e4bf2613036d32207ba74916864e02bd27b110b', 9039, 'Theatre Drive, New York', 10024, 'Cooking makes me happy!', 40.711161, -74.007271, 9),
+('Kiral ', 'Osman', 'KOsman@gmail.com','323-909-4962', true, 1234, 'https://preview.redd.it/sufregue6pn21.jpg?width=640&crop=smart&auto=webp&s=090b17352883a36f81064e74fda1077a09a2b60f', 9430 ,'Vale Street
+Rego Park', 11374, 'I love my grandchildren!!', 40.726729, -73.86152, 9),('Miki', 'Tanaka', 'MTanaka@gmail.com','323-081-3098', true, 1234, 'https://preview.redd.it/p0nuzgms2c211.jpg?width=640&crop=smart&auto=webp&s=59a77c856454abc3fe03ca7ff65e644ec43e2aca', 14  ,'Briarwood Lane
+Fresh Meadows', 11365, 'Cooking makes me happy!', 40.739381, -73.793039, 12);
+
+INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, cuisine_id) VALUES ('Lena ', 'Ali', 'LenaAli@gmail.com', '323-809-4062', true, 1234,'https://preview.redd.it/nmibyopd3kn21.jpg?width=640&crop=smart&auto=webp&s=b202704ab86e0271dd2fa9dc9b97d06387cb062b', 6, 'Ann Ave, Woodside', 11377, 'Everyone is welcome here!!', 40.74462, -73.904361, 10),
+('Cynthia ', 'Nikolaidis', 'CNikolaidis@gmail.com','917-909-4962', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/180310_1456163396622_2274193_n.jpg?_nc_cat=102&_nc_ht=scontent-lga3-1.xx&oh=3ab614c0937832739b0c4a8e28392866&oe=5D320678', 46 ,'Charles Ave, Staten Island', 10312, 'I love my grandchildren!!', 40.535385, -74.161575, 5), ('Pamela', 'Papantoniou', 'pamelaPap@gmail.com','909-081-3098', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/s403x403/378205_502769929738427_1214178709_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=b3cc12890f39199d6787af8b8bfe328c&oe=5D42B1EF', 7688  ,'Ramblewood St, Jackson Heights', 11372,
+'Cooking makes me very happy!', 40.751948, -73.883959, 5);
 
 
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
