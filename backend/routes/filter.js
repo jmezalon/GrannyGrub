@@ -3,13 +3,14 @@ const router = express.Router();
 
 const {
   filterByCuisine,
+  filterByLabel,
   filterByType,
-  filterByLabel
-} = require("../db/queries/filterQueries.js");
+} = require('../db/queries/filterQueries.js');
 
-router.get("/cuisine/:id", filterByCuisine);
-router.get("/type/:id", filterByType);
-router.get("/labels/:id", filterByLabel);
+router.get('/cuisine/:id', filterByCuisine);
+router.get('/label/:id', filterByLabel);
+router.get('/type/:id', filterByType);
+
 
 // router.post("/", postFavorite);
 // router.delete("/:id", deleteFavorite);
