@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 const {
@@ -10,6 +10,8 @@ const {
 router.get('/cuisine/:id', filterByCuisine);
 router.get('/label/:id', filterByLabel);
 router.get('/type/:id', filterByType);
+
+
 // router.post("/", postFavorite);
 // router.delete("/:id", deleteFavorite);
 

@@ -12,27 +12,28 @@ class Navbar extends Component {
             <img id="logo" alt="" src={logo} />
           </NavLink>
         </div>
-
-        {loggedIn ? (
-          <>
-            <div className="middle-options">
-              <NavLink to="/brooklyn">Brooklyn</NavLink>
-              <NavLink to="/queens">Queens</NavLink>
-              <NavLink to="/manhattan">Manhattan</NavLink>
-              <NavLink to="/bronx">Bronx</NavLink>
-              <NavLink to="/statenisland">Staten Island</NavLink>
-              <div id="Logout">
-                <NavLink to="/">Log Out</NavLink>
-              </div>
-            </div>
-          </>
-        ) : (
-          <div className="auth-div">
-            <NavLink to="/auth/signup">Sign Up</NavLink>{" "}
-            <NavLink to="/auth/login">Log In</NavLink>
-          </div>
-        )}
       </div>
+      //
+      // {loggedIn ? (
+      //   <>
+      //     <div className="middle-options">
+      //       <NavLink to="/brooklyn">Brooklyn</NavLink>
+      //       <NavLink to="/queens">Queens</NavLink>
+      //       <NavLink to="/manhattan">Manhattan</NavLink>
+      //       <NavLink to="/bronx">Bronx</NavLink>
+      //       <NavLink to="/statenisland">Staten Island</NavLink>
+      //       <div id="Logout">
+      //         <NavLink to="/">Log Out</NavLink>
+      //       </div>
+      //     </div>
+      //   </>
+      // ) : (
+      //   <div className="auth-div">
+      //     <NavLink to="/auth/signup">Sign Up</NavLink>{" "}
+      //     <NavLink to="/auth/login">Log In</NavLink>
+      //   </div>
+      // )}
+      //
     );
   }
 }
