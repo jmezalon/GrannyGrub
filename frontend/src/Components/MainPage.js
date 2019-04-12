@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import secret from "../secret.js";
+import { MainPageLoader } from "./loadingPages/MainpageLoader";
 import icon from "../assets/icon.png";
 import axios from "axios";
 
