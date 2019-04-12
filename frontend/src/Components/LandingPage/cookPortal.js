@@ -5,8 +5,11 @@ const CookPortal = () => {
     <>
       <div className="cookPortal">
         <h3> Cook Portal </h3>
-        <button> Log In</button>
-        <button> Sign Up </button>
+        <div>
+          <button> Log In</button>
+          {""}
+          <button> Sign Up </button>
+        </div>
       </div>
     </>
   );
