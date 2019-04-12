@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import secret from "../secret.js";
 import icon from "../assets/icon.png";
@@ -61,6 +60,10 @@ class MainPage extends Component {
     this.props.getAllGrandmas();
   }
 
+  handleClick = id => {
+    this.props.history.push(`/grandma/${id}`);
+  };
+
   // 40.7484405, lng: -73.9856643999999
 
   render() {
@@ -73,6 +76,7 @@ class MainPage extends Component {
       return (
         <Marker
           key={granny.id}
+          onClick={() => this.handleClick(granny.id)}
           onMouseover={this.onMouseoverMarker}
           onMouseout={this.onMouseLeave}
           pic={granny.profile_pic}
