@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CookPortal = () => {
   return (
@@ -6,9 +7,13 @@ const CookPortal = () => {
       <div className="cookPortal">
         <h3> Cook Portal </h3>
         <div>
-          <button> Log In</button>
+          <Link to="/login">
+            <button> Log In</button>
+          </Link>
           {""}
-          <button> Sign Up </button>
+          <Link to="/signup">
+            <button> Sign Up </button>
+          </Link>
         </div>
       </div>
     </>
