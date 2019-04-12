@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import secret from "../secret.js";
 import icon from "../assets/icon.png";
@@ -12,12 +13,24 @@ class MainPage extends Component {
     coords: {}
   };
 
-  onMarkerClick = (props, marker, e) => {
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
+  onMouseoverMarker = (props, marker, e) => {
+    if (!this.state.showingInfoWindow) {
+      this.setState({
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: true
+      });
+    }
+  };
+
+  onMouseLeave = (props, marker, e) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: false
+      });
+    }
   };
 
   getCoords = address => {
@@ -60,7 +73,8 @@ class MainPage extends Component {
       return (
         <Marker
           key={granny.id}
-          onClick={this.onMarkerClick}
+          onMouseover={this.onMouseoverMarker}
+          onMouseout={this.onMouseLeave}
           pic={granny.profile_pic}
           name={granny.last_name}
           icon={icon}
