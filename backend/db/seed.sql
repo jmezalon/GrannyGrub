@@ -6,8 +6,8 @@ CREATE DATABASE grannygrub;
 CREATE TABLE cuisines (
   id SERIAL PRIMARY KEY,
   type  VARCHAR NOT NULL,
-  description  VARCHAR NOT NULL,
-  img_url  VARCHAR NOT NULL
+  description VARCHAR,
+  img_url VARCHAR
 );
 
 CREATE TABLE users (
@@ -38,18 +38,23 @@ CREATE TABLE dishes (
   cuisine_id  INT REFERENCES cuisines(id) ON DELETE CASCADE,
   img_url  VARCHAR NOT NULL,
   price  FLOAT NOT NULL,
-  type VARCHAR,
+  type VARCHAR NOT NULL,
   timeframe VARCHAR NOT NULL
 );
 
-CREATE TABLE labels(
+CREATE TABLE labels (
   id SERIAL PRIMARY KEY,
-  dish_id  INT REFERENCES dishes(id) ON DELETE CASCADE,
-  type VARCHAR
+  label_name VARCHAR
 );
 
 
-CREATE TABLE orders(
+CREATE TABLE label_dishes (
+    id SERIAL PRIMARY KEY,
+    dish_id INT REFERENCES dishes(id) ON DELETE CASCADE,
+    label_id INT REFERENCES labels(id) ON DELETE CASCADE
+);
+
+CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
   dish_id  INT REFERENCES dishes(id) ON DELETE CASCADE,
   user_id INT REFERENCES users(id) ON DELETE CASCADE,
@@ -80,32 +85,38 @@ INSERT INTO cuisines (type, description, img_url) VALUES ('Chinese', 'we have de
 ('Haitian', 'you will bite your fingers off', 'https://img.grouponcdn.com/deal/Wmfft8cGxJDQBBejepr/MZ-2976x1786/v1/c700x420.jpg'),
 ('Italian', 'not just pizza, but a whole lot more', 'https://serafinamia.com/wp-content/uploads/2018/09/10-Italian-Fun-Facts-The-Food-Fashion-and-Culture-of-Italy.jpg');
 
+INSERT INTO cuisines (type) VALUES ('Indian'),
+('Greek'), ('Polish'),('Mexican'), ('Thia'), ('Turksih'),('Middle-Eastern'), ('Korean'), ('Japanese'),('Filipino'), ('Bengali'), ('Southern');
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic) VALUES
 ('Max', 'Mezalon', 'jmezalon@gmail.com', '123-234,4067', false, 1234, 'https://media.licdn.com/dms/image/C5603AQGRdf5YV2R8_g/profile-displayphoto-shrink_200_200/0?e=1559779200&v=beta&t=RyKqHF_KvRhK4pD2Di5ywRbTVql5MYD_1iHS7ASkoUM'),
 ('Morteza', 'Khalid', 'Morteza@gmail.com', '121-234-4567', false, 1234, 'https://media.licdn.com/dms/image/C4D03AQE9CB7TIg5eUw/profile-displayphoto-shrink_800_800/0?e=1559779200&v=beta&t=lV3_wJqxHsuwaRh4TvbSVAUehTB1I0QcGVoevo6lZDc'),
 ('Abid', 'Hussain', 'abidhussain@pursuit.com', '123-234-9090', false, 1234, 'https://media.licdn.com/dms/image/C5603AQGwxa271VdxpQ/profile-displayphoto-shrink_800_800/0?e=1559779200&v=beta&t=mxCfVEOzCYyN6XG_xbdhLAOAh7p6SSWLXGTQxYl0G-8'),
-('Muna', 'Sherma', 'Munasherma@pursuit.org', '123-234-2222', false, 1234, 'https://media.licdn.com/dms/image/C4E03AQGzTZdZzGbevA/profile-displayphoto-shrink_800_800/0?e=1559779200&v=beta&t=m1CGlV4WMw2RnacIgPV6cS651fxLqpxf92y2rEI7AkI');
+('Muna', 'Sharma', 'Munasharma@pursuit.org', '123-234-2222', false, 1234, 'https://media.licdn.com/dms/image/C4E03AQGzTZdZzGbevA/profile-displayphoto-shrink_800_800/0?e=1559779200&v=beta&t=m1CGlV4WMw2RnacIgPV6cS651fxLqpxf92y2rEI7AkI');
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic, building_number, address, zip_code, bio, latitude, longitude, cuisine_id) VALUES
 
-('Granny', 'chin', 'grannanna@gmail.com', '123-999-4567', true, 1234, 'http://economists-pick-research.hktdc.com/resources/MI_Portal/Article/rp/2015/07/470473/1436836534321_eChinaSeniors2-p2i_470473.jpg', 47-10, 'Austell Pl, Long Island City', 11101, 'I love cooking and taking care of my young people.', 40.742442, -73.941235, 1),
-('Granny', 'Bubbu', 'granbubbu@yahoo.com', '123-999-0987', true, 1234, 'http://www.historymiami.org/wp-content/uploads/2017/12/gg-e1512752178541-265x300.jpg', 1463, 'E 96th St, Brooklyn NY', 11236, 'My grandson told me that my meals are delicious and I wanted to share my good cooking with everyone else to see themselves.',  40.637195, -73.894472, 2),
-('Granny', 'mandy', 'mandygrannyu@hotmail.com', '123-219-4567', true, 1234, 'https://steamuserimages-a.akamaihd.net/ugc/498028597176892886/1D8DB1CBEB5BF1F5BECEADB535572E4CBEDB1918/', 1250, 'Rogers Ave, Brooklyn NY', 11226, 'cooking is my life.', 40.639286, -73.951499, 3);
+('Debra ', 'Wei', 'grannanna@gmail.com', '123-999-4567', true, 1234, 'http://economists-pick-research.hktdc.com/resources/MI_Portal/Article/rp/2015/07/470473/1436836534321_eChinaSeniors2-p2i_470473.jpg', 47-10, 'Austell Pl, Long Island City', 11101, 'I love cooking and taking care of my young people.', 40.742442, -73.941235, 1),
+('Lindy', 'Joseph', 'granbubbu@yahoo.com', '123-999-0987', true, 1234, 'http://www.historymiami.org/wp-content/uploads/2017/12/gg-e1512752178541-265x300.jpg', 1463, 'E 96th St, Brooklyn NY', 11236, 'My grandson told me that my meals are delicious and I wanted to share my good cooking with everyone else to see themselves.',  40.637195, -73.894472, 2),
+('Kaira', 'Olivier', 'mandygrannyu@hotmail.com', '123-219-4567', true, 1234,'https://steamuserimages-a.akamaihd.net/ugc/498028597176892886/1D8DB1CBEB5BF1F5BECEADB535572E4CBEDB1918/', 1250, 'Rogers Ave, Brooklyn NY', 11226, 'cooking is my life.', 40.639286, -73.951499, 3);
 
 
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, timeframe) VALUES
-('chinese orange chicken', 'white rice with chicken and scallion', 7, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 5.73, 'lunch'),
-('egg rolls', 'great egg rools, you can even add chicken to it.', 5, 1, 'https://i.ytimg.com/vi/MoZAkumC7ps/hqdefault.jpg', 3.75, 'dinner'),
-('rice with beans gravy and legume', 'the name says it all, now just taste it and see', 6, 2, 'https://i.ytimg.com/vi/ojqGPMv4rBw/maxresdefault.jpg', 9.99, 'lunch'),
-('fritay', 'you will enjoy this, better than mcdonals fries', 5, 2, 'https://pbs.twimg.com/media/C5eanfJWMAAV4Ot.jpg', 7.89, 'dinner'),
-('lasagna', 'the best one ever', 7, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-I9R_mZmC8hPg9bml5_sP3YEHjwTpsiLGrwoGkUx8dJDuFkIqQw', 6.89, 'dinner'),
-('pasta with muscles', 'the best pasta joined together with fresh muscles', 6, 3, 'https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/smallpasta-with-mussel-and-tomato-s-27497546.jpg?itok=JdjVqu9i', 8.98, 'lunch');
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
+('chinese orange chicken', 'white rice with chicken and scallion', 7, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 5.73, 'pick-up', '11:00 - 1:00'),
+('egg rolls', 'great egg rools, you can even add chicken to it.', 5, 1, 'https://i.ytimg.com/vi/MoZAkumC7ps/hqdefault.jpg', 3.75, 'sit-down', '6:00'),
+('rice with beans gravy and legume', 'the name says it all, now just taste it and see', 6, 2, 'https://i.ytimg.com/vi/ojqGPMv4rBw/maxresdefault.jpg', 9.99, 'sit-down','12:00 - 2:00'),
+('fritay', 'you will enjoy this, better than mcdonals fries', 5, 2, 'https://pbs.twimg.com/media/C5eanfJWMAAV4Ot.jpg', 7.89, 'sit-down','7:00'),
+('lasagna', 'the best one ever', 7, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-I9R_mZmC8hPg9bml5_sP3YEHjwTpsiLGrwoGkUx8dJDuFkIqQw', 6.89,' pick-up','6:00 - 8:00'),
+('pasta with muscles', 'the best pasta joined together with fresh muscles', 6, 3, 'https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/smallpasta-with-mussel-and-tomato-s-27497546.jpg?itok=JdjVqu9i', 8.98,'pick-up', '12:00 - 2:00');
 
 
-INSERT INTO labels (dish_id, type) VALUES (1, 'Kosher'), (2, 'Vegetarian'), (3, 'Vegan'), (6, 'Halal');
---
+INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'), ('Contains-Eggs'), ('Contains-peanuts'), ('Contains-nuts'), ('Contains-Shellfish'), ('Soul food'), ('Keto');
+
+
+INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5), (2, 2),(2, 4), (3, 3), (3, 3), (4, 1), (4,8), (5,1), (5,6), (5,7), (6, 10), (6,6);
+
+
 -- INSERT INTO reviews (stars, comment, user_id) VALUES
 -- (4, 'I enjoyed the meal very much', 6),
 -- (5, 'her food is very delicious', 4),
