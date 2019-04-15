@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import secret from "../secret.js";
-import { MainPageLoader } from "./loadingPages/MainpageLoader";
+// import { MainPageLoader } from "./loadingPages/MainpageLoader";
 import icon from "../assets/icon.png";
 import axios from "axios";
 
@@ -24,6 +24,7 @@ class MainPage extends Component {
   };
 
   onMouseLeave = (props, marker, e) => {
+    console.log(e.wa);
     if (this.state.showingInfoWindow) {
       this.setState({
         selectedPlace: props,
