@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
-import secret from "../secret.js";
-import { MainPageLoader } from "./loadingPages/MainpageLoader";
-import icon from "../assets/icon.png";
+import secret from "../../secret.js";
+// import { MainPageLoader } from "./loadingPages/MainpageLoader";
+import icon from "../../assets/icon.png";
 import axios from "axios";
 
-class MainPage extends Component {
+class MapView extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
@@ -56,30 +56,15 @@ class MainPage extends Component {
     }
   };
 
-  componentDidMount() {
-    this.props.getAllUsers();
-    this.props.getAllGrandmas();
-    this.props.allGrandmasByCuisines(10);
-    this.props.getAllCuisines();
-  }
-
-  handleClick = id => {
-    this.props.history.push(`/grandma/${id}`);
-  };
-
-  // 40.7484405, lng: -73.9856643999999
-
   render() {
-    !this.state.coords.lat
-      ? this.getCoords("870 Nostrand Ave")
-      : console.log(this.state.coords);
+    let { grandmas, handleClick } = this.props;
 
-    if (!this.props.grandmas.grandmas.length) return null;
-    const locations = this.props.grandmas.grandmas.map(granny => {
+    if (!grandmas.length) return null;
+    const locations = grandmas.map(granny => {
       return (
         <Marker
           key={granny.id}
-          onClick={() => this.handleClick(granny.id)}
+          onClick={() => handleClick(granny.id)}
           onMouseover={this.onMouseoverMarker}
           onMouseout={this.onMouseLeave}
           pic={granny.profile_pic}
@@ -131,4 +116,4 @@ class MainPage extends Component {
 
 export default GoogleApiWrapper({
   apiKey: `${secret.apiKey}`
-})(MainPage);
+})(MapView);
