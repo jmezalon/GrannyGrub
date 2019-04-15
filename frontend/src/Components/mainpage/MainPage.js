@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
-import MapView from "./MapView";
-import secret from "../../secret.js";
+import MapView from './MapView';
+import secret from '../../secret.js';
 // import { MainPageLoader } from "./loadingPages/MainpageLoader";
-import icon from "../../assets/icon.png";
+import icon from '../../assets/icon.png';
 
 class MainPage extends Component {
   componentDidMount() {
