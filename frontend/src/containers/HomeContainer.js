@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import { getAllCuisines } from "../actions/cuisineActions";
-import Home from "../components/landingPage/Home.js";
+import Home from "../Components/LandingPage/Home.js";
 
 const mapStateToProps = state => {
   return { cuisines: state.cuisines };

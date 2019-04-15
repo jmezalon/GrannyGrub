@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import { getOneGrandma } from "../actions/grandmaActions";
-import EditProfile from "../components/grandma/EditProfile.js";
+import EditProfile from "../Components/grandma/EditProfile.js";
 
 const mapStateToProps = state => {
   return { grandma: state.grandmas.grandma };
