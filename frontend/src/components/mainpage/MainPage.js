@@ -27,6 +27,7 @@ class MainPage extends Component {
 
   // handleFilterClick = e => {
   //   const newGrandmas = this.props.grandmas.filter(grandma => {
+  //
   //     return grandma.cuisine_id === e.target.value;
   //   });
 
