@@ -1,7 +1,7 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { getAllCuisines } from '../Actions/cuisineActions';
-import Home from '../Components/LandingPage/Home.js';
+import { getAllCuisines } from "../actions/cuisineActions";
+import Home from "../components/LandingPage/Home.js";
 
 const mapStateToProps = state => {
   return { cuisines: state.cuisines };
@@ -11,7 +11,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllCuisines: () => {
       dispatch(getAllCuisines());
-    },
+    }
   };
 };
 

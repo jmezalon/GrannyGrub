@@ -39,6 +39,7 @@ CREATE TABLE dishes (
   img_url  VARCHAR NOT NULL,
   price  FLOAT NOT NULL,
   type VARCHAR NOT NULL,
+  date Date,
   timeframe VARCHAR NOT NULL
 );
 
@@ -148,17 +149,17 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type
 ('Turkish lamb pilau', 'Serve up a basmati rice one pot flavoured with cinnamon, mint and apricot, studded with tender lamb', 9, 9, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1069491_11.jpg?itok=bILjdz8R', 8.98,'pick-up', '12:00 - 2:00'),
 ('5-ingredient falafel', 'Make falafel with just a handful of storecupboard ingredients. To give the falafels a better texture, be sure to use dried chickpeas rather than canned', 19, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/08/falafel.jpg?itok=kESclYaT', 4.98,'pick-up', '12:00 - 2:00');
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, date, timeframe) VALUES
 
 -- indian
-('Tomato Upma', 'a tangy and spicy upma made with sooji-rave cream of wheat, tomatoes and spices.', 15, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2016/01/tomato-upma-recipe-2.jpg', 5.73, 'pick-up', '11:00 - 1:00'),
-('Varan Bhaat', 'best serve with steamed rice', 14, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2013/09/varan-bhaat-recipe.jpg', 5.75, 'sit-down', '5:30'),
+('Tomato Upma', 'a tangy and spicy upma made with sooji-rave cream of wheat, tomatoes and spices.', 15, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2016/01/tomato-upma-recipe-2.jpg', 5.73, 'pick-up', '2019-04-21', '11:00 - 1:00'),
+('Varan Bhaat', 'best serve with steamed rice', 14, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2013/09/varan-bhaat-recipe.jpg', 5.75, 'sit-down', '2019-04-20', '5:30'),
 
 
 -- polish
-('Piernik', 'A classic Polish honey gingerbread cake is adapted by Edd Kimber. It is layered with plum jam and coated in chocolate with sprinkles of edible gold.', 16, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/gingerbread.jpg?itok=kvqzFGWA', 3.75, 'sit-down', '6:00'),
-('Polish sausage soup', 'Fry the onions in the oil for 5 mins. Add the garlic and sausage, fry for a few mins more, then stir in the paprika, rice and thyme.', 17, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--9650_12.jpg?itok=JcuAdP0C', 5.98,'pick-up', '10:00 - 12:00'),
-('Inside-out chicken Kiev', 'Place the chicken on a baking tray, rub with a little of the butter, season and cook under the grill for 15 mins, turning once until cooked through.', 18, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--520471_11.jpg?itok=6JxupEw4', 9.73, 'pick-up', '1:00 - 2:00');
+('Piernik', 'A classic Polish honey gingerbread cake is adapted by Edd Kimber. It is layered with plum jam and coated in chocolate with sprinkles of edible gold.', 16, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/gingerbread.jpg?itok=kvqzFGWA', 3.75, 'sit-down', '2019-04-20','6:00'),
+('Polish sausage soup', 'Fry the onions in the oil for 5 mins. Add the garlic and sausage, fry for a few mins more, then stir in the paprika, rice and thyme.', 17, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--9650_12.jpg?itok=JcuAdP0C', 5.98,'pick-up', '2019-04-20','10:00 - 12:00'),
+('Inside-out chicken Kiev', 'Place the chicken on a baking tray, rub with a little of the butter, season and cook under the grill for 15 mins, turning once until cooked through.', 18, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--520471_11.jpg?itok=6JxupEw4', 9.73, 'pick-up', '2019-04-21','1:00 - 2:00');
 
 
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
@@ -194,7 +195,13 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type
 INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'), ('Contains-Eggs'), ('Contains-peanuts'), ('Contains-nuts'), ('Contains-Shellfish'), ('Soul food'), ('Keto');
 
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5), (2, 2),(2, 4), (3, 3), (3, 3), (4, 1), (4,8), (5,1), (5,6), (5,7), (6, 10), (6,6);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 4),(3, 10),(3, 6), (4, 10), (4,4), (5,5), (5,6), (5,7), (6, 1);
+
+INSERT INTO label_dishes (dish_id, label_id) VALUES (6,6), (7, 2),(7, 4), (8, 3), (8, 2), (8, 4), (9,8), (10,1), (10,6), (11,7), (11, 1), (11,6);
+
+INSERT INTO label_dishes (dish_id, label_id) VALUES (12,6), (12, 5),(12, 9), (8, 3), (13, 10), (13, 6), (13,4), (14,4), (14,7), (14,12), (15, 1), (15,4);
+
+INSERT INTO label_dishes (dish_id, label_id) VALUES (15,2),(15,5);
 
 
 -- INSERT INTO reviews (stars, comment, user_id) VALUES
