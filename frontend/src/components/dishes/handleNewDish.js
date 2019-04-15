@@ -4,8 +4,8 @@ import NewDishForm from "./NewDishForm";
 class HandleNewDish extends React.Component {
   state = {
     dishName: "",
-    // sitDown: false,
-    // pickUp: false,
+    sitDown: null,
+    type: "",
     // dishImg: "",
     // cuisine_type: "",
     // labels: [],
@@ -28,20 +28,42 @@ class HandleNewDish extends React.Component {
     });
   };
 
-  handleClick = e => {
+  handleToGo = e => {
     e.preventDefault();
+    this.setState({
+      type: "pick-up"
+    });
+    console.log(this.state.pickUp);
+  };
+
+  handleSitDown = e => {
+    e.preventDefault();
+    this.setState({
+      type: "sit-down"
+    });
+    console.log(this.state.sitDown);
   };
 
   render() {
-    const { dishName, quantity, selectedQuantity } = this.state;
+    const {
+      dishName,
+      quantity,
+      type,
+      selectedQuantity,
+      handleSitDown,
+      handleToGo
+    } = this.state;
 
     return (
       <>
         <NewDishForm
           dishName={dishName}
           quantity={quantity}
+          type={type}
           selectedQuantity={selectedQuantity}
           handleChange={this.handleChange}
+          handleSitDown={this.handleSitDown}
+          handleToGo={this.handleToGo}
         />
       </>
     );
@@ -68,7 +90,6 @@ export default HandleNewDish;
 // handleClick={this.handleClick}
 // description={description}
 // timeframe={timeframe}
-// sitDown={sitDown}
-// pickUp={pickUp}
+
 // dishImg={dishImg}
 // cuisine_type={cuisine_type}

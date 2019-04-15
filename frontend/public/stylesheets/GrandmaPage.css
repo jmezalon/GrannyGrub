@@ -1,0 +1,7 @@
+.selected-type {
+  border: 3px solid darkgreen;
+}
+
+.unselected-type {
+  border: 3px dashed pink;
+}
