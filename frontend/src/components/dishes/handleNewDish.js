@@ -4,17 +4,21 @@ import NewDishForm from "./NewDishForm";
 class HandleNewDish extends React.Component {
   state = {
     dishName: "",
-    sitDown: false,
-    pickUp: false,
-    dishImg: "",
-    cuisine_type: "",
-    labels: [],
-    quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    selectedQuantity: "",
-    description: "",
-    timeframe: "",
-    date: ""
+    // sitDown: false,
+    // pickUp: false,
+    // dishImg: "",
+    // cuisine_type: "",
+    // labels: [],
+    quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    // selectedQuantity: "",
+    // description: "",
+    // timeframe: "",
+    // date: ""
   };
+
+  // componentDidMount() {
+  //   this.props.getAllCuisines();
+  // }
 
   handleChange = e => {
     e.preventDefault();
@@ -29,35 +33,15 @@ class HandleNewDish extends React.Component {
   };
 
   render() {
-    const {
-      dishName,
-      sitDown,
-      dishImg,
-      cuisine_type,
-      labels,
-      quantity,
-      selectedQuantity,
-      description,
-      timeframe,
-      pickUp,
-      date
-    } = this.state;
+    const { dishName, quantity, selectedQuantity } = this.state;
 
     return (
       <>
         <NewDishForm
           dishName={dishName}
-          sitDown={sitDown}
-          pickUp={pickUp}
-          dishImg={dishImg}
-          cuisine_type={cuisine_type}
           quantity={quantity}
-          description={description}
-          timeframe={timeframe}
-          date={date}
           selectedQuantity={selectedQuantity}
           handleChange={this.handleChange}
-          handleClick={this.handleClick}
         />
       </>
     );
@@ -65,3 +49,26 @@ class HandleNewDish extends React.Component {
 }
 
 export default HandleNewDish;
+
+//
+// sitDown,
+// dishImg,
+// cuisine_type,
+// labels,
+// quantity,
+// selectedQuantity,
+// description,
+// timeframe,
+// pickUp,
+// date
+
+// date={date}
+// selectedQuantity={selectedQuantity}
+
+// handleClick={this.handleClick}
+// description={description}
+// timeframe={timeframe}
+// sitDown={sitDown}
+// pickUp={pickUp}
+// dishImg={dishImg}
+// cuisine_type={cuisine_type}

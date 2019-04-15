@@ -1,19 +1,19 @@
-import React from 'react';
+import React from "react";
 
 class NewDishForm extends React.Component {
   render() {
     const {
       dishName,
-      sitDown,
-      dishImg,
+      // sitDown,
+      // dishImg,
       quantity,
       selectedQuantity,
-      description,
-      timeframe,
-      handleChange,
-      pickUp,
-      handleClick,
-      date,
+      // description,
+      // timeframe,
+      handleChange
+      // pickUp,
+      // handleClick,
+      // date,
     } = this.props;
 
     const quantityOptions = quantity.map((number, i) => {
@@ -23,6 +23,7 @@ class NewDishForm extends React.Component {
         </option>
       );
     });
+
     //
     // const quantityOptions = quantity.map((number, i) => {
     //   return (
@@ -42,38 +43,12 @@ class NewDishForm extends React.Component {
             value={dishName}
             onChange={handleChange}
           />
-          <br />
-          <label htmlFor="dish-type">dish type </label>
 
-          <span>
-            <button onClick={handleClick} value={pickUp}>
-              {' '}
-              to-go{' '}
-            </button>
-            <button onClick={handleClick} value={sitDown}>
-              {' '}
-              sit-down{' '}
-            </button>
-          </span>
-          <br />
-          <div id="addDescription">
-            <label htmlFor="description">Description: </label>
-            <textarea name="description" type="text" value={description} />
-          </div>
-          <div>
-            <label htmlFor="quantity"> Available Dishes: </label>
-            <select value={selectedQuantity}>
-              <option key="0" value="" />
-              {quantityOptions}
-            </select>
-
-            <div>
-              <span>
-                <label htmlFor="timeframe"> Timeframe: </label>
-                <input name="timeframe" type="text" value={timeframe} />
-              </span>
-            </div>
-          </div>
+          <label htmlFor="quantity"> Available Dishes: </label>
+          <select value={selectedQuantity}>
+            <option key="0" value="" />
+            {quantityOptions}
+          </select>
         </form>
       </div>
     );
@@ -115,3 +90,30 @@ export default NewDishForm;
 //   </span>
 // </div>
 //
+//
+// <div>
+//   <span>
+//     <label htmlFor="timeframe"> Timeframe: </label>
+//     <input name="timeframe" type="text" value={timeframe} />
+//   </span>
+// </div>
+// </div>
+
+// <br />
+// <label htmlFor="dish-type">dish type </label>
+
+// <span>
+//   <button onClick={handleClick} value={pickUp}>
+//     {" "}
+//     to-go{" "}
+//   </button>
+//   <button onClick={handleClick} value={sitDown}>
+//     {" "}
+//     sit-down{" "}
+//   </button>
+// </span>
+// <br />
+// <div id="addDescription">
+//   <label htmlFor="description">Description: </label>
+//   <textarea name="description" type="text" value={description} />
+// </div>

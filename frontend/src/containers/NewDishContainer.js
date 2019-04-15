@@ -1,21 +1,21 @@
 import { connect } from "react-redux";
 
 import { getGrandmasDishes } from "../actions/dishActions";
+import { getAllCuisines } from "../actions/cuisineActions";
+
 import HandleNewDish from "../components/dishes/handleNewDish.js";
 
 const mapStateToProps = state => {
   return {
-    cuisines: state.cuisines
+    // cuisines: state.cuisines,
   };
 };
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     getGrandmasDishes: id => {
-//       dispatch(getGrandmasDishes(5));
-//     }
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return {
+    // getAllCuisines: () => dispatch(getAllCuisines()),
+  };
+};
 
 export default connect(
   mapStateToProps,
