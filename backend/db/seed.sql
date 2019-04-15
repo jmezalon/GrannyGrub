@@ -39,6 +39,7 @@ CREATE TABLE dishes (
   img_url  VARCHAR NOT NULL,
   price  FLOAT NOT NULL,
   type VARCHAR NOT NULL,
+  date Date,
   timeframe VARCHAR NOT NULL
 );
 
@@ -86,7 +87,7 @@ INSERT INTO cuisines (type, description, img_url) VALUES ('Chinese', 'we have de
 ('Italian', 'not just pizza, but a whole lot more', 'https://serafinamia.com/wp-content/uploads/2018/09/10-Italian-Fun-Facts-The-Food-Fashion-and-Culture-of-Italy.jpg');
 
 INSERT INTO cuisines (type) VALUES ('Indian'),
-('Greek'), ('Polish'),('Mexican'), ('Thia'), ('Turksih'),('Middle-Eastern'), ('Korean'), ('Japanese'),('Filipino'), ('Bengali'), ('Southern');
+('Greek'), ('Polish'),('Mexican'), ('Thai'), ('Turksih'),('Middle-Eastern'), ('Korean'), ('Japanese'),('Filipino'), ('Bengali'), ('Southern');
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic) VALUES
 ('Max', 'Mezalon', 'jmezalon@gmail.com', '123-234,4067', false, 1234, 'https://media.licdn.com/dms/image/C5603AQGRdf5YV2R8_g/profile-displayphoto-shrink_200_200/0?e=1559779200&v=beta&t=RyKqHF_KvRhK4pD2Di5ywRbTVql5MYD_1iHS7ASkoUM'),
@@ -108,16 +109,27 @@ Fresh Meadows', 11365, 'Cooking makes me happy!', 40.739381, -73.793039, 12);
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, cuisine_id) VALUES ('Lena ', 'Ali', 'LenaAli@gmail.com', '323-809-4062', true, 1234,'https://preview.redd.it/nmibyopd3kn21.jpg?width=640&crop=smart&auto=webp&s=b202704ab86e0271dd2fa9dc9b97d06387cb062b', 6, 'Ann Ave, Woodside', 11377, 'Everyone is welcome here!!', 40.74462, -73.904361, 10),
 ('Cynthia ', 'Nikolaidis', 'CNikolaidis@gmail.com','917-909-4962', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/180310_1456163396622_2274193_n.jpg?_nc_cat=102&_nc_ht=scontent-lga3-1.xx&oh=3ab614c0937832739b0c4a8e28392866&oe=5D320678', 46 ,'Charles Ave, Staten Island', 10312, 'I love my grandchildren!!', 40.535385, -74.161575, 5), ('Pamela', 'Papantoniou', 'pamelaPap@gmail.com','909-081-3098', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/s403x403/378205_502769929738427_1214178709_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=b3cc12890f39199d6787af8b8bfe328c&oe=5D42B1EF', 7688  ,'Ramblewood St, Jackson Heights', 11372,
-'Cooking makes me very happy!', 40.751948, -73.883959, 6);
+'Cooking makes me very happy!', 40.751948, -73.883959, 5);
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, cuisine_id) VALUES ('Farha ', 'Qureshi', 'farhaQ@gmail.com', '929-809-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/17191280_1012718378861105_4456290895696198744_n.jpg?_nc_cat=107&_nc_ht=scontent-lga3-1.xx&oh=7f7bddeda0e547cea07ffbdf5a7b6bf5&oe=5D389F2E', 223, 'Newcastle Dr, Jamaicae', 11432, 'I cook what I love!', 40.715188, 73.792888, 4),
 ('Naseem ', 'Khan', 'naseemKhan@gmail.com','917-919-5962', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/38700_104063922984070_517661_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=488ae51078dc3d240e57649a105d5d3b&oe=5D3F2020', 63 ,'Old Country St,
 Brooklyn', 11233, 'I love my grandchildren!!', 40.67783, -73.919096, 4), ('Karolina',
-'Brendowska', 'polishGma@gmail.com','919-681-3798', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/11743000_10206048740451559_4747562220558612329_n.jpg?_nc_cat=104&_nc_ht=scontent-lga3-1.xx&oh=51e862a4720dcdef1179154427927759&oe=5D44FA11', 9781  ,'Goldfield Street, Brooklyn', 11211, 'Cooking makes me very happy!', 40.712587, -73.950866, 6);
+'Brendowska', 'polishGma@gmail.com','919-681-3798', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/264349_108704745889039_1915707_n.jpg?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=816a4eea9ad48d6c28b551b7a962e812&oe=5D3BD9D6', 9781  ,'Goldfield Street, Brooklyn', 11211, 'Cooking makes me very happy!', 40.712587, -73.950866, 6);
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, cuisine_id) VALUES ('Marie ', 'Pastorino', 'maroeP@gmail.com', '919-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/283973_435238149860470_307754462_n.jpg?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=b7aec7361b720688c301571f2adaed8e&oe=5D2A05EC',175, ' Norman Ave, Brooklyn', 11222, 'I cook what I love!', 40.72692, -73.94725, 6),
 ('Sylvia', 'Piotrowski', 'Sylviapio@gmail.com','927-919-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p228x119/431084_2790698652891_1639254729_n.jpg?_nc_cat=103&_nc_ht=scontent-lga3-1.xx&oh=c358e4cb164217af42c59aa134bb0773&oe=5D4743DD', 9909 ,'Center St, Brooklyn', 11234, 'I really love my grandchildren!!',  40.673389, -73.997964, 6),
-('Ibtisam', 'Amous', 'samAmous@gmail.com','929-964-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/29496114_10155658796157017_1511877918970609664_n.jpg?_nc_cat=101&_nc_ht=scontent-lga3-1.xx&oh=0cf95c3d108fecfb0dfdcd9b9e3b6f78&oe=5D3883AA', 87 ,'Magnolia Street ', 11355, 'I really love my grandchildren!!', 40.751021, -73.821798, 10);
+('Ibtisam', 'Amous', 'samAmous@gmail.com','929-964-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/29496114_10155658796157017_1511877918970609664_n.jpg?_nc_cat=101&_nc_ht=scontent-lga3-1.xx&oh=0cf95c3d108fecfb0dfdcd9b9e3b6f78&oe=5D3883AA', 87 ,'Magnolia Street, Flushing ', 11355, 'I really love my grandchildren!!', 40.751021, -73.821798, 10);
+
+
+INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, cuisine_id) VALUES (' fillin', 'fillin', 'more@gmail.com', '959-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/283973_435238149860470_307754462_n.jpg?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=b7aec7361b720688c301571f2adaed8e&oe=5D2A05EC',144, ' Marsh St, Bronx,', 10453, 'I cook what I love!', 40.852346, -73.91222, 7),
+('fillin', 'fillin', 'fillin@gmail.com','927-951-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p228x119/431084_2790698652891_1639254729_n.jpg?_nc_cat=103&_nc_ht=scontent-lga3-1.xx&oh=c358e4cb164217af42c59aa134bb0773&oe=5D4743DD', 94,' Wild Horse Drive, Brooklyn', 11233, 'I really love my grandchildren!!', 40.67783, -73.919096, 7),
+('Nipapun', 'Tanasootr', 'NTanasootr@gmail.com','909-164-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/53480594_386776818782513_2756106975136710656_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=e6c7d641b2536b2270b5334caf7416d8&oe=5D2ADEBE', 9825 ,'West Mammoth Drive, New York', 10011, 'Let me cook for you!!!', 40.741625, -74.000479, 8);
+
+
+-- INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, cuisine_id) VALUES ('fill in ', 'fillin', 'more@gmail.com', '959-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/283973_435238149860470_307754462_n.jpg?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=b7aec7361b720688c301571f2adaed8e&oe=5D2A05EC',144, ' Marsh St, Bronx,', 10453, 'I cook what I love!', 40.852346, -73.91222, 7),
+-- ('fillin', 'fillin', 'fillin@gmail.com','927-951-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p228x119/431084_2790698652891_1639254729_n.jpg?_nc_cat=103&_nc_ht=scontent-lga3-1.xx&oh=c358e4cb164217af42c59aa134bb0773&oe=5D4743DD', 94,' Wild Horse Drive, Brooklyn', 11233, 'I really love my grandchildren!!', 40.67783, -73.919096, 7),
+-- ('Nipapun', 'Tanasootr', 'NTanasootr@gmail.com','909-164-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/53480594_386776818782513_2756106975136710656_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=e6c7d641b2536b2270b5334caf7416d8&oe=5D2ADEBE', 9825 ,'West Mammoth Drive, New York', 10011, 'Let me cook for you!!!', 40.741625, -74.000479, 8);
+--
 
 
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES ('Tarator-style salmon', 'Salmon fillets are topped with walnuts, parsley, sumac onion and hummus in this Middle Eastern inspired fish dish', 8, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/tarator-style-salmon.jpg?itok=p1JuHet5', 5.73, 'pick-up', '1:00 - 3:00'),
@@ -137,17 +149,17 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type
 ('Turkish lamb pilau', 'Serve up a basmati rice one pot flavoured with cinnamon, mint and apricot, studded with tender lamb', 9, 9, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1069491_11.jpg?itok=bILjdz8R', 8.98,'pick-up', '12:00 - 2:00'),
 ('5-ingredient falafel', 'Make falafel with just a handful of storecupboard ingredients. To give the falafels a better texture, be sure to use dried chickpeas rather than canned', 19, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/08/falafel.jpg?itok=kESclYaT', 4.98,'pick-up', '12:00 - 2:00');
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, date, timeframe) VALUES
 
 -- indian
-('Tomato Upma', 'a tangy and spicy upma made with sooji-rave cream of wheat, tomatoes and spices.', 15, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2016/01/tomato-upma-recipe-2.jpg', 5.73, 'pick-up', '11:00 - 1:00'),
-('Varan Bhaat', 'best serve with steamed rice', 14, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2013/09/varan-bhaat-recipe.jpg', 5.75, 'sit-down', '5:30'),
+('Tomato Upma', 'a tangy and spicy upma made with sooji-rave cream of wheat, tomatoes and spices.', 15, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2016/01/tomato-upma-recipe-2.jpg', 5.73, 'pick-up', '2019-04-21', '11:00 - 1:00'),
+('Varan Bhaat', 'best serve with steamed rice', 14, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2013/09/varan-bhaat-recipe.jpg', 5.75, 'sit-down', '2019-04-20', '5:30'),
 
 
 -- polish
-('Piernik', 'A classic Polish honey gingerbread cake is adapted by Edd Kimber. It is layered with plum jam and coated in chocolate with sprinkles of edible gold.', 16, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/gingerbread.jpg?itok=kvqzFGWA', 3.75, 'sit-down', '6:00'),
-('Polish sausage soup', 'Fry the onions in the oil for 5 mins. Add the garlic and sausage, fry for a few mins more, then stir in the paprika, rice and thyme.', 17, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--9650_12.jpg?itok=JcuAdP0C', 5.98,'pick-up', '10:00 - 12:00'),
-('Inside-out chicken Kiev', 'Place the chicken on a baking tray, rub with a little of the butter, season and cook under the grill for 15 mins, turning once until cooked through.', 18, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--520471_11.jpg?itok=6JxupEw4', 9.73, 'pick-up', '1:00 - 2:00');
+('Piernik', 'A classic Polish honey gingerbread cake is adapted by Edd Kimber. It is layered with plum jam and coated in chocolate with sprinkles of edible gold.', 16, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/gingerbread.jpg?itok=kvqzFGWA', 3.75, 'sit-down', '2019-04-20','6:00'),
+('Polish sausage soup', 'Fry the onions in the oil for 5 mins. Add the garlic and sausage, fry for a few mins more, then stir in the paprika, rice and thyme.', 17, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--9650_12.jpg?itok=JcuAdP0C', 5.98,'pick-up', '2019-04-20','10:00 - 12:00'),
+('Inside-out chicken Kiev', 'Place the chicken on a baking tray, rub with a little of the butter, season and cook under the grill for 15 mins, turning once until cooked through.', 18, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--520471_11.jpg?itok=6JxupEw4', 9.73, 'pick-up', '2019-04-21','1:00 - 2:00');
 
 
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
@@ -183,7 +195,13 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type
 INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'), ('Contains-Eggs'), ('Contains-peanuts'), ('Contains-nuts'), ('Contains-Shellfish'), ('Soul food'), ('Keto');
 
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5), (2, 2),(2, 4), (3, 3), (3, 3), (4, 1), (4,8), (5,1), (5,6), (5,7), (6, 10), (6,6);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 4),(3, 10),(3, 6), (4, 10), (4,4), (5,5), (5,6), (5,7), (6, 1);
+
+INSERT INTO label_dishes (dish_id, label_id) VALUES (6,6), (7, 2),(7, 4), (8, 3), (8, 2), (8, 4), (9,8), (10,1), (10,6), (11,7), (11, 1), (11,6);
+
+INSERT INTO label_dishes (dish_id, label_id) VALUES (12,6), (12, 5),(12, 9), (8, 3), (13, 10), (13, 6), (13,4), (14,4), (14,7), (14,12), (15, 1), (15,4);
+
+INSERT INTO label_dishes (dish_id, label_id) VALUES (15,2),(15,5);
 
 
 -- INSERT INTO reviews (stars, comment, user_id) VALUES

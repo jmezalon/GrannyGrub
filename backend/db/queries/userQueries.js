@@ -1,8 +1,10 @@
 const db = require("../connection");
 const authHelpers = require("../../auth/helpers");
 
+//get only gmas
 const getAllUsers = (req, res, next) => {
-  db.any("SELECT * FROM users")
+
+ db.any("SELECT * FROM users")
     .then(users => {
       res.status(200).json({
         status: "success",
@@ -11,6 +13,7 @@ const getAllUsers = (req, res, next) => {
       });
     })
     .catch(err => next(err));
+
 };
 
 //get single grandma

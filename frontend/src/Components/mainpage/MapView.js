@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
-import secret from "../secret.js";
-import { MainPageLoader } from "./loadingPages/MainpageLoader";
-import icon from "../assets/icon.png";
+import secret from "../../secret.js";
+// import { MainPageLoader } from "./loadingPages/MainpageLoader";
+import icon from "../../assets/icon.png";
 import axios from "axios";
 
-class MainPage extends Component {
+
+class MapView extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-    coords: {}
+    coords: {},
   };
 
   onMouseoverMarker = (props, marker, e) => {
@@ -18,7 +19,7 @@ class MainPage extends Component {
       this.setState({
         selectedPlace: props,
         activeMarker: marker,
-        showingInfoWindow: true
+        showingInfoWindow: true,
       });
     }
   };
@@ -28,7 +29,7 @@ class MainPage extends Component {
       this.setState({
         selectedPlace: props,
         activeMarker: marker,
-        showingInfoWindow: false
+        showingInfoWindow: false,
       });
     }
   };
@@ -42,7 +43,7 @@ class MainPage extends Component {
       )
       .then(res => {
         this.setState({
-          coords: res.data.results[0].geometry.location
+          coords: res.data.results[0].geometry.location,
         });
       });
   };
@@ -51,34 +52,26 @@ class MainPage extends Component {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
-        activeMarker: null
+        activeMarker: null,
       });
     }
   };
 
-  componentDidMount() {
-    this.props.getAllUsers();
-    this.props.getAllGrandmas();
-    this.props.allGrandmasByCuisines(10);
-  }
-
-  handleClick = id => {
-    this.props.history.push(`/grandma/${id}`);
-  };
-
-  // 40.7484405, lng: -73.9856643999999
-
   render() {
+<<<<<<< HEAD:frontend/src/Components/MainPage.js
     !this.state.coords.lat
-      ? this.getCoords("870 Nostrand Ave")
+      ? this.getCoords('870 Nostrand Ave')
       : console.log(this.state.coords);
+=======
+    let { grandmas, handleClick } = this.props;
+>>>>>>> 5276fbaa0120682ca259335bc96e58ab25370e27:frontend/src/Components/mainpage/MapView.js
 
-    if (!this.props.grandmas.grandmas.length) return null;
-    const locations = this.props.grandmas.grandmas.map(granny => {
+    if (!grandmas.length) return null;
+    const locations = grandmas.map(granny => {
       return (
         <Marker
           key={granny.id}
-          onClick={() => this.handleClick(granny.id)}
+          onClick={() => handleClick(granny.id)}
           onMouseover={this.onMouseoverMarker}
           onMouseout={this.onMouseLeave}
           pic={granny.profile_pic}
@@ -86,18 +79,18 @@ class MainPage extends Component {
           icon={icon}
           position={{
             lat: granny.latitude,
-            lng: granny.longitude
+            lng: granny.longitude,
           }}
         />
       );
     });
     const divStyle = {
-      width: "500px",
-      height: "500px"
+      width: '500px',
+      height: '500px',
     };
     const imgStyle = {
-      width: "50px",
-      height: "50px"
+      width: '50px',
+      height: '50px',
     };
     return (
       <div className="maainpage">
@@ -108,7 +101,7 @@ class MainPage extends Component {
           google={this.props.google}
           initialCenter={{
             lat: 40.743001,
-            lng: -73.950614
+            lng: -73.950614,
           }}
           zoom={11}
         >
@@ -129,5 +122,10 @@ class MainPage extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: `${secret.apiKey}`
+<<<<<<< HEAD:frontend/src/Components/MainPage.js
+  apiKey: `${secret.apiKey}`,
 })(MainPage);
+=======
+  apiKey: `${secret.apiKey}`
+})(MapView);
+>>>>>>> 5276fbaa0120682ca259335bc96e58ab25370e27:frontend/src/Components/mainpage/MapView.js
