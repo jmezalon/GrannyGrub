@@ -25,6 +25,7 @@ class App extends Component {
           <Route exact path="/home" component={HomeContainer} />
           <Route exact path="/mainpage" component={MainPageContainer} />
           <Route exact path="/signup" component={SignUp} />
+
           <Route exact path="/login" component={Login} />
           <Route exact path="/grandma/edit/:id" component={ProfileContainer} />
         </Switch>
