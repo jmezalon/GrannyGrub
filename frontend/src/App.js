@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import LandingPage from "./components/landingPage/landingPage";
-import { SignUp } from "./components/grandma/SignUp";
-import { Login } from "./components/grandma/Login";
+import LandingPage from "./Components/LandingPage/landingPage";
+import { SignUp } from "./Components/grandma/SignUp";
+import { Login } from "./Components/grandma/Login";
 import ProfileContainer from "./containers/ProfileContainer";
 import HomeContainer from "./containers/HomeContainer";
 import MainPageContainer from "./containers/MainPageContainer";
-import Navbar from "./components/navbar/Navbar.js";
+import Navbar from "./Components/navbar/Navbar.js";
 
 class App extends Component {
   state = {
