@@ -1,19 +1,22 @@
 import { connect } from "react-redux";
-import { getAllUsers } from "../Actions/userActions";
-import { getAllGrandmas } from "../Actions/grandmaActions";
-import MainPage from "../Components/MainPage.js";
+import { getAllUsers } from "../actions/userActions";
+import { allGrandmasByCuisines } from "../actions/filterActions";
+import { getAllGrandmas } from "../actions/grandmaActions";
+import MainPage from "../components/MainPage.js";
 
 const mapStateToProps = state => {
   return {
     users: state.users,
-    grandmas: state.grandmas
+    grandmas: state.grandmas,
+    grandmasByCuisines: state.filteredGrandmas
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getAllUsers: () => dispatch(getAllUsers()),
-    getAllGrandmas: () => dispatch(getAllGrandmas())
+    getAllGrandmas: () => dispatch(getAllGrandmas()),
+    allGrandmasByCuisines: id => dispatch(allGrandmasByCuisines(id))
   };
 };
 

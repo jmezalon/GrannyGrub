@@ -1,8 +1,8 @@
-import { GET_ALL_USERS, GOT_ERROR } from '../Actions/actionTypes';
+import { GET_ALL_USERS, GOT_ERROR } from "../actions/actionTypes";
 
 const initialState = {
   users: [],
-  callFailed: false,
+  callFailed: false
 };
 
 export const userReducer = (state = initialState, action) => {
