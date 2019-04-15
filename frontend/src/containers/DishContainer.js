@@ -4,7 +4,9 @@ import { getGrandmasDishes } from "../actions/dishActions";
 import GrandmasDishes from "../components/dishes/dishes.js";
 
 const mapStateToProps = state => {
-  return { dishes: state.dishes };
+  return {
+    dishes: state.dishes
+  };
 };
 
 const mapDispatchToProps = dispatch => {

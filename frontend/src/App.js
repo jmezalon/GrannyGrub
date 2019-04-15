@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
-import "./App.css";
-import LandingPage from "./components/landingpage/landingPage";
-import { SignUp } from "./components/grandma/SignUp";
-import { Login } from "./components/grandma/Login";
-import ProfileContainer from "./containers/ProfileContainer";
-import HomeContainer from "./containers/HomeContainer";
-import MainPageContainer from "./containers/MainPageContainer";
-import Navbar from "./components/navbar/Navbar.js";
-import DishContainer from "./containers/DishContainer";
-import NewDishForm from "./components/dishes/NewDishForm.js";
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import './App.css';
+import LandingPage from './components/landingpage/landingPage';
+import { SignUp } from './components/grandma/SignUp';
+import { Login } from './components/grandma/Login';
+import ProfileContainer from './containers/ProfileContainer';
+import HomeContainer from './containers/HomeContainer';
+import MainPageContainer from './containers/MainPageContainer';
+import Navbar from './components/navbar/Navbar.js';
+import DishContainer from './containers/DishContainer';
+import HandleNewDish from './components/dishes/handleNewDish.js';
 class App extends Component {
   state = {
-    loggedIn: true
+    loggedIn: true,
   };
   // cheking
   render() {
@@ -29,7 +29,7 @@ class App extends Component {
 
           <Route exact path="/login" component={Login} />
           <Route exact path="/grandma/main" component={DishContainer} />
-          <Route exact path="/grandma/newdish" component={NewDishForm} />
+          <Route exact path="/grandma/newdish" component={HandleNewDish} />
 
           <Route exact path="/grandma/edit/:id" component={ProfileContainer} />
         </Switch>

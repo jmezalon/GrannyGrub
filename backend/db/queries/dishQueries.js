@@ -48,7 +48,7 @@ const db = require("../connection");
 const addNewDish = (req, res, next) => {
   if (req.body.isGrandma === "true") {
     db.none(
-      "INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, timeframe) VALUES( ${name}, ${description}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${timeframe})",
+      "INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, date, timeframe) VALUES( ${name}, ${description}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe})",
       {
         name: req.body.name,
         description: req.body.description,
@@ -56,6 +56,7 @@ const addNewDish = (req, res, next) => {
         cuisine_id: req.body.cuisine_id,
         img_url: req.body.img_url,
         price: req.body.price,
+        date: req.body.date,
         timeframe: req.body.timeframe,
         id: Number(req.body.id)
       }

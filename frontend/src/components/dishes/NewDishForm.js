@@ -1,59 +1,80 @@
 import React from 'react';
 
 class NewDishForm extends React.Component {
-  state = {
-    dish_name: '',
-    sitDown: false,
-    dishImg: '',
-    cuisine_type: '',
-    labels: [],
-    quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    selectedQuantity: '',
-    description: '',
-    time: '',
-    date: '',
-  };
-
   render() {
-    // const { grandma } = this.props;
-    // const grandmaProfile = this.props.grandma.map(grandma => {
-    // onChange={this.handleChange}
+    const {
+      dishName,
+      sitDown,
+      dishImg,
+      quantity,
+      selectedQuantity,
+      description,
+      timeframe,
+      handleChange,
+      pickUp,
+      handleClick,
+      date,
+    } = this.props;
 
-    const quantityOptions = this.state.quantity.map((number, i) => {
+    const quantityOptions = quantity.map((number, i) => {
       return (
-        <option key={i + 1} value={this.state.selectedQuantity}>
+        <option key={i + 1} value={selectedQuantity}>
           {number}
         </option>
       );
     });
+    //
+    // const quantityOptions = quantity.map((number, i) => {
+    //   return (
+    //     <option key={i + 1} value={selectedQuantity}>
+    //       {number}
+    //     </option>
+    //   );
+    // });
 
     return (
       <div className="new-dish">
-        <label htmlFor="dish-name">Dish Name</label>
-        <input name="dishName" type="text" value={this.state.dishName} />
-        <br />
-        <label htmlFor="dish-type">dish type </label>
-
-        <span>
-          <button> to-go </button>
-          <button> sit-down </button>
-        </span>
-        <br />
-        <div id="addDescription">
-          <label htmlFor="description">Description: </label>
-          <textarea
-            name="description"
+        <form>
+          <label htmlFor="dish-name">Dish Name</label>
+          <input
+            name="dishName"
             type="text"
-            value={this.state.description}
+            value={dishName}
+            onChange={handleChange}
           />
-        </div>
-        <div>
-          <label htmlFor="quantity"> Available Dishes: </label>
-          <select value={this.state.selectedQuantity}>
-            <option key="0" value="" />
-            {quantityOptions}
-          </select>
-        </div>
+          <br />
+          <label htmlFor="dish-type">dish type </label>
+
+          <span>
+            <button onClick={handleClick} value={pickUp}>
+              {' '}
+              to-go{' '}
+            </button>
+            <button onClick={handleClick} value={sitDown}>
+              {' '}
+              sit-down{' '}
+            </button>
+          </span>
+          <br />
+          <div id="addDescription">
+            <label htmlFor="description">Description: </label>
+            <textarea name="description" type="text" value={description} />
+          </div>
+          <div>
+            <label htmlFor="quantity"> Available Dishes: </label>
+            <select value={selectedQuantity}>
+              <option key="0" value="" />
+              {quantityOptions}
+            </select>
+
+            <div>
+              <span>
+                <label htmlFor="timeframe"> Timeframe: </label>
+                <input name="timeframe" type="text" value={timeframe} />
+              </span>
+            </div>
+          </div>
+        </form>
       </div>
     );
   }
