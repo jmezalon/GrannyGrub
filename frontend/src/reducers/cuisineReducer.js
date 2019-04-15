@@ -1,8 +1,8 @@
-import { GET_ALL_CUISINES, GOT_ERROR } from '../Actions/actionTypes';
+import { GET_ALL_CUISINES, GOT_ERROR } from "../actions/actionTypes";
 
 const initialState = {
   cuisines: [],
-  callFailed: false,
+  callFailed: false
 };
 
 export const cuisineReducer = (state = initialState, action) => {

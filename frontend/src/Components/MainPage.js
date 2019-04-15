@@ -59,6 +59,7 @@ class MainPage extends Component {
   componentDidMount() {
     this.props.getAllUsers();
     this.props.getAllGrandmas();
+    this.props.allGrandmasByCuisines(10);
   }
 
   handleClick = id => {
