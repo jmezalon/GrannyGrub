@@ -5,13 +5,12 @@ import secret from "../../secret.js";
 import icon from "../../assets/icon.png";
 import axios from "axios";
 
-
 class MapView extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-    coords: {},
+    coords: {}
   };
 
   onMouseoverMarker = (props, marker, e) => {
@@ -19,7 +18,7 @@ class MapView extends Component {
       this.setState({
         selectedPlace: props,
         activeMarker: marker,
-        showingInfoWindow: true,
+        showingInfoWindow: true
       });
     }
   };
@@ -29,7 +28,7 @@ class MapView extends Component {
       this.setState({
         selectedPlace: props,
         activeMarker: marker,
-        showingInfoWindow: false,
+        showingInfoWindow: false
       });
     }
   };
@@ -43,7 +42,7 @@ class MapView extends Component {
       )
       .then(res => {
         this.setState({
-          coords: res.data.results[0].geometry.location,
+          coords: res.data.results[0].geometry.location
         });
       });
   };
@@ -52,19 +51,17 @@ class MapView extends Component {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
-        activeMarker: null,
+        activeMarker: null
       });
     }
   };
 
   render() {
-<<<<<<< HEAD:frontend/src/Components/MainPage.js
     !this.state.coords.lat
-      ? this.getCoords('870 Nostrand Ave')
+      ? this.getCoords("870 Nostrand Ave")
       : console.log(this.state.coords);
-=======
+
     let { grandmas, handleClick } = this.props;
->>>>>>> 5276fbaa0120682ca259335bc96e58ab25370e27:frontend/src/Components/mainpage/MapView.js
 
     if (!grandmas.length) return null;
     const locations = grandmas.map(granny => {
@@ -79,18 +76,18 @@ class MapView extends Component {
           icon={icon}
           position={{
             lat: granny.latitude,
-            lng: granny.longitude,
+            lng: granny.longitude
           }}
         />
       );
     });
     const divStyle = {
-      width: '500px',
-      height: '500px',
+      width: "500px",
+      height: "500px"
     };
     const imgStyle = {
-      width: '50px',
-      height: '50px',
+      width: "50px",
+      height: "50px"
     };
     return (
       <div className="maainpage">
@@ -101,7 +98,7 @@ class MapView extends Component {
           google={this.props.google}
           initialCenter={{
             lat: 40.743001,
-            lng: -73.950614,
+            lng: -73.950614
           }}
           zoom={11}
         >
@@ -122,10 +119,5 @@ class MapView extends Component {
 }
 
 export default GoogleApiWrapper({
-<<<<<<< HEAD:frontend/src/Components/MainPage.js
-  apiKey: `${secret.apiKey}`,
-})(MainPage);
-=======
   apiKey: `${secret.apiKey}`
 })(MapView);
->>>>>>> 5276fbaa0120682ca259335bc96e58ab25370e27:frontend/src/Components/mainpage/MapView.js
