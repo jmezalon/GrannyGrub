@@ -11,7 +11,7 @@ export const gotError = err => {
 const receiveAllCuisines = cuisines => {
   return {
     type: GET_ALL_CUISINES,
-    cuisines
+    payload: cuisines
   };
 };
 

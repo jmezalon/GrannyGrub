@@ -8,7 +8,7 @@ import MainPage from "../components/mainpage/MainPage.js";
 const mapStateToProps = state => {
   return {
     users: state.users,
-    grandmas: state.grandmas,
+    grandmas: state.grandmas.grandmas,
     grandmasByCuisines: state.filteredGrandmas,
     cuisines: state.cuisines
   };
@@ -18,7 +18,6 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllUsers: () => dispatch(getAllUsers()),
     getAllGrandmas: () => dispatch(getAllGrandmas()),
-
     getAllCuisines: () => dispatch(getAllCuisines()),
     allGrandmasByCuisines: id => dispatch(allGrandmasByCuisines(id))
   };
