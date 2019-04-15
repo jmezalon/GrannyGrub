@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_GRANDMAS, GOT_ERROR } from "./actionTypes";
+import { GET_ALL_GRANDMAS, GET_ONE_GRANDMA, GOT_ERROR } from "./actionTypes";
 
 export const gotError = err => {
   return {
@@ -15,6 +15,13 @@ export const receiveAllGrandmas = grandmas => {
   };
 };
 
+export const receiveOneGrandma = grandma => {
+  return {
+    type: GET_ONE_GRANDMA,
+    payload: grandma
+  };
+};
+
 export const getAllGrandmas = () => dispatch => {
   axios
     .get("/users")
@@ -23,6 +30,18 @@ export const getAllGrandmas = () => dispatch => {
         return user.isgrandma;
       });
       dispatch(receiveAllGrandmas(grandmas));
+    })
+    .catch(err => {
+      dispatch(gotError(err));
+    });
+};
+
+export const getOneGrandma = id => dispatch => {
+  // let id = parseInt(req.params.id);
+  axios
+    .get(`/users/grandma/${id}`)
+    .then(res => {
+      dispatch(receiveOneGrandma(res.data.user));
     })
     .catch(err => {
       dispatch(gotError(err));
