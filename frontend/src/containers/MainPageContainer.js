@@ -18,6 +18,10 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllUsers: () => dispatch(getAllUsers()),
     getAllGrandmas: () => dispatch(getAllGrandmas()),
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee410a0b5c10075bd3778fd62d1ccfd6b74eebd
     getAllCuisines: () => dispatch(getAllCuisines()),
     allGrandmasByCuisines: id => dispatch(allGrandmasByCuisines(id))
   };

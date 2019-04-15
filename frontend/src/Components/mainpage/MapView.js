@@ -57,10 +57,6 @@ class MapView extends Component {
   };
 
   render() {
-    !this.state.coords.lat
-      ? this.getCoords("870 Nostrand Ave")
-      : console.log(this.state.coords);
-
     let { grandmas, handleClick } = this.props;
 
     if (!grandmas.length) return null;
