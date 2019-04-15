@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
-import "./App.css";
-import LandingPage from "./Components/LandingPage/landingPage";
-import { SignUp } from "./Components/grandma/SignUp";
-import { Login } from "./Components/grandma/Login";
-import HomeContainer from "./containers/HomeContainer";
-import MainPageContainer from "./containers/MainPageContainer";
-import Navbar from "./Components/Navbar/Navbar.js";
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import './App.css';
+import LandingPage from './Components/LandingPage/landingPage';
+import { SignUp } from './Components/grandma/SignUp';
+import { Login } from './Components/grandma/Login';
+import HomeContainer from './Containers/HomeContainer';
+import MainPageContainer from './Containers/MainPageContainer';
+import Navbar from './Components/Navbar/Navbar.js';
 
 class App extends Component {
   state = {
-    loggedIn: true
+    loggedIn: true,
   };
   // cheking
   render() {

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { getAllUsers } from "../actions/userActions";
-import { getAllGrandmas } from "../actions/grandmaActions";
+import { getAllUsers } from "../Actions/userActions";
+import { getAllGrandmas } from "../Actions/grandmaActions";
 import MainPage from "../Components/MainPage.js";
 
 const mapStateToProps = state => {

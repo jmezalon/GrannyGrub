@@ -1,8 +1,8 @@
-import { GET_ALL_GRANDMAS, GOT_ERROR } from "../actions/actionTypes";
+import { GET_ALL_GRANDMAS, GOT_ERROR } from '../Actions/actionTypes';
 
 const initialState = {
   grandmas: [],
-  callFailed: false
+  callFailed: false,
 };
 
 export const grandmaReducer = (state = initialState, action) => {
