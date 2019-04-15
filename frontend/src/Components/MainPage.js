@@ -60,6 +60,7 @@ class MainPage extends Component {
     this.props.getAllUsers();
     this.props.getAllGrandmas();
     this.props.allGrandmasByCuisines(10);
+    this.props.getAllCuisines();
   }
 
   handleClick = id => {
