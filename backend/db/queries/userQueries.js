@@ -3,16 +3,17 @@ const authHelpers = require("../../auth/helpers");
 
 //get only gmas
 const getAllUsers = (req, res, next) => {
-  if (isGrandma)
-    db.any("SELECT * FROM users")
-      .then(users => {
-        res.status(200).json({
-          status: "success",
-          users: users,
-          message: "all users"
-        });
-      })
-      .catch(err => next(err));
+
+ db.any("SELECT * FROM users")
+    .then(users => {
+      res.status(200).json({
+        status: "success",
+        users: users,
+        message: "all users"
+      });
+    })
+    .catch(err => next(err));
+
 };
 
 //get single grandma
@@ -29,7 +30,7 @@ const getOneGrandmaInfo = (req, res, next) => {
     .then(user => {
       res.status(200).json({
         status: "success",
-        // user: user,
+        user: user,
         message: "single user"
       });
     })
