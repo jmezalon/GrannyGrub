@@ -3,7 +3,7 @@ import { getAllUsers } from "../actions/userActions";
 import { allGrandmasByCuisines } from "../actions/filterActions";
 import { getAllGrandmas } from "../actions/grandmaActions";
 import { getAllCuisines } from "../actions/cuisineActions";
-import MainPage from "../Components/mainpage/MainPage.js";
+import MainPage from "../components/mainpage/MainPage.js";
 
 const mapStateToProps = state => {
   return {
