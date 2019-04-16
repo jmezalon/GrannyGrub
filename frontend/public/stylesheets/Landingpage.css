@@ -5,6 +5,11 @@
   object-fit: cover;
 }
 
+#profile-pic {
+  width: 90px;
+  height: 97px;
+}
+
 .middle-landing {
   display: flex;
   justify-content: space-between;

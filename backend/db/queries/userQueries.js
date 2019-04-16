@@ -20,7 +20,7 @@ const getAllUsers = (req, res, next) => {
 
 const getOneGrandmaInfo = (req, res, next) => {
   db.one(
-    "SELECT users.id AS user_id, first_name, last_name, profile_pic, bio, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = ${id} GROUP BY users.id, cuisines.id",
+    "SELECT users.id AS user_id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = ${id} GROUP BY users.id, cuisines.id",
     {
       id: parseInt(req.params.user_id)
     }
