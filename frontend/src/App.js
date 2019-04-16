@@ -8,6 +8,7 @@ import ProfileContainer from "./containers/ProfileContainer";
 import HomeContainer from "./containers/HomeContainer";
 import MainPageContainer from "./containers/MainPageContainer";
 import Navbar from "./components/navbar/Navbar.js";
+import GrandmaPageContainer from "./containers/GrandmaPageContainer.js";
 
 class App extends Component {
   state = {
@@ -25,9 +26,9 @@ class App extends Component {
           <Route exact path="/home" component={HomeContainer} />
           <Route exact path="/mainpage" component={MainPageContainer} />
           <Route exact path="/signup" component={SignUp} />
-
           <Route exact path="/login" component={Login} />
           <Route exact path="/grandma/edit/:id" component={ProfileContainer} />
+          <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
         </Switch>
       </div>
     );
