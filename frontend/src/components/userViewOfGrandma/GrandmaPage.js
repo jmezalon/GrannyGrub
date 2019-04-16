@@ -32,7 +32,7 @@ class GrandmaPage extends Component {
             Dish 4 <button>order</button>
           </div>
         </div>
-        <div class="profile-sidebar">
+        <div className="profile-sidebar">
           <p>{grandma.first_name}</p>
           <img
             className="user-view-granny-pic"
