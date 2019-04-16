@@ -1,5 +1,5 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 class NewDishForm extends React.Component {
   handleSubmit = e => {
     const {
@@ -18,26 +18,27 @@ class NewDishForm extends React.Component {
       handleToGo,
       date,
       handleSitDown,
-      handleSubmit
+      handleSubmit,
     } = this.props;
+
     e.preventDefault();
     axios
-      .post("/dishes/new", {
+      .post('/dishes/new', {
         name: dishName,
         description: description,
         user_id: user_id,
         cuisine_id: cuisine_id,
         img_url: dishImg,
         price: price,
-        date: this.state.date,
+        date: date,
         type: type,
-        timeframe: timeframe
+        timeframe: timeframe,
       })
       .catch(err => {
         if (err.response.status === 500) {
           console.log(err);
           this.setState({
-            err_warning: true
+            err_warning: true,
           });
         } else {
           console.log(err);
@@ -46,7 +47,6 @@ class NewDishForm extends React.Component {
   };
 
   render() {
-    console.log(this.props.description);
     const {
       dishName,
       dishImg,
@@ -64,7 +64,10 @@ class NewDishForm extends React.Component {
       handleToGo,
       handleSitDown,
       handleDateChange,
-      handleSubmit
+      handleSubmit,
+      handleQuantityChange,
+      handleDishType,
+      handleTimeFrame,
     } = this.props;
 
     const quantityOptions = quantity.map((number, i) => {
@@ -88,7 +91,7 @@ class NewDishForm extends React.Component {
             />
             <div className="quantityForm">
               <label htmlFor="quantity"> Available Dishes: </label>
-              <select value={selectedQuantity} onChange={handleChange}>
+              <select value={selectedQuantity} onChange={handleQuantityChange}>
                 <option key="0" value="" />
                 {quantityOptions}
               </select>
@@ -101,7 +104,7 @@ class NewDishForm extends React.Component {
                 type="text"
                 value={description}
                 onChange={handleChange}
-              />{" "}
+              />{' '}
             </div>
           </section>
 
@@ -109,26 +112,22 @@ class NewDishForm extends React.Component {
             <span>
               <div>
                 <button
-                  onClick={handleToGo}
-                  value={type}
-                  className={
-                    type === "pick-up" ? "selected-type" : "unselected-type"
-                  }
+                  onClick={handleDishType}
+                  value="1"
+                  className={+type ? 'selected-type' : 'unselected-type'}
                 >
-                  {" "}
-                  to-go{" "}
+                  {' '}
+                  to-go{' '}
                 </button>
               </div>
               <div>
                 <button
-                  onClick={handleSitDown}
-                  value={type}
-                  className={
-                    type === "sit-down" ? "selected-type" : "unselected-type"
-                  }
+                  onClick={e => handleDishType(e)}
+                  value="0"
+                  className={+type ? 'unselected-type' : 'selected-type'}
                 >
-                  {" "}
-                  sit down{" "}
+                  {' '}
+                  sit down{' '}
                 </button>
               </div>
             </span>
@@ -144,6 +143,56 @@ class NewDishForm extends React.Component {
             max="2020-12-31"
             onChange={handleDateChange}
           />
+          <br />
+          <br />
+          <section>
+            <span>
+              <div>
+                <label htmlFor="lunch" />
+                <button
+                  onClick={handleTimeFrame}
+                  value="lunch"
+                  id="lunch"
+                  className={
+                    timeframe === 'lunch' ? 'selected-type' : 'unselected-type'
+                  }
+                >
+                  {' '}
+                  Lunch{' '}
+                </button>
+              </div>
+              <div>
+                <label htmlFor="dinner" />
+                <button
+                  onClick={e => handleDishType(e)}
+                  value="dinner"
+                  id="dinner"
+                  className={
+                    timeframe === 'lunch' ? 'unselected-type' : 'selected-type'
+                  }
+                >
+                  {' '}
+                  Dinner{' '}
+                </button>
+              </div>
+            </span>
+          </section>
+          <br />
+          <br />
+          <section>
+            <label htmlFor="img"> Dish Image </label>
+
+            <input
+              type="text"
+              value={dishImg}
+              id="img"
+              name="dishImg"
+              placeholder="Image url"
+              onChange={handleChange}
+            />
+          </section>
+          <br />
+
           <input type="submit" />
         </form>
       </div>
@@ -152,71 +201,3 @@ class NewDishForm extends React.Component {
 }
 
 export default NewDishForm;
-
-//
-// <br />
-//   <span>
-//     <input
-//       type="text"
-//       placeholder="add building number"
-//       name="building_number"
-//       onChange={this.handleChange}
-//       value={grandma.building_number || this.state.building_number}
-//     />
-//   </span>
-//   <span>
-//     <input
-//       type="text"
-//       placeholder="add street address"
-//       name="address"
-//       onChange={this.handleChange}
-//       value={grandma.address || this.state.address}
-//     />
-//   </span>
-//   <span>
-//     <input
-//       type="text"
-//       placeholder="add zip code"
-//       name="zip_code"
-//       onChange={this.handleChange}
-//       value={grandma.zip_code || this.state.zip_code}
-//     />
-//   </span>
-// </div>
-//
-//
-// <div>
-//   <span>
-//     <label htmlFor="timeframe"> Timeframe: </label>
-//     <input name="timeframe" type="text" value={timeframe} />
-//   </span>
-// </div>
-// </div>
-
-// <br />
-// <label htmlFor="dish-type">dish type </label>
-
-// <span>
-//   <button onClick={handleClick} value={pickUp}>
-//     {" "}
-//     to-go{" "}
-//   </button>
-//   <button onClick={handleClick} value={sitDown}>
-//     {" "}
-//     sit-down{" "}
-//   </button>
-// </span>
-// <br />
-// <div id="addDescription">
-//   <label htmlFor="description">Description: </label>
-//   <textarea name="description" type="text" value={description} />
-// </div>
-
-// <button onClick={handleToGo} value={pickUp}>
-//   {" "}
-//   to-go{" "}
-// </button>
-// <button onClick={handleSitDown} value={sitDown}>
-//   {" "}
-//   sit-down{" "}
-// </button>

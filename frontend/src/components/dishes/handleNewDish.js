@@ -1,18 +1,18 @@
 import React from "react";
 import NewDishForm from "./NewDishForm";
-import axios from "axios";
+// import axios from "axios";
 
 class HandleNewDish extends React.Component {
   state = {
     dishName: "",
-    type: "",
-    dishImg: "something",
+    type: "3",
+    dishImg: "",
     cuisine_id: 8,
     labels: [],
     quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    selectedQuantity: 3,
+    selectedQuantity: "",
     description: "",
-    timeframe: "10-4",
+    timeframe: "",
     date:
       new Date().getFullYear() +
       "-" +
@@ -27,38 +27,56 @@ class HandleNewDish extends React.Component {
     price: 3.99
   };
 
-  // componentDidMount() {
-  //   this.props.getAllCuisines();
-  // }
+  componentDidMount() {
+    this.props.getAllCuisines();
+  }
 
   handleChange = e => {
-    e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
     console.log(e.target.value + e.target.name);
   };
 
-  handleToGo = e => {
-    e.preventDefault();
+  handleQuantityChange = e => {
     this.setState({
-      type: "pick-up"
+      selectedQuantity: e.target.value
     });
+    console.log(e.target.value);
   };
 
   handleDateChange = e => {
     this.setState({
       date: e.target.value
     });
+    console.log(e.target.value);
   };
-  handleSitDown = e => {
+
+  handleDishType = e => {
     e.preventDefault();
+    console.log(e.target.value);
     this.setState({
-      type: "sit-down"
+      type: e.target.value
     });
   };
 
+  handleTimeFrame = e => {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({
+      timeframe: e.target.value
+    });
+  };
+
+  // handleSitDown = e => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     type: "sit-down"
+  //   });
+  // };
+
   render() {
+    console.log(this.props.cuisines);
     const {
       dishName,
       cuisine_id,
@@ -88,10 +106,11 @@ class HandleNewDish extends React.Component {
           date={date}
           selectedQuantity={selectedQuantity}
           handleChange={this.handleChange}
-          handleSitDown={this.handleSitDown}
-          handleToGo={this.handleToGo}
+          handleTimeFrame={this.handleTimeFrame}
+          handleDishType={this.handleDishType}
           handleDateChange={this.handleDateChange}
           handleSubmit={this.handleSubmit}
+          handleQuantityChange={this.handleQuantityChange}
         />
       </>
     );
@@ -99,12 +118,3 @@ class HandleNewDish extends React.Component {
 }
 
 export default HandleNewDish;
-
-//
-
-// date={date}
-// selectedQuantity={selectedQuantity}
-
-// handleClick={this.handleClick}
-// description={description}
-// timeframe={timeframe}

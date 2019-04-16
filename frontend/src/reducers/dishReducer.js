@@ -1,8 +1,8 @@
-import { GRANDMAS_DISHES, GOT_ERROR } from "../actions/actionTypes";
+import { GRANDMAS_DISHES, GOT_ERROR } from '../actions/actionTypes';
 
 const initialState = {
   dishes: [],
-  callFailed: false
+  callFailed: false,
 };
 
 export const dishReducer = (state = initialState, action) => {
