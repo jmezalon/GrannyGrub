@@ -88,28 +88,37 @@ class MapView extends Component {
     return (
       <div className="mainpage">
         <h2>Grandmas near you</h2>
-        <Map
-          onClick={this.onMapClicked}
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px`, width: `400px` }} />}
-          google={this.props.google}
-          initialCenter={{
-            lat: 40.743001,
-            lng: -73.950614
-          }}
-          zoom={11}
-        >
-          {locations}
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
+        <div className="mappy">
+          <Map
+            className="map-main"
+            onClick={this.onMapClicked}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={
+              <div style={{ height: `400px`, width: `400px` }} />
+            }
+            google={this.props.google}
+            initialCenter={{
+              lat: 40.743001,
+              lng: -73.950614
+            }}
+            zoom={11}
           >
-            <div>
-              <img style={imgStyle} src={this.state.selectedPlace.pic} alt="" />
-              <p>{this.state.selectedPlace.name}</p>
-            </div>
-          </InfoWindow>
-        </Map>
+            {locations}
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+            >
+              <div>
+                <img
+                  style={imgStyle}
+                  src={this.state.selectedPlace.pic}
+                  alt=""
+                />
+                <p>{this.state.selectedPlace.name}</p>
+              </div>
+            </InfoWindow>
+          </Map>
+        </div>
       </div>
     );
   }
