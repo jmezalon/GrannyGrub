@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-import MapView from './MapView';
-import ListView from './ListView';
-import secret from '../../secret.js';
-import icon from '../../assets/icon.png';
+import MapView from "./MapView";
+import ListView from "./ListView";
+import secret from "../../secret.js";
+import icon from "../../assets/icon.png";
 
 class MainPage extends Component {
   state = {
-    showingMap: true,
+    showingMap: true
   };
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class MainPage extends Component {
 
   toggleView = () => {
     this.setState({
-      showingMap: !this.state.showingMap,
+      showingMap: !this.state.showingMap
     });
   };
 

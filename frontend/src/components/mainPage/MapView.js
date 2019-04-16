@@ -86,11 +86,12 @@ class MapView extends Component {
       height: "50px"
     };
     return (
-      <div className="maainpage">
+      <div className="mainpage">
         <h2>Grandmas near you</h2>
         <Map
           onClick={this.onMapClicked}
-          style={divStyle}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px`, width: `400px` }} />}
           google={this.props.google}
           initialCenter={{
             lat: 40.743001,
