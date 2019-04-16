@@ -109,7 +109,6 @@ class MapView extends Component {
               <p>{this.state.selectedPlace.name}</p>
             </div>
           </InfoWindow>
-          <h1>Loading!</h1>
         </Map>
       </div>
     );
