@@ -4,4 +4,8 @@ export const GET_ONE_GRANDMA = "GET_ONE_GRANDMA";
 export const GET_ALL_CUISINES = "GET_ALL_CUISINES";
 export const FILTER_BY_CUISINES = "FILTER_BY_CUISINES";
 
+export const GRANDMAS_DISHES = "GRANDMAS_DISHES";
+
+export const ADD_NEW_DISH = "ADD_NEW_DISH ";
+
 export const GOT_ERROR = "GOT_ERROR";
