@@ -1,21 +1,70 @@
-import React from 'react';
-
+import React from "react";
+import axios from "axios";
 class NewDishForm extends React.Component {
-  render() {
+  handleSubmit = e => {
     const {
       dishName,
-
-      // dishImg,
+      dishImg,
       quantity,
+      cuisine_id,
       selectedQuantity,
       description,
-      // timeframe,
+      timeframe,
       handleChange,
       type,
-      // handleClick,
-      // date,
+      handleClick,
+      price,
+      user_id,
+      handleToGo,
+      date,
+      handleSitDown,
+      handleSubmit
+    } = this.props;
+    e.preventDefault();
+    axios
+      .post("/dishes/new", {
+        name: dishName,
+        description: description,
+        user_id: user_id,
+        cuisine_id: cuisine_id,
+        img_url: dishImg,
+        price: price,
+        date: this.state.date,
+        type: type,
+        timeframe: timeframe
+      })
+      .catch(err => {
+        if (err.response.status === 500) {
+          console.log(err);
+          this.setState({
+            err_warning: true
+          });
+        } else {
+          console.log(err);
+        }
+      });
+  };
+
+  render() {
+    console.log(this.props.description);
+    const {
+      dishName,
+      dishImg,
+      quantity,
+      cuisine_id,
+      selectedQuantity,
+      description,
+      timeframe,
+      handleChange,
+      type,
+      handleClick,
+      price,
+      date,
+      user_id,
       handleToGo,
       handleSitDown,
+      handleDateChange,
+      handleSubmit
     } = this.props;
 
     const quantityOptions = quantity.map((number, i) => {
@@ -26,18 +75,9 @@ class NewDishForm extends React.Component {
       );
     });
 
-    //
-    // const quantityOptions = quantity.map((number, i) => {
-    //   return (
-    //     <option key={i + 1} value={selectedQuantity}>
-    //       {number}
-    //     </option>
-    //   );
-    // });
-
     return (
       <div className="new-dish">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <section>
             <label htmlFor="dish-name">Dish Name</label>
             <input
@@ -61,9 +101,10 @@ class NewDishForm extends React.Component {
                 type="text"
                 value={description}
                 onChange={handleChange}
-              />{' '}
+              />{" "}
             </div>
           </section>
+
           <section>
             <span>
               <div>
@@ -71,27 +112,39 @@ class NewDishForm extends React.Component {
                   onClick={handleToGo}
                   value={type}
                   className={
-                    type === 'pick-up' ? 'selected-type' : 'unselected-type'
+                    type === "pick-up" ? "selected-type" : "unselected-type"
                   }
                 >
-                  {' '}
-                  to-go{' '}
+                  {" "}
+                  to-go{" "}
                 </button>
               </div>
               <div>
                 <button
-                  onClick={() => handleToGo()}
+                  onClick={handleSitDown}
                   value={type}
                   className={
-                    type === 'sit-down' ? 'selected-type' : 'unselected-type'
+                    type === "sit-down" ? "selected-type" : "unselected-type"
                   }
                 >
-                  {' '}
-                  sit down{' '}
+                  {" "}
+                  sit down{" "}
                 </button>
               </div>
             </span>
           </section>
+
+          <label htmlFor="start">Date:</label>
+          <input
+            type="date"
+            id="start"
+            name="date"
+            value={date}
+            min={date}
+            max="2020-12-31"
+            onChange={handleDateChange}
+          />
+          <input type="submit" />
         </form>
       </div>
     );

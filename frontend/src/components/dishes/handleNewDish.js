@@ -1,19 +1,30 @@
 import React from "react";
 import NewDishForm from "./NewDishForm";
+import axios from "axios";
 
 class HandleNewDish extends React.Component {
   state = {
     dishName: "",
-    sitDown: null,
     type: "",
-    // dishImg: "",
-    // cuisine_type: "",
-    // labels: [],
-    quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    // selectedQuantity: "",
-    // description: "",
-    // timeframe: "",
-    // date: ""
+    dishImg: "something",
+    cuisine_id: 8,
+    labels: [],
+    quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    selectedQuantity: 3,
+    description: "",
+    timeframe: "10-4",
+    date:
+      new Date().getFullYear() +
+      "-" +
+      (new Date().getMonth() + 1 < 10
+        ? "0" + (new Date().getMonth() + 1)
+        : new Date().getMonth() + 1) +
+      "-" +
+      (new Date().getDate() + 1 < 10
+        ? "0" + (new Date().getDate() + 1)
+        : new Date().getDate() + 1),
+    user_id: 14,
+    price: 3.99
   };
 
   // componentDidMount() {
@@ -22,10 +33,10 @@ class HandleNewDish extends React.Component {
 
   handleChange = e => {
     e.preventDefault();
-    console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
+    console.log(e.target.value + e.target.name);
   };
 
   handleToGo = e => {
@@ -33,25 +44,35 @@ class HandleNewDish extends React.Component {
     this.setState({
       type: "pick-up"
     });
-    console.log(this.state.pickUp);
   };
 
+  handleDateChange = e => {
+    this.setState({
+      date: e.target.value
+    });
+  };
   handleSitDown = e => {
     e.preventDefault();
     this.setState({
       type: "sit-down"
     });
-    console.log(this.state.sitDown);
   };
 
   render() {
     const {
       dishName,
+      cuisine_id,
+      labels,
       quantity,
-      type,
       selectedQuantity,
-      handleSitDown,
-      handleToGo
+      description,
+      timeframe,
+      pickUp,
+      type,
+      price,
+      dishImg,
+      user_id,
+      date
     } = this.state;
 
     return (
@@ -60,10 +81,17 @@ class HandleNewDish extends React.Component {
           dishName={dishName}
           quantity={quantity}
           type={type}
+          dishImg={dishImg}
+          cuisine_type={cuisine_id}
+          user_id={user_id}
+          price={price}
+          date={date}
           selectedQuantity={selectedQuantity}
           handleChange={this.handleChange}
           handleSitDown={this.handleSitDown}
           handleToGo={this.handleToGo}
+          handleDateChange={this.handleDateChange}
+          handleSubmit={this.handleSubmit}
         />
       </>
     );
@@ -73,16 +101,6 @@ class HandleNewDish extends React.Component {
 export default HandleNewDish;
 
 //
-// sitDown,
-// dishImg,
-// cuisine_type,
-// labels,
-// quantity,
-// selectedQuantity,
-// description,
-// timeframe,
-// pickUp,
-// date
 
 // date={date}
 // selectedQuantity={selectedQuantity}
@@ -90,6 +108,3 @@ export default HandleNewDish;
 // handleClick={this.handleClick}
 // description={description}
 // timeframe={timeframe}
-
-// dishImg={dishImg}
-// cuisine_type={cuisine_type}
