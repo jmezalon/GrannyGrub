@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import MapView from "./MapView";
+import ListView from "./ListView";
 import secret from "../../secret.js";
-// import { MainPageLoader } from "./loadingPages/MainpageLoader";
 import icon from "../../assets/icon.png";
 
 class MainPage extends Component {
-  // state = {
-  //   grandmas: []
-  // };
+  state = {
+    showingMap: true
+  };
 
   componentDidMount() {
     this.props.getAllUsers();
@@ -25,20 +25,18 @@ class MainPage extends Component {
     this.props.getAllGrandmas();
   };
 
-  // handleFilterClick = e => {
-  //   const newGrandmas = this.props.grandmas.filter(grandma => {
-  //
-  //     return grandma.cuisine_id === e.target.value;
-  //   });
-
-  //   this.setState({ grandmas: newGrandmas });
-  // };
-
   handleClick = id => {
     this.props.history.push(`/grandma/${id}`);
   };
 
+  toggleView = () => {
+    this.setState({
+      showingMap: !this.state.showingMap
+    });
+  };
+
   render() {
+    const { showingMap } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
         <button
@@ -55,10 +53,21 @@ class MainPage extends Component {
     if (!this.props.grandmas.length) return null;
 
     return (
-      <div className="maainpage">
-        {cuisinesType}
+      <div className="mainpage">
+        {showingMap ? (
+          <button onClick={this.toggleView}>Show List View</button>
+        ) : (
+          <button onClick={this.toggleView}> Show Map View</button>
+        )}
+        <br />
         <button onClick={this.allGrandmasAgain}>See All</button>
-        <MapView handleClick={this.handleClick} grandmas={grandmas} />
+        <br />
+        {cuisinesType}
+        {showingMap ? (
+          <MapView handleClick={this.handleClick} grandmas={grandmas} />
+        ) : (
+          <ListView handleClick={this.handleClick} grandmas={grandmas} />
+        )}
       </div>
     );
   }
