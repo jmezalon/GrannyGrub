@@ -3,8 +3,7 @@ const authHelpers = require("../../auth/helpers");
 
 //get only gmas
 const getAllUsers = (req, res, next) => {
-
- db.any("SELECT * FROM users")
+  db.any("SELECT * FROM users")
     .then(users => {
       res.status(200).json({
         status: "success",
@@ -13,7 +12,6 @@ const getAllUsers = (req, res, next) => {
       });
     })
     .catch(err => next(err));
-
 };
 
 //get single grandma
@@ -22,7 +20,7 @@ const getAllUsers = (req, res, next) => {
 
 const getOneGrandmaInfo = (req, res, next) => {
   db.one(
-    "SELECT users.id AS user_id, first_name, last_name, profile_pic, bio, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = ${id} GROUP BY users.id, cuisines.id",
+    "SELECT users.id AS user_id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = ${id} GROUP BY users.id, cuisines.id",
     {
       id: parseInt(req.params.user_id)
     }
@@ -41,7 +39,7 @@ const getDishesByGrandmaId = (req, res, next) => {
   let userId = parseInt(req.params.id);
 
   db.any(
-    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe, isGrandma, users.id AS user_id, first_name,last_name, profile_pic, labels.id AS label_id, type FROM dishes JOIN users ON users.id = dishes.user_id LEFT JOIN labels on labels.dish_id = dishes.id WHERE dishes.user_id=$1 GROUP BY dishes.id, users.id, labels.id",
+    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe,date, isGrandma, users.id AS user_id, type FROM dishes JOIN users ON users.id = dishes.user_id WHERE dishes.user_id= $1 GROUP BY dishes.id, users.id",
     [userId]
   )
     .then(dishes => {
