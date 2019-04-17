@@ -85,18 +85,18 @@ class NewDishForm extends React.Component {
         <button
           value={cuisine.id}
           key={cuisine.id}
-          id={cuisine.id}
-          onCl
-          ick={e => handleCuisine(e)}
+          id="cuisineType"
+          onClick={e => handleCuisine(e)}
         >
           {cuisine.type}
         </button>
       );
     });
-    const tempOnSubmit = e => {
-      e.preventDefault();
-      console.log(e, e.target.value, e.target.id);
-    };
+
+    // const tempOnSubmit = e => {
+    //   e.preventDefault();
+    //   console.log(e, e.target.value, e.target.id);
+    // };
 
     return (
       <div className="new-dish">
@@ -210,9 +210,21 @@ class NewDishForm extends React.Component {
               placeholder="Image url"
               onChange={handleChange}
             />
+
+            <input
+              type="file"
+              value={dishImg}
+              id="img"
+              name="dishImg"
+              placeholder="Image url"
+              onChange={handleChange}
+            />
           </section>
           <br />
-          {cuisinesType}
+          <section>
+            <label htmlFor="cuisineType"> Pick a Cuisine </label>
+            {cuisinesType}
+          </section>
           <br />
           <br />
           <input type="submit" />

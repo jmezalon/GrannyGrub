@@ -5,9 +5,9 @@ import NewDishForm from "./NewDishForm";
 class HandleNewDish extends React.Component {
   state = {
     dishName: "",
-    type: "3",
+    type: "",
     dishImg: "",
-    cuisine_id: 8,
+    cuisine_id: "",
     labels: [],
     quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     selectedQuantity: "",
@@ -70,20 +70,12 @@ class HandleNewDish extends React.Component {
 
   handleCuisine = e => {
     e.preventDefault();
-    console.log("@@@", e, e.target.value);
 
     this.setState({
-      cuisine_id: e.target.id
+      cuisine_id: e.target.value
     });
     console.log("cuisine_id", e.target.value);
   };
-
-  // handleSitDown = e => {
-  //   e.preventDefault();
-  //   this.setState({
-  //     type: "sit-down"
-  //   });
-  // };
 
   render() {
     // console.log(this.props.cuisines);
