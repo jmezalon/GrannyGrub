@@ -54,7 +54,7 @@ class HandleNewDish extends React.Component {
 
   handleDishType = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({
       type: e.target.value
     });
@@ -68,6 +68,16 @@ class HandleNewDish extends React.Component {
     });
   };
 
+  handleCuisine = e => {
+    e.preventDefault();
+    console.log("@@@", e, e.target.value);
+
+    this.setState({
+      cuisine_id: e.target.id
+    });
+    console.log("cuisine_id", e.target.value);
+  };
+
   // handleSitDown = e => {
   //   e.preventDefault();
   //   this.setState({
@@ -76,7 +86,7 @@ class HandleNewDish extends React.Component {
   // };
 
   render() {
-    console.log(this.props.cuisines);
+    // console.log(this.props.cuisines);
     const {
       dishName,
       cuisine_id,
@@ -99,6 +109,7 @@ class HandleNewDish extends React.Component {
           dishName={dishName}
           quantity={quantity}
           type={type}
+          cuisines={this.props.cuisines}
           dishImg={dishImg}
           cuisine_type={cuisine_id}
           user_id={user_id}
@@ -110,6 +121,7 @@ class HandleNewDish extends React.Component {
           handleDishType={this.handleDishType}
           handleDateChange={this.handleDateChange}
           handleSubmit={this.handleSubmit}
+          handleCuisine={this.handleCuisine}
           handleQuantityChange={this.handleQuantityChange}
         />
       </>
