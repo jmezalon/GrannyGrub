@@ -41,7 +41,8 @@ class GrandmaPage extends Component {
             alt=""
           />
           <p>id: {grandma.user_id}</p>
-          <p>name: {grandma.cuisine_type}</p>
+          <p>cuisine type: {grandma.cuisine_type}</p>
+
           <p>bio: {grandma.bio}</p>
         </div>
       </div>

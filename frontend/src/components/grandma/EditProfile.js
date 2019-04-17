@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 class EditProfile extends React.Component {
   constructor(props) {
@@ -36,30 +37,36 @@ class EditProfile extends React.Component {
       profile_pic: this.state.profile_pic,
       phone_number: this.state.phone_number
     };
-    axios.patch("/users/update/5", grandma).then(res => {
-      // this.props.getOneGrandma(5);
-      this.setState({
-        infoChanged: true
+    axios
+      .patch(`/users/update/${parseInt(this.props.match.params.id)}`, grandma)
+      .then(res => {
+        // this.props.getOneGrandma(5);
+        this.setState({
+          infoChanged: true
+        });
       });
-    });
   };
 
   componentDidMount() {
-    this.props.getOneGrandma(5);
+    this.props.getOneGrandma(parseInt(this.props.match.params.id));
     // console.log(this.props.grandma);
-    axios.get("/users/grandma/5").then(res => {
-      this.setState({
-        first_name: res.data.user.first_name,
-        last_name: res.data.user.last_name,
-        bio: res.data.user.bio,
-        email: res.data.user.email,
-        address: res.data.user.address,
-        zip_code: res.data.user.zip_code,
-        building_number: res.data.user.building_number,
-        profile_pic: res.data.user.profile_pic,
-        phone_number: res.data.user.phone_number
-      });
-    });
+    if (this.props.user) {
+      axios
+        .get(`/users/grandma/${parseInt(this.props.match.params.id)}`)
+        .then(res => {
+          this.setState({
+            first_name: res.data.user.first_name,
+            last_name: res.data.user.last_name,
+            bio: res.data.user.bio,
+            email: res.data.user.email,
+            address: res.data.user.address,
+            zip_code: res.data.user.zip_code,
+            building_number: res.data.user.building_number,
+            profile_pic: res.data.user.profile_pic,
+            phone_number: res.data.user.phone_number
+          });
+        });
+    }
   }
 
   render() {
@@ -113,7 +120,7 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={this.state.bio}
+            value={grandma.bio}
           />
           <br />
           <h3>adress</h3>
@@ -162,4 +169,4 @@ class EditProfile extends React.Component {
   }
 }
 
-export default EditProfile;
+export default withRouter(EditProfile);
