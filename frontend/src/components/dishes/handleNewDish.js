@@ -39,9 +39,11 @@ class HandleNewDish extends React.Component {
   };
 
   handleQuantityChange = e => {
+    e.preventDefault();
     this.setState({
       selectedQuantity: e.target.value
     });
+
     console.log(e.target.value);
   };
 

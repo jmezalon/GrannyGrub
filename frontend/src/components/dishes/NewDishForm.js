@@ -1,5 +1,5 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 class NewDishForm extends React.Component {
   // handleSubmit = e => {
   //   const {
@@ -69,12 +69,12 @@ class NewDishForm extends React.Component {
       handleDishType,
       handleTimeFrame,
       handleCuisine,
-      cuisines
+      cuisines,
     } = this.props;
 
     const quantityOptions = quantity.map((number, i) => {
       return (
-        <option key={i + 1} value={selectedQuantity}>
+        <option key={i + 1} value={i + 1} id="quantity">
           {number}
         </option>
       );
@@ -109,9 +109,11 @@ class NewDishForm extends React.Component {
               value={dishName}
               onChange={handleChange}
             />
+
             <div className="quantityForm">
-              <label htmlFor="quantity"> Available Dishes: </label>
-              <select value={selectedQuantity} onChange={handleQuantityChange}>
+              <label htmlFor="quantity">Available Dishes: </label>
+
+              <select onChange={handleQuantityChange} value={selectedQuantity}>
                 <option key="0" value="" />
                 {quantityOptions}
               </select>
@@ -124,7 +126,7 @@ class NewDishForm extends React.Component {
                 type="text"
                 value={description}
                 onChange={handleChange}
-              />{" "}
+              />{' '}
             </div>
           </section>
 
@@ -134,20 +136,20 @@ class NewDishForm extends React.Component {
                 <button
                   onClick={handleDishType}
                   value="1"
-                  className={+type ? "selected-type" : "unselected-type"}
+                  className={+type ? 'selected-type' : 'unselected-type'}
                 >
-                  {" "}
-                  to-go{" "}
+                  {' '}
+                  to-go{' '}
                 </button>
               </div>
               <div>
                 <button
                   onClick={e => handleDishType(e)}
                   value="0"
-                  className={+type ? "unselected-type" : "selected-type"}
+                  className={+type ? 'unselected-type' : 'selected-type'}
                 >
-                  {" "}
-                  sit down{" "}
+                  {' '}
+                  sit down{' '}
                 </button>
               </div>
             </span>
@@ -174,11 +176,11 @@ class NewDishForm extends React.Component {
                   value="lunch"
                   id="lunch"
                   className={
-                    timeframe === "lunch" ? "selected-type" : "unselected-type"
+                    timeframe === 'lunch' ? 'selected-type' : 'unselected-type'
                   }
                 >
-                  {" "}
-                  Lunch{" "}
+                  {' '}
+                  Lunch{' '}
                 </button>
               </div>
               <div>
@@ -188,11 +190,11 @@ class NewDishForm extends React.Component {
                   value="dinner"
                   id="dinner"
                   className={
-                    timeframe === "lunch" ? "unselected-type" : "selected-type"
+                    timeframe === 'lunch' ? 'unselected-type' : 'selected-type'
                   }
                 >
-                  {" "}
-                  Dinner{" "}
+                  {' '}
+                  Dinner{' '}
                 </button>
               </div>
             </span>
