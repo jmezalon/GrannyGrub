@@ -1,47 +1,7 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 class NewDishForm extends React.Component {
-  handleSubmit = e => {
-    const {
-      dishName,
-      dishImg,
-      quantity,
-      cuisine_id,
-      selectedQuantity,
-      description,
-      timeframe,
-      type,
-      price,
-      user_id,
-      date,
-    } = this.props;
-
-    e.preventDefault();
-    axios
-      .post('/dishes/new', {
-        name: dishName,
-        description: description,
-        user_id: user_id,
-        cuisine_id: cuisine_id,
-        img_url: dishImg,
-        price: price,
-        date: date,
-        type: type,
-        timeframe: timeframe,
-      })
-      .catch(err => {
-        if (err.response.status === 500) {
-          console.log(err);
-          this.setState({
-            err_warning: true,
-          });
-        } else {
-          console.log(err);
-        }
-      });
-  };
-
   render() {
     const {
       dishName,
@@ -110,7 +70,7 @@ class NewDishForm extends React.Component {
 
     return (
       <div className="new-dish">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <section>
             <label htmlFor="dish-name">Dish Name</label>
             <input
@@ -131,7 +91,7 @@ class NewDishForm extends React.Component {
             <br />
             <div id="addDescription">
               <label htmlFor="description">Description: </label>
-              <textinput
+              <textarea
                 name="description"
                 type="text"
                 value={description}
