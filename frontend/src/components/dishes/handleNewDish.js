@@ -126,12 +126,14 @@ class HandleNewDish extends React.Component {
           dishName={dishName}
           quantity={quantity}
           type={type}
+          description
           labels={this.props.labels}
           label_id={label_id}
           cuisines={this.props.cuisines}
           dishImg={dishImg}
           cuisine_type={cuisine_id}
           user_id={user_id}
+          timeframe={timeframe}
           price={price}
           date={date}
           selectedQuantity={selectedQuantity}
