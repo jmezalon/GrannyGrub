@@ -25,6 +25,7 @@ class MainPage extends Component {
     this.props.getAllGrandmas();
   };
 
+  // This is unnecessary.
   handleClick = id => {
     this.props.history.push(`/grandma/${id}`);
   };
