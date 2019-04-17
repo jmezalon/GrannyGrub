@@ -8,6 +8,7 @@ class HandleNewDish extends React.Component {
     description: "",
     type: "",
     dishImg: "",
+    dishImgFile: "",
     cuisine_id: "",
     label_id: "",
     quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -34,27 +35,7 @@ class HandleNewDish extends React.Component {
   }
 
   handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-    console.log(e.target.value);
-  };
-
-  handlePriceChange = e => {
-    this.setState({
-      price: e.target.value
-    });
-    console.log(e.target.value);
-  };
-
-  handleDescriptionChange = e => {
-    this.setState({
-      description: e.target.value
-    });
-    console.log(e.target.value);
-  };
-
-  handleImgChange = e => {
+    e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -67,40 +48,15 @@ class HandleNewDish extends React.Component {
       selectedQuantity: e.target.value
     });
 
-    console.log(e.target.value);
-  };
-
-  handleDateChange = e => {
-    this.setState({
-      date: e.target.value
-    });
-    console.log(e.target.value);
-  };
-
-  handleDishType = e => {
-    e.preventDefault();
     // console.log(e.target.value);
+  };
+
+  handleClick = e => {
+    e.preventDefault();
     this.setState({
       type: e.target.value
     });
-    console.log(e.target.value);
-  };
-
-  handleTimeFrame = e => {
-    e.preventDefault();
-    console.log(e.target.value);
-    this.setState({
-      timeframe: e.target.value
-    });
-  };
-
-  handleCuisine = e => {
-    e.preventDefault();
-
-    this.setState({
-      cuisine_id: e.target.value
-    });
-    console.log("id", e.target.value);
+    // console.log(e.target.value);
   };
 
   handleSubmit = e => {
@@ -167,6 +123,7 @@ class HandleNewDish extends React.Component {
           console.log(err);
         }
       });
+    console.log("done");
   };
   render() {
     // console.log(this.props.cuisines);
@@ -183,7 +140,8 @@ class HandleNewDish extends React.Component {
       price,
       dishImg,
       user_id,
-      date
+      date,
+      dishImgFile
     } = this.state;
 
     return (
@@ -202,16 +160,11 @@ class HandleNewDish extends React.Component {
           timeframe={timeframe}
           price={price}
           date={date}
+          dishImgFile={dishImgFile}
           selectedQuantity={selectedQuantity}
-          handleNameChange={this.handleNameChange}
-          handleTimeFrame={this.handleTimeFrame}
-          handleDishType={this.handleDishType}
-          handleDateChange={this.handleDateChange}
-          handleCuisine={this.handleCuisine}
+          handleChange={this.handleChange}
+          handleClick={this.handleClick}
           handleQuantityChange={this.handleQuantityChange}
-          handlePriceChange={this.handlePriceChange}
-          handleDescriptionChange={this.handleDescriptionChange}
-          handleImgChange={this.handleImgChange}
           handleSubmit={this.handleSubmit}
         />
       </>
