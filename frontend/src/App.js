@@ -14,8 +14,8 @@ import NewDishContainer from "./containers/NewDishContainer";
 import GrandmaPageContainer from "./containers/GrandmaPageContainer.js";
 class App extends Component {
   state = {
-    loggedIn: false,
-    user: []
+    user: [],
+    isLoggedIn: false
   };
   // cheking
 
@@ -35,14 +35,14 @@ class App extends Component {
         debugger;
         this.setState({
           user: res.data,
-          loggedIn: true
+          isLoggedIn: true
         });
         this.props.getOneGrandma(parseInt(this.state.user.id));
         // return true;
       })
       .catch(err => {
         this.setState({
-          loggedIn: false
+          isLoggedIn: false
         });
         // return false;
       });
@@ -53,7 +53,7 @@ class App extends Component {
       .post("/users/logout")
       .then(res => {
         this.setState({
-          loggedIn: false
+          isLoggedIn: false
         });
       })
       .then(res => this.props.history.push("/signin"))
@@ -63,10 +63,10 @@ class App extends Component {
   };
 
   render() {
-    const { loggedIn } = this.state;
+    const { isLoggedIn } = this.state;
     return (
       <div className="App">
-        <Navbar loggedIn={loggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} />
 
         <Switch>
           <Route exact path="/" component={LandingPage} />
@@ -78,6 +78,7 @@ class App extends Component {
             render={props => (
               <SignUp
                 {...props}
+                user={this.state.user}
                 signUpUser={this.signUpUser}
                 loginUser={this.loginUser}
               />
@@ -94,7 +95,7 @@ class App extends Component {
               />
             )}
           />
-          <Route exact path="/grandma/main" component={DishContainer} />
+          <Route exact path="/grandma/main/:id" component={DishContainer} />
           <Route exact path="/grandma/newdish" component={NewDishContainer} />
           <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
           <Route
