@@ -37,7 +37,7 @@ export const getAllGrandmas = () => dispatch => {
 };
 
 export const getOneGrandma = id => dispatch => {
-  // let id = parseInt(req.params.id);
+  // let id = parseInt(this.props.match.params.id);
   axios
     .get(`/users/grandma/${id}`)
     .then(res => {
