@@ -94,8 +94,8 @@ class MapView extends Component {
           containerElement={<div style={{ height: `400px`, width: `400px` }} />}
           google={this.props.google}
           initialCenter={{
-            lat: 40.743001,
-            lng: -73.950614
+            lat: 40.668349,
+            lng: -73.950868
           }}
           zoom={showingMap ? 11 : 10}
         >

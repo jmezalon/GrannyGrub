@@ -14,18 +14,16 @@ class ListView extends Component {
           key={granny.id}
           onClick={() => handleClick(granny.id)}
         >
-          <p>{granny.last_name}</p>
+          <h3>Grandma {granny.last_name}</h3>
           <img src={granny.profile_pic} alt="" />
+          <p>{granny.cuisine_type} style</p>
         </div>
       );
     });
     return (
-      <div className="list-view-container">
-        <div>
-          <MapView handleClick={handleClick} grandmas={grandmas} />
-        </div>
-        <h2>Grandmas</h2>
-        {grannies}
+      <div>
+        <MapView handleClick={handleClick} grandmas={grandmas} />
+        <div className="list-view-container">{grannies}</div>
       </div>
     );
   }
