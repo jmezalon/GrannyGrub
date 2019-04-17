@@ -57,7 +57,7 @@ class MapView extends Component {
   };
 
   render() {
-    let { grandmas, handleClick } = this.props;
+    let { grandmas, handleClick, showingMap } = this.props;
 
     if (!grandmas.length) return null;
     const locations = grandmas.map(granny => {
@@ -88,7 +88,7 @@ class MapView extends Component {
     return (
       <div className="mappy">
         <Map
-          className="map-main"
+          className={showingMap ? "map-main" : "map-list-veiw"}
           onClick={this.onMapClicked}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `400px`, width: `400px` }} />}
@@ -97,7 +97,7 @@ class MapView extends Component {
             lat: 40.743001,
             lng: -73.950614
           }}
-          zoom={11}
+          zoom={showingMap ? 11 : 10}
         >
           {locations}
           <InfoWindow
