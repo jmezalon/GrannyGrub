@@ -68,7 +68,11 @@ class MainPage extends Component {
           {cuisinesType}
         </div>
         {showingMap ? (
-          <MapView handleClick={this.handleClick} grandmas={grandmas} />
+          <MapView
+            handleClick={this.handleClick}
+            showingMap={showingMap}
+            grandmas={grandmas}
+          />
         ) : (
           <ListView handleClick={this.handleClick} grandmas={grandmas} />
         )}

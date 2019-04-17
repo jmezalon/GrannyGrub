@@ -8,6 +8,15 @@
   /* position: relative !important; */
 }
 
+.map-list-veiw {
+  align-items: center;
+  width: 30% !important;
+  height: 40% !important;
+  z-index: -1;
+  margin-left: 60%;
+  margin-top: 3%;
+}
+
 .show-button {
   position: absolute;
   margin-top: 2%;
@@ -34,4 +43,16 @@
   width: 75px;
   height: 35px;
   border-radius: 5px;
+}
+
+/* ListView css */
+
+.list-view-item {
+  width: 80%;
+  height: 150px;
+  /* padding: 50px; */
+}
+
+.list-view-item img {
+  height: 100px;
 }

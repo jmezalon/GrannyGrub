@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import icon from "../../assets/icon.png";
 import axios from "axios";
-import "../../css/mainpage/ListView.css";
+import MapView from "./MapView";
 
 class ListView extends Component {
   render() {
@@ -21,7 +21,10 @@ class ListView extends Component {
     });
     return (
       <div className="list-view-container">
-        <h2>Grandmas near you</h2>
+        <div>
+          <MapView handleClick={handleClick} grandmas={grandmas} />
+        </div>
+        <h2>Grandmas</h2>
         {grannies}
       </div>
     );
