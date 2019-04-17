@@ -74,6 +74,7 @@ class HandleNewDish extends React.Component {
       date
     } = this.state;
 
+    //if else statement
     e.preventDefault();
     axios
       .post("/dishes/new", {
