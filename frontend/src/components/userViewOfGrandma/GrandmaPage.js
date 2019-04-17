@@ -7,6 +7,7 @@ class GrandmaPage extends Component {
     let id = parseInt(this.props.match.params.id);
     this.props.getOneGrandma(id);
   };
+
   render() {
     let { grandma } = this.props;
     if (!Object.values(grandma).length) return null;
