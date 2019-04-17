@@ -21,11 +21,11 @@ const getAllUsers = (req, res, next) => {
 //cuisine type
 
 const getOneGrandmaInfo = (req, res, next) => {
+  let userId = parseInt(req.params.user_id);
+
   db.one(
-    "SELECT users.id AS user_id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = ${id} GROUP BY users.id, cuisines.id",
-    {
-      id: parseInt(req.params.user_id)
-    }
+    "SELECT users.id AS id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users FULL JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = $1 GROUP BY users.id, cuisines.id",
+    [userId]
   )
     .then(user => {
       res.status(200).json({
@@ -38,7 +38,7 @@ const getOneGrandmaInfo = (req, res, next) => {
 };
 
 const getDishesByGrandmaId = (req, res, next) => {
-  let userId = parseInt(req.params.id);
+  let userId = parseInt(req.params.user_id);
 
   db.any(
     "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe,date, isGrandma, users.id AS user_id, type FROM dishes JOIN users ON users.id = dishes.user_id WHERE dishes.user_id= $1 GROUP BY dishes.id, users.id",
