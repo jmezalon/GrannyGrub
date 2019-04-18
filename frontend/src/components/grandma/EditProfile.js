@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 class EditProfile extends React.Component {
   constructor(props) {
@@ -46,13 +46,16 @@ class EditProfile extends React.Component {
       phone_number: this.state.phone_number
     };
     axios
-      .patch(`/users/update/${parseInt(this.props.match.params.id)}`, grandma)
+      .patch(`/users/update/${parseInt(this.props.user.id)}`, grandma)
       .then(res => {
-        // this.props.getOneGrandma(5);
+        this.props.getOneGrandma(parseInt(this.props.user.id));
         this.setState({
           infoChanged: true
         });
       });
+    // this.props.history.push(
+    //   `/grandma/${parseInt(this.props.user.id)}/dashboard`
+    // );
   };
 
   componentDidMount() {
@@ -95,6 +98,9 @@ class EditProfile extends React.Component {
     return (
       <div className="one-grandma">
         <h6>Edit your profile</h6>
+        <Link to={`/grandma/${this.props.user.id}/dashboard`}>
+          <p>back to Dashboard</p>
+        </Link>
         <form className="edit-form" onSubmit={this.handleSubmit}>
           <label htmlFor="first_name">Fist Name</label>
           <input
@@ -195,6 +201,9 @@ class EditProfile extends React.Component {
           {this.state.infoChanged ? (
             <div className="confirmation">
               <p>your info has been updated</p>
+              <Link to={`/grandma/${parseInt(this.props.user.id)}/dashboard`}>
+                <input type="button" value="Dashboard" />
+              </Link>
             </div>
           ) : (
             ""

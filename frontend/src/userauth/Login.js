@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default class Login extends React.Component {
+<<<<<<< HEAD:frontend/src/userauth/Login.js
   // handleLoginSubmit = async e => {
   //   e.preventDefault();
   //   await this.props.loginUser(this.state.email, this.state.password);
@@ -10,6 +11,27 @@ export default class Login extends React.Component {
   //     `/grandma/edit/${parseInt(this.props.user.id)}`
   //   );
   // };
+=======
+  state = {
+    email: "",
+    password: ""
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleLoginSubmit = async e => {
+    e.preventDefault();
+    await this.props.loginUser(this.state.email, this.state.password);
+
+    await this.props.history.push(
+      `/grandma/${parseInt(this.props.user.id)}/dashboard`
+    );
+  };
+>>>>>>> master:frontend/src/components/grandma/Login.js
 
   render() {
     const { email, password, loginUser, handleChange } = this.props;

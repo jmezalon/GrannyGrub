@@ -143,7 +143,7 @@ const fixGrandma = (req, res, next) => {
     .then(() => {
       res.status(200).json({
         status: "success",
-        message: "Updated a dish!"
+        message: "Updated a grandma!"
       });
     })
     .catch(err => next(err));
