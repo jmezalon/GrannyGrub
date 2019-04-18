@@ -12,6 +12,7 @@ class EditProfile extends React.Component {
       bio: "",
       profile_pic: "",
       cuisine_id: "",
+      cuisine_type: "",
       building_number: "",
       address: "",
       zip_code: "",
@@ -28,7 +29,6 @@ class EditProfile extends React.Component {
     this.setState({
       cuisine_id: e.target.value
     });
-    console.log(e.target.value);
   };
 
   handleSubmit = async e => {
@@ -37,6 +37,7 @@ class EditProfile extends React.Component {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       bio: this.state.bio,
+      cuisine_id: this.state.cuisine_id,
       address: this.state.address,
       zip_code: this.state.zip_code,
       building_number: this.state.building_number,
@@ -44,9 +45,9 @@ class EditProfile extends React.Component {
       phone_number: this.state.phone_number
     };
     await axios.patch(`/users/update/${parseInt(this.props.user.id)}`, grandma);
-
     await this.props.getOneGrandma(parseInt(this.props.user.id));
-    await this.setState({
+
+    this.setState({
       infoChanged: true
     });
   };
@@ -58,7 +59,6 @@ class EditProfile extends React.Component {
   componentDidMount() {
     // this.props.getOneGrandma(parseInt(this.props.user.id));
     this.props.getAllCuisines();
-    console.log(this.props);
     axios.get(`/users/grandma/${parseInt(this.props.user.id)}`).then(res => {
       this.setState({
         first_name: res.data.user.first_name,
@@ -69,7 +69,8 @@ class EditProfile extends React.Component {
         building_number: res.data.user.building_number,
         profile_pic: res.data.user.profile_pic,
         phone_number: res.data.user.phone_number,
-        cuisine_id: res.data.user.cuisine_type
+        cuisine_id: res.data.user.cuisine_id,
+        cuisine_type: res.data.user.cuisine_type
       });
     });
   }
@@ -86,7 +87,6 @@ class EditProfile extends React.Component {
         </option>
       );
     });
-
     return (
       <div className="one-grandma">
         <h6>Edit your profile</h6>
@@ -125,7 +125,7 @@ class EditProfile extends React.Component {
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
-            value={this.state.profile_pic}
+            value={this.state.profile_pic ? this.state.profile_pic : ""}
           />
 
           <br />
@@ -134,7 +134,9 @@ class EditProfile extends React.Component {
 
           <select onChange={this.handleSelect}>
             <option key="0" value="">
-              select a cuisines
+              {this.state.cuisine_type
+                ? this.state.cuisine_type
+                : "Select a cuisine"}
             </option>
             {cuisineTypes}
           </select>
@@ -147,7 +149,7 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={this.state.bio}
+            value={this.state.bio ? this.state.bio : ""}
           />
           <br />
           <h3>address</h3>
