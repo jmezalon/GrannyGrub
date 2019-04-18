@@ -21,24 +21,23 @@ export default class SignUp extends React.Component {
     });
   };
 
-  handleSignupSubmit = e => {
+  handleSignupSubmit = async e => {
     e.preventDefault();
-    this.props
-      .signUpUser({
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        email: this.state.email,
-        phone_number: this.state.phone_number,
-        isGrandma: true,
-        building_number: parseInt(this.state.building_number),
-        address: this.state.address,
-        zip_code: parseInt(this.state.zip_code),
-        password: this.state.password
-      })
-      .then(res => this.props.loginUser(this.state.email, this.state.password))
-      .then(res =>
-        this.props.history.push(`/grandma/edit/${parseInt(this.props.user.id)}`)
-      );
+    await this.props.signUpUser({
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      email: this.state.email,
+      phone_number: this.state.phone_number,
+      isGrandma: true,
+      building_number: parseInt(this.state.building_number),
+      address: this.state.address,
+      zip_code: parseInt(this.state.zip_code),
+      password: this.state.password
+    });
+    await this.props.loginUser(this.state.email, this.state.password);
+    await this.props.history.push(
+      `/grandma/${parseInt(this.props.user.id)}/dashboard`
+    );
   };
 
   render() {

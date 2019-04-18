@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 class EditProfile extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class EditProfile extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     let grandma = {
       first_name: this.state.first_name,
@@ -38,34 +38,35 @@ class EditProfile extends React.Component {
       phone_number: this.state.phone_number
     };
     axios
-      .patch(`/users/update/${parseInt(this.props.match.params.id)}`, grandma)
+      .patch(`/users/update/${parseInt(this.props.user.id)}`, grandma)
       .then(res => {
-        // this.props.getOneGrandma(5);
+        this.props.getOneGrandma(parseInt(this.props.user.id));
         this.setState({
           infoChanged: true
         });
       });
+    // this.props.history.push(
+    //   `/grandma/${parseInt(this.props.user.id)}/dashboard`
+    // );
   };
 
   componentDidMount() {
-    this.props.getOneGrandma(parseInt(this.props.match.params.id));
+    this.props.getOneGrandma(parseInt(this.props.user.id));
     // console.log(this.props.grandma);
     if (this.props.user) {
-      axios
-        .get(`/users/grandma/${parseInt(this.props.match.params.id)}`)
-        .then(res => {
-          this.setState({
-            first_name: res.data.user.first_name,
-            last_name: res.data.user.last_name,
-            bio: res.data.user.bio,
-            email: res.data.user.email,
-            address: res.data.user.address,
-            zip_code: res.data.user.zip_code,
-            building_number: res.data.user.building_number,
-            profile_pic: res.data.user.profile_pic,
-            phone_number: res.data.user.phone_number
-          });
+      axios.get(`/users/grandma/${parseInt(this.props.user.id)}`).then(res => {
+        this.setState({
+          first_name: res.data.user.first_name,
+          last_name: res.data.user.last_name,
+          bio: res.data.user.bio,
+          email: res.data.user.email,
+          address: res.data.user.address,
+          zip_code: res.data.user.zip_code,
+          building_number: res.data.user.building_number,
+          profile_pic: res.data.user.profile_pic,
+          phone_number: res.data.user.phone_number
         });
+      });
     }
   }
 
@@ -76,6 +77,9 @@ class EditProfile extends React.Component {
     return (
       <div className="one-grandma">
         <h6>Edit your profile</h6>
+        <Link to={`/grandma/${this.props.user.id}/dashboard`}>
+          <p>back to Dashboard</p>
+        </Link>
         <form className="edit-form" onSubmit={this.handleSubmit}>
           <label htmlFor="first_name">Fist Name</label>
           <input
@@ -159,6 +163,9 @@ class EditProfile extends React.Component {
           {this.state.infoChanged ? (
             <div className="confirmation">
               <p>your info has been updated</p>
+              <Link to={`/grandma/${parseInt(this.props.user.id)}/dashboard`}>
+                <input type="button" value="Dashboard" />
+              </Link>
             </div>
           ) : (
             ""

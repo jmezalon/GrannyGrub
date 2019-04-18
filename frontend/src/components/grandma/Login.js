@@ -18,7 +18,7 @@ export default class Login extends React.Component {
     await this.props.loginUser(this.state.email, this.state.password);
 
     await this.props.history.push(
-      `/grandma/edit/${parseInt(this.props.user.id)}`
+      `/grandma/${parseInt(this.props.user.id)}/dashboard`
     );
   };
 

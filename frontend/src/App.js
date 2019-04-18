@@ -6,6 +6,7 @@ import LandingPage from "./components/landingPage/landingPage";
 import SignUp from "./components/grandma/SignUp";
 import Login from "./components/grandma/Login";
 import ProfileContainer from "./containers/ProfileContainer";
+import DashboardContainer from "./containers/DashboardContainer";
 import HomeContainer from "./containers/HomeContainer";
 import MainPageContainer from "./containers/MainPageContainer";
 import Navbar from "./components/navbar/Navbar.js";
@@ -18,6 +19,10 @@ class App extends Component {
     isLoggedIn: false
   };
   // cheking
+
+  goBack = () => {
+    this.props.history.goBack();
+  };
 
   signUpUser = user => {
     return axios.post("/users/new", user).catch(err => {
@@ -32,7 +37,6 @@ class App extends Component {
         password: password
       })
       .then(res => {
-        debugger;
         this.setState({
           user: res.data,
           isLoggedIn: true
@@ -100,9 +104,20 @@ class App extends Component {
           <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
           <Route
             exact
-            path="/grandma/edit/:id"
+            path={`/grandma/edit/${this.state.user.id}`}
             render={props => (
-              <ProfileContainer {...props} user={this.state.user} />
+              <ProfileContainer
+                {...props}
+                user={this.state.user}
+                goBack={this.goBack}
+              />
+            )}
+          />
+          <Route
+            exact
+            path={`/grandma/${this.state.user.id}/dashboard`}
+            render={props => (
+              <DashboardContainer {...props} user={this.state.user} />
             )}
           />
           <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
