@@ -10,3 +10,18 @@
   border: 3px dashed pink;
   margin: 1%;
 }
+
+.newDishContainer {
+  border: 2px solid pink;
+  width: 80%;
+  height: auto;
+  margin: 1%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.new-dish {
+  margin: 2%;
+  width: 90%;
+}
