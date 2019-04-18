@@ -8,7 +8,6 @@ class EditProfile extends React.Component {
     this.state = {
       first_name: "",
       last_name: "",
-      email: "",
       phone_number: "",
       bio: "",
       profile_pic: "",
@@ -38,25 +37,23 @@ class EditProfile extends React.Component {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       bio: this.state.bio,
-      email: this.state.email,
       address: this.state.address,
       zip_code: this.state.zip_code,
       building_number: this.state.building_number,
       profile_pic: this.state.profile_pic,
       phone_number: this.state.phone_number
     };
-    axios
-      .patch(`/users/update/${parseInt(this.props.user.id)}`, grandma)
-      .then(res => {
-        this.props.getOneGrandma(parseInt(this.props.user.id));
-        this.setState({
-          infoChanged: true
-        });
-      });
-    // this.props.history.push(
-    //   `/grandma/${parseInt(this.props.user.id)}/dashboard`
-    // );
+    await axios.patch(`/users/update/${parseInt(this.props.user.id)}`, grandma);
+
+    await this.props.getOneGrandma(parseInt(this.props.user.id));
+    await this.setState({
+      infoChanged: true
+    });
   };
+
+  // this.props.history.push(
+  //   `/grandma/${parseInt(this.props.user.id)}/dashboard`
+  // );
 
   componentDidMount() {
     this.props.getOneGrandma(parseInt(this.props.match.params.id));
@@ -70,7 +67,6 @@ class EditProfile extends React.Component {
           first_name: res.data.user.first_name,
           last_name: res.data.user.last_name,
           bio: res.data.user.bio,
-          email: res.data.user.email,
           address: res.data.user.address,
           zip_code: res.data.user.zip_code,
           building_number: res.data.user.building_number,
@@ -116,13 +112,6 @@ class EditProfile extends React.Component {
             onChange={this.handleChange}
             value={this.state.last_name}
           />
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.email}
-          />
           <label htmlFor="phone_number">Phone number</label>
           <input
             name="phone_number"
@@ -162,7 +151,7 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={grandma.bio}
+            value={this.state.bio}
           />
           <br />
           <h3>address</h3>
