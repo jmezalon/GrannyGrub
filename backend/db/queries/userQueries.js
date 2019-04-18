@@ -24,15 +24,8 @@ const getOneGrandmaInfo = (req, res, next) => {
   let userId = parseInt(req.params.user_id);
 
   db.one(
-<<<<<<< HEAD
-    "SELECT users.id AS user_id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users  JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = ${id} GROUP BY users.id, cuisines.id",
-    {
-      id: parseInt(req.params.user_id)
-    }
-=======
     "SELECT users.id AS id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users FULL JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = $1 GROUP BY users.id, cuisines.id",
     [userId]
->>>>>>> 0c11c84ad063bd37e23db235f5ba3f21efc884cb
   )
     .then(user => {
       res.status(200).json({
@@ -109,7 +102,7 @@ const createNewUser = (req, res, next) => {
   req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
   db.one(
-    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}) RETURNING *",
+    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id}) RETURNING *",
 
     {
       first_name: req.body.first_name,
@@ -120,7 +113,8 @@ const createNewUser = (req, res, next) => {
       password: hash,
       building_number: req.body.building_number,
       address: req.body.address,
-      zip_code: req.body.zip_code
+      zip_code: req.body.zip_code,
+      cuisine_id: req.body.cuisine_id
     }
   )
     .then(user => {

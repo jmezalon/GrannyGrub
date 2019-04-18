@@ -1,24 +1,53 @@
+import { connect } from "react-redux";
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default class SignUp extends React.Component {
+import { getAllCuisines } from "../../actions/cuisineActions";
+
+const mapStateToProps = state => {
+  return {
+    cuisines: state.cuisines.cuisines
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllCuisines: () => dispatch(getAllCuisines())
+  };
+};
+
+class SignUp extends React.Component {
   state = {
     first_name: "",
     last_name: "",
     email: "",
     phone_number: "",
     isGrandma: true,
-    cuisine_type: "",
+    cuisine_id: "",
     building_number: "",
     address: "",
     zip_code: "",
     password: ""
   };
 
+  componentDidMount() {
+    this.props.getAllCuisines();
+  }
+
   handleChange = e => {
+    e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
+    // console.log(e.target.name);
+  };
+
+  handleSelect = e => {
+    e.preventDefault();
+    this.setState({
+      cuisine_id: e.target.value
+    });
+    console.log(e.target.value);
   };
 
   handleSignupSubmit = e => {
@@ -33,7 +62,8 @@ export default class SignUp extends React.Component {
         building_number: parseInt(this.state.building_number),
         address: this.state.address,
         zip_code: parseInt(this.state.zip_code),
-        password: this.state.password
+        password: this.state.password,
+        cuisine_id: this.state.cuisine_id
       })
       .then(res => this.props.loginUser(this.state.email, this.state.password))
       .then(res =>
@@ -47,12 +77,20 @@ export default class SignUp extends React.Component {
       last_name,
       email,
       phone_number,
-      cuisine_type,
+      cuisine_id,
       building_number,
       address,
       zip_code,
       password
     } = this.state;
+
+    const cuisineTypes = this.props.cuisines.map(cuisine => {
+      return (
+        <option key={cuisine.id} value={cuisine.id}>
+          {cuisine.type}
+        </option>
+      );
+    });
 
     return (
       <div className="grandma-signup">
@@ -103,14 +141,12 @@ export default class SignUp extends React.Component {
               />
             </div>
             <div className="">
-              <input
-                id="cuisine-type"
-                name="cuisine_type"
-                onChange={this.handleChange}
-                value={cuisine_type}
-                placeholder="Type of cuisine"
-                type="text"
-              />
+              <select onChange={this.handleSelect}>
+                <option key="0" value="">
+                  select a cuisines
+                </option>
+                {cuisineTypes}
+              </select>
             </div>
             <div className="address">
               <span>
@@ -169,3 +205,8 @@ export default class SignUp extends React.Component {
     );
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp);
