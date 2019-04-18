@@ -38,7 +38,7 @@ const getOneGrandmaInfo = (req, res, next) => {
 };
 
 const getDishesByGrandmaId = (req, res, next) => {
-  let userId = parseInt(req.params.user_id);
+  let userId = parseInt(req.params.id);
 
   db.any(
     "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe,date, isGrandma, users.id AS user_id, type FROM dishes JOIN users ON users.id = dishes.user_id WHERE dishes.user_id= $1 GROUP BY dishes.id, users.id",
@@ -155,11 +155,12 @@ function logoutUser(req, res, next) {
 }
 
 function loginUser(req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   res.json(req.user);
 }
 
 function isLoggedIn(req, res) {
+  console.log(req.user);
   if (req.user) {
     res.json(req.user);
   } else {

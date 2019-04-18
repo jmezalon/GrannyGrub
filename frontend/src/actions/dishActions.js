@@ -17,7 +17,7 @@ export const receiveGrandmasDishes = dish => {
 
 export const getGrandmasDishes = id => dispatch => {
   axios
-    .get(`/users/${id}/dishes`)
+    .get("/users/5/dishes")
     .then(res => {
       dispatch(receiveGrandmasDishes(res.data.dishes));
     })

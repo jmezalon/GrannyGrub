@@ -10,7 +10,7 @@ const CookPortal = () => {
           <Link to="/auth/login">
             <button> Log In</button>
           </Link>{" "}
-          <Link to="/auth">
+          <Link to="/auth/signup">
             <button> Sign Up </button>
           </Link>
         </div>

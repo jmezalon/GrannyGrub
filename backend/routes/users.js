@@ -33,6 +33,7 @@ router.post("/logout", loginRequired, logoutUser);
 
 router.get("/grandma/:user_id", getOneGrandmaInfo);
 // router.get("/:user_id/dishes", getDishesByUSerId);
+
 router.get("/:id/dishes", getDishesByGrandmaId);
 
 router.delete("/:user_id", recordNaturalCauses);

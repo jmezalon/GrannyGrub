@@ -83,24 +83,28 @@ class UserAuthForm extends React.Component {
   };
 
   loginUser = async e => {
+    console.log(this.props);
+
     e.preventDefault();
     const { email, password } = this.state;
 
-    let response = axios
-      .post("/users/login", { email, password })
-      .then(() => {
-        Auth.authenticateUser(email);
-      })
-      .then(() => {
-        this.props.checkAuthenticateStatus();
-      })
-      .then(() => {
-        this.setState({
-          email: "",
-          password: ""
-        });
-      });
-    this.props.getOneGrandma(parseInt(response.data.id));
+    let response = await axios.post("/users/login", { email, password });
+
+    await Auth.authenticateUser(email);
+
+    console.log(response);
+
+    await this.props.checkAuthenticateStatus();
+
+    this.setState({
+      email: "",
+      password: ""
+    });
+    // await this.props.getOneGrandma(parseInt(response.data.id));
+
+    await this.props.history.push(
+      `/grandma/edit/${parseInt(response.data.id)}`
+    );
   };
 
   render() {
@@ -125,20 +129,19 @@ class UserAuthForm extends React.Component {
           <Route
             path="/auth/login"
             render={() => {
-              console.log("Login Route");
               return (
                 <LogIn
-                  user={this.state.user}
-                  isLoggedIn={this.props.isLoggedIn}
+                  email={email}
+                  password={password}
                   loginUser={this.loginUser}
-                  registerUser={this.registerUser}
                   handleChange={this.handleChange}
                 />
               );
             }}
           />
+
           <Route
-            path="/"
+            path="/auth/signup"
             render={() => {
               return (
                 <SignUp
