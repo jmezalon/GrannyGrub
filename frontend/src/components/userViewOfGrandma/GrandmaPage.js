@@ -7,6 +7,7 @@ class GrandmaPage extends Component {
     let id = parseInt(this.props.match.params.id);
     this.props.getOneGrandma(id);
   };
+
   render() {
     let { grandma } = this.props;
     if (!Object.values(grandma).length) return null;
@@ -32,7 +33,7 @@ class GrandmaPage extends Component {
             Dish 4 <button>order</button>
           </div>
         </div>
-        <div class="profile-sidebar">
+        <div className="profile-sidebar">
           <p>{grandma.first_name}</p>
           <img
             className="user-view-granny-pic"
@@ -40,7 +41,8 @@ class GrandmaPage extends Component {
             alt=""
           />
           <p>id: {grandma.user_id}</p>
-          <p>name: {grandma.cuisine_type}</p>
+          <p>cuisine type: {grandma.cuisine_type}</p>
+
           <p>bio: {grandma.bio}</p>
         </div>
       </div>

@@ -25,6 +25,7 @@ class MainPage extends Component {
     this.props.getAllGrandmas();
   };
 
+  // This is unnecessary.
   handleClick = id => {
     this.props.history.push(`/grandma/${id}`);
   };
@@ -54,15 +55,19 @@ class MainPage extends Component {
 
     return (
       <div className="mainpage">
-        {showingMap ? (
-          <button onClick={this.toggleView}>Show List View</button>
-        ) : (
-          <button onClick={this.toggleView}> Show Map View</button>
-        )}
+        <div className="show-button">
+          {showingMap ? (
+            <button onClick={this.toggleView}>Show List View</button>
+          ) : (
+            <button onClick={this.toggleView}> Show Map View</button>
+          )}
+        </div>
         <br />
-        <button onClick={this.allGrandmasAgain}>See All</button>
-        <br />
-        {cuisinesType}
+
+        <div className="filter-buttons">
+          <button onClick={this.allGrandmasAgain}>See All</button>
+          {cuisinesType}
+        </div>
         {showingMap ? (
           <MapView handleClick={this.handleClick} grandmas={grandmas} />
         ) : (

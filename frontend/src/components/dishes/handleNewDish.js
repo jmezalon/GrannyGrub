@@ -5,9 +5,9 @@ import NewDishForm from "./NewDishForm";
 class HandleNewDish extends React.Component {
   state = {
     dishName: "",
-    type: "3",
+    type: "",
     dishImg: "",
-    cuisine_id: 8,
+    cuisine_id: "",
     labels: [],
     quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     selectedQuantity: "",
@@ -54,7 +54,7 @@ class HandleNewDish extends React.Component {
 
   handleDishType = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({
       type: e.target.value
     });
@@ -68,15 +68,17 @@ class HandleNewDish extends React.Component {
     });
   };
 
-  // handleSitDown = e => {
-  //   e.preventDefault();
-  //   this.setState({
-  //     type: "sit-down"
-  //   });
-  // };
+  handleCuisine = e => {
+    e.preventDefault();
+
+    this.setState({
+      cuisine_id: e.target.value
+    });
+    console.log("cuisine_id", e.target.value);
+  };
 
   render() {
-    console.log(this.props.cuisines);
+    // console.log(this.props.cuisines);
     const {
       dishName,
       cuisine_id,
@@ -99,6 +101,7 @@ class HandleNewDish extends React.Component {
           dishName={dishName}
           quantity={quantity}
           type={type}
+          cuisines={this.props.cuisines}
           dishImg={dishImg}
           cuisine_type={cuisine_id}
           user_id={user_id}
@@ -110,6 +113,7 @@ class HandleNewDish extends React.Component {
           handleDishType={this.handleDishType}
           handleDateChange={this.handleDateChange}
           handleSubmit={this.handleSubmit}
+          handleCuisine={this.handleCuisine}
           handleQuantityChange={this.handleQuantityChange}
         />
       </>

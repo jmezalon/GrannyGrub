@@ -3,7 +3,9 @@ const authHelpers = require("../../auth/helpers");
 
 //get only gmas
 const getAllUsers = (req, res, next) => {
-  db.any("SELECT * FROM users")
+  db.any(
+    "SELECT DISTINCT users.id AS id, isGrandma, first_name, last_name, latitude, longitude, profile_pic, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id  FROM users JOIN dishes ON dishes.user_id = users.id JOIN cuisines ON cuisines.id = users.cuisine_id"
+  )
     .then(users => {
       res.status(200).json({
         status: "success",
