@@ -1,82 +1,49 @@
-import React from "react";
-import axios from "axios";
-class NewDishForm extends React.Component {
-  // handleSubmit = e => {
-  //   const {
-  //     dishName,
-  //     dishImg,
-  //     quantity,
-  //     cuisine_id,
-  //     selectedQuantity,
-  //     description,
-  //     timeframe,
-  //     handleChange,
-  //     type,
-  //     handleClick,
-  //     price,
-  //     user_id,
-  //     handleToGo,
-  //     date,
-  //     handleSitDown,
-  //     handleSubmit,
-  //   } = this.props;
-  //
-  //   e.preventDefault();
-  //   axios
-  //     .post('/dishes/new', {
-  //       name: dishName,
-  //       description: description,
-  //       user_id: user_id,
-  //       cuisine_id: cuisine_id,
-  //       img_url: dishImg,
-  //       price: price,
-  //       date: date,
-  //       type: type,
-  //       timeframe: timeframe,
-  //     })
-  //     .catch(err => {
-  //       if (err.response.status === 500) {
-  //         console.log(err);
-  //         this.setState({
-  //           err_warning: true,
-  //         });
-  //       } else {
-  //         console.log(err);
-  //       }
-  //     });
-  // };
+import React from 'react';
+// import axios from 'axios';
 
+class NewDishForm extends React.Component {
   render() {
     const {
       dishName,
       dishImg,
       quantity,
+      labels,
+      label_id,
       cuisine_id,
       selectedQuantity,
       description,
       timeframe,
-      handleChange,
       type,
-      handleClick,
+      handleChange,
       price,
       date,
+      dishImgFile,
       user_id,
-      handleToGo,
-      handleSitDown,
-      handleDateChange,
       handleSubmit,
       handleQuantityChange,
-      handleDishType,
-      handleTimeFrame,
-      handleCuisine,
-      cuisines
+      handleClick,
+      cuisines,
     } = this.props;
 
     const quantityOptions = quantity.map((number, i) => {
       return (
-        <option key={i + 1} value={selectedQuantity}>
+        <option key={i + 1} value={i + 1} id="quantity">
           {number}
         </option>
+      );
+    });
+
+    const labelTypes = this.props.labels.map(label => {
+      return (
+        <button
+          key={label.id}
+          value={label.id}
+          name="labe l_id"
+          onClick={e => handleClick(e)}
+        >
+          {' '}
+          {label.label_name}
+        </button>
       );
     });
 
@@ -86,72 +53,81 @@ class NewDishForm extends React.Component {
           value={cuisine.id}
           key={cuisine.id}
           id="cuisineType"
-          onClick={e => handleCuisine(e)}
+          onClick={e => handleClick(e)}
         >
           {cuisine.type}
         </button>
       );
     });
 
-    // const tempOnSubmit = e => {
-    //   e.preventDefault();
-    //   console.log(e, e.target.value, e.target.id);
-    // };
-
     return (
       <div className="new-dish">
-        <form>
+        <form onSubmit={handleSubmit}>
           <section>
             <label htmlFor="dish-name">Dish Name</label>
+
             <input
               name="dishName"
               type="text"
               value={dishName}
               onChange={handleChange}
             />
+            <br />
+            <br />
+            <span>
+              <div className="dishtype">
+                <label htmlFor="dishType"> Dish Type: </label>
+                <button
+                  onClick={handleClick}
+                  value="1"
+                  className={+type ? 'selected-type' : 'unselected-type'}
+                >
+                  {' '}
+                  to-go{' '}
+                </button>
+
+                <button
+                  onClick={e => handleClick(e)}
+                  value="0"
+                  className={type ? 'selected-type' : 'unselected-type'}
+                >
+                  {' '}
+                  sit down{' '}
+                </button>
+              </div>
+            </span>
+          </section>
+
+          <br />
+          <section>
             <div className="quantityForm">
-              <label htmlFor="quantity"> Available Dishes: </label>
-              <select value={selectedQuantity} onChange={handleQuantityChange}>
+              <label htmlFor="quantity">Available Dishes: </label>
+
+              <select onChange={handleQuantityChange} value={selectedQuantity}>
                 <option key="0" value="" />
                 {quantityOptions}
               </select>
             </div>
             <br />
             <div id="addDescription">
+              <br />
+              <br />
               <label htmlFor="description">Description: </label>
               <textarea
                 name="description"
                 type="text"
                 value={description}
                 onChange={handleChange}
-              />{" "}
+              />{' '}
             </div>
-          </section>
+            <section />
+            <br />
 
-          <section>
-            <span>
-              <div>
-                <button
-                  onClick={handleDishType}
-                  value="1"
-                  className={+type ? "selected-type" : "unselected-type"}
-                >
-                  {" "}
-                  to-go{" "}
-                </button>
-              </div>
-              <div>
-                <button
-                  onClick={e => handleDishType(e)}
-                  value="0"
-                  className={+type ? "unselected-type" : "selected-type"}
-                >
-                  {" "}
-                  sit down{" "}
-                </button>
-              </div>
-            </span>
+            <label htmlFor="cuisineType"> Pick a Cuisine </label>
+            <div className="filter-buttons">{cuisinesType}</div>
           </section>
+          <br />
+          <br />
 
           <label htmlFor="start">Date:</label>
           <input
@@ -161,7 +137,7 @@ class NewDishForm extends React.Component {
             value={date}
             min={date}
             max="2020-12-31"
-            onChange={handleDateChange}
+            onChange={handleChange}
           />
           <br />
           <br />
@@ -170,29 +146,29 @@ class NewDishForm extends React.Component {
               <div>
                 <label htmlFor="lunch" />
                 <button
-                  onClick={handleTimeFrame}
+                  onClick={e => handleClick(e)}
                   value="lunch"
                   id="lunch"
                   className={
-                    timeframe === "lunch" ? "selected-type" : "unselected-type"
+                    timeframe === 'lunch' ? 'selected-type' : 'unselected-type'
                   }
                 >
-                  {" "}
-                  Lunch{" "}
+                  {' '}
+                  Lunch{' '}
                 </button>
               </div>
               <div>
                 <label htmlFor="dinner" />
                 <button
-                  onClick={e => handleDishType(e)}
+                  onClick={e => handleClick(e)}
                   value="dinner"
                   id="dinner"
                   className={
-                    timeframe === "lunch" ? "unselected-type" : "selected-type"
+                    timeframe === 'lunch' ? 'unselected-type' : 'selected-type'
                   }
                 >
-                  {" "}
-                  Dinner{" "}
+                  {' '}
+                  Dinner{' '}
                 </button>
               </div>
             </span>
@@ -201,7 +177,6 @@ class NewDishForm extends React.Component {
           <br />
           <section>
             <label htmlFor="img"> Dish Image </label>
-
             <input
               type="text"
               value={dishImg}
@@ -210,21 +185,31 @@ class NewDishForm extends React.Component {
               placeholder="Image url"
               onChange={handleChange}
             />
-
             <input
               type="file"
-              value={dishImg}
-              id="img"
-              name="dishImg"
+              value={dishImgFile}
+              name="dishImgFile"
               placeholder="Image url"
-              onChange={handleChange}
+              onChange={handleClick}
             />
           </section>
           <br />
-          <section>
-            <label htmlFor="cuisineType"> Pick a Cuisine </label>
-            {cuisinesType}
-          </section>
+
+          <br />
+          <label htmlFor="price">Price</label>
+          <input
+            name="price"
+            type="text"
+            id="price"
+            value={price}
+            onChange={handleChange}
+          />
+          <br />
+          <br />
+
+          <div className="filter-buttons">
+            <label htmlFor="labels">labels </label> {labelTypes}
+          </div>
           <br />
           <br />
           <input type="submit" />
