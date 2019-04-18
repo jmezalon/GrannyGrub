@@ -11,6 +11,12 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="grandma-dash">
+        <div className="contact-name">
+          <label htmlFor="full Name" />
+          <h1>
+            {this.props.user.first_name} {this.props.user.last_name}
+          </h1>
+        </div>
         <img
           id="granny-view-granny-pic"
           alt=""
@@ -22,19 +28,15 @@ class Dashboard extends Component {
         />
         <div className="info-box">
           <p>Your Info</p>
-          <label htmlFor="full Name">Full Name</label>
-          <h1>
-            {this.props.user.first_name} {this.props.user.last_name}
-          </h1>
-          <label htmlFor="contact">Contact</label>
+          <label htmlFor="contact" />
           <p>{this.props.user.email}</p>
           <p>{this.props.user.phone_number}</p>
-          <label htmlFor="address">address</label>
+          <label htmlFor="address" />
           <h6>
             {this.props.user.building_number} {this.props.user.address}{" "}
             {this.props.user.zip_code}
           </h6>
-          <label htmlFor="bio">Bio</label>
+          <label htmlFor="bio" />
           <p>{this.props.user.bio}</p>
         </div>
         <div className="edit-page">

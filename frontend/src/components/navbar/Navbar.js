@@ -12,6 +12,18 @@ class Navbar extends Component {
             <img id="logo" alt="" src={logo} />
           </NavLink>
         </div>
+        <div className="middle-options">
+          <NavLink to="/grandma/main">Granny main</NavLink>
+          <NavLink to={`/grandma/edit/${this.props.user.id}`}>
+            edit profile
+          </NavLink>
+          <NavLink to={`/grandma/${this.props.user.id}/dashboard`}>
+            dashboard
+          </NavLink>
+          <NavLink to="/grandma/newdish">new dish</NavLink>
+          <NavLink to="/grandma/5">user view of grandma</NavLink>
+          <NavLink to="/mainpage">Main Page</NavLink>
+        </div>
       </div>
       //
       // {loggedIn ? (
