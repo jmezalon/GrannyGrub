@@ -63,9 +63,7 @@ class HandleNewDish extends React.Component {
     const {
       dishName,
       dishImg,
-      quantity,
       cuisine_id,
-      selectedQuantity,
       description,
       timeframe,
       type,
@@ -74,6 +72,7 @@ class HandleNewDish extends React.Component {
       date
     } = this.state;
 
+    //if else statement
     e.preventDefault();
     axios
       .post("/dishes/new", {
@@ -135,7 +134,6 @@ class HandleNewDish extends React.Component {
       selectedQuantity,
       description,
       timeframe,
-      pickUp,
       type,
       price,
       dishImg,

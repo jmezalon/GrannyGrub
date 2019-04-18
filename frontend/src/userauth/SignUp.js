@@ -1,26 +1,20 @@
+import { connect } from "react-redux";
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default class SignUp extends React.Component {
-  state = {
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone_number: "",
-    isGrandma: true,
-    cuisine_type: "",
-    building_number: "",
-    address: "",
-    zip_code: "",
-    password: ""
-  };
+import { getAllCuisines } from "../actions/cuisineActions";
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+const mapStateToProps = state => {
+  return {
+    cuisines: state.cuisines.cuisines
   };
+};
 
+<<<<<<< HEAD:frontend/src/userauth/SignUp.js
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllCuisines: () => dispatch(getAllCuisines())
+=======
   handleSignupSubmit = async e => {
     e.preventDefault();
     await this.props.signUpUser({
@@ -38,20 +32,49 @@ export default class SignUp extends React.Component {
     await this.props.history.push(
       `/grandma/${parseInt(this.props.user.id)}/dashboard`
     );
+>>>>>>> master:frontend/src/components/grandma/SignUp.js
   };
+};
+
+class SignUp extends React.Component {
+  componentDidMount() {
+    this.props.getAllCuisines();
+  }
+
+  // handleSignupSubmit = e => {
+  //   e.preventDefault();
+  //   this.props
+  //     .registerUser()
+  //     .then(res => this.props.loginUser(this.state.email, this.state.password))
+  //     .then(res =>
+  //       this.props.history.push(`/grandma/edit/${parseInt(this.props.user.id)}`)
+  //     );
+  // };
 
   render() {
+    console.log("sign up page!");
+
+    const { registerUser, handleChange, handleSelect } = this.props;
+
     const {
       first_name,
       last_name,
       email,
       phone_number,
-      cuisine_type,
+      cuisine_id,
       building_number,
       address,
       zip_code,
       password
-    } = this.state;
+    } = this.props;
+
+    const cuisineTypes = this.props.cuisines.map(cuisine => {
+      return (
+        <option key={cuisine.id} value={cuisine.id}>
+          {cuisine.type}
+        </option>
+      );
+    });
 
     return (
       <div className="grandma-signup">
@@ -60,12 +83,12 @@ export default class SignUp extends React.Component {
           <p>
             Where hungry New Yorkers are connected with professional Grandmas
           </p>
-          <form className="signup-form" onSubmit={this.handleSignupSubmit}>
+          <form className="signup-form" onSubmit={registerUser}>
             <div className="">
               <input
                 id="first-name"
                 name="first_name"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 placeholder="First Name"
                 type="text"
                 value={first_name}
@@ -75,7 +98,7 @@ export default class SignUp extends React.Component {
               <input
                 id="last-name"
                 name="last_name"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 placeholder="Last Name"
                 type="text"
                 value={last_name}
@@ -85,7 +108,7 @@ export default class SignUp extends React.Component {
               <input
                 id="email"
                 name="email"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 value={email}
                 placeholder="EMAIL"
                 type="text"
@@ -95,28 +118,27 @@ export default class SignUp extends React.Component {
               <input
                 id="phone_number"
                 name="phone_number"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 value={phone_number}
                 placeholder="Phone Number"
                 type="text"
               />
             </div>
             <div className="">
-              <input
-                id="cuisine-type"
-                name="cuisine_type"
-                onChange={this.handleChange}
-                value={cuisine_type}
-                placeholder="Type of cuisine"
-                type="text"
-              />
+              <select onChange={handleSelect}>
+                <option key="0" value="">
+                  select a cuisines
+                </option>
+                {cuisineTypes}
+              </select>
             </div>
+
             <div className="address">
               <span>
                 <input
                   id="building-number"
                   name="building_number"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                   value={building_number}
                   placeholder="building number"
                   type="text"
@@ -126,7 +148,7 @@ export default class SignUp extends React.Component {
                 <input
                   id="street-adress"
                   name="address"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                   value={address}
                   placeholder="street"
                   type="text"
@@ -136,27 +158,31 @@ export default class SignUp extends React.Component {
                 <input
                   id="zip-code"
                   name="zip_code"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                   value={zip_code}
                   placeholder="Zip code"
                   type="text"
                 />
               </span>
             </div>
+
             <div className="">
               <input
                 id="password"
                 name="password"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 value={password}
                 placeholder="Password"
                 type="password"
               />
             </div>
+
             <div className="toggle-login">
               <button>Sign up</button>
+
               <br />
               <br />
+
               <p>already have an account?</p>
               <Link to="/login">
                 <p>Log in</p>
@@ -168,3 +194,8 @@ export default class SignUp extends React.Component {
     );
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp);

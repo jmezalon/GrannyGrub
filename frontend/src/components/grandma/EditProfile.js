@@ -12,7 +12,7 @@ class EditProfile extends React.Component {
       phone_number: "",
       bio: "",
       profile_pic: "",
-      cuisine_type: "",
+      cuisine_id: "",
       building_number: "",
       address: "",
       zip_code: "",
@@ -24,7 +24,15 @@ class EditProfile extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = async e => {
+  handleSelect = e => {
+    e.preventDefault();
+    this.setState({
+      cuisine_id: e.target.value
+    });
+    console.log(e.target.value);
+  };
+
+  handleSubmit = e => {
     e.preventDefault();
     let grandma = {
       first_name: this.state.first_name,
@@ -51,10 +59,13 @@ class EditProfile extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getOneGrandma(parseInt(this.props.user.id));
-    // console.log(this.props.grandma);
-    if (this.props.user) {
-      axios.get(`/users/grandma/${parseInt(this.props.user.id)}`).then(res => {
+    this.props.getOneGrandma(parseInt(this.props.match.params.id));
+    this.props.getAllCuisines();
+    console.log(this.props);
+    // if (this.props.user) {
+    axios
+      .get(`/users/grandma/${parseInt(this.props.match.params.id)}`)
+      .then(res => {
         this.setState({
           first_name: res.data.user.first_name,
           last_name: res.data.user.last_name,
@@ -64,16 +75,26 @@ class EditProfile extends React.Component {
           zip_code: res.data.user.zip_code,
           building_number: res.data.user.building_number,
           profile_pic: res.data.user.profile_pic,
-          phone_number: res.data.user.phone_number
+          phone_number: res.data.user.phone_number,
+          cuisine_id: res.data.user.cuisine_type
         });
       });
-    }
+    // }
   }
 
   render() {
     const { grandma } = this.props;
 
     // const grandmaProfile = this.props.grandma.map(grandma => {
+
+    const cuisineTypes = this.props.cuisines.map(cuisine => {
+      return (
+        <option key={cuisine.id} value={cuisine.id}>
+          {cuisine.type}
+        </option>
+      );
+    });
+
     return (
       <div className="one-grandma">
         <h6>Edit your profile</h6>
@@ -110,16 +131,33 @@ class EditProfile extends React.Component {
             value={this.state.phone_number}
           />
           <br />
+          <br />
+
           <img id="profile-pic" alt="" src={this.state.profile_pic} />
-          <label htmlFor="profile_pic">add a different image url</label>
+          <label htmlFor="profile_pic">add a different image url </label>
+
           <input
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
             value={this.state.profile_pic}
           />
+
+          <br />
+          <br />
+          <label htmlFor="cuisine">edit cuisine</label>
+
+          <select onChange={this.handleSelect}>
+            <option key="0" value="">
+              select a cuisines
+            </option>
+            {cuisineTypes}
+          </select>
+
+          <br />
           <br />
           <label htmlFor="bio">bio</label>
+
           <textarea
             name="bio"
             onChange={this.handleChange}
@@ -127,7 +165,7 @@ class EditProfile extends React.Component {
             value={grandma.bio}
           />
           <br />
-          <h3>adress</h3>
+          <h3>address</h3>
           <div className="address">
             <span>
               <input
@@ -171,6 +209,8 @@ class EditProfile extends React.Component {
             ""
           )}
         </form>
+
+        <button onClick={this.props.logoutUser}> logout </button>
       </div>
     );
   }

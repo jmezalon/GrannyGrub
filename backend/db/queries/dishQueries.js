@@ -47,14 +47,14 @@ const db = require("../connection");
 
 const addNewDish = (req, res, next) => {
   //  if (req.body.isGrandma === 'true') {
-  req.body.name = req.body.name ? req.body.name : null;
-  req.body.description = req.body.description ? req.body.description : null;
-  req.body.img_url = req.body.img_url ? req.body.img_url : null;
-  req.body.price = req.body.price ? req.body.price : null;
-  req.body.type = req.body.type ? req.body.type : null;
-  req.body.timeframe = req.body.timeframe ? req.body.timeframe : null;
-  req.body.date = req.body.date ? req.body.date : null;
-  req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
+  // req.body.name = req.body.name ? req.body.name : null;
+  // req.body.description = req.body.description ? req.body.description : null;
+  // req.body.img_url = req.body.img_url ? req.body.img_url : null;
+  // req.body.price = req.body.price ? req.body.price : null;
+  // req.body.type = req.body.type ? req.body.type : null;
+  // req.body.timeframe = req.body.timeframe ? req.body.timeframe : null;
+  // req.body.date = req.body.date ? req.body.date : null;
+  // req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
   db.none(
     "INSERT INTO dishes( name, description,type, user_id, cuisine_id, img_url, price, date, timeframe) VALUES( ${name}, ${description}, ${type},${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe})",
@@ -80,6 +80,7 @@ const addNewDish = (req, res, next) => {
       console.log("error", err);
       return next(err);
     });
+
   //   } else {
   //     res.status(401).json({
   //       message: 'no.',

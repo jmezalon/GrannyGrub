@@ -2,6 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default class Login extends React.Component {
+<<<<<<< HEAD:frontend/src/userauth/Login.js
+  // handleLoginSubmit = async e => {
+  //   e.preventDefault();
+  //   await this.props.loginUser(this.state.email, this.state.password);
+  //
+  //   await this.props.history.push(
+  //     `/grandma/edit/${parseInt(this.props.user.id)}`
+  //   );
+  // };
+=======
   state = {
     email: "",
     password: ""
@@ -21,9 +31,10 @@ export default class Login extends React.Component {
       `/grandma/${parseInt(this.props.user.id)}/dashboard`
     );
   };
+>>>>>>> master:frontend/src/components/grandma/Login.js
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, loginUser, handleChange } = this.props;
 
     return (
       <div className="grandma-login">
@@ -32,12 +43,12 @@ export default class Login extends React.Component {
           <p>
             Where hungry New Yorkers are connected with professional Grandmas
           </p>
-          <form className="login-form" onSubmit={this.handleLoginSubmit}>
+          <form className="login-form" onSubmit={loginUser}>
             <div className="">
               <input
                 id="email"
                 name="email"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 value={email}
                 placeholder="EMAIL"
                 type="text"
@@ -48,7 +59,7 @@ export default class Login extends React.Component {
               <input
                 id="password"
                 name="password"
-                onChange={this.handleChange}
+                onChange={handleChange}
                 value={password}
                 placeholder="Password"
                 type="password"

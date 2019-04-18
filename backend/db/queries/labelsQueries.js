@@ -16,11 +16,8 @@ const db = require("../connection");
 //       // next(err);
 //     });
 // };
-
 const getAllLabels = (req, res, next) => {
-  db.any(
-    "SELECT labels.id AS label_id, type, dishes.id AS dish_id, name, description,cuisine_id, img_url, price, timeframe FROM labels JOIN dishes ON labels.dish_id = dishes.id GROUP BY dishes.id, labels.id ORDER BY type"
-  )
+  db.any("SELECT * FROM labels")
     .then(labels => {
       res.status(200).json({
         status: "success",
@@ -30,6 +27,19 @@ const getAllLabels = (req, res, next) => {
     })
     .catch(err => next(err));
 };
+// const getAllLabels = (req, res, next) => {
+//   db.any(
+//     "SELECT labels.id AS label_id, type, dishes.id AS dish_id, name, description,cuisine_id, img_url, price, timeframe FROM labels JOIN dishes ON labels.dish_id = dishes.id GROUP BY dishes.id, labels.id ORDER BY type"
+//   )
+//     .then(labels => {
+//       res.status(200).json({
+//         status: "success",
+//         labels: labels,
+//         message: " got all labels"
+//       });
+//     })
+//     .catch(err => next(err));
+// };
 
 module.exports = {
   getAllLabels

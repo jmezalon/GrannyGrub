@@ -1,5 +1,5 @@
-const passport = require("passport");
-const db = require("../db/connection");
+const passport = require('passport');
+const db = require('../db/connection');
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
@@ -7,13 +7,14 @@ module.exports = () => {
   });
 
   passport.deserializeUser((email, done) => {
-    db.one("SELECT * FROM users WHERE email = ${email}", {
-      email: email
+    db.one('SELECT * FROM users WHERE email = ${email}', {
+      email: email,
     })
       .then(user => {
         done(null, user);
       })
       .catch(err => {
+        console.log(err);
         done(err, null);
       });
   });
