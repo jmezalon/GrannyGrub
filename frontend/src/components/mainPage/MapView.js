@@ -52,7 +52,7 @@ class MapView extends Component {
       center: { lat: 40.639286, lng: -73.951499 },
       zoom: 11
     });
-
+    let markers = [];
     for (const grandma of this.props.grandmas) {
       console.log(grandma.latitude, grandma.longitude);
 
@@ -66,13 +66,22 @@ class MapView extends Component {
         icon,
         title: grandma.last_name
       });
+      markers.push([marker, infoWindow]);
 
       var myListener = marker.addListener("mouseover", () => {
+        markers.map(markInfo => {
+          markInfo[1].close(this.map, markInfo[0]);
+        });
         infoWindow.open(this.map, marker);
       });
+
       // marker.addListener("mouseout", () => {
       //   infoWindow.close(this.map, marker);
+      //   // console.log(marker);
       // });
+      marker.addListener("click", () => {
+        this.props.handleClick(grandma.id);
+      });
 
       // remove listeners when no longer used.
       // maybe store the markers away in an array in state or something.
