@@ -10,29 +10,9 @@ const mapStateToProps = state => {
   };
 };
 
-<<<<<<< HEAD:frontend/src/userauth/SignUp.js
 const mapDispatchToProps = dispatch => {
   return {
     getAllCuisines: () => dispatch(getAllCuisines())
-=======
-  handleSignupSubmit = async e => {
-    e.preventDefault();
-    await this.props.signUpUser({
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
-      email: this.state.email,
-      phone_number: this.state.phone_number,
-      isGrandma: true,
-      building_number: parseInt(this.state.building_number),
-      address: this.state.address,
-      zip_code: parseInt(this.state.zip_code),
-      password: this.state.password
-    });
-    await this.props.loginUser(this.state.email, this.state.password);
-    await this.props.history.push(
-      `/grandma/${parseInt(this.props.user.id)}/dashboard`
-    );
->>>>>>> master:frontend/src/components/grandma/SignUp.js
   };
 };
 

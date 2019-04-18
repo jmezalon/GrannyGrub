@@ -129,14 +129,13 @@ class App extends Component {
             exact
             path={`/grandma/${this.state.user.id}/dashboard`}
             render={props => (
-              <ProfileContainer
+              <DashboardContainer
                 {...props}
                 user={this.state.user}
                 logoutUser={this.logoutUser}
               />
             )}
           />
-          <DashboardContainer {...props} user={this.state.user} />
           <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
         </Switch>
       </div>

@@ -31,7 +31,7 @@ class EditProfile extends React.Component {
     console.log(e.target.value);
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     let grandma = {
       first_name: this.state.first_name,
