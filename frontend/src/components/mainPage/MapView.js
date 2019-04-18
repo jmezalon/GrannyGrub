@@ -70,9 +70,9 @@ class MapView extends Component {
       var myListener = marker.addListener("mouseover", () => {
         infoWindow.open(this.map, marker);
       });
-      // marker.addListener("mouseout", () => {
-      //   infoWindow.close(this.map, marker);
-      // });
+      marker.addListener("mouseout", () => {
+        infoWindow.close(this.map, marker);
+      });
 
       // remove listeners when no longer used.
       // maybe store the markers away in an array in state or something.
@@ -107,7 +107,9 @@ class MapView extends Component {
       height: "500px"
     };
     return (
-      <div className="mappy" style={{ width: 500, height: 500 }} id="map" />
+      <div className="map-main">
+        <div id="map" />
+      </div>
     );
   }
 }
