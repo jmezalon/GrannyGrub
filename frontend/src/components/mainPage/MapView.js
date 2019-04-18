@@ -75,6 +75,7 @@ class MapView extends Component {
         infoWindow.open(this.map, marker);
       });
 
+
       // marker.addListener("mouseout", () => {
       //   infoWindow.close(this.map, marker);
       //   // console.log(marker);
@@ -116,7 +117,9 @@ class MapView extends Component {
       height: "500px"
     };
     return (
-      <div className="mappy" style={{ width: 500, height: 500 }} id="map" />
+      <div className="map-main">
+        <div id="map" />
+      </div>
     );
   }
 }
