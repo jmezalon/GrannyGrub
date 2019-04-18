@@ -70,7 +70,7 @@ class App extends Component {
     const { isLoggedIn } = this.state;
     return (
       <div className="App">
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar user={this.state.user} />
 
         <Switch>
           <Route exact path="/" component={LandingPage} />
