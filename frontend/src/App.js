@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 
@@ -21,42 +21,12 @@ class App extends Component {
     user: []
   };
 
-  // cheking
-  //
-  // signUpUser = user => {
-  //   return axios.post("/users/new", user).catch(err => {
-  //     console.log("creating user Error", err);
-  //   });
-  // };
-
-  // loginUser = (email, password) => {
-  //   return axios
-  //     .post('/users/login', {
-  //       email: email,
-  //       password: password,
-  //     })
-  //     .then(res => {
-  //       debugger;
-  //       this.setState({
-  //         user: res.data,
-  //         isLoggedIn: true,
-  //       });
-  //       this.props.getOneGrandma(parseInt(this.state.user.id));
-  //       // return true;
-  //     })
-  //     .catch(err => {
-  //       this.setState({
-  //         isLoggedIn: false,
-  //       });
-  //       // return false;
-  //     });
-  // };
   goBack = () => {
     this.props.history.goBack();
   };
 
   checkAuthenticateStatus = props => {
-    axios.get("/users/isLoggedIn").then(user => {
+    axios.post("/users/isLoggedIn").then(user => {
       if (user.data.email === Auth.getToken()) {
         this.setState({
           isLoggedIn: Auth.isUserAuthenticated(),
@@ -71,7 +41,6 @@ class App extends Component {
         }
       }
     });
-    console.log("current user:", this.state.user);
   };
 
   logoutUser = () => {
@@ -83,13 +52,15 @@ class App extends Component {
       .then(() => {
         this.checkAuthenticateStatus();
       })
-      .then(res => this.props.history.push("/signin"))
+      .then(res => this.props.history.push("/auth/login"))
       .catch(err => {
         console.log("logout err", err);
       });
   };
 
   render() {
+    console.log(this.state.user);
+
     const { isLoggedIn } = this.state;
     return (
       <div className="App">
@@ -143,7 +114,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
 
 // <Route
 //   exact

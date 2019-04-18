@@ -164,7 +164,7 @@ function isLoggedIn(req, res) {
   if (req.user) {
     res.json(req.user);
   } else {
-    res.status(401).json({ err: "Nobody logged in" });
+    res.status(200).json({ err: "Nobody logged in" });
   }
 }
 

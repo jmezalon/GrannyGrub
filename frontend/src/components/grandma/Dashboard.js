@@ -44,6 +44,8 @@ class Dashboard extends Component {
             <input type="button" value="edit" />
           </Link>
         </div>
+
+        <button onClick={this.props.logoutUser}> logout </button>
       </div>
     );
   }

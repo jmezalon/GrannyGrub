@@ -21,7 +21,7 @@ router.get("/", getAllUsers);
 
 router.get("/listview", getAllUsersListView);
 
-router.get("/isLoggedIn", isLoggedIn);
+router.post("/isLoggedIn", isLoggedIn);
 
 router.post("/new", createNewUser);
 
