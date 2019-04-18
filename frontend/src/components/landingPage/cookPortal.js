@@ -7,10 +7,10 @@ const CookPortal = () => {
       <div className="cookPortal">
         <h3> Cook Portal </h3>
         <div>
-          <Link to="/login">
+          <Link to="/auth/login">
             <button> Log In</button>
           </Link>{" "}
-          <Link to="/signup">
+          <Link to="/auth">
             <button> Sign Up </button>
           </Link>
         </div>

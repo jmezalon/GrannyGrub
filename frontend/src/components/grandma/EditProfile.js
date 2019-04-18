@@ -1,22 +1,22 @@
-import React from 'react';
-import axios from 'axios';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 class EditProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      first_name: '',
-      last_name: '',
-      email: '',
-      phone_number: '',
-      bio: '',
-      profile_pic: '',
-      cuisine_id: '',
-      building_number: '',
-      address: '',
-      zip_code: '',
-      infoChanged: false,
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone_number: "",
+      bio: "",
+      profile_pic: "",
+      cuisine_id: "",
+      building_number: "",
+      address: "",
+      zip_code: "",
+      infoChanged: false
     };
   }
 
@@ -27,7 +27,7 @@ class EditProfile extends React.Component {
   handleSelect = e => {
     e.preventDefault();
     this.setState({
-      cuisine_id: e.target.value,
+      cuisine_id: e.target.value
     });
     console.log(e.target.value);
   };
@@ -43,14 +43,14 @@ class EditProfile extends React.Component {
       zip_code: this.state.zip_code,
       building_number: this.state.building_number,
       profile_pic: this.state.profile_pic,
-      phone_number: this.state.phone_number,
+      phone_number: this.state.phone_number
     };
     axios
       .patch(`/users/update/${parseInt(this.props.match.params.id)}`, grandma)
       .then(res => {
         // this.props.getOneGrandma(5);
         this.setState({
-          infoChanged: true,
+          infoChanged: true
         });
       });
   };
@@ -73,7 +73,7 @@ class EditProfile extends React.Component {
             building_number: res.data.user.building_number,
             profile_pic: res.data.user.profile_pic,
             phone_number: res.data.user.phone_number,
-            cuisine_id: res.data.user.cuisine_type,
+            cuisine_id: res.data.user.cuisine_type
           });
         });
     }
@@ -197,7 +197,7 @@ class EditProfile extends React.Component {
               <p>your info has been updated</p>
             </div>
           ) : (
-            ''
+            ""
           )}
         </form>
       </div>

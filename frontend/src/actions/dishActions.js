@@ -1,10 +1,5 @@
 import axios from "axios";
-import {
-  ADD_NEW_DISH,
-  ALL_LABELS,
-  GRANDMAS_DISHES,
-  GOT_ERROR
-} from "./actionTypes";
+import { ALL_LABELS, GRANDMAS_DISHES, GOT_ERROR } from "./actionTypes";
 
 export const gotError = err => {
   return {

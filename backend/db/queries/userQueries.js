@@ -88,6 +88,7 @@ const getAllUsersListView = (req, res, next) => {
 // };
 
 const createNewUser = (req, res, next) => {
+  console.log(req.body);
   const hash = authHelpers.createHash(req.body.password);
 
   req.body.profile_pic = req.body.profile_pic ? req.body.profile_pic : null;
@@ -101,8 +102,8 @@ const createNewUser = (req, res, next) => {
   req.body.longitude = req.body.longitude ? req.body.longitude : null;
   req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
-  db.one(
-    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id}) RETURNING *",
+  db.none(
+    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id})",
 
     {
       first_name: req.body.first_name,
@@ -111,20 +112,21 @@ const createNewUser = (req, res, next) => {
       phone_number: req.body.phone_number,
       isGrandma: req.body.isGrandma,
       password: hash,
-      building_number: req.body.building_number,
+      building_number: Number(req.body.building_number),
       address: req.body.address,
       zip_code: req.body.zip_code,
       cuisine_id: req.body.cuisine_id
     }
   )
-    .then(user => {
+    .then(() => {
       res.status(200).json({
-        message: "success",
-        user,
-        isGrandma: true
+        message: "success"
       });
     })
-    .catch(err => next(err));
+    .catch(err => {
+      console.log(err);
+      return next(err);
+    });
 };
 
 const fixGrandma = (req, res, next) => {
@@ -153,12 +155,13 @@ function logoutUser(req, res, next) {
 }
 
 function loginUser(req, res) {
+  console.log(req.user);
   res.json(req.user);
 }
 
 function isLoggedIn(req, res) {
   if (req.user) {
-    res.json({ email: req.user });
+    res.json(req.user);
   } else {
     res.status(401).json({ err: "Nobody logged in" });
   }
