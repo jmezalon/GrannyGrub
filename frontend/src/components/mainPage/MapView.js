@@ -9,6 +9,16 @@ class MapView extends Component {
   constructor(props) {
     super(props);
     this.map = undefined;
+    this.markers = [];
+  }
+
+  componentDidUpdate(prevProps) {
+    // if (prevProps.grandmas.length !== this.props.grandmas.length) {
+    //   this.setState({
+    //     toggle: !this.state.toggle
+    //   });
+    // }
+    this.updateMap();
   }
 
   onMouseoverMarker = (props, marker, e) => {};
@@ -47,14 +57,25 @@ class MapView extends Component {
   };
 
   componentDidMount() {
-    console.log("CDM");
     this.map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 40.639286, lng: -73.951499 },
       zoom: 11
     });
-    let markers = [];
-    for (const grandma of this.props.grandmas) {
-      console.log(grandma.latitude, grandma.longitude);
+
+    this.updateMap();
+  }
+
+  updateMap = () => {
+    if (this.markers.length) {
+      this.markers.forEach(marker => {
+        marker[0].setMap(null);
+      });
+    }
+
+    this.markers = [];
+
+    this.props.grandmas.forEach(grandma => {
+      // console.log(grandma.latitude, grandma.longitude);
 
       const infoWindow = new window.google.maps.InfoWindow({
         content: this.infoWindow(grandma.id)
@@ -66,15 +87,14 @@ class MapView extends Component {
         icon,
         title: grandma.last_name
       });
-      markers.push([marker, infoWindow]);
+      this.markers.push([marker, infoWindow]);
 
       var myListener = marker.addListener("mouseover", () => {
-        markers.map(markInfo => {
+        this.markers.map(markInfo => {
           markInfo[1].close(this.map, markInfo[0]);
         });
         infoWindow.open(this.map, marker);
       });
-
 
       // marker.addListener("mouseout", () => {
       //   infoWindow.close(this.map, marker);
@@ -83,11 +103,8 @@ class MapView extends Component {
       marker.addListener("click", () => {
         this.props.handleClick(grandma.id);
       });
-
-      // remove listeners when no longer used.
-      // maybe store the markers away in an array in state or something.
-    }
-  }
+    });
+  };
 
   render() {
     console.log("mapview render");
@@ -117,7 +134,7 @@ class MapView extends Component {
       height: "500px"
     };
     return (
-      <div className="map-main">
+      <div className={showingMap ? "map-main" : "map-list-veiw"}>
         <div id="map" />
       </div>
     );
