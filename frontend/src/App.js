@@ -59,8 +59,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.user);
-
     const { isLoggedIn } = this.state;
     return (
       <div className="App">
@@ -84,7 +82,6 @@ class App extends Component {
 
           <Route exact path="/grandma/main" component={DishContainer} />
           <Route exact path="/grandma/newdish" component={NewDishContainer} />
-          <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
           <Route
             exact
             path={`/grandma/edit/${this.state.user.id}`}
@@ -107,7 +104,11 @@ class App extends Component {
               />
             )}
           />
-          <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
+          <Route
+            exact
+            path={`/grandma/${this.state.user.id}`}
+            component={GrandmaPageContainer}
+          />
         </Switch>
       </div>
     );

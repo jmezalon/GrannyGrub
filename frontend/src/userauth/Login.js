@@ -48,7 +48,7 @@ export default class Login extends React.Component {
               <br />
               <br />
               <p>Do you want to cook?</p>
-              <Link to="/signup">
+              <Link to="/auth/signup">
                 <p>Sign up</p>
               </Link>
             </div>
