@@ -104,11 +104,7 @@ class App extends Component {
               />
             )}
           />
-          <Route
-            exact
-            path={`/grandma/${this.state.user.id}`}
-            component={GrandmaPageContainer}
-          />
+          <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
         </Switch>
       </div>
     );

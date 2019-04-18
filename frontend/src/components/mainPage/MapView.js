@@ -57,9 +57,10 @@ class MapView extends Component {
   };
 
   componentDidMount() {
+    const zoom = this.props.showingMap ? 11 : 10;
     this.map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 40.639286, lng: -73.951499 },
-      zoom: 11
+      zoom: zoom
     });
 
     this.updateMap();
