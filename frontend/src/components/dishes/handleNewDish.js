@@ -144,27 +144,29 @@ class HandleNewDish extends React.Component {
 
     return (
       <>
-        <NewDishForm
-          dishName={dishName}
-          quantity={quantity}
-          type={type}
-          description={description}
-          labels={this.props.labels}
-          label_id={label_id}
-          cuisines={this.props.cuisines}
-          dishImg={dishImg}
-          cuisine_type={cuisine_id}
-          user_id={user_id}
-          timeframe={timeframe}
-          price={price}
-          date={date}
-          dishImgFile={dishImgFile}
-          selectedQuantity={selectedQuantity}
-          handleChange={this.handleChange}
-          handleClick={this.handleClick}
-          handleQuantityChange={this.handleQuantityChange}
-          handleSubmit={this.handleSubmit}
-        />
+        <div className="newDishContainer">
+          <NewDishForm
+            dishName={dishName}
+            quantity={quantity}
+            type={type}
+            description={description}
+            labels={this.props.labels}
+            label_id={label_id}
+            cuisines={this.props.cuisines}
+            dishImg={dishImg}
+            cuisine_type={cuisine_id}
+            user_id={user_id}
+            timeframe={timeframe}
+            price={price}
+            date={date}
+            dishImgFile={dishImgFile}
+            selectedQuantity={selectedQuantity}
+            handleChange={this.handleChange}
+            handleClick={this.handleClick}
+            handleQuantityChange={this.handleQuantityChange}
+            handleSubmit={this.handleSubmit}
+          />
+        </div>
       </>
     );
   }

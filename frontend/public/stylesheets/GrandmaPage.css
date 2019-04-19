@@ -10,3 +10,56 @@
   border: 3px dashed pink;
   margin: 1%;
 }
+
+.newDishContainer {
+  border: 2px solid pink;
+  width: 80%;
+  height: auto;
+  margin: 1%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.new-dish {
+  margin: 2%;
+  width: 90%;
+}
+
+.dish-view {
+  margin-top: 30px;
+  width: 55%;
+  border: 1px solid #909bf9;
+  margin: 2%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: content-box;
+  object-fit: cover;
+}
+
+.granny_profile-sidebar {
+  width: 55%;
+}
+
+.dish-display {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.grandma-dash {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.granny_dishes {
+}
+
+#dish_img {
+  width: 75%;
+  height: auto;
+  align-self: center;
+}
