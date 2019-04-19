@@ -7,8 +7,6 @@ class NewDishForm extends React.Component {
       dishName,
       dishImg,
       quantity,
-      labels,
-      label_id,
       cuisine_id,
       selectedQuantity,
       description,
@@ -18,11 +16,9 @@ class NewDishForm extends React.Component {
       price,
       date,
       dishImgFile,
-      user_id,
       handleSubmit,
       handleQuantityChange,
       handleClick,
-      cuisines,
     } = this.props;
 
     const quantityOptions = quantity.map((number, i) => {
@@ -38,7 +34,7 @@ class NewDishForm extends React.Component {
         <button
           key={label.id}
           value={label.id}
-          name="labe l_id"
+          name="label_id"
           onClick={e => handleClick(e)}
         >
           {' '}
@@ -53,6 +49,7 @@ class NewDishForm extends React.Component {
           value={cuisine.id}
           key={cuisine.id}
           id="cuisineType"
+          name={cuisine_id}
           onClick={e => handleClick(e)}
         >
           {cuisine.type}

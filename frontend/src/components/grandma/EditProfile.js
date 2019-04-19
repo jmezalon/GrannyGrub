@@ -8,10 +8,10 @@ class EditProfile extends React.Component {
     this.state = {
       first_name: "",
       last_name: "",
-      email: "",
       phone_number: "",
       bio: "",
       profile_pic: "",
+      cuisine_id: "",
       cuisine_type: "",
       building_number: "",
       address: "",
@@ -24,56 +24,69 @@ class EditProfile extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleSelect = e => {
+    e.preventDefault();
+    this.setState({
+      cuisine_id: e.target.value
+    });
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
     let grandma = {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       bio: this.state.bio,
-      email: this.state.email,
+      cuisine_id: this.state.cuisine_id,
       address: this.state.address,
       zip_code: this.state.zip_code,
       building_number: this.state.building_number,
       profile_pic: this.state.profile_pic,
       phone_number: this.state.phone_number
     };
-    axios
-      .patch(`/users/update/${parseInt(this.props.user.id)}`, grandma)
-      .then(res => {
-        this.props.getOneGrandma(parseInt(this.props.user.id));
-        this.setState({
-          infoChanged: true
-        });
-      });
-    // this.props.history.push(
-    //   `/grandma/${parseInt(this.props.user.id)}/dashboard`
-    // );
+    await axios.patch(`/users/update/${parseInt(this.props.user.id)}`, grandma);
+    await this.props.getOneGrandma(parseInt(this.props.user.id));
+
+    this.setState({
+      infoChanged: true
+    });
   };
 
+  // this.props.history.push(
+  //   `/grandma/${parseInt(this.props.user.id)}/dashboard`
+  // );
+
   componentDidMount() {
-    this.props.getOneGrandma(parseInt(this.props.user.id));
-    // console.log(this.props.grandma);
-    if (this.props.user) {
-      axios.get(`/users/grandma/${parseInt(this.props.user.id)}`).then(res => {
-        this.setState({
-          first_name: res.data.user.first_name,
-          last_name: res.data.user.last_name,
-          bio: res.data.user.bio,
-          email: res.data.user.email,
-          address: res.data.user.address,
-          zip_code: res.data.user.zip_code,
-          building_number: res.data.user.building_number,
-          profile_pic: res.data.user.profile_pic,
-          phone_number: res.data.user.phone_number
-        });
+    // this.props.getOneGrandma(parseInt(this.props.user.id));
+    this.props.getAllCuisines();
+    axios.get(`/users/grandma/${parseInt(this.props.user.id)}`).then(res => {
+      this.setState({
+        first_name: res.data.user.first_name,
+        last_name: res.data.user.last_name,
+        bio: res.data.user.bio,
+        address: res.data.user.address,
+        zip_code: res.data.user.zip_code,
+        building_number: res.data.user.building_number,
+        profile_pic: res.data.user.profile_pic,
+        phone_number: res.data.user.phone_number,
+        cuisine_id: res.data.user.cuisine_id,
+        cuisine_type: res.data.user.cuisine_type
       });
-    }
+    });
   }
 
   render() {
     const { grandma } = this.props;
 
     // const grandmaProfile = this.props.grandma.map(grandma => {
+
+    const cuisineTypes = this.props.cuisines.map(cuisine => {
+      return (
+        <option key={cuisine.id} value={cuisine.id}>
+          {cuisine.type}
+        </option>
+      );
+    });
     return (
       <div className="one-grandma">
         <h6>Edit your profile</h6>
@@ -95,13 +108,6 @@ class EditProfile extends React.Component {
             onChange={this.handleChange}
             value={this.state.last_name}
           />
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.email}
-          />
           <label htmlFor="phone_number">Phone number</label>
           <input
             name="phone_number"
@@ -110,24 +116,43 @@ class EditProfile extends React.Component {
             value={this.state.phone_number}
           />
           <br />
+          <br />
+
           <img id="profile-pic" alt="" src={this.state.profile_pic} />
-          <label htmlFor="profile_pic">add a different image url</label>
+          <label htmlFor="profile_pic">add a different image url </label>
+
           <input
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
-            value={this.state.profile_pic}
+            value={this.state.profile_pic ? this.state.profile_pic : ""}
           />
+
+          <br />
+          <br />
+          <label htmlFor="cuisine">edit cuisine</label>
+
+          <select onChange={this.handleSelect}>
+            <option key="0" value="">
+              {this.state.cuisine_type
+                ? this.state.cuisine_type
+                : "Select a cuisine"}
+            </option>
+            {cuisineTypes}
+          </select>
+
+          <br />
           <br />
           <label htmlFor="bio">bio</label>
+
           <textarea
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={grandma.bio}
+            value={this.state.bio ? this.state.bio : ""}
           />
           <br />
-          <h3>adress</h3>
+          <h3>address</h3>
           <div className="address">
             <span>
               <input

@@ -21,9 +21,11 @@ class ListView extends Component {
       );
     });
     return (
-      <div>
-        <MapView handleClick={handleClick} grandmas={grandmas} />
+      <div className="list-view-page">
         <div className="list-view-container">{grannies}</div>
+        <div className="map-list">
+          <MapView handleClick={handleClick} grandmas={grandmas} />
+        </div>
       </div>
     );
   }
