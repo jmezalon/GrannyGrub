@@ -8,9 +8,12 @@ class SignUp extends React.Component {
   }
 
   render() {
-    console.log("sign up page!");
-
-    const { handleRegisterUser, handleChange, handleSelect } = this.props;
+    const {
+      handleRegisterUser,
+      handleChange,
+      handleSelect,
+      cuisines
+    } = this.props;
 
     const {
       first_name,
@@ -24,7 +27,7 @@ class SignUp extends React.Component {
       password
     } = this.props;
 
-    const cuisineTypes = this.props.cuisines.map(cuisine => {
+    const cuisineTypes = cuisines.map(cuisine => {
       return (
         <option key={cuisine.id} value={cuisine.id}>
           {cuisine.type}

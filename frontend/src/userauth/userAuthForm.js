@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Auth from "./utils/Auth";
 import SignUp from "./SignUp";
 import LogIn from "./Login";
@@ -64,8 +64,11 @@ class UserAuthForm extends React.Component {
 
     e.preventDefault();
 
-    await this.props.registerUser(newUser);
-    await this.props.loginUser(loginPrams);
+    await this.props.registerUser(newUser, loginPrams);
+
+    // await this.props.history.push(
+    //   `/grandma/${parseInt(response.data.id)}/dashboard`
+    //  );
   };
 
   //   await axios.post("/users/new", {});
@@ -81,20 +84,18 @@ class UserAuthForm extends React.Component {
   //     password: ""
   //   });
   //
-  //   await this.props.history.push(
-  //     `/grandma/${parseInt(response.data.id)}/dashboard`
-  //   );
+  //
   //
   //   // console.log("registered");
   // };
 
-  handleLogin = e => {
+  handleLogin = async e => {
     const { email, password } = this.state;
     let loginPrams = { email, password };
 
     e.preventDefault();
 
-    this.props.loginUser(loginPrams);
+    await this.props.loginUser(loginPrams);
   };
 
   // let response = await axios.post("/users/login", { email, password });
@@ -114,7 +115,7 @@ class UserAuthForm extends React.Component {
   // );
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const {
       first_name,
       last_name,
@@ -149,9 +150,10 @@ class UserAuthForm extends React.Component {
 
           <Route
             path="/auth/signup"
-            render={() => {
+            render={props => {
               return (
                 <SignUp
+                  {...props}
                   first_name={first_name}
                   last_name={last_name}
                   email={email}
@@ -167,6 +169,8 @@ class UserAuthForm extends React.Component {
                   handleRegisterUser={this.handleRegisterUser}
                   handleChange={this.handleChange}
                   handleSelect={this.handleSelect}
+                  cuisines={this.props.cuisines}
+                  getAllCuisines={this.props.getAllCuisines}
                 />
               );
             }}
@@ -177,4 +181,4 @@ class UserAuthForm extends React.Component {
   }
 }
 
-export default UserAuthForm;
+export default withRouter(UserAuthForm);

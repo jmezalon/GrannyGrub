@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
-import "./App.css";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import './App.css';
+import axios from 'axios';
 
-import Auth from "./userauth/utils/Auth";
-import LandingPage from "./components/landingPage/landingPage";
-import ProfileContainer from "./containers/ProfileContainer";
-import HomeContainer from "./containers/HomeContainer";
-import MainPageContainer from "./containers/MainPageContainer";
-import Navbar from "./components/navbar/Navbar.js";
-import UserAuthContainer from "./containers/userAuthContainer.js";
-import DishContainer from "./containers/DishContainer";
-import NewDishContainer from "./containers/NewDishContainer";
-import GrandmaPageContainer from "./containers/GrandmaPageContainer.js";
-import DashboardContainer from "./containers/DashboardContainer";
+import Auth from './userauth/utils/Auth';
+import LandingPage from './components/landingPage/landingPage';
+import ProfileContainer from './containers/ProfileContainer';
+import HomeContainer from './containers/HomeContainer';
+import MainPageContainer from './containers/MainPageContainer';
+import Navbar from './components/navbar/Navbar.js';
+import UserAuthContainer from './containers/userAuthContainer.js';
+import DishContainer from './containers/DishContainer';
+import NewDishContainer from './containers/NewDishContainer';
+import GrandmaPageContainer from './containers/GrandmaPageContainer.js';
+import DashboardContainer from './containers/DashboardContainer';
 
 class App extends Component {
   state = {
     isLoggedIn: false,
-    user: []
+    user: [],
   };
 
   goBack = () => {
@@ -65,7 +65,7 @@ class App extends Component {
 
   render() {
     // console.log('YO User', this.state.user);
-    console.log("YO loser", this.props);
+    // console.log("YO loser", this.props);
 
     const { isLoggedIn } = this.state;
     return (

@@ -1,29 +1,10 @@
 import axios from "axios";
-import { SET_CURRENT_USER, GET_ONE_GRANDMA, GOT_ERROR } from "./actionTypes";
+import { SET_CURRENT_USER, GOT_ERROR } from "./actionTypes";
 
 import Auth from "../userauth/utils/Auth";
 
 export const setCurrentUser = currentUser => {
   return { type: "SET_CURRENT_USER", payload: currentUser };
-};
-
-export const receiveOneGrandma = grandma => {
-  return {
-    type: GET_ONE_GRANDMA,
-    payload: grandma
-  };
-};
-
-export const getOneGrandma = id => dispatch => {
-  // let id = parseInt(this.props.match.params.id);
-  axios
-    .get(`/users/grandma/${id}`)
-    .then(res => {
-      dispatch(receiveOneGrandma(res.data.user));
-    })
-    .catc(err => {
-      dispatch(gotError(err));
-    });
 };
 
 export const gotError = err => {
@@ -33,11 +14,11 @@ export const gotError = err => {
   };
 };
 
-export const registerUser = user => dispatch => {
+export const registerUser = (user, loginPrams) => dispatch => {
   console.log("heyyyyy");
 
   return axios.post("/users/new", user).then(() => {
-    return dispatch(dispatch(setCurrentUser(null)));
+    return dispatch(loginUser(loginPrams));
   });
 };
 
