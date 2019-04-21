@@ -40,7 +40,9 @@ CREATE TABLE dishes (
   price  FLOAT NOT NULL,
   type VARCHAR NOT NULL,
   date Date,
-  timeframe VARCHAR NOT NULL
+  timeframe VARCHAR NOT NULL,
+  quantity  INT NOT NULL,
+  remaining_quantity INT
 );
 
 CREATE TABLE labels (
@@ -132,74 +134,77 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 --
 
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES ('Tarator-style salmon', 'Salmon fillets are topped with walnuts, parsley, sumac onion and hummus in this Middle Eastern inspired fish dish', 8, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/tarator-style-salmon.jpg?itok=p1JuHet5', 5.73, 'pick-up', '1:00 - 3:00'),
-('Spiced cauliflower with chickpeas, herbs & pine nuts', 'Roast cauliflower with cumin and caraway then serve with healthy chickpeas and herbs in this Middle Eastern-style salad', 11, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--983480_10.jpg?itok=z3XvGH3-', 3.75, 'sit-down', '3:00'),
-('Japanese okonomiyaki', 'This Japanese pancake is full of authentic flavours and textures, with fresh squid or prawns and a mirin and a honey sauce. Garnish with bonito flakes', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/12/okonomiyaki.jpg?itok=xyEqSNSU', 9.99, 'sit-down','12:00 - 2:00'),
-('Taramasalata', 'This creamy blend of pink or white fish roe, with either a potato or bread base, is best with a drizzle of virgin olive oil or a squeeze of lemon.', 12, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/taramasalata.jpg', 7.99, 'pick-up','12:00 - 2:00'),
-('Japanese katsudon', 'Use up leftovers and provide a hearty meal with this tasty pork katsudon. Using our tonkatsu recipe, it is great to make the day after a Japanese feast', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/04/the-day-after-dish-katsudon.jpg?itok=xxTIulFS', 8.89, 'sit-down','7:00'),
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe, quantity) VALUES ('Tarator-style salmon', 'Salmon fillets are topped with walnuts, parsley, sumac onion and hummus in this Middle Eastern inspired fish dish', 8, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/tarator-style-salmon.jpg?itok=p1JuHet5', 5.73, 'pick-up', '1:00 - 3:00', 5),
+('Spiced cauliflower with chickpeas, herbs & pine nuts', 'Roast cauliflower with cumin and caraway then serve with healthy chickpeas and herbs in this Middle Eastern-style salad', 11, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--983480_10.jpg?itok=z3XvGH3-', 3.75, 'sit-down', '3:00', 8),
+('Japanese okonomiyaki', 'This Japanese pancake is full of authentic flavours and textures, with fresh squid or prawns and a mirin and a honey sauce. Garnish with bonito flakes', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/12/okonomiyaki.jpg?itok=xyEqSNSU', 9.99, 'sit-down','12:00 - 2:00',9),
+('Taramasalata', 'This creamy blend of pink or white fish roe, with either a potato or bread base, is best with a drizzle of virgin olive oil or a squeeze of lemon.', 12, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/taramasalata.jpg', 7.99, 'pick-up','12:00 - 2:00', 6),
+('Japanese katsudon', 'Use up leftovers and provide a hearty meal with this tasty pork katsudon. Using our tonkatsu recipe, it is great to make the day after a Japanese feast', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/04/the-day-after-dish-katsudon.jpg?itok=xxTIulFS', 8.89, 'sit-down','7:00', 10),
 
-('chinese orange chicken', 'white rice with chicken and scallion', 5, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 5.73, 'pick-up', '11:00 - 1:00'),
-('egg rolls', 'great egg rools, you can even add chicken to it.', 5, 1, 'https://i.ytimg.com/vi/MoZAkumC7ps/hqdefault.jpg', 3.75, 'sit-down', '6:00'),
-('rice with beans gravy and legume', 'the name says it all, now just taste it and see', 6, 2, 'https://i.ytimg.com/vi/ojqGPMv4rBw/maxresdefault.jpg', 9.99, 'sit-down','3:00'),
-('fritay', 'you will enjoy this, better than mcdonals fries', 5, 2, 'https://pbs.twimg.com/media/C5eanfJWMAAV4Ot.jpg', 7.89, 'sit-down','7:00'),
-('lasagna', 'the best one ever', 7, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-I9R_mZmC8hPg9bml5_sP3YEHjwTpsiLGrwoGkUx8dJDuFkIqQw', 6.89,'pick-up','6:00 - 8:00'),
-('Moussaka', 'Variations on moussaka are found throughout the Mediterranean and the Balkans.', 13, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/moussaka.jpg', 7.89, 'sit-down','7:00'),
-('Grilled meat', 'Greece’s favourite fast food, served on chopped tomatoes and onions in pitta bread with lashings of tzatziki.', 12, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/grilled-lamb.jpg', 6.89,' sit-down','6:30'),
-('pasta with muscles', 'the best pasta joined together with fresh muscles', 7, 3, 'https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/smallpasta-with-mussel-and-tomato-s-27497546.jpg?itok=JdjVqu9i', 8.98,'pick-up', '12:00 - 2:00'),
-('Turkish lamb pilau', 'Serve up a basmati rice one pot flavoured with cinnamon, mint and apricot, studded with tender lamb', 9, 9, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1069491_11.jpg?itok=bILjdz8R', 8.98,'pick-up', '12:00 - 2:00'),
-('5-ingredient falafel', 'Make falafel with just a handful of storecupboard ingredients. To give the falafels a better texture, be sure to use dried chickpeas rather than canned', 19, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/08/falafel.jpg?itok=kESclYaT', 4.98,'pick-up', '12:00 - 2:00');
+('chinese orange chicken', 'white rice with chicken and scallion', 5, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 5.73, 'pick-up', '11:00 - 1:00',6),
+('egg rolls', 'great egg rools, you can even add chicken to it.', 5, 1, 'https://i.ytimg.com/vi/MoZAkumC7ps/hqdefault.jpg', 3.75, 'sit-down', '6:00', 7),
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, date, timeframe) VALUES
+('rice with beans gravy and legume', 'the name says it all, now just taste it and see', 6, 2, 'https://i.ytimg.com/vi/ojqGPMv4rBw/maxresdefault.jpg', 9.99, 'sit-down','3:00',6),
+('fritay', 'you will enjoy this, better than mcdonals fries', 5, 2, 'https://pbs.twimg.com/media/C5eanfJWMAAV4Ot.jpg', 7.89, 'sit-down','7:00',8)
+,
+('lasagna', 'the best one ever', 7, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-I9R_mZmC8hPg9bml5_sP3YEHjwTpsiLGrwoGkUx8dJDuFkIqQw', 6.89,'pick-up','6:00 - 8:00',8),
+('Moussaka', 'Variations on moussaka are found throughout the Mediterranean and the Balkans.', 13, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/moussaka.jpg', 7.89, 'sit-down','7:00',7),
+('Grilled meat', 'Greece’s favourite fast food, served on chopped tomatoes and onions in pitta bread with lashings of tzatziki.', 12, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/grilled-lamb.jpg', 6.89,' sit-down','6:30',10),
+('pasta with muscles', 'the best pasta joined together with fresh muscles', 7, 3, 'https://www.italymagazine.com/sites/default/files/styles/624xauto/public/feature-story/leader/smallpasta-with-mussel-and-tomato-s-27497546.jpg?itok=JdjVqu9i', 8.98,'pick-up', '12:00 - 2:00', 9),
+('Turkish lamb pilau', 'Serve up a basmati rice one pot flavoured with cinnamon, mint and apricot, studded with tender lamb', 9, 9, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1069491_11.jpg?itok=bILjdz8R', 8.98,'pick-up', '12:00 - 2:00', 8),
+
+('5-ingredient falafel', 'Make falafel with just a handful of storecupboard ingredients. To give the falafels a better texture, be sure to use dried chickpeas rather than canned', 19, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/08/falafel.jpg?itok=kESclYaT', 4.98,'pick-up', '12:00 - 2:00', 8);
+
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, date, timeframe, quantity) VALUES
 
 -- indian
-('Tomato Upma', 'a tangy and spicy upma made with sooji-rave cream of wheat, tomatoes and spices.', 15, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2016/01/tomato-upma-recipe-2.jpg', 5.73, 'pick-up', '2019-04-21', '11:00 - 1:00'),
-('Varan Bhaat', 'best serve with steamed rice', 14, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2013/09/varan-bhaat-recipe.jpg', 5.75, 'sit-down', '2019-04-20', '5:30'),
+('Tomato Upma', 'a tangy and spicy upma made with sooji-rave cream of wheat, tomatoes and spices.', 15, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2016/01/tomato-upma-recipe-2.jpg', 5.73, 'pick-up', '2019-04-21', '11:00 - 1:00', 10),
+('Varan Bhaat', 'best serve with steamed rice', 14, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2013/09/varan-bhaat-recipe.jpg', 5.75, 'sit-down', '2019-04-20', '5:30',9),
 
 
 -- polish
-('Piernik', 'A classic Polish honey gingerbread cake is adapted by Edd Kimber. It is layered with plum jam and coated in chocolate with sprinkles of edible gold.', 16, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/gingerbread.jpg?itok=kvqzFGWA', 3.75, 'sit-down', '2019-04-20','6:00'),
-('Polish sausage soup', 'Fry the onions in the oil for 5 mins. Add the garlic and sausage, fry for a few mins more, then stir in the paprika, rice and thyme.', 17, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--9650_12.jpg?itok=JcuAdP0C', 5.98,'pick-up', '2019-04-20','10:00 - 12:00'),
-('Inside-out chicken Kiev', 'Place the chicken on a baking tray, rub with a little of the butter, season and cook under the grill for 15 mins, turning once until cooked through.', 18, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--520471_11.jpg?itok=6JxupEw4', 9.73, 'pick-up', '2019-04-21','1:00 - 2:00');
+('Piernik', 'A classic Polish honey gingerbread cake is adapted by Edd Kimber. It is layered with plum jam and coated in chocolate with sprinkles of edible gold.', 16, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/gingerbread.jpg?itok=kvqzFGWA', 3.75, 'sit-down', '2019-04-20','6:00',6),
+('Polish sausage soup', 'Fry the onions in the oil for 5 mins. Add the garlic and sausage, fry for a few mins more, then stir in the paprika, rice and thyme.', 17, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--9650_12.jpg?itok=JcuAdP0C', 5.98,'pick-up', '2019-04-20','10:00 - 12:00',5),
+('Inside-out chicken Kiev', 'Place the chicken on a baking tray, rub with a little of the butter, season and cook under the grill for 15 mins, turning once until cooked through.', 18, 6, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--520471_11.jpg?itok=6JxupEw4', 9.73, 'pick-up', '2019-04-21','1:00 - 2:00',7);
 
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe,quantity) VALUES
 
 -- mexican
-('Mexican penne with avocado', 'Get all five of your 5-a-day in this mildly spiced, healthy pasta dish. It is rich in iron, fibre and vitamin C as well as being low-fat and low-calorie', 6, 7, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/11/mexican-penne.jpg?itok=Me76nQgF', 9.99, 'pick-up','2:00 - 4:00'),
-('Mexican bake', 'Raid your storecupboard and try out this fresh idea for canned beans with fajita spices - top with tortillas and cheese', 5, 7, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1096460_11.jpg?itok=LCx-8aST', 7.75, 'sit-down', '6:00'),
+('Mexican penne with avocado', 'Get all five of your 5-a-day in this mildly spiced, healthy pasta dish. It is rich in iron, fibre and vitamin C as well as being low-fat and low-calorie', 6, 7, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/11/mexican-penne.jpg?itok=Me76nQgF', 9.99, 'pick-up','2:00 - 4:00',9),
+('Mexican bake', 'Raid your storecupboard and try out this fresh idea for canned beans with fajita spices - top with tortillas and cheese', 5, 7, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1096460_11.jpg?itok=LCx-8aST', 7.75, 'sit-down', '6:00',8),
 
 -- thai
-('Thai pork & peanut curry', 'Use fragrant hot red curry paste as the base to this coconut curry dish with baby sweetcorn, coriander and soy', 5, 8, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1173688_12.jpg?itok=SupgDzZY', 7.89, 'sit-down','7:00'),
-('Thai chicken curry', 'Peel shallots or onion and cut in half from top to root. Lay the cut sides flat on a board and thinly slice.', 7, 8, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1035606_11.jpg?itok=3ny7oaux', 6.89,' pick-up','6:00 - 8:00');
+('Thai pork & peanut curry', 'Use fragrant hot red curry paste as the base to this coconut curry dish with baby sweetcorn, coriander and soy', 5, 8, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1173688_12.jpg?itok=SupgDzZY', 7.89, 'sit-down','7:00',8),
+('Thai chicken curry', 'Peel shallots or onion and cut in half from top to root. Lay the cut sides flat on a board and thinly slice.', 7, 8, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1035606_11.jpg?itok=3ny7oaux', 6.89,' pick-up','6:00 - 8:00',6);
 
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe,quantity) VALUES
 -- korean
-('Korean-style fried rice', 'This speedy Korean dish is super satisfying and a great way to use up leftover cooked rice - it is full of iron too', 6, 11, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/01/korean-style-fried-rice.jpg?itok=OWPmym9e', 9.99, 'sit-down','2:00'),
-('Korean chicken wings with sesame slaw', 'Gochujang is a savoury Korean condiment that adds a rich spiciness to these chicken wings. Drizzle with sesame oil and our crunchy side slaw', 5, 11, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/korean-wings.jpg?itok=5YQZPdmc', 7.89, 'sit-down','7:00'),
+('Korean-style fried rice', 'This speedy Korean dish is super satisfying and a great way to use up leftover cooked rice - it is full of iron too', 6, 11, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/01/korean-style-fried-rice.jpg?itok=OWPmym9e', 9.99, 'sit-down','2:00', 8),
+('Korean chicken wings with sesame slaw', 'Gochujang is a savoury Korean condiment that adds a rich spiciness to these chicken wings. Drizzle with sesame oil and our crunchy side slaw', 5, 11, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/korean-wings.jpg?itok=5YQZPdmc', 7.89, 'sit-down','7:00',7),
 
 -- filipino
-('Pork & caramelised pineapple adobo', 'This Filipino adobo with sharp, salty-sweet notes is well worth the effort. It is a hearty stew with chunks of melt-in-the-mouth pork belly', 7, 13, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/pork-adobo.jpg?itok=o0Eztwxk', 6.89, 'pick-up','6:00 - 8:00');
+('Pork & caramelised pineapple adobo', 'This Filipino adobo with sharp, salty-sweet notes is well worth the effort. It is a hearty stew with chunks of melt-in-the-mouth pork belly', 7, 13, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/pork-adobo.jpg?itok=o0Eztwxk', 6.89, 'pick-up','6:00 - 8:00',8);
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe) VALUES
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, timeframe,quantity) VALUES
 
 -- bengali
-('Bengali mustard fish', 'A simple seafood curry of white fish, tomatoes and whole green chillies that is deliciously spicy, healthy and quick enough for every day', 7, 14, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/bengali-mustard-fish_0.jpg?itok=KfunH1Zb', 5.73, 'sit-down', '1:00'),
+('Bengali mustard fish', 'A simple seafood curry of white fish, tomatoes and whole green chillies that is deliciously spicy, healthy and quick enough for every day', 7, 14, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/bengali-mustard-fish_0.jpg?itok=KfunH1Zb', 5.73, 'sit-down', '1:00',8),
 
 -- southern
-('Southern-style mac ‘n’ cheese', 'Round out this cheesy pasta classic with roasted sweet potato, a staple food in the southern US states, and turn up the temperature with a pinch of cayenne', 7, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/12/mac-n-cheese.jpg?itok=vs4eBfiK', 10.89,' pick-up','6:00 - 8:00'),
-('Southern fried chicken', 'Great for feeding a crowd, simply kick back, enjoy and relax this fried chicken recipe with homemade slaw', 6, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273636_8.jpg?itok=VxE-1zWU', 8.98,'pick-up', '12:00 - 2:00');
+('Southern-style mac ‘n’ cheese', 'Round out this cheesy pasta classic with roasted sweet potato, a staple food in the southern US states, and turn up the temperature with a pinch of cayenne', 7, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/12/mac-n-cheese.jpg?itok=vs4eBfiK', 10.89,' pick-up','6:00 - 8:00',8),
+('Southern fried chicken', 'Great for feeding a crowd, simply kick back, enjoy and relax this fried chicken recipe with homemade slaw', 6, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273636_8.jpg?itok=VxE-1zWU', 8.98,'pick-up', '12:00 - 2:00',7);
 
 
 
-INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'), ('Contains-Eggs'), ('Contains-peanuts'), ('Contains-nuts'), ('Contains-Shellfish'), ('Soul food'), ('Keto');
+INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'), ('Contains-Eggs'),('Contains-nuts'),('Contains-Shellfish');
 
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 4),(3, 10),(3, 6), (4, 10), (4,4), (5,5), (5,6), (5,7), (6, 1);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 4),(3, 9),(3, 6), (4, 9), (4,4), (5,5), (5,6), (5,7), (6, 1);
 
 INSERT INTO label_dishes (dish_id, label_id) VALUES (6,6), (7, 2),(7, 4), (8, 3), (8, 2), (8, 4), (9,8), (10,1), (10,6), (11,7), (11, 1), (11,6);
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (12,6), (12, 5),(12, 9), (8, 3), (13, 10), (13, 6), (13,4), (14,4), (14,7), (14,12), (15, 1), (15,4);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (12,6), (12, 5),(12, 9), (8, 3), (13, 6), (13,4), (14,4), (14,7), (14,5), (15, 1), (15,4);
 
 INSERT INTO label_dishes (dish_id, label_id) VALUES (15,2),(15,5);
 

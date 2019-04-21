@@ -1,11 +1,20 @@
 import axios from "axios";
-import { GET_ALL_GRANDMAS, GET_ONE_GRANDMA, GOT_ERROR } from "./actionTypes";
+import {
+  GET_ALL_GRANDMAS,
+  SET_CURRENT_USER,
+  GET_ONE_GRANDMA,
+  GOT_ERROR
+} from "./actionTypes";
 
 export const gotError = err => {
   return {
     type: GOT_ERROR,
     payload: err
   };
+};
+
+export const setCurrentUser = currentUser => {
+  return { type: "SET_CURRENT_USER", payload: currentUser };
 };
 
 export const receiveAllGrandmas = grandmas => {

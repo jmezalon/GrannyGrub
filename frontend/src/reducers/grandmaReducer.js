@@ -2,12 +2,15 @@ import {
   GET_ALL_GRANDMAS,
   GET_ONE_GRANDMA,
   GOT_ERROR,
+  SET_CURRENT_USER,
   FILTER_BY_CUISINES
 } from "../actions/actionTypes";
 
 const initialState = {
   grandmas: [],
   grandma: [],
+  currentUser: [],
+  loggedIn: false,
   callFailed: false
 };
 
@@ -19,6 +22,8 @@ export const grandmaReducer = (state = initialState, action) => {
       return { ...state, grandmas: action.payload };
     case GET_ONE_GRANDMA:
       return { ...state, grandma: action.payload };
+    case SET_CURRENT_USER:
+      return { ...state, currentUser: action.payload, loggedIn: true };
     case GOT_ERROR:
       return { ...state, callFailed: true };
     default:
