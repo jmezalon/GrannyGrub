@@ -11,3 +11,5 @@ export const ALL_LABELS = "ALL_LABELS";
 export const ADD_NEW_DISH = "ADD_NEW_DISH ";
 
 export const GOT_ERROR = "GOT_ERROR";
+
+export const NEW_USER = "NEW_USER";

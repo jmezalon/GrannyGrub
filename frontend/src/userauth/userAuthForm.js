@@ -30,14 +30,10 @@ class UserAuthForm extends React.Component {
     this.setState({
       cuisine_id: e.target.value
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
-  registerUser = async e => {
-    // console.log("heyyyyy");
-
-    e.preventDefault();
-
+  handleRegisterUser = async e => {
     const {
       first_name,
       last_name,
@@ -51,7 +47,7 @@ class UserAuthForm extends React.Component {
       password
     } = this.state;
 
-    await axios.post("/users/new", {
+    let newUser = {
       first_name,
       last_name,
       email,
@@ -62,48 +58,63 @@ class UserAuthForm extends React.Component {
       address,
       zip_code,
       cuisine_id
-    });
+    };
 
-    Auth.authenticateUser(email);
+    const loginPrams = { email, password };
 
-    let response = await axios.post("/users/login", { email, password });
-
-    await this.props.checkAuthenticateStatus();
-
-    this.setState({
-      email: "",
-      password: ""
-    });
-
-    await this.props.history.push(
-      `/grandma/${parseInt(response.data.id)}/dashboard`
-    );
-
-    // console.log("registered");
-  };
-
-  loginUser = async e => {
     e.preventDefault();
-    const { email, password } = this.state;
 
-    let response = await axios.post("/users/login", { email, password });
-
-    await Auth.authenticateUser(email);
-
-    await this.props.checkAuthenticateStatus();
-
-    this.setState({
-      email: "",
-      password: ""
-    });
-    // await this.props.getOneGrandma(parseInt(response.data.id));
-
-    await this.props.history.push(
-      `/grandma/${parseInt(response.data.id)}/dashboard`
-    );
+    await this.props.registerUser(newUser);
+    await this.props.loginUser(loginPrams);
   };
+
+  //   await axios.post("/users/new", {});
+  //
+  //   Auth.authenticateUser(email);
+  //
+  //   let response = await axios.post("/users/login", { email, password });
+  //
+  //   await this.props.checkAuthenticateStatus();
+  //
+  //   this.setState({
+  //     email: "",
+  //     password: ""
+  //   });
+  //
+  //   await this.props.history.push(
+  //     `/grandma/${parseInt(response.data.id)}/dashboard`
+  //   );
+  //
+  //   // console.log("registered");
+  // };
+
+  handleLogin = e => {
+    const { email, password } = this.state;
+    let loginPrams = { email, password };
+
+    e.preventDefault();
+
+    this.props.loginUser(loginPrams);
+  };
+
+  // let response = await axios.post("/users/login", { email, password });
+  //
+  // await Auth.authenticateUser(email);
+  //
+  // await this.props.checkAuthenticateStatus();
+  //
+  // this.setState({
+  //   email: "",
+  //   password: ""
+  // });
+  // await this.props.getOneGrandma(parseInt(response.data.id));
+
+  // await this.props.history.push(
+  //   `/grandma/${parseInt(response.data.id)}/dashboard`
+  // );
 
   render() {
+    console.log(this.props);
     const {
       first_name,
       last_name,
@@ -129,7 +140,7 @@ class UserAuthForm extends React.Component {
                 <LogIn
                   email={email}
                   password={password}
-                  loginUser={this.loginUser}
+                  handleLogin={this.handleLogin}
                   handleChange={this.handleChange}
                 />
               );
@@ -152,8 +163,8 @@ class UserAuthForm extends React.Component {
                   zip_code={zip_code}
                   password={password}
                   isLoggedIn={this.props.isLoggedIn}
-                  loginUser={this.loginUser}
-                  registerUser={this.registerUser}
+                  handleLogin={this.handleLogin}
+                  handleRegisterUser={this.handleRegisterUser}
                   handleChange={this.handleChange}
                   handleSelect={this.handleSelect}
                 />

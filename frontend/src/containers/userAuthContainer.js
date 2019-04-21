@@ -1,29 +1,46 @@
 import { connect } from "react-redux";
 
-import { getOneGrandma } from "../actions/grandmaActions";
-import App from './App'
+import {
+  getOneGrandma,
+  registerUser,
+  loginUser
+} from "../actions/userAuthActions";
 
-import { setCurrentUser } from "../actions/grandmaActions";
+// import { setCurrentUser } from "../actions/grandmaActions";
+
+import { getAllCuisines } from "../actions/cuisineActions";
+import UserAuthForm from "../userauth/userAuthForm";
 
 const mapStateToProps = state => {
   return {
     grandma: state.grandmas.grandma,
-    currentUser:state.currentUser
+    currentUser: state.userAuth.currentUser,
+    loggedIn: state.userAuth.loggedIn,
+    cuisines: state.cuisines.cuisines
   };
 };
 
 const mapDispatchToProps = dispatch => {
-
   return {
+    getAllCuisines: () => {
+      dispatch(getAllCuisines());
+    },
+
     getOneGrandma: id => {
       dispatch(getOneGrandma(id));
-  },
-   setCurrentUser: currentUser => {
-    dispatch(setCurrentUser(currentUser))
-}
+    },
+
+    registerUser: user => {
+      dispatch(registerUser(user));
+    },
+
+    loginUser: loginPrams => {
+      dispatch(loginUser(loginPrams));
+    }
+  };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(UserAuthForm);

@@ -1,39 +1,39 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   GET_ALL_GRANDMAS,
   SET_CURRENT_USER,
   GET_ONE_GRANDMA,
   GOT_ERROR
-} from "./actionTypes";
+} from './actionTypes';
 
 export const gotError = err => {
   return {
     type: GOT_ERROR,
-    payload: err
+    payload: err,
   };
 };
 
-export const setCurrentUser = currentUser => {
-  return { type: "SET_CURRENT_USER", payload: currentUser };
-};
+// export const setCurrentUser = currentUser => {
+//   return { type: "SET_CURRENT_USER", payload: currentUser };
+// };
 
 export const receiveAllGrandmas = grandmas => {
   return {
     type: GET_ALL_GRANDMAS,
-    payload: grandmas
+    payload: grandmas,
   };
 };
 
 export const receiveOneGrandma = grandma => {
   return {
     type: GET_ONE_GRANDMA,
-    payload: grandma
+    payload: grandma,
   };
 };
 
 export const getAllGrandmas = () => dispatch => {
   axios
-    .get("/users")
+    .get('/users')
     .then(res => {
       let grandmas = res.data.users.filter(user => {
         return user.isgrandma;
