@@ -1,12 +1,9 @@
 import React from "react";
 
 class GrandmasDishes extends React.Component {
-  // componentDidMount() {
-  //   this.props.getGrandmasDishes();
-  // }
-
   render() {
-    let grannyDishDisplay = this.props.dishes.dishes.map(dish => {
+    // console.log(this.props.dishes);
+    let grannyDishDisplay = this.props.dishes.map(dish => {
       return (
         <div className="dish-view" key={dish.dish_id}>
           <div className="dishInfo">
@@ -25,6 +22,7 @@ class GrandmasDishes extends React.Component {
         </div>
       );
     });
+
     return (
       <>
         <div className="dish-display">{grannyDishDisplay}</div>

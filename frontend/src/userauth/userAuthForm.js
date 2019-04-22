@@ -76,7 +76,7 @@ class UserAuthForm extends React.Component {
     console.log("LOGIN", this.props.loginUser);
 
     await this.props.loginUser(loginPrams);
-    3;
+
     this.handleLoginRequest();
   };
 

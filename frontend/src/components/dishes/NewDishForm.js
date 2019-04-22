@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // import axios from 'axios';
 
 class NewDishForm extends React.Component {
@@ -18,7 +18,7 @@ class NewDishForm extends React.Component {
       dishImgFile,
       handleSubmit,
       handleQuantityChange,
-      handleClick
+      handleClick,
     } = this.props;
 
     const quantityOptions = quantity.map((number, i) => {
@@ -37,7 +37,7 @@ class NewDishForm extends React.Component {
           name="label_id"
           onClick={handleClick}
         >
-          {" "}
+          {' '}
           {label.label_name}
         </button>
       );
@@ -78,20 +78,20 @@ class NewDishForm extends React.Component {
                   onClick={handleClick}
                   value="1"
                   name="type"
-                  className={+type ? "selected-type" : "unselected-type"}
+                  className={+type ? 'selected-type' : 'unselected-type'}
                 >
-                  {" "}
-                  to-go{" "}
+                  {' '}
+                  to-go{' '}
                 </button>
 
                 <button
                   onClick={handleClick}
                   name="type"
                   value="0"
-                  className={type ? "selected-type" : "unselected-type"}
+                  className={type ? 'selected-type' : 'unselected-type'}
                 >
-                  {" "}
-                  sit down{" "}
+                  {' '}
+                  sit down{' '}
                 </button>
               </div>
             </span>
@@ -117,7 +117,7 @@ class NewDishForm extends React.Component {
                 type="text"
                 value={description}
                 onChange={handleChange}
-              />{" "}
+              />{' '}
             </div>
             <section />
             <br />
@@ -150,11 +150,11 @@ class NewDishForm extends React.Component {
                   id="lunch"
                   name="timeframe"
                   className={
-                    timeframe === "lunch" ? "selected-type" : "unselected-type"
+                    timeframe === 'lunch' ? 'selected-type' : 'unselected-type'
                   }
                 >
-                  {" "}
-                  Lunch{" "}
+                  {' '}
+                  Lunch{' '}
                 </button>
               </div>
               <div>
@@ -165,11 +165,11 @@ class NewDishForm extends React.Component {
                   id="dinner"
                   name="timeframe"
                   className={
-                    timeframe === "lunch" ? "unselected-type" : "selected-type"
+                    timeframe === 'lunch' ? 'unselected-type' : 'selected-type'
                   }
                 >
-                  {" "}
-                  Dinner{" "}
+                  {' '}
+                  Dinner{' '}
                 </button>
               </div>
             </span>
