@@ -67,13 +67,14 @@ class UserAuthForm extends React.Component {
     await this.props.registerUser(newUser, loginPrams);
   };
 
-  handleLogin = e => {
+  handleLogin = async e => {
     const { email, password } = this.state;
     let loginPrams = { email, password };
 
     e.preventDefault();
 
-    this.props.loginUser(loginPrams);
+    await this.props.loginUser(loginPrams);
+    await this.props.history.push(`/grandma/dashboard`);
   };
 
   render() {
@@ -145,5 +146,3 @@ class UserAuthForm extends React.Component {
 }
 
 export default withRouter(UserAuthForm);
-
-//      this.props.history.push(`/grandma/${this.props.userId}/dashboard`);

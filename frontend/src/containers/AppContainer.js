@@ -13,7 +13,7 @@ const mapStateToProps = state => {
   return {
     // grandma: state.grandmas.grandma,
     currentUser: state.userAuth.currentUser,
-    userId: state.userAuth.userId,
+    userId: state.userAuth.currentUser,
     loggedIn: state.loggedIn
   };
 };

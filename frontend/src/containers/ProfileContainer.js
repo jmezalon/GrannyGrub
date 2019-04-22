@@ -8,7 +8,8 @@ import EditProfile from "../components/grandma/EditProfile.js";
 const mapStateToProps = state => {
   return {
     grandma: state.grandmas.grandma,
-    cuisines: state.cuisines.cuisines
+    cuisines: state.cuisines.cuisines,
+    user: state.userAuth.currentUser
   };
 };
 
