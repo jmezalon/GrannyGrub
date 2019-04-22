@@ -64,12 +64,7 @@ class App extends Component {
             path={"/grandma/:id/dashboard"}
             component={DashboardContainer}
           />
-
-
-
           <Route exact path={"/grandma/:id/order"} component={Order} />
-
-
           <Route
             exact
             path={`/grandma/edit/:id`}

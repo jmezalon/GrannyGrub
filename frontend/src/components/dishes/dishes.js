@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router";
 
 class GrandmasDishes extends React.Component {
   render() {
@@ -31,4 +32,4 @@ class GrandmasDishes extends React.Component {
   }
 }
 
-export default GrandmasDishes;
+export default withRouter(GrandmasDishes);
