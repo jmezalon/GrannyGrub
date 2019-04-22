@@ -66,7 +66,14 @@ class MapView extends Component {
       styles: [
         {
           featureType: "administrative.land_parcel",
-          elementType: "labels",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "administrative.neighborhood",
           stylers: [
             {
               visibility: "off"
@@ -83,13 +90,36 @@ class MapView extends Component {
           ]
         },
         {
+          featureType: "poi.business",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
           featureType: "poi.park",
           stylers: [
             {
-              color: "#8fec9c"
-            },
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "poi.park",
+          elementType: "labels.text",
+          stylers: [
             {
-              saturation: -40
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "road",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "off"
             }
           ]
         },
@@ -106,10 +136,7 @@ class MapView extends Component {
           featureType: "road.highway",
           stylers: [
             {
-              color: "#dce600"
-            },
-            {
-              visibility: "simplified"
+              visibility: "off"
             }
           ]
         },
@@ -131,22 +158,19 @@ class MapView extends Component {
           ]
         },
         {
-          featureType: "road.local",
-          elementType: "labels",
+          featureType: "water",
           stylers: [
             {
-              visibility: "off"
+              color: "#9abad0"
             }
           ]
         },
         {
           featureType: "water",
+          elementType: "labels.text",
           stylers: [
             {
-              color: "#b1bbff"
-            },
-            {
-              visibility: "simplified"
+              visibility: "off"
             }
           ]
         }
