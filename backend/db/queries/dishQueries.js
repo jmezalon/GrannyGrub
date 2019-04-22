@@ -57,7 +57,7 @@ const addNewDish = (req, res, next) => {
   // req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
   db.none(
-    'INSERT INTO dishes( name, description,type, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${type},${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity})',
+    'INSERT INTO dishes( name, description,type, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${type}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity})',
     {
       name: req.body.name,
       description: req.body.description,
