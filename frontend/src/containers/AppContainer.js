@@ -1,22 +1,29 @@
 import { connect } from "react-redux";
 
 import { getOneGrandma } from "../actions/grandmaActions";
-import { setCurrentUser } from "../actions/userAuthActions";
+import {
+  setCurrentUser,
+  checkAuthenticateStatus,
+  getCurrentUser
+} from "../actions/userAuthActions";
 
 import App from "../App.js";
 
 const mapStateToProps = state => {
   return {
     // grandma: state.grandmas.grandma,
-    currentUser: state.currentUser,
+    currentUser: state.userAuth.currentUser,
     loggedIn: state.loggedIn
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentUser: currentUser => {
-      dispatch(setCurrentUser(currentUser));
+    checkAuthenticateStatus: () => {
+      dispatch(checkAuthenticateStatus());
+    },
+    getCurrentUser: () => {
+      dispatch(getCurrentUser());
     }
   };
 };

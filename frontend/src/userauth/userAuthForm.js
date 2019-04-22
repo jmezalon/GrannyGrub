@@ -66,9 +66,9 @@ class UserAuthForm extends React.Component {
 
     await this.props.registerUser(newUser, loginPrams);
 
-    // await this.props.history.push(
-    //   `/grandma/${parseInt(response.data.id)}/dashboard`
-    //  );
+    await this.props.history.push(
+      `/grandma/${parseInt(this.props.currentUser.id)}/dashboard`
+    );
   };
 
   //   await axios.post("/users/new", {});
@@ -96,6 +96,12 @@ class UserAuthForm extends React.Component {
     e.preventDefault();
 
     await this.props.loginUser(loginPrams);
+
+    console.log(this.props.currentUser);
+
+    // await this.props.history.push(
+    //   `/grandma/${parseInt(this.props.currentUser.id)}/dashboard`
+    // );
   };
 
   // let response = await axios.post("/users/login", { email, password });
@@ -116,6 +122,7 @@ class UserAuthForm extends React.Component {
 
   render() {
     // console.log(this.props);
+    console.log("afterlogin", this.props.currentUser);
     const {
       first_name,
       last_name,

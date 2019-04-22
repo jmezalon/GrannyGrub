@@ -6,6 +6,7 @@ const initialState = {
 };
 
 export const userAuthReducer = (state = initialState, action) => {
+  Object.freeze(state);
   switch (action.type) {
     case SET_CURRENT_USER:
       return { ...state, currentUser: action.payload, loggedIn: true };

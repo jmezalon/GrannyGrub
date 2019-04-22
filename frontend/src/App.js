@@ -1,30 +1,34 @@
-import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import './App.css';
-import axios from 'axios';
+import React, { Component } from "react";
+import { Switch, Route, withRouter } from "react-router-dom";
+import "./App.css";
+import axios from "axios";
 
-import Auth from './userauth/utils/Auth';
-import LandingPage from './components/landingPage/landingPage';
-import ProfileContainer from './containers/ProfileContainer';
-import HomeContainer from './containers/HomeContainer';
-import MainPageContainer from './containers/MainPageContainer';
-import Navbar from './components/navbar/Navbar.js';
-import UserAuthContainer from './containers/userAuthContainer.js';
-import DishContainer from './containers/DishContainer';
-import NewDishContainer from './containers/NewDishContainer';
-import GrandmaPageContainer from './containers/GrandmaPageContainer.js';
-import DashboardContainer from './containers/DashboardContainer';
+import Auth from "./userauth/utils/Auth";
+import LandingPage from "./components/landingPage/landingPage";
+import ProfileContainer from "./containers/ProfileContainer";
+import HomeContainer from "./containers/HomeContainer";
+import MainPageContainer from "./containers/MainPageContainer";
+import Navbar from "./components/navbar/Navbar.js";
+import UserAuthContainer from "./containers/userAuthContainer.js";
+import DishContainer from "./containers/DishContainer";
+import NewDishContainer from "./containers/NewDishContainer";
+import GrandmaPageContainer from "./containers/GrandmaPageContainer.js";
+import DashboardContainer from "./containers/DashboardContainer";
 
 class App extends Component {
   state = {
     isLoggedIn: false,
-    user: [],
+    user: []
   };
 
   goBack = () => {
     this.props.history.goBack();
   };
 
+  componentDidMount() {
+    this.props.checkAuthenticateStatus();
+    this.props.getCurrentUser();
+  }
   // checkAuthenticateStatus = props => {
   //   axios.post('/users/isLoggedIn').then(user => {
   //     if (user.data.email === Auth.getToken()) {
@@ -65,7 +69,7 @@ class App extends Component {
 
   render() {
     // console.log('YO User', this.state.user);
-    // console.log("YO loser", this.props);
+    console.log("YO loser", this.props.currentUser);
 
     const { isLoggedIn } = this.state;
     return (
@@ -92,24 +96,16 @@ class App extends Component {
           <Route exact path="/grandma/newdish" component={NewDishContainer} />
           <Route
             exact
-            path={`/grandma/edit/${this.state.user.id}`}
+            path={`/grandma/edit/${this.props.currentUser.id}`}
             render={props => (
-              <ProfileContainer
-                {...props}
-                user={this.state.user}
-                goBack={this.goBack}
-              />
+              <ProfileContainer {...props} goBack={this.goBack} />
             )}
           />
           <Route
             exact
-            path={`/grandma/${this.state.user.id}/dashboard`}
+            path={`/grandma/${this.props.currentUser.id}/dashboard`}
             render={props => (
-              <DashboardContainer
-                {...props}
-                user={this.state.user}
-                logoutUser={this.logoutUser}
-              />
+              <DashboardContainer {...props} logoutUser={this.logoutUser} />
             )}
           />
           <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
@@ -145,3 +141,5 @@ export default withRouter(App);
 //     />
 //   )}
 // />
+
+//${this.state.user.id}
