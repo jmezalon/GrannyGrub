@@ -13,18 +13,16 @@ const mapStateToProps = state => {
   return {
     // grandma: state.grandmas.grandma,
     currentUser: state.userAuth.currentUser,
+    userId: state.userAuth.userId,
     loggedIn: state.loggedIn
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkAuthenticateStatus: () => {
-      dispatch(checkAuthenticateStatus());
-    },
-    getCurrentUser: () => {
-      dispatch(getCurrentUser());
-    }
+    checkAuthenticateStatus: () => dispatch(checkAuthenticateStatus()),
+    getCurrentUser: () => dispatch(getCurrentUser()),
+    setCurrentUser: currentUser => dispatch(setCurrentUser(currentUser))
   };
 };
 

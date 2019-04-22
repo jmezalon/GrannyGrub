@@ -1,32 +1,33 @@
-import axios from 'axios';
-import { SET_CURRENT_USER, GOT_ERROR } from './actionTypes';
+import axios from "axios";
+import { SET_CURRENT_USER, GOT_ERROR } from "./actionTypes";
 
-import Auth from '../userauth/utils/Auth';
+import Auth from "../userauth/utils/Auth";
 
 export const setCurrentUser = currentUser => {
-  return { type: 'SET_CURRENT_USER', payload: currentUser };
+  return { type: "SET_CURRENT_USER", payload: currentUser };
 };
 
 export const gotError = err => {
   return {
     type: GOT_ERROR,
-    payload: err,
+    payload: err
   };
 };
 
 export const registerUser = (user, loginPrams) => dispatch => {
-  console.log('heyyyyy');
+  console.log("heyyyyy");
 
-  return axios.post('/users/new', user).then(() => {
+  return axios.post("/users/new", user).then(() => {
     return dispatch(loginUser(loginPrams));
   });
 };
 
 export const loginUser = user => dispatch => {
   return axios
-    .post('/users/login', user)
+    .post("/users/login", user)
     .then(res => {
       Auth.authenticateUser(res.data.email);
+      console.log(res.data);
       return dispatch(setCurrentUser(res.data));
     })
     .catch(err => {
@@ -37,7 +38,7 @@ export const loginUser = user => dispatch => {
 
 export const getCurrentUser = user => dispatch => {
   return axios
-    .post('/users/isLoggedIn', user)
+    .post("/users/isLoggedIn", user)
     .then(res => {
       Auth.authenticateUser(res.data.email);
       return dispatch(setCurrentUser(res.data));
@@ -49,11 +50,10 @@ export const getCurrentUser = user => dispatch => {
 };
 
 export const checkAuthenticateStatus = () => dispatch => {
-  // console.log('pop shop');
-  return axios.post('/users/isLoggedIn').then(user => {
-    if (user.data.user === Auth.getToken()) {
+  return axios.post("/users/isLoggedIn").then(user => {
+    console.log(user.data.user);
+    if (user.data.email === Auth.getToken()) {
       return dispatch(setCurrentUser(user.data.user));
-      console.log(user.data.user);
     } else {
       if (user.data.user) {
         logoutUser();
@@ -66,16 +66,16 @@ export const checkAuthenticateStatus = () => dispatch => {
 
 export const logoutUser = () => dispatch => {
   return axios
-    .post('/users/logout')
+    .post("/users/logout")
     .then(() => {
       Auth.deauthenticateUser();
     })
     .then(() => {
       this.checkAuthenticateStatus();
     })
-    .then(res => this.props.history.push('/auth/login'))
+    .then(res => this.props.history.push("/auth/login"))
     .catch(err => {
-      console.log('logout err', err);
+      console.log("logout err", err);
     });
 };
 

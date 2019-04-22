@@ -44,8 +44,8 @@ class EditProfile extends React.Component {
       profile_pic: this.state.profile_pic,
       phone_number: this.state.phone_number
     };
-    await axios.patch(`/users/update/${parseInt(this.props.user.id)}`, grandma);
-    await this.props.getOneGrandma(parseInt(this.props.user.id));
+    await axios.patch(`/users/update/${parseInt(this.props.user)}`, grandma);
+    await this.props.getOneGrandma(parseInt(this.props.user));
 
     this.setState({
       infoChanged: true

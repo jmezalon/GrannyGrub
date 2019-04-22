@@ -160,11 +160,12 @@ function loginUser(req, res) {
 }
 
 function isLoggedIn(req, res) {
-  console.log(req.user);
+  // console.log(req.user);
   if (req.user) {
     res.json(req.user);
   } else {
     res.status(200).json({ err: "Nobody logged in" });
+    console.log("no one is logged in");
   }
 }
 
