@@ -3,13 +3,20 @@ import {
   ALL_LABELS,
   GRANDMAS_DISHES,
   GET_SINGLE_DISH,
-  GOT_ERROR
+  GOT_ERROR,
+  SET_SELECTED_DISH
 } from "./actionTypes";
 
 export const gotError = err => {
   return {
     type: GOT_ERROR,
     payload: err
+  };
+};
+export const setSelectedDish = dish => {
+  return {
+    type: SET_SELECTED_DISH,
+    payload: dish
   };
 };
 

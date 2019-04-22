@@ -1,9 +1,15 @@
-import { GRANDMAS_DISHES, ALL_LABELS, GOT_ERROR } from "../actions/actionTypes";
+import {
+  GRANDMAS_DISHES,
+  ALL_LABELS,
+  GOT_ERROR,
+  SET_SELECTED_DISH
+} from '../actions/actionTypes';
 
 const initialState = {
   dishes: [],
   callFailed: false,
-  labels: []
+  labels: [],
+  selectedDish: [],
 };
 
 export const dishReducer = (state = initialState, action) => {
@@ -11,7 +17,8 @@ export const dishReducer = (state = initialState, action) => {
   switch (action.type) {
     case GRANDMAS_DISHES:
       return { ...state, dishes: action.payload };
-
+    case SET_SELECTED_DISH:
+      return { ...state, selectedDish: action.payload };
     case ALL_LABELS:
       return { ...state, labels: action.payload };
 

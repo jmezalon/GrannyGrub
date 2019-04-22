@@ -17,7 +17,13 @@ class GrandmasDishes extends React.Component {
               <p> Meal type: {dish.type} </p>
             </div>
             <Link to={`/grandma/${dish.dish_id}/order`}>
-              <button> book </button>
+              <button
+                onClick={() => this.props.handleChange({ dish })}
+                value={dish}
+              >
+                {" "}
+                book{" "}
+              </button>
             </Link>
             <div className="time-date-div">
               <p>timefrmae: {dish.timeframe} </p>
@@ -36,7 +42,9 @@ class GrandmasDishes extends React.Component {
             </div>
             <div>
               <Link to={`/grandma/${dish.dish_id}/order`}>
-                <button> order </button>
+                <button onClick={() => this.props.handleChange({ dish })}>
+                  order{" "}
+                </button>
               </Link>
             </div>
             <div className="time-date-div">
