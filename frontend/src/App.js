@@ -5,6 +5,8 @@ import axios from "axios";
 
 import Auth from "./userauth/utils/Auth";
 import LandingPage from "./components/landingPage/landingPage";
+import { Order } from "./components/userViewOfGrandma/Order";
+
 import ProfileContainer from "./containers/ProfileContainer";
 import HomeContainer from "./containers/HomeContainer";
 import MainPageContainer from "./containers/MainPageContainer";
@@ -64,6 +66,8 @@ class App extends Component {
             path={"/grandma/:id/dashboard"}
             component={DashboardContainer}
           />
+
+          <Route exact path={"/grandma/:id/order"} component={Order} />
 
           <Route
             exact
