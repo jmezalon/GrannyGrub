@@ -61,6 +61,8 @@ class MapView extends Component {
     this.map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 40.639286, lng: -73.951499 },
       zoom: zoom,
+      streetViewControl: false,
+      mapTypeControl: false,
       styles: [
         {
           featureType: "administrative.land_parcel",
