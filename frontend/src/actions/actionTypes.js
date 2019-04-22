@@ -12,6 +12,8 @@ export const ADD_NEW_DISH = 'ADD_NEW_DISH ';
 
 export const GET_SINGLE_DISH = 'GET_SINGLE_DISH';
 
+export const SET_SELECTED_DISH = 'SET_SELECTED_DISH';
+
 export const GOT_ERROR = 'GOT_ERROR';
 
 export const NEW_USER = 'NEW_USER';
