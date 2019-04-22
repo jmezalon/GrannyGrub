@@ -7,7 +7,7 @@ class Dashboard extends Component {
   componentDidMount() {
     // let id = parseInt(this.props.user.id);
     // this.props.getOneGrandma(id);
-    this.props.getGrandmasDishes(5);
+    this.props.getGrandmasDishes(this.props.user.id);
   }
 
   render() {
