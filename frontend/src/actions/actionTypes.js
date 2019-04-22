@@ -10,6 +10,8 @@ export const ALL_LABELS = 'ALL_LABELS';
 export const SET_USER_ID = 'SET_USER_ID';
 export const ADD_NEW_DISH = 'ADD_NEW_DISH ';
 
+export const GET_SINGLE_DISH = 'GET_SINGLE_DISH';
+
 export const GOT_ERROR = 'GOT_ERROR';
 
 export const NEW_USER = 'NEW_USER';

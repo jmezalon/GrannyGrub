@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import '../../css/userViewOfGrandma/GrandmaPage.css';
-import GrandmasDishes from '../dishes/dishesUserView';
+import React, { Component } from "react";
+import axios from "axios";
+import "../../css/userViewOfGrandma/GrandmaPage.css";
+import GrandmasDishes from "../dishes/dishesUserView";
 
 class GrandmaPage extends Component {
   state = {
-    type: 'pick-up',
+    type: "pick-up"
   };
 
   componentDidMount() {
@@ -16,7 +16,7 @@ class GrandmaPage extends Component {
 
   handleTypeToggle = e => {
     this.setState({
-      type: e.target.value,
+      type: e.target.value
     });
   };
 
