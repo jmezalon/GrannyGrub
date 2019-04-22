@@ -13,11 +13,6 @@ class MapView extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if (prevProps.grandmas.length !== this.props.grandmas.length) {
-    //   this.setState({
-    //     toggle: !this.state.toggle
-    //   });
-    // }
     this.updateMap();
   }
 
@@ -48,16 +43,20 @@ class MapView extends Component {
   //   }
   // };
 
-  infoWindow = id => {
+  infoWindow = (lastname, pic, cuisine) => {
+    const divstyle = { width: "20px", height: "20px" };
     return `
-<div>Grandma!
-  <a href="/grandma/${id}">I want her food!</a>
+<div class="info">
+  <p>Grandma  ${lastname}</p>
+  <div id="image">
+  <img src=${pic}   alt="" />
+  </div>
+  <p>${cuisine} style</p>
 </div>
 `;
   };
 
   componentDidMount() {
-
     const zoom = this.props.showingMap ? 11 : 10;
     this.map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 40.639286, lng: -73.951499 },
@@ -80,7 +79,11 @@ class MapView extends Component {
       // console.log(grandma.latitude, grandma.longitude);
 
       const infoWindow = new window.google.maps.InfoWindow({
-        content: this.infoWindow(grandma.id)
+        content: this.infoWindow(
+          grandma.last_name,
+          grandma.profile_pic,
+          grandma.cuisine_type
+        )
       });
 
       const marker = new window.google.maps.Marker({
@@ -109,7 +112,6 @@ class MapView extends Component {
   };
 
   render() {
-    debugger;
     console.log("mapview render");
     let { grandmas, handleClick, showingMap } = this.props;
 
