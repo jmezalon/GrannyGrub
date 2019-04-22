@@ -24,7 +24,7 @@ class HandleNewDish extends React.Component {
       (new Date().getDate() + 1 < 10
         ? "0" + (new Date().getDate() + 1)
         : new Date().getDate() + 1),
-    user_id: 14,
+    user_id: "",
     price: "",
     submitted: false
   };
@@ -79,7 +79,7 @@ class HandleNewDish extends React.Component {
       .post("/dishes/new", {
         name: dishName,
         description: description,
-        user_id: user_id,
+        user_id: parseInt(this.props.id),
         cuisine_id: cuisine_id,
         img_url: dishImg,
         price: price,
@@ -113,6 +113,11 @@ class HandleNewDish extends React.Component {
           price: "",
           submitted: true
         });
+      })
+      .then(() => {
+        this.props.history.push(
+          `/grandma/${parseInt(this.props.id)}/dashboard`
+        );
       })
       .catch(err => {
         if (err.response.status === 500) {
