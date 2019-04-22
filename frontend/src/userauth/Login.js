@@ -2,17 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default class Login extends React.Component {
-  // handleLoginSubmit = async e => {
-  //   e.preventDefault();
-  //   await this.props.loginUser(this.state.email, this.state.password);
-  //
-  //   await this.props.history.push(
-  //     `/grandma/edit/${parseInt(this.props.user.id)}`
-  //   );
-  // };
-
   render() {
-    const { email, password, loginUser, handleChange } = this.props;
+    const { email, password, handleLogin, handleChange } = this.props;
 
     return (
       <div className="grandma-login">
@@ -21,7 +12,7 @@ export default class Login extends React.Component {
           <p>
             Where hungry New Yorkers are connected with professional Grandmas
           </p>
-          <form className="login-form" onSubmit={loginUser}>
+          <form className="login-form" onSubmit={handleLogin}>
             <div className="">
               <input
                 id="email"

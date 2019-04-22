@@ -44,8 +44,8 @@ class EditProfile extends React.Component {
       profile_pic: this.state.profile_pic,
       phone_number: this.state.phone_number
     };
-    await axios.patch(`/users/update/${parseInt(this.props.user.id)}`, grandma);
-    await this.props.getOneGrandma(parseInt(this.props.user.id));
+    await axios.patch(`/users/update/${parseInt(this.props.user)}`, grandma);
+    await this.props.getOneGrandma(parseInt(this.props.user));
 
     this.setState({
       infoChanged: true
@@ -59,7 +59,7 @@ class EditProfile extends React.Component {
   componentDidMount() {
     // this.props.getOneGrandma(parseInt(this.props.user.id));
     this.props.getAllCuisines();
-    axios.get(`/users/grandma/${parseInt(this.props.user.id)}`).then(res => {
+    axios.get(`/users/grandma/${parseInt(this.props.user)}`).then(res => {
       this.setState({
         first_name: res.data.user.first_name,
         last_name: res.data.user.last_name,
@@ -90,7 +90,7 @@ class EditProfile extends React.Component {
     return (
       <div className="one-grandma">
         <h6>Edit your profile</h6>
-        <Link to={`/grandma/${this.props.user.id}/dashboard`}>
+        <Link to={`/grandma/dashboard`}>
           <p>back to Dashboard</p>
         </Link>
         <form className="edit-form" onSubmit={this.handleSubmit}>

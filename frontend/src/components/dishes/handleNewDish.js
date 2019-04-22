@@ -48,15 +48,15 @@ class HandleNewDish extends React.Component {
       selectedQuantity: e.target.value
     });
 
-    // console.log(e.target.value);
+    console.log("quantity", this.state.selectedQuantity);
   };
 
   handleClick = e => {
     e.preventDefault();
     this.setState({
-      type: e.target.value
+      [e.target.name]: e.target.value
     });
-    // console.log(e.target.value);
+    console.log(e.target.value);
   };
 
   handleSubmit = e => {
@@ -69,7 +69,8 @@ class HandleNewDish extends React.Component {
       type,
       price,
       user_id,
-      date
+      date,
+      selectedQuantity
     } = this.state;
 
     //if else statement
@@ -84,7 +85,8 @@ class HandleNewDish extends React.Component {
         price: price,
         date: date,
         type: type,
-        timeframe: timeframe
+        timeframe: timeframe,
+        quantity: selectedQuantity
       })
       .then(() => {
         this.setState({

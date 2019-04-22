@@ -2,39 +2,18 @@ import { connect } from "react-redux";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { getAllCuisines } from "../actions/cuisineActions";
-
-const mapStateToProps = state => {
-  return {
-    cuisines: state.cuisines.cuisines
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getAllCuisines: () => dispatch(getAllCuisines())
-  };
-};
-
 class SignUp extends React.Component {
   componentDidMount() {
     this.props.getAllCuisines();
   }
 
-  // handleSignupSubmit = e => {
-  //   e.preventDefault();
-  //   this.props
-  //     .registerUser()
-  //     .then(res => this.props.loginUser(this.state.email, this.state.password))
-  //     .then(res =>
-  //       this.props.history.push(`/grandma/edit/${parseInt(this.props.user.id)}`)
-  //     );
-  // };
-
   render() {
-    console.log("sign up page!");
-
-    const { registerUser, handleChange, handleSelect } = this.props;
+    const {
+      handleRegisterUser,
+      handleChange,
+      handleSelect,
+      cuisines
+    } = this.props;
 
     const {
       first_name,
@@ -48,7 +27,7 @@ class SignUp extends React.Component {
       password
     } = this.props;
 
-    const cuisineTypes = this.props.cuisines.map(cuisine => {
+    const cuisineTypes = cuisines.map(cuisine => {
       return (
         <option key={cuisine.id} value={cuisine.id}>
           {cuisine.type}
@@ -63,7 +42,7 @@ class SignUp extends React.Component {
           <p>
             Where hungry New Yorkers are connected with professional Grandmas
           </p>
-          <form className="signup-form" onSubmit={registerUser}>
+          <form className="signup-form" onSubmit={handleRegisterUser}>
             <div className="">
               <input
                 id="first-name"
@@ -175,7 +154,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignUp);
+export default SignUp;

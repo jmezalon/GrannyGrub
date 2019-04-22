@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Auth from "./utils/Auth";
 import SignUp from "./SignUp";
 import LogIn from "./Login";
@@ -30,14 +30,10 @@ class UserAuthForm extends React.Component {
     this.setState({
       cuisine_id: e.target.value
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
-  registerUser = async e => {
-    // console.log("heyyyyy");
-
-    e.preventDefault();
-
+  handleRegisterUser = async e => {
     const {
       first_name,
       last_name,
@@ -51,7 +47,7 @@ class UserAuthForm extends React.Component {
       password
     } = this.state;
 
-    await axios.post("/users/new", {
+    let newUser = {
       first_name,
       last_name,
       email,
@@ -62,48 +58,28 @@ class UserAuthForm extends React.Component {
       address,
       zip_code,
       cuisine_id
-    });
+    };
 
-    Auth.authenticateUser(email);
+    const loginPrams = { email, password };
 
-    let response = await axios.post("/users/login", { email, password });
+    e.preventDefault();
 
-    await this.props.checkAuthenticateStatus();
-
-    this.setState({
-      email: "",
-      password: ""
-    });
-
-    await this.props.history.push(
-      `/grandma/${parseInt(response.data.id)}/dashboard`
-    );
-
-    // console.log("registered");
+    await this.props.registerUser(newUser, loginPrams);
   };
 
-  loginUser = async e => {
-    e.preventDefault();
+  handleLogin = async e => {
     const { email, password } = this.state;
+    let loginPrams = { email, password };
 
-    let response = await axios.post("/users/login", { email, password });
+    e.preventDefault();
 
-    await Auth.authenticateUser(email);
-
-    await this.props.checkAuthenticateStatus();
-
-    this.setState({
-      email: "",
-      password: ""
-    });
-    // await this.props.getOneGrandma(parseInt(response.data.id));
-
-    await this.props.history.push(
-      `/grandma/${parseInt(response.data.id)}/dashboard`
-    );
+    await this.props.loginUser(loginPrams);
+    await this.props.history.push(`/grandma/dashboard`);
   };
 
   render() {
+    // console.log(this.props);
+    // console.log("afterlogin", this.props.currentUser);
     const {
       first_name,
       last_name,
@@ -129,7 +105,7 @@ class UserAuthForm extends React.Component {
                 <LogIn
                   email={email}
                   password={password}
-                  loginUser={this.loginUser}
+                  handleLogin={this.handleLogin}
                   handleChange={this.handleChange}
                 />
               );
@@ -138,9 +114,10 @@ class UserAuthForm extends React.Component {
 
           <Route
             path="/auth/signup"
-            render={() => {
+            render={props => {
               return (
                 <SignUp
+                  {...props}
                   first_name={first_name}
                   last_name={last_name}
                   email={email}
@@ -152,10 +129,12 @@ class UserAuthForm extends React.Component {
                   zip_code={zip_code}
                   password={password}
                   isLoggedIn={this.props.isLoggedIn}
-                  loginUser={this.loginUser}
-                  registerUser={this.registerUser}
+                  handleLogin={this.handleLogin}
+                  handleRegisterUser={this.handleRegisterUser}
                   handleChange={this.handleChange}
                   handleSelect={this.handleSelect}
+                  cuisines={this.props.cuisines}
+                  getAllCuisines={this.props.getAllCuisines}
                 />
               );
             }}
@@ -166,4 +145,4 @@ class UserAuthForm extends React.Component {
   }
 }
 
-export default UserAuthForm;
+export default withRouter(UserAuthForm);

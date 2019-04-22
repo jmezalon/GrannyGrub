@@ -7,6 +7,7 @@ const initialState = {
 };
 
 export const dishReducer = (state = initialState, action) => {
+  Object.freeze(state);
   switch (action.type) {
     case GRANDMAS_DISHES:
       return { ...state, dishes: action.payload };
