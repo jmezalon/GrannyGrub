@@ -93,3 +93,19 @@
   width: 150px;
   height: 130px;
 }
+
+.info img {
+  width: 60px;
+  height: auto;
+  border-radius: 2px;
+}
+
+#image {
+  height: 60px;
+  overflow-y: hidden;
+}
+.info {
+  width: 160px;
+  overflow-x: hidden;
+  border-radius: 10px;
+}
