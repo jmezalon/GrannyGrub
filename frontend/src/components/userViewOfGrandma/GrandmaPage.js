@@ -5,7 +5,8 @@ import GrandmasDishes from "../dishes/dishesUserView";
 
 class GrandmaPage extends Component {
   state = {
-    type: "pick-up"
+    type: "pick-up",
+    selectedDish: []
   };
 
   componentDidMount() {
@@ -20,8 +21,12 @@ class GrandmaPage extends Component {
     });
   };
 
+  handleChange = dish => {
+    this.props.setSelectedDish(dish);
+  };
+
   render() {
-    console.log(this.state.type);
+    console.log(this.state.selectedDish);
     let { grandma } = this.props;
     if (!Object.values(grandma).length) return null;
 
@@ -45,7 +50,12 @@ class GrandmaPage extends Component {
         />
 
         <div>
-          <GrandmasDishes dishes={this.props.dishes} type={this.state.type} />
+          <GrandmasDishes
+            dishes={this.props.dishes}
+            type={this.state.type}
+            handleChange={this.handleChange}
+            setSelectedDish={this.props.setSelectedDish}
+          />
         </div>
 
         <div className="profile-sidebar">
