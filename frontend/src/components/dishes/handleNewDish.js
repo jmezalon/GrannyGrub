@@ -51,6 +51,20 @@ class HandleNewDish extends React.Component {
     console.log("quantity", this.state.selectedQuantity);
   };
 
+  handleTypeChange = e => {
+    e.preventDefault();
+    if (e.target.value === "0") {
+      this.setState({
+        type: "sit-down"
+      });
+    } else if (e.target.value === "1") {
+      this.setState({
+        type: "pick-up"
+      });
+    }
+    console.log(e.target.value);
+  };
+
   handleClick = e => {
     e.preventDefault();
     this.setState({
@@ -70,6 +84,7 @@ class HandleNewDish extends React.Component {
       price,
       user_id,
       date,
+      label_id,
       selectedQuantity
     } = this.state;
 
@@ -131,6 +146,7 @@ class HandleNewDish extends React.Component {
       });
     console.log("done");
   };
+
   render() {
     // console.log(this.props.cuisines);
     const {
@@ -172,6 +188,7 @@ class HandleNewDish extends React.Component {
             handleClick={this.handleClick}
             handleQuantityChange={this.handleQuantityChange}
             handleSubmit={this.handleSubmit}
+            handleTypeChange={this.handleTypeChange}
           />
         </div>
       </>

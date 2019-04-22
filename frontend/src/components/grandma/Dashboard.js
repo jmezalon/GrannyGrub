@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
-import axios from "axios";
-import GrandmasDishes from "../dishes/dishes";
+import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
+import axios from 'axios';
+import GrandmasDishes from '../dishes/dishes';
 
 class Dashboard extends Component {
-  componentDidMount() {
+  componentWillMount() {
     // let id = parseInt(this.props.user.id);
     // this.props.getOneGrandma(this.props.id);
-
     this.props.getGrandmasDishes(parseInt(this.props.id));
   }
 
   render() {
+    // console.log(this.props.id);
     return (
       <div className="grandma-dash">
         <div className="granny_profile-sidebar">
@@ -27,7 +27,7 @@ class Dashboard extends Component {
             src={
               this.props.user
                 ? this.props.user.profile_pic
-                : "http://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Contact-icon.png"
+                : 'http://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Contact-icon.png'
             }
           />
           <div className="info-box">
@@ -37,7 +37,7 @@ class Dashboard extends Component {
             <p>{this.props.user.phone_number}</p>
             <label htmlFor="address" />
             <h6>
-              {this.props.user.building_number} {this.props.user.address}{" "}
+              {this.props.user.building_number} {this.props.user.address}{' '}
               {this.props.user.zip_code}
             </h6>
             <label htmlFor="bio" />
@@ -53,11 +53,11 @@ class Dashboard extends Component {
             onClick={() =>
               this.props
                 .logoutUser()
-                .then(() => this.props.history.push("/auth/login"))
+                .then(() => this.props.history.push('/auth/login'))
             }
           >
-            {" "}
-            logout{" "}
+            {' '}
+            logout{' '}
           </button>
         </div>
         <div className="granny_dishes">

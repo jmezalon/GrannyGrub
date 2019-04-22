@@ -2,7 +2,8 @@ import React from "react";
 
 class Order extends React.Component {
   render() {
-    console.log(this.props.dish);
+    // let dish = this.props.dish.dish;
+    // console.log(dish.name);
     return (
       <div className="order-page">
         <h1>Your order</h1>
