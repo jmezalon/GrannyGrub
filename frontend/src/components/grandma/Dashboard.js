@@ -6,8 +6,9 @@ import GrandmasDishes from "../dishes/dishes";
 class Dashboard extends Component {
   componentDidMount() {
     // let id = parseInt(this.props.user.id);
-    // this.props.getOneGrandma(id);
-    this.props.getGrandmasDishes(this.props.user.id);
+    // this.props.getOneGrandma(this.props.id);
+
+    this.props.getGrandmasDishes(parseInt(this.props.id));
   }
 
   render() {
@@ -43,7 +44,7 @@ class Dashboard extends Component {
             <p>{this.props.user.bio}</p>
           </div>
           <div className="edit-page">
-            <Link to={`/grandma/edit/${this.props.user.id}`}>
+            <Link to={`/grandma/edit/${this.props.id}`}>
               <input type="button" value="edit" />
             </Link>
           </div>

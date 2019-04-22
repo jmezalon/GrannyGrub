@@ -1,9 +1,9 @@
-import { SET_CURRENT_USER, GOT_ERROR } from '../actions/actionTypes';
+import { SET_CURRENT_USER, GOT_ERROR } from "../actions/actionTypes";
 
 const initialState = {
   currentUser: [],
-  userId: '',
-  loggedIn: false,
+  userId: "",
+  loggedIn: false
 };
 
 export const userAuthReducer = (state = initialState, action) => {
@@ -13,7 +13,8 @@ export const userAuthReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
-        loggedIn: true,
+        userId: action.payload.id,
+        loggedIn: true
       };
 
     case GOT_ERROR:

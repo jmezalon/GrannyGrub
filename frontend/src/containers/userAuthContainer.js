@@ -1,22 +1,22 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 import {
   getOneGrandma,
   registerUser,
   loginUser
-} from "../actions/userAuthActions";
+} from '../actions/userAuthActions';
 
 // import { setCurrentUser } from "../actions/grandmaActions";
 
-import { getAllCuisines } from "../actions/cuisineActions";
-import UserAuthForm from "../userauth/userAuthForm";
+import { getAllCuisines } from '../actions/cuisineActions';
+import UserAuthForm from '../userauth/userAuthForm';
 
 const mapStateToProps = state => {
   return {
     currentUser: state.userAuth.currentUser,
     loggedIn: state.userAuth.loggedIn,
-    userId: state.userAuth.userId,
-    cuisines: state.cuisines.cuisines
+    id: state.userAuth.userId,
+    cuisines: state.cuisines.cuisines,
   };
 };
 
@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => {
 
     loginUser: loginPrams => {
       dispatch(loginUser(loginPrams));
-    }
+    },
   };
 };
 

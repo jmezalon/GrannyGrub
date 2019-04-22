@@ -48,7 +48,6 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={HomeContainer} />
           <Route exact path="/mainpage" component={MainPageContainer} />
-
           <Route
             path="/auth"
             render={props => (
@@ -58,13 +57,11 @@ class App extends Component {
               />
             )}
           />
-
           <Route
             exact
             path={"/grandma/:id/dashboard"}
             component={DashboardContainer}
           />
-
           <Route
             exact
             path={`/grandma/edit/:id`}
@@ -72,6 +69,8 @@ class App extends Component {
               <ProfileContainer {...props} goBack={this.goBack} />
             )}
           />
+          //{" "}
+          <Route exact path="/grandma/newdish" component={NewDishContainer} />
           <Route exact path={`/grandma/:id`} component={GrandmaPageContainer} />
         </Switch>
       </div>
@@ -82,7 +81,6 @@ class App extends Component {
 export default withRouter(App);
 
 // <Route exact path="/grandma/main" component={DishContainer} />
-// <Route exact path="/grandma/newdish" component={NewDishContainer} />
 
 //  <Route
 //   exact
