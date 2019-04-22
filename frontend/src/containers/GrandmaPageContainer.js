@@ -1,17 +1,19 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { getOneGrandma } from "../actions/grandmaActions.js";
-import GrandmaPage from "../components/userViewOfGrandma/GrandmaPage.js";
+import { getGrandmasDishes } from '../actions/dishActions';
+
+import { getOneGrandma } from '../actions/grandmaActions.js';
+import GrandmaPage from '../components/userViewOfGrandma/GrandmaPage.js';
 
 const mapStateToProps = state => {
-  return { grandma: state.grandmas.grandma };
+  return { grandma: state.grandmas.grandma, dishes: state.dishes.dishes };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getOneGrandma: id => {
-      dispatch(getOneGrandma(id));
-    }
+    getOneGrandma: id => dispatch(getOneGrandma(id)),
+
+    getGrandmasDishes: id => dispatch(getGrandmasDishes(id)),
   };
 };
 
