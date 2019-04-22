@@ -65,6 +65,7 @@ class UserAuthForm extends React.Component {
     e.preventDefault();
 
     await this.props.registerUser(newUser, loginPrams);
+    this.handleLoginRequest();
   };
 
   handleLogin = async e => {
@@ -75,12 +76,13 @@ class UserAuthForm extends React.Component {
     console.log("LOGIN", this.props.loginUser);
 
     await this.props.loginUser(loginPrams);
+    3;
     this.handleLoginRequest();
   };
 
   handleLoginRequest = () => {
     // this.handleLoginRequest().then(currentUser => {
-    this.props.history.push(`/grandma/${this.props.currentUser.id}/dashboard`);
+    this.props.history.push(`/grandma/${parseInt(this.props.id)}/dashboard`);
     // });
   };
 

@@ -14,10 +14,10 @@ class Navbar extends Component {
         </div>
         <div className="middle-options">
           <NavLink to="/grandma/main">Granny main</NavLink>
-          <NavLink to={`/grandma/edit/${parseInt(this.props.user)}`}>
+          <NavLink to={`/grandma/edit/${parseInt(this.props.user.id)}`}>
             edit profile
           </NavLink>
-          <NavLink to={`/grandma/${parseInt(this.props.user)}/dashboard`}>
+          <NavLink to={`/grandma/${parseInt(this.props.user.id)}/dashboard`}>
             dashboard
           </NavLink>
           <NavLink to="/grandma/newdish">new dish</NavLink>
