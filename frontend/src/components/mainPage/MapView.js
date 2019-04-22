@@ -104,7 +104,7 @@ class MapView extends Component {
           featureType: "road.highway",
           stylers: [
             {
-              color: "#8ae69a"
+              color: "#dce600"
             },
             {
               visibility: "simplified"
@@ -141,7 +141,10 @@ class MapView extends Component {
           featureType: "water",
           stylers: [
             {
-              color: "#97a6ff"
+              color: "#b1bbff"
+            },
+            {
+              visibility: "simplified"
             }
           ]
         }
