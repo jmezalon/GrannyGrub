@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import './App.css';
-import axios from 'axios';
+import React, { Component } from "react";
+import { Switch, Route, withRouter } from "react-router-dom";
+import "./App.css";
+import axios from "axios";
 
-import Auth from './userauth/utils/Auth';
-import LandingPage from './components/landingPage/landingPage';
-import ProfileContainer from './containers/ProfileContainer';
-import HomeContainer from './containers/HomeContainer';
-import MainPageContainer from './containers/MainPageContainer';
-import Navbar from './components/navbar/Navbar.js';
-import UserAuthContainer from './containers/userAuthContainer.js';
-import DishContainer from './containers/DishContainer';
-import NewDishContainer from './containers/NewDishContainer';
-import GrandmaPageContainer from './containers/GrandmaPageContainer.js';
-import DashboardContainer from './containers/DashboardContainer';
-import PrivateRoute from './userauth/utils/privateRouting.js';
+import Auth from "./userauth/utils/Auth";
+import LandingPage from "./components/landingPage/landingPage";
+import ProfileContainer from "./containers/ProfileContainer";
+import HomeContainer from "./containers/HomeContainer";
+import MainPageContainer from "./containers/MainPageContainer";
+import Navbar from "./components/navbar/Navbar.js";
+import UserAuthContainer from "./containers/userAuthContainer.js";
+import DishContainer from "./containers/DishContainer";
+import NewDishContainer from "./containers/NewDishContainer";
+import GrandmaPageContainer from "./containers/GrandmaPageContainer.js";
+import DashboardContainer from "./containers/DashboardContainer";
+import PrivateRoute from "./userauth/utils/privateRouting.js";
 
 class App extends Component {
   state = {
     isLoggedIn: false,
-    userId: null,
+    userId: null
   };
 
   goBack = () => {
@@ -58,14 +58,16 @@ class App extends Component {
               />
             )}
           />
+
           <Route
             exact
-            path={`/grandma/dashboard`}
+            path={"/grandma/:id/dashboard"}
             component={DashboardContainer}
           />
+
           <Route
             exact
-            path={`/grandma/edit/`}
+            path={`/grandma/edit/:id`}
             render={props => (
               <ProfileContainer {...props} goBack={this.goBack} />
             )}
@@ -82,12 +84,17 @@ export default withRouter(App);
 // <Route exact path="/grandma/main" component={DishContainer} />
 // <Route exact path="/grandma/newdish" component={NewDishContainer} />
 
-//
-//
-// <PrivateRoute
-//   path={`/grandma/dashboard`}
+//  <Route
+//   exact
+//   path={'/grandma/:id/dashboard'}
 //   component={DashboardContainer}
 // />
+
+// <PrivateRoute
+//   path={`/grandma/:id/dashboard`}
+//   component={DashboardContainer}
+// />
+
 // <Route
 //   exact
 //   path={`/grandma/${this.props.userId}/dashboard`}

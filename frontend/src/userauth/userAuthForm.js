@@ -68,13 +68,20 @@ class UserAuthForm extends React.Component {
   };
 
   handleLogin = async e => {
-    const { email, password } = this.state;
-    let loginPrams = { email, password };
-
     e.preventDefault();
+    const { email, password } = this.state;
+    const loginPrams = { email, password };
+
+    console.log("LOGIN", this.props.loginUser);
 
     await this.props.loginUser(loginPrams);
-    await this.props.history.push(`/grandma/dashboard`);
+    this.handleLoginRequest();
+  };
+
+  handleLoginRequest = () => {
+    // this.handleLoginRequest().then(currentUser => {
+    this.props.history.push(`/grandma/${this.props.currentUser.id}/dashboard`);
+    // });
   };
 
   render() {

@@ -32,7 +32,6 @@ export const loginUser = user => dispatch => {
     })
     .catch(err => {
       dispatch(gotError(err));
-      Auth.deauthenticateUser();
     });
 };
 
@@ -50,12 +49,11 @@ export const getCurrentUser = user => dispatch => {
 };
 
 export const checkAuthenticateStatus = () => dispatch => {
-  return axios.post("/users/isLoggedIn").then(user => {
-    console.log(user.data.user);
+  return axios.get("/users/isLoggedIn").then(user => {
     if (user.data.email === Auth.getToken()) {
-      return dispatch(setCurrentUser(user.data.user));
+      return dispatch(setCurrentUser(user.data));
     } else {
-      if (user.data.user) {
+      if (user.data.email) {
         logoutUser();
       } else {
         Auth.deauthenticateUser();
@@ -71,9 +69,8 @@ export const logoutUser = () => dispatch => {
       Auth.deauthenticateUser();
     })
     .then(() => {
-      this.checkAuthenticateStatus();
+      checkAuthenticateStatus();
     })
-    .then(res => this.props.history.push("/auth/login"))
     .catch(err => {
       console.log("logout err", err);
     });

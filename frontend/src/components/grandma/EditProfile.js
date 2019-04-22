@@ -59,7 +59,7 @@ class EditProfile extends React.Component {
   componentDidMount() {
     // this.props.getOneGrandma(parseInt(this.props.user.id));
     this.props.getAllCuisines();
-    axios.get(`/users/grandma/${parseInt(this.props.user)}`).then(res => {
+    axios.get(`/users/grandma/${this.props.user.id}`).then(res => {
       this.setState({
         first_name: res.data.user.first_name,
         last_name: res.data.user.last_name,
