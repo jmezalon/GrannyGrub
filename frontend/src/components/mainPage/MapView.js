@@ -60,7 +60,92 @@ class MapView extends Component {
     const zoom = this.props.showingMap ? 11 : 10;
     this.map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 40.639286, lng: -73.951499 },
-      zoom: zoom
+      zoom: zoom,
+      styles: [
+        {
+          featureType: "administrative.land_parcel",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "poi",
+          elementType: "labels.text",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "poi.park",
+          stylers: [
+            {
+              color: "#8fec9c"
+            },
+            {
+              saturation: -40
+            }
+          ]
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "road.highway",
+          stylers: [
+            {
+              color: "#8ae69a"
+            },
+            {
+              visibility: "simplified"
+            }
+          ]
+        },
+        {
+          featureType: "road.highway",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "road.local",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "road.local",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "water",
+          stylers: [
+            {
+              color: "#97a6ff"
+            }
+          ]
+        }
+      ]
     });
 
     this.updateMap();
