@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 class GrandmasDishes extends React.Component {
   render() {
     const { type } = this.props;
-    // console.log(this.props.dishes);
+    // console.log(this.props.dishes, "dishes consolelog");
 
     let grannyDishDisplay = this.props.dishes.map(dish => {
       if (dish.type === "sit-down" && type === "sit-down") {
@@ -51,6 +51,15 @@ class GrandmasDishes extends React.Component {
               <p>timefrmae: {dish.timeframe} </p>
               <p> date: {dish.date} </p>
             </div>
+          </div>
+        );
+      } else if (!this.props.dishes) {
+        return (
+          <div>
+            <p>
+              this grandma currently has no offering, get in contact with her
+              and recomment something to eat
+            </p>
           </div>
         );
       }
