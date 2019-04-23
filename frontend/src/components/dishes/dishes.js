@@ -2,8 +2,13 @@ import React from "react";
 import { withRouter } from "react-router";
 
 class GrandmasDishes extends React.Component {
+  // componentDidMount() {
+  //   this.props.getGrandmasDishes(parseInt(this.props.id));
+  // }
+
   render() {
-    // console.log(this.props.dishes);
+    // console.log("userid", this.props.id);
+    // console.log(this.props);
     let grannyDishDisplay = this.props.dishes.map(dish => {
       return (
         <div className="dish-view" key={dish.dish_id}>

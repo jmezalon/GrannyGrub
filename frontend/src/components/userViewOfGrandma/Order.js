@@ -20,9 +20,9 @@ class Order extends React.Component {
   };
 
   render() {
-    let dish = this.props.dish.dish;
-    console.log(dish);
 
+    let dish = this.props.dish.dish;
+   
     return (
       <div className="order-page">
         <h1>Your order</h1>
