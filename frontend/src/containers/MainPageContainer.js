@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { getAllUsers } from "../actions/userActions";
-import { allGrandmasByCuisines } from "../actions/filterActions";
+import { grandmasByMultiCriteria } from "../actions/filterActions";
 import { getAllGrandmas } from "../actions/grandmaActions";
 import { getAllCuisines } from "../actions/cuisineActions";
 import MainPage from "../components/mainPage/MainPage.js";
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
     getAllUsers: () => dispatch(getAllUsers()),
     getAllGrandmas: () => dispatch(getAllGrandmas()),
     getAllCuisines: () => dispatch(getAllCuisines()),
-    allGrandmasByCuisines: id => dispatch(allGrandmasByCuisines(id))
+    grandmasByMultiCriteria: data => dispatch(grandmasByMultiCriteria(data))
   };
 };
 

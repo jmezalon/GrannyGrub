@@ -2,16 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  filterByCuisine,
+  filterByTypeAndCuisine,
   filterByLabel,
-  filterByType,
   filterByCuisineMap
 } = require("../db/queries/filterQueries.js");
 
-router.get("/cuisine/:id", filterByCuisine);
+router.post("/criteria", filterByTypeAndCuisine);
 router.get("/map-cuisine/:id", filterByCuisineMap);
 router.get("/label/:id", filterByLabel);
-router.get("/type/:id", filterByType);
 
 // router.post("/", postFavorite);
 // router.delete("/:id", deleteFavorite);

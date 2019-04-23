@@ -8,21 +8,70 @@ import icon from "../../assets/icon.png";
 
 class MainPage extends Component {
   state = {
+    isSitdown: false,
+    isPickup: false,
+    cuisinesSelected: [],
     showingMap: true
   };
 
-  componentDidMount() {
+  handleClickCuisineType = async e => {
+    let { cuisinesSelected } = this.state;
+    let target = parseInt(e.target.value);
+    if (!cuisinesSelected.includes(target)) {
+      await this.setState({
+        cuisinesSelected: [...cuisinesSelected, target]
+      });
+    } else {
+      let filtered = cuisinesSelected.filter(grannyId => {
+        return target !== grannyId;
+      });
+      await this.setState({
+        cuisinesSelected: filtered
+      });
+    }
+    await this.filterGrannies();
+  };
+
+  handleClickMealType = async e => {
+    let { isSitdown, isPickup } = this.state;
+    await this.setState({
+      [e.target.name]: !this.state[e.target.name]
+    });
+    await this.filterGrannies();
+  };
+
+  componentDidMount = () => {
     this.props.getAllUsers();
     this.props.getAllGrandmas();
     this.props.getAllCuisines();
-  }
-
-  filterGrandmas = id => {
-    this.props.allGrandmasByCuisines(id);
   };
 
-  allGrandmasAgain = () => {
-    this.props.getAllGrandmas();
+  unCheck = () => {
+    let checkList = document.getElementsByClassName("checkbox");
+    console.log("here", checkList);
+    for (let i = 0; i < checkList.length; i++) {
+      if (checkList[i].checked) {
+        console.log(checkList[i]);
+        checkList[i].checked = false;
+      }
+    }
+  };
+
+  filterGrannies = () => {
+    let { cuisinesSelected, isSitdown, isPickup } = this.state;
+    let dataObj = {
+      cusineIds: cuisinesSelected,
+      isPickup,
+      isSitdown
+    };
+    if (
+      (!cuisinesSelected.length && !isPickup && !isSitdown) ||
+      (!cuisinesSelected.length && isPickup && isSitdown)
+    ) {
+      this.props.getAllGrandmas();
+    } else {
+      this.props.grandmasByMultiCriteria(dataObj);
+    }
   };
 
   handleClick = id => {
@@ -30,8 +79,19 @@ class MainPage extends Component {
   };
 
   toggleView = () => {
+    this.props.getAllGrandmas();
     this.setState({
       showingMap: !this.state.showingMap
+    });
+  };
+
+  displayAllGrandmas = async () => {
+    await this.unCheck();
+    await this.props.getAllGrandmas();
+    await this.setState({
+      isSitdown: false,
+      isPickup: false,
+      cuisinesSelected: []
     });
   };
 
@@ -39,21 +99,39 @@ class MainPage extends Component {
     const { showingMap } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
-        <button
-          onClick={e => this.filterGrandmas(e.target.value)}
-          value={cuisine.id}
-          key={cuisine.id}
-        >
+        <>
+          <input
+            onChange={this.handleClickCuisineType}
+            value={cuisine.id}
+            key={cuisine.id}
+            type="checkbox"
+            className="checkbox"
+          />
           {cuisine.type}
-        </button>
+        </>
       );
     });
 
     let { grandmas } = this.props;
-    if (!this.props.grandmas.length) return null;
-
+    if (!grandmas.length) return null;
     return (
       <div className="mainpage">
+        <div>
+          <input
+            type="checkbox"
+            name="isSitdown"
+            onChange={this.handleClickMealType}
+            className="checkbox"
+          />
+          Sit-Down
+          <input
+            type="checkbox"
+            name="isPickup"
+            onChange={this.handleClickMealType}
+            className="checkbox"
+          />
+          Pick-Up
+        </div>
         <div className="show-button">
           {showingMap ? (
             <button onClick={this.toggleView}>Show List View</button>
@@ -64,7 +142,7 @@ class MainPage extends Component {
         <br />
 
         <div className="filter-buttons">
-          <button onClick={this.allGrandmasAgain}>See All</button>
+          <button onClick={this.displayAllGrandmas}>See All</button>
           {cuisinesType}
         </div>
         {showingMap ? (
