@@ -1,14 +1,23 @@
 import React from "react";
+import axios from "axios";
 
 class Order extends React.Component {
   state = {
-    count: 1
+    count: 1,
+    confirmation: true,
+    full_name: "",
+    phone_number: "",
+    empty_field_name: false,
+    empty_field_number: false
   };
 
   handleAddChange = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
+    console.log(this.props.dish.dish.quantity);
+    if (this.state.count < this.props.dish.dish.quantity) {
+      this.setState({
+        count: this.state.count + 1
+      });
+    }
   };
 
   handleSubChange = () => {
@@ -19,40 +28,122 @@ class Order extends React.Component {
     }
   };
 
-  render() {
+  handleCheckOutClick = () => {
+    this.setState({ confirmation: false });
+  };
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      empty_field_name: false,
+      empty_field_number: false
+    });
+  };
+
+  handleEdit = () => {
+    this.setState({ confirmation: true });
+  };
+
+  handleFormSubmit = e => {
+    e.preventDefault();
+    let quantity =
+      parseInt(this.props.dish.dish.quantity) - parseInt(this.state.count);
+    let amount_left = {
+      remaining_quantity: quantity
+    };
+    if (
+      this.props.dish.dish.quantity &&
+      this.state.full_name !== "" &&
+      this.state.phone_number !== ""
+    ) {
+      axios.patch(
+        `/dishes/update/${parseInt(this.props.dish.dish.dish_id)}`,
+        amount_left
+      );
+      console.log(this.props.dish.dish.dish_id);
+    } else if (!this.state.full_name && !this.state.phone_number) {
+      this.setState({ empty_field_name: true, empty_field_number: true });
+    } else if (!this.state.phone_number) {
+      this.setState({ empty_field_number: true });
+    } else if (!this.state.full_name) {
+      this.setState({ empty_field_name: true });
+    }
+  };
+
+  render() {
     let dish = this.props.dish.dish;
-   
+    let price = parseInt(dish.price) * parseInt(this.state.count);
     return (
       <div className="order-page">
-        <h1>Your order</h1>
-        <div className="dish-info">
-          <p>{dish.name}</p>
-          <img src={dish.img_url} alt="dish" id="dishImg" />
-          <p>${dish.price}</p>
-          <p>{dish.timeframe}</p>
-        </div>
-        <label>oder type: </label>
-        {dish.type}
-        <div className="plus-minus-button">
-          <label>quantity: </label>
-          <button onClick={this.handleSubChange}>-</button> {this.state.count}{" "}
-          <button onClick={this.handleAddChange}>+</button>
-          <br />
-        </div>
-        <>
-          <label>description: </label>
-          {dish.description}
-        </>
-        <br />
-        <br />
-        <button
-          onClick={() => {
-            console.log("I am submit, should go to paypal now");
-          }}
-        >
-          Checkout
-        </button>
+        {this.state.confirmation ? (
+          <div>
+            <h1>Your order</h1>
+            <div className="dish-info">
+              <p>{dish.name}</p>
+              <img src={dish.img_url} alt="dish" id="dishImg" />
+              <p>${dish.price}</p>
+              <p>{dish.timeframe}</p>
+            </div>
+            <label>oder type: </label>
+            {dish.type}
+            <div className="plus-minus-button">
+              <label>quantity: </label>
+              <button onClick={this.handleSubChange}>-</button>{" "}
+              {this.state.count}{" "}
+              <button onClick={this.handleAddChange}>+</button>
+              <br />
+            </div>
+            <>
+              <label>description: </label>
+              {dish.description}
+            </>
+            <br />
+            <br />
+            <button onClick={this.handleCheckOutClick}>Checkout</button>
+          </div>
+        ) : (
+          <div>
+            <h4>Please provide your contact information below</h4>
+            <p onClick={() => this.props.goBack()}>Go Back To Grandma</p>
+            <div>
+              <form className="user-info-form" onSubmit={this.handleFormSubmit}>
+                <input
+                  name="full_name"
+                  placeholder="your full name"
+                  value={this.state.full_name}
+                  onChange={this.handleChange}
+                />
+
+                <input
+                  name="phone_number"
+                  placeholder="phone number"
+                  value={this.state.phone_number}
+                  onChange={this.handleChange}
+                />
+                {this.state.empty_field_name &&
+                this.state.empty_field_number ? (
+                  <p>please add your contact info</p>
+                ) : this.state.empty_field_name ? (
+                  <p>please add your name</p>
+                ) : this.state.empty_field_number ? (
+                  <p>please add your number</p>
+                ) : (
+                  ""
+                )}
+
+                <button>order</button>
+              </form>
+            </div>
+            <div>
+              <p>
+                {this.state.count} {dish.name} for ${price}{" "}
+              </p>
+              <img src={dish.img_url} alt="dish" id="dishImg" />
+
+              <button onClick={this.handleEdit}>edit</button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
