@@ -3,8 +3,17 @@ import { Link, withRouter } from "react-router-dom";
 
 class GrandmasDishes extends React.Component {
   render() {
-    const { type } = this.props;
+    const { type, dishes } = this.props;
     // console.log(this.props.dishes, "dishes consolelog");
+
+    if (!Object.values(dishes).length) {
+      return (
+        <div className="dish-view">
+          <h3> This granny currently doesn't have any dishes to offer</h3>
+          <h4> please checkback later </h4>
+        </div>
+      );
+    }
 
     let grannyDishDisplay = this.props.dishes.map(dish => {
       if (dish.type === "sit-down" && type === "sit-down") {

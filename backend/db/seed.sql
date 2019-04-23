@@ -25,6 +25,7 @@ CREATE TABLE users (
   bio TEXT,
 	latitude FLOAT,
 	longitude FLOAT,
+  isPublic BOOLEAN,
   cuisine_id INT REFERENCES cuisines(id)
 );
 
