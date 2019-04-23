@@ -7,6 +7,7 @@ class Order extends React.Component {
     confirmation: true,
     full_name: "",
     phone_number: "",
+    orderSummary: false,
     empty_field_name: false,
     empty_field_number: false
   };
@@ -44,7 +45,7 @@ class Order extends React.Component {
     this.setState({ confirmation: true });
   };
 
-  handleFormSubmit = e => {
+  handleFormSubmit = async e => {
     e.preventDefault();
     let quantity =
       parseInt(this.props.dish.dish.quantity) - parseInt(this.state.count);
@@ -56,11 +57,16 @@ class Order extends React.Component {
       this.state.full_name !== "" &&
       this.state.phone_number !== ""
     ) {
-      axios.patch(
+      await axios.post("/orders/new", {
+        user_id: parseInt(this.props.dish.dish.user_id),
+        dish_id: parseInt(this.props.dish.dish.dish_id),
+        isCompleted: false
+      });
+      await axios.patch(
         `/dishes/update/${parseInt(this.props.dish.dish.dish_id)}`,
         amount_left
       );
-      console.log(this.props.dish.dish.dish_id);
+      this.setState({ orderSummary: true });
     } else if (!this.state.full_name && !this.state.phone_number) {
       this.setState({ empty_field_name: true, empty_field_number: true });
     } else if (!this.state.phone_number) {
@@ -77,6 +83,11 @@ class Order extends React.Component {
       <div className="order-page">
         {this.state.confirmation ? (
           <div>
+            <p id="back-button" onClick={() => this.props.goBack()}>
+              {" "}
+              {"<--"} to Grandma
+            </p>
+
             <h1>Your order</h1>
             <div className="dish-info">
               <p>{dish.name}</p>
@@ -101,10 +112,10 @@ class Order extends React.Component {
             <br />
             <button onClick={this.handleCheckOutClick}>Checkout</button>
           </div>
-        ) : (
+        ) : !this.state.orderSummary ? (
           <div>
             <h4>Please provide your contact information below</h4>
-            <p onClick={() => this.props.goBack()}>Go Back To Grandma</p>
+            <p onClick={() => this.props.goBack()}> {"<--"} to Grandma</p>
             <div>
               <form className="user-info-form" onSubmit={this.handleFormSubmit}>
                 <input
@@ -142,6 +153,19 @@ class Order extends React.Component {
 
               <button onClick={this.handleEdit}>edit</button>
             </div>
+          </div>
+        ) : (
+          <div>
+            <h1>Your receipt</h1>
+            <p>
+              {this.state.count} {dish.name} for ${price}
+            </p>
+            <p>
+              {dish.type === "pick-up" ? "around" : "at"} {dish.timeframe}{" "}
+              {dish.date ? "on" : ""} {dish.date ? dish.date : ""}
+            </p>
+            <br />
+            <p>We cannot wait to serve you!!!</p>
           </div>
         )}
       </div>
