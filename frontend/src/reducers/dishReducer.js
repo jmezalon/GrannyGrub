@@ -3,13 +3,14 @@ import {
   ALL_LABELS,
   GOT_ERROR,
   SET_SELECTED_DISH
-} from '../actions/actionTypes';
+} from "../actions/actionTypes";
 
 const initialState = {
   dishes: [],
   callFailed: false,
   labels: [],
   selectedDish: [],
+  type: []
 };
 
 export const dishReducer = (state = initialState, action) => {

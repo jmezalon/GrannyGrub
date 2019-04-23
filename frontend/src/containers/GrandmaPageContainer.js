@@ -10,13 +10,13 @@ const mapStateToProps = state => {
     grandma: state.grandmas.grandma,
     dishes: state.dishes.dishes,
     selectedDish: state.dishes.selectedDish
+    // type: state.dishes.dishes[0].type,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getOneGrandma: id => dispatch(getOneGrandma(id)),
-
     getGrandmasDishes: id => dispatch(getGrandmasDishes(id)),
     setSelectedDish: dish => dispatch(setSelectedDish(dish))
   };
