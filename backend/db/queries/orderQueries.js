@@ -80,8 +80,10 @@ const allOrdersForGrandma = (req, res, next) => {
 };
 
 const orderSummary = (req, res, next) => {
+  let user_id = parseInt(req.body.id);
   db.any(
-    "SELECT users.id AS user_id, first_name, last_name, email, phone_number, isGrandma, building_number, address, zip_code, dishes.id AS dish_id, name, price, timeframe, orders.id AS order_id, isCompleted  FROM orders JOIN users ON orders.user_id = users.id JOIN dishes ON dishes.id = orders.dish_id"
+    "SELECT users.id AS user_id, first_name, last_name, email, phone_number, isGrandma, building_number, address, zip_code, dishes.id AS dish_id, name, price, timeframe, orders.id AS order_id, isCompleted  FROM orders JOIN users ON orders.user_id = users.id JOIN dishes ON dishes.id = orders.dish_id WHERE users.id = $1",
+    [user_id]
   )
     .then(orders => {
       res.status(200).json({
