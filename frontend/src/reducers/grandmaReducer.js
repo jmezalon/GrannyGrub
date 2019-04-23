@@ -9,7 +9,6 @@ import {
 const initialState = {
   grandmas: [],
   grandma: [],
-
   callFailed: false
 };
 
@@ -21,7 +20,6 @@ export const grandmaReducer = (state = initialState, action) => {
       return { ...state, grandmas: action.payload };
     case GET_ONE_GRANDMA:
       return { ...state, grandma: action.payload };
-
     case GOT_ERROR:
       return { ...state, callFailed: true };
     default:
