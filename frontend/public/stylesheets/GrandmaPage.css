@@ -49,7 +49,6 @@
 .time-date-div {
   border: 1px dashed purple;
 }
-}
 
 .dish-display {
   width: 65%;
@@ -64,7 +63,8 @@
   justify-content: space-between;
 }
 
-.granny_dishes {
+#dishImg {
+  width: 255px;
 }
 
 #dish_img {
