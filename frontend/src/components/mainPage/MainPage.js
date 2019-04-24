@@ -79,7 +79,6 @@ class MainPage extends Component {
   };
 
   toggleView = () => {
-    this.props.getAllGrandmas();
     this.setState({
       showingMap: !this.state.showingMap
     });
