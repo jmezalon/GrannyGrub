@@ -71,19 +71,16 @@ export const checkAuthenticateStatus = () => dispatch => {
 };
 
 export const logoutUser = () => dispatch => {
-  return (
-    axios
-      .post("/users/logout")
-      .then(() => {
-        Auth.deauthenticateUser();
-      })
-      // .then(() => {
-      //   return dispatch(removeCurrentUser(null));
-      // })
-      .catch(err => {
-        console.log("logout err", err);
-      })
-  );
+  return axios
+    .post("/users/logout")
+    .then(() => {
+      Auth.deauthenticateUser();
+      return dispatch(removeCurrentUser(null));
+    })
+
+    .catch(err => {
+      console.log("logout err", err);
+    });
 };
 
 // await this.props.history.push(
