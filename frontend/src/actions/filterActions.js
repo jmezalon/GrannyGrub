@@ -15,13 +15,24 @@ export const receiveAllCuisines = grandmas => {
   };
 };
 
-export const allGrandmasByCuisines = id => dispatch => {
+export const grandmasByMultiCriteria = data => dispatch => {
   axios
-    .get(`/filter/map-cuisine/${id}`)
+    .post(`/filter/criteria`, data)
     .then(res => {
-      dispatch(receiveAllCuisines(res.data.grandma));
+      dispatch(receiveAllCuisines(res.data.grandmas));
     })
     .catch(err => {
       dispatch(gotError(err));
     });
 };
+
+// export const filterByType = id => dispatch => {
+//   axios
+//     .get(`/filter/type/${id}`)
+//     .then(res => {
+//       dispatch(receiveAllCuisines(res.data.grandmas));
+//     })
+//     .catch(err => {
+//       dispatch(gotError(err));
+//     });
+// };
