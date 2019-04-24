@@ -4,13 +4,12 @@ import {
   GOT_ERROR,
   SET_CURRENT_USER,
   FILTER_BY_CUISINES
-} from "../actions/actionTypes";
+} from '../actions/actionTypes';
 
 const initialState = {
   grandmas: [],
   grandma: [],
-
-  callFailed: false
+  callFailed: false,
 };
 
 export const grandmaReducer = (state = initialState, action) => {

@@ -59,8 +59,7 @@ class Order extends React.Component {
     ) {
       await axios.post("/orders/new", {
         user_id: parseInt(this.props.dish.dish.user_id),
-        dish_id: parseInt(this.props.dish.dish.dish_id),
-        isCompleted: false
+        dish_id: parseInt(this.props.dish.dish.dish_id)
       });
       await axios.patch(
         `/dishes/update/${parseInt(this.props.dish.dish.dish_id)}`,

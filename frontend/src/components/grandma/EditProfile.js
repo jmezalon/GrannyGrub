@@ -1,22 +1,22 @@
-import React from 'react';
-import axios from 'axios';
-import { withRouter, Link } from 'react-router-dom';
+import React from "react";
+import axios from "axios";
+import { withRouter, Link } from "react-router-dom";
 
 class EditProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      first_name: '',
-      last_name: '',
-      phone_number: '',
-      bio: '',
-      profile_pic: '',
-      cuisine_id: '',
-      cuisine_type: '',
-      building_number: '',
-      address: '',
-      zip_code: '',
-      infoChanged: false,
+      first_name: "",
+      last_name: "",
+      phone_number: "",
+      bio: "",
+      profile_pic: "",
+      cuisine_id: "",
+      cuisine_type: "",
+      building_number: "",
+      address: "",
+      zip_code: "",
+      infoChanged: false
     };
   }
 
@@ -27,7 +27,7 @@ class EditProfile extends React.Component {
   handleSelect = e => {
     e.preventDefault();
     this.setState({
-      cuisine_id: e.target.value,
+      cuisine_id: e.target.value
     });
   };
 
@@ -42,29 +42,29 @@ class EditProfile extends React.Component {
       zip_code: this.state.zip_code,
       building_number: this.state.building_number,
       profile_pic: this.state.profile_pic,
-      phone_number: this.state.phone_number,
+      phone_number: this.state.phone_number
     };
     // console.log(this.props.user.id);
     await axios.patch(`/users/update/${parseInt(this.props.user.id)}`, grandma);
     await this.props.getOneGrandma(parseInt(this.props.user.id));
 
     this.setState({
-      infoChanged: true,
+      infoChanged: true
     });
 
-    //   await this.props.history.push(
-    //     `/grandma/${parseInt(this.props.id)}/dashboard`
-    //   );
-    // };
-
-    // this.props.history.push(
-    //   `/grandma/${parseInt(this.props.user.id)}/dashboard`
-    // );
+    await this.props.history.push(
+      `/grandma/${parseInt(this.props.id)}/dashboard`
+    );
   };
+
+  // this.props.history.push(
+  //   `/grandma/${parseInt(this.props.user.id)}/dashboard`
+  // );
 
   componentDidMount() {
     // this.props.getOneGrandma(parseInt(this.props.user.id));
     this.props.getAllCuisines();
+
     axios.get(`/users/grandma/${this.props.user.id}`).then(res => {
       this.setState({
         first_name: res.data.user.first_name,
@@ -76,7 +76,7 @@ class EditProfile extends React.Component {
         profile_pic: res.data.user.profile_pic,
         phone_number: res.data.user.phone_number,
         cuisine_id: res.data.user.cuisine_id,
-        cuisine_type: res.data.user.cuisine_type,
+        cuisine_type: res.data.user.cuisine_type
       });
     });
   }
@@ -131,7 +131,7 @@ class EditProfile extends React.Component {
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
-            value={this.state.profile_pic ? this.state.profile_pic : ''}
+            value={this.state.profile_pic ? this.state.profile_pic : ""}
           />
 
           <br />
@@ -142,7 +142,7 @@ class EditProfile extends React.Component {
             <option key="0" value="">
               {this.state.cuisine_type
                 ? this.state.cuisine_type
-                : 'Select a cuisine'}
+                : "Select a cuisine"}
             </option>
             {cuisineTypes}
           </select>
@@ -155,7 +155,7 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={this.state.bio ? this.state.bio : ''}
+            value={this.state.bio ? this.state.bio : ""}
           />
           <br />
           <h3>address</h3>
@@ -191,16 +191,6 @@ class EditProfile extends React.Component {
           <div className="save-button">
             <button>Save</button>
           </div>
-          {this.state.infoChanged ? (
-            <div className="confirmation">
-              <p>your info has been updated</p>
-              <Link to={`/grandma/${parseInt(this.props.id)}/dashboard`}>
-                <input type="button" value="Dashboard" />
-              </Link>
-            </div>
-          ) : (
-            ''
-          )}
         </form>
       </div>
     );
@@ -208,3 +198,15 @@ class EditProfile extends React.Component {
 }
 
 export default withRouter(EditProfile);
+
+//
+// {this.state.infoChanged ? (
+//   <div className="confirmation">
+//     <p>your info has been updated</p>
+//     <Link to={`/grandma/${parseInt(this.props.id)}/dashboard`}>
+//       <input type="button" value="Dashboard" />
+//     </Link>
+//   </div>
+// ) : (
+//   ''
+// )}

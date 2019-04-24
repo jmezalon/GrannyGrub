@@ -1,5 +1,9 @@
 import axios from "axios";
-import { SET_CURRENT_USER, GOT_ERROR } from "./actionTypes";
+import {
+  SET_CURRENT_USER,
+  REMOVE_CURRENT_USER,
+  GOT_ERROR
+} from "./actionTypes";
 
 import Auth from "../userauth/utils/Auth";
 
@@ -12,6 +16,10 @@ export const gotError = err => {
     type: GOT_ERROR,
     payload: err
   };
+};
+
+export const removeCurrentUser = currentUser => {
+  return { type: "REMOVE_CURRENT_USER", payload: currentUser };
 };
 
 export const registerUser = (user, loginPrams) => dispatch => {
@@ -49,7 +57,7 @@ export const getCurrentUser = user => dispatch => {
 };
 
 export const checkAuthenticateStatus = () => dispatch => {
-  return axios.get("/users/isLoggedIn").then(user => {
+  return axios.post("/users/isLoggedIn").then(user => {
     if (user.data.email === Auth.getToken()) {
       return dispatch(setCurrentUser(user.data));
     } else {
@@ -63,17 +71,19 @@ export const checkAuthenticateStatus = () => dispatch => {
 };
 
 export const logoutUser = () => dispatch => {
-  return axios
-    .post("/users/logout")
-    .then(() => {
-      Auth.deauthenticateUser();
-    })
-    .then(() => {
-      checkAuthenticateStatus();
-    })
-    .catch(err => {
-      console.log("logout err", err);
-    });
+  return (
+    axios
+      .post("/users/logout")
+      .then(() => {
+        Auth.deauthenticateUser();
+      })
+      // .then(() => {
+      //   return dispatch(removeCurrentUser(null));
+      // })
+      .catch(err => {
+        console.log("logout err", err);
+      })
+  );
 };
 
 // await this.props.history.push(
