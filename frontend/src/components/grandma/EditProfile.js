@@ -1,21 +1,19 @@
-import React from 'react';
-import axios from 'axios';
-import { withRouter, Link } from 'react-router-dom';
+import React from "react";
+import axios from "axios";
+import { withRouter, Link } from "react-router-dom";
 
 class EditProfile extends React.Component {
   state = {
-    grandma: {
-      first_name: '',
-      last_name: '',
-      phone_number: '',
-      bio: '',
-      profile_pic: '',
-      cuisine_id: '',
-      cuisine_type: '',
-      building_number: '',
-      address: '',
-      zip_code: '',
-    },
+    first_name: "",
+    last_name: "",
+    phone_number: "",
+    bio: "",
+    profile_pic: "",
+    cuisine_id: "",
+    cuisine_type: "",
+    building_number: "",
+    address: "",
+    zip_code: ""
   };
 
   handleChange = e => {
@@ -24,62 +22,36 @@ class EditProfile extends React.Component {
 
   handleSelect = e => {
     e.preventDefault();
-    this.setState({
-      cuisine_id: e.target.value,
-    });
+    this.setState({ cuisine_id: e.target.value });
+  };
+
+  grannyId = () => {
+    const path = this.props.location.pathname;
+    return path.substring(path.lastIndexOf("/") + 1);
   };
 
   handleSubmit = async e => {
     e.preventDefault();
-    let grandma = {
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
-      bio: this.state.bio,
-      cuisine_id: this.state.cuisine_id,
-      address: this.state.address,
-      zip_code: this.state.zip_code,
-      building_number: this.state.building_number,
-      profile_pic: this.state.profile_pic,
-      phone_number: this.state.phone_number,
-    };
-    // console.log(this.props.user.id);
+    const grandma = this.state;
+    delete grandma.cuisine_type;
 
-    await axios.patch(`/users/update/${parseInt(this.props.user.id)}`, grandma);
-    await this.props.getOneGrandma(parseInt(this.props.user.id));
+    await axios.patch(`/users/update/${this.grannyId()}`, grandma);
+    await this.props.getOneGrandma(this.grannyId());
 
-    await this.props.history.push(
-      `/grandma/${parseInt(this.props.id)}/dashboard`
-    );
+    await this.props.history.push(`/grandma/${this.grannyId()}/dashboard`);
   };
 
-  // this.props.history.push(
-  //   `/grandma/${parseInt(this.props.user.id)}/dashboard`
-  // );
-
+  // TODO with correct redux we can probably kill this.
   componentDidMount() {
     // this.props.getOneGrandma(parseInt(this.props.user.id));
     this.props.getAllCuisines();
-
-    axios.get(`/users/grandma/${this.props.user.id}`).then(res => {
-      this.setState({
-        first_name: res.data.user.first_name,
-        last_name: res.data.user.last_name,
-        bio: res.data.user.bio,
-        address: res.data.user.address,
-        zip_code: res.data.user.zip_code,
-        building_number: res.data.user.building_number,
-        profile_pic: res.data.user.profile_pic,
-        phone_number: res.data.user.phone_number,
-        cuisine_id: res.data.user.cuisine_id,
-        cuisine_type: res.data.user.cuisine_type,
-      });
+    axios.get(`/users/grandma/${this.grannyId()}`).then(res => {
+      this.setState({ ...res.data.user });
     });
   }
 
   render() {
-    const { grandma } = this.props;
-
-    // const grandmaProfile = this.props.grandma.map(grandma => {
+    const grandma = this.state;
 
     const cuisineTypes = this.props.cuisines.map(cuisine => {
       return (
@@ -100,33 +72,33 @@ class EditProfile extends React.Component {
             name="first_name"
             onChange={this.handleChange}
             type="text"
-            value={this.state.first_name}
+            value={grandma.first_name}
           />
           <label htmlFor="last_name">Last Name</label>
           <input
             name="last_name"
             type="text"
             onChange={this.handleChange}
-            value={this.state.last_name}
+            value={grandma.last_name}
           />
           <label htmlFor="phone_number">Phone number</label>
           <input
             name="phone_number"
             type="text"
             onChange={this.handleChange}
-            value={this.state.phone_number}
+            value={grandma.phone_number}
           />
           <br />
           <br />
 
-          <img id="profile-pic" alt="" src={this.state.profile_pic} />
+          <img id="profile-pic" alt="" src={grandma.profile_pic} />
           <label htmlFor="profile_pic">add a different image url </label>
 
           <input
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
-            value={this.state.profile_pic ? this.state.profile_pic : ''}
+            value={grandma.profile_pic ? grandma.profile_pic : ""}
           />
 
           <br />
@@ -135,9 +107,7 @@ class EditProfile extends React.Component {
 
           <select onChange={this.handleSelect}>
             <option key="0" value="">
-              {this.state.cuisine_type
-                ? this.state.cuisine_type
-                : 'Select a cuisine'}
+              {grandma.cuisine_type ? grandma.cuisine_type : "Select a cuisine"}
             </option>
             {cuisineTypes}
           </select>
@@ -150,7 +120,7 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={this.state.bio ? this.state.bio : ''}
+            value={grandma.bio ? grandma.bio : ""}
           />
           <br />
           <h3>address</h3>
@@ -161,7 +131,7 @@ class EditProfile extends React.Component {
                 placeholder="add building number"
                 name="building_number"
                 onChange={this.handleChange}
-                value={this.state.building_number}
+                value={grandma.building_number}
               />
             </span>
             <span>
@@ -170,7 +140,7 @@ class EditProfile extends React.Component {
                 placeholder="add street address"
                 name="address"
                 onChange={this.handleChange}
-                value={this.state.address}
+                value={grandma.address}
               />
             </span>
             <span>
@@ -179,7 +149,7 @@ class EditProfile extends React.Component {
                 placeholder="add zip code"
                 name="zip_code"
                 onChange={this.handleChange}
-                value={this.state.zip_code}
+                value={grandma.zip_code}
               />
             </span>
           </div>
