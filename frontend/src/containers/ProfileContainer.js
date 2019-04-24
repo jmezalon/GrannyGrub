@@ -9,16 +9,14 @@ const mapStateToProps = state => {
   return {
     grandma: state.grandmas.grandma,
     cuisines: state.cuisines.cuisines,
-    user: state.userAuth.currentUser
+    user: state.userAuth.currentUser,
+    id: state.userAuth.userId
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getOneGrandma: id => {
-      dispatch(getOneGrandma(id));
-    },
-
+    getOneGrandma: id => dispatch(getOneGrandma(id)),
     getAllCuisines: () => dispatch(getAllCuisines())
   };
 };
