@@ -2,14 +2,14 @@ import {
   SET_CURRENT_USER,
   GOT_ERROR,
   REMOVE_CURRENT_USER
-} from '../actions/actionTypes';
+} from "../actions/actionTypes";
 
-import Auth from '../userauth/utils/Auth';
+import Auth from "../userauth/utils/Auth";
 
 const initialState = {
   currentUser: [],
-  userId: '',
-  loggedIn: false,
+  userId: "",
+  loggedIn: false
 };
 
 export const userAuthReducer = (state = initialState, action) => {
@@ -20,14 +20,15 @@ export const userAuthReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
-        userId: action.payload.id,
-        loggedIn: true,
+        userId: action.payload.id
       };
+
     case REMOVE_CURRENT_USER:
       return {
         ...state,
         currentUser: action.payload,
-        loggedIn: false,
+        userId: null,
+        loggedIn: false
       };
     case GOT_ERROR:
       return { ...state, callFailed: true };

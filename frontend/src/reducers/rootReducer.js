@@ -3,7 +3,7 @@ import { userReducer } from "./userReducer";
 import { grandmaReducer } from "./grandmaReducer";
 // import { filterReducer } from "./filterReducer";
 import { cuisineReducer } from "./cuisineReducer";
-
+import { orderReducer } from "./orderReducer";
 import { dishReducer } from "./dishReducer";
 import { userAuthReducer } from "./userAuthReducer";
 const RootReducer = combineReducers({
@@ -12,7 +12,8 @@ const RootReducer = combineReducers({
   cuisines: cuisineReducer,
   // filteredGrandmas: filterReducer,
   dishes: dishReducer,
-  userAuth: userAuthReducer
+  userAuth: userAuthReducer,
+  orders: orderReducer
 });
 
 export default RootReducer;

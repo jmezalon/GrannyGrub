@@ -1,22 +1,35 @@
 import React from "react";
 import { Route, Redirect, withRouter } from "react-router-dom";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import Auth from "./Auth";
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      Auth.isUserAuthenticated() ? (
-        <Component {...props} {...rest} />
-      ) : (
-        <Redirect
-          to={{ pathname: "./auth/login", state: { from: props.locations } }}
-        />
-      )
-    }
-  />
-);
+const Private = ({ component: Component, path, loggedIn }) => {
+  return (
+    <Route
+      path={path}
+      render={props =>
+        loggedIn ? <Component {...props} /> : <Redirect to={"/auth/register"} />
+      }
+    />
+  );
+};
+
+const Authorize = ({ component: Component, path, loggedIn }) => {
+  return (
+    <Route
+      path={path}
+      render={props =>
+        !loggedIn ? <Component {...props} /> : <Redirect to={"/"} />
+      }
+    />
+  );
+};
+
+const mapStateToProps = state => {
+  return {
+    loggedIn: Auth.isUserAuthenticated()
+  };
+};
 
 //       Auth.isUserAuthenticated() ? (
 //         <Component {...props} {...rest} />
@@ -29,4 +42,15 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 //   />
 // );
 
-export default PrivateRoute;
+export const PrivateRoute = withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(Private)
+);
+export const AuthRoute = withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(Authorize)
+);

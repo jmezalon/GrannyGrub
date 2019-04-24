@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import GrandmasDishes from "../dishes/dishes";
+import Orders from "./grandmaOrders";
 
 class Dashboard extends Component {
   componentWillMount() {
     // let id = parseInt(this.props.user.id);
     this.props.getOneGrandma(this.props.id);
-    this.props.getGrandmasDishes(parseInt(this.props.id));
+    this.props.getAllOrdersForGrandma(this.props.id);
+    this.props.getGrandmasDishes(this.props.id);
   }
 
   render() {
@@ -60,6 +62,10 @@ class Dashboard extends Component {
             logout{" "}
           </button>
         </div>
+        <div>
+          <Orders />
+        </div>
+
         <div className="granny_dishes">
           <h2>Your current offerings:</h2>
           <GrandmasDishes dishes={this.props.dishes} />
