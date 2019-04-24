@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
-import "./App.css";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import './App.css';
+import axios from 'axios';
 
-import Auth from "./userauth/utils/Auth";
-import LandingPage from "./components/landingPage/landingPage";
-import OrderContainer from "./containers/OrderContainer";
+import Auth from './userauth/utils/Auth';
+import LandingPage from './components/landingPage/landingPage';
+import OrderContainer from './containers/OrderContainer';
+import ProfileContainer from './containers/ProfileContainer';
+import HomeContainer from './containers/HomeContainer';
+import MainPageContainer from './containers/MainPageContainer';
+import Navbar from './components/navbar/Navbar.js';
+import UserAuthContainer from './containers/userAuthContainer.js';
+import DishContainer from './containers/DishContainer';
+import NewDishContainer from './containers/NewDishContainer';
+import GrandmaPageContainer from './containers/GrandmaPageContainer.js';
+import DashboardContainer from './containers/DashboardContainer';
 
-import ProfileContainer from "./containers/ProfileContainer";
-import HomeContainer from "./containers/HomeContainer";
-import MainPageContainer from "./containers/MainPageContainer";
-import Navbar from "./components/navbar/Navbar.js";
-import UserAuthContainer from "./containers/userAuthContainer.js";
-import DishContainer from "./containers/DishContainer";
-import NewDishContainer from "./containers/NewDishContainer";
-import GrandmaPageContainer from "./containers/GrandmaPageContainer.js";
-import DashboardContainer from "./containers/DashboardContainer";
-import { PrivateRoute, AuthRoute } from "./userauth/utils/privateRouting.js";
+import { PrivateRoute, AuthRoute } from './userauth/utils/privateRouting.js';
 
 class App extends Component {
   goBack = () => {
@@ -31,8 +31,6 @@ class App extends Component {
     // console.log('YO User', this.state.user);
     // console.log("YO loser", this.props.currentUser.id);
 
-    const { isLoggedIn } = this.props;
-
     // if (this.props.currentUser) {
     //   const { id } = this.props.currentUser.id;
     // }
@@ -42,26 +40,20 @@ class App extends Component {
         <Navbar user={this.props.userId} />
 
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => {
-              if (isLoggedIn) {
-                return (
-                  <Redirect to={`/grandma/${this.props.userId}/dashboard`} />
-                );
-              }
-
-              return <LandingPage />;
-            }}
-          />
+          <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={HomeContainer} />
           <Route exact path="/mainpage" component={MainPageContainer} />
 
-          <AuthRoute path={"/auth"} component={UserAuthContainer} />
+          <PrivateRoute
+            path={'/grandma/:id/dashboard'}
+            component={DashboardContainer}
+          />
+
+          <AuthRoute path={'/auth'} component={UserAuthContainer} />
+
           <Route
             exact
-            path={"/grandma/:id/order"}
+            path={'/grandma/:id/order'}
             render={props => <OrderContainer {...props} goBack={this.goBack} />}
           />
           <Route
@@ -75,11 +67,6 @@ class App extends Component {
           <Route exact path="/grandma/newdish" component={NewDishContainer} />
 
           <Route exact path="/grandma/:id" component={GrandmaPageContainer} />
-
-          <PrivateRoute
-            path={"/grandma/:id/dashboard"}
-            component={DashboardContainer}
-          />
         </Switch>
       </div>
     );
