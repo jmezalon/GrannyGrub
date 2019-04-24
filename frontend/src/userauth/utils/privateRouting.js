@@ -14,12 +14,16 @@ const Private = ({ component: Component, path, loggedIn }) => {
   );
 };
 
-const Authorize = ({ component: Component, path, loggedIn }) => {
+const Authorize = ({ component: Component, path, loggedIn, id }) => {
   return (
     <Route
       path={path}
       render={props =>
-        !loggedIn ? <Component {...props} /> : <Redirect to={"/"} />
+        !loggedIn ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={`/grandma/${id}/dashboard`} />
+        )
       }
     />
   );
@@ -27,7 +31,8 @@ const Authorize = ({ component: Component, path, loggedIn }) => {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: Auth.isUserAuthenticated()
+    loggedIn: Auth.isUserAuthenticated(),
+    id: state.userAuth.userId
   };
 };
 
@@ -48,6 +53,7 @@ export const PrivateRoute = withRouter(
     null
   )(Private)
 );
+
 export const AuthRoute = withRouter(
   connect(
     mapStateToProps,
