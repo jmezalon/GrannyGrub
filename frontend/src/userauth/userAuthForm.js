@@ -16,7 +16,9 @@ class UserAuthForm extends React.Component {
     building_number: "",
     address: "",
     zip_code: "",
-    password: ""
+    password: "",
+    longitude: "",
+    latitude: ""
   };
 
   handleChange = e => {
@@ -33,7 +35,26 @@ class UserAuthForm extends React.Component {
     // console.log(e.target.value);
   };
 
+  // getCoords = coords => {
+  //   // console.log(this.state, "before");
+  //   axios
+  //     .get(
+  //       `https://maps.googleapis.com/maps/api/geocode/json?address=${coords}&key=AIzaSyAThAa2thsgXHfh-D09OkhewLe5VVAlhYs`
+  //     )
+  //     .then(res => {
+  //       this.setState({
+  //         longitude: res.data.results[0].geometry.location.lnt,
+  //         latitude: res.data.results[0].geometry.location.lat
+  //       });
+  //     });
+  //   // .then((err) => {
+  //   // console.log(err, "coords err");
+  //   // });
+  // };
+
   handleRegisterUser = async e => {
+    e.preventDefault();
+
     const {
       first_name,
       last_name,
@@ -44,8 +65,32 @@ class UserAuthForm extends React.Component {
       building_number,
       address,
       zip_code,
-      password
+      password,
+      longitude,
+      latitude
     } = this.state;
+    // let grannyAddress = `${building_number}, ${address}, New York,  ${zip_code}`;
+
+    // await this.getCoords(
+    //   ``
+    // );
+    // this.getCoords = coords => {
+    //   // console.log(this.state, "before");
+    let coords = await axios.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${building_number}, ${address}, New York, ${zip_code}&key=AIzaSyAThAa2thsgXHfh-D09OkhewLe5VVAlhYs`
+    );
+    // .then(res => {
+
+    this.setState({
+      longitude: coords.data.results[0].geometry.location.lng,
+      latitude: coords.data.results[0].geometry.location.lat
+    });
+    // });
+    // .then((err) => {
+    // console.log(err, "coords err");
+    // });
+    // };
+    // console.log(this.state.latitude, "after");
 
     let newUser = {
       first_name,
@@ -57,14 +102,18 @@ class UserAuthForm extends React.Component {
       building_number,
       address,
       zip_code,
-      cuisine_id
+      cuisine_id,
+      longitude: this.state.longitude,
+      latitude: this.state.latitude
     };
 
     const loginPrams = { email, password };
+    // console.log(newUser, "before registering");
+    // console.log(longitude, "before registering");
+    // console.log(latitude, "before registering");
 
-    e.preventDefault();
-
-    await this.props.registerUser(newUser, loginPrams);
+    this.props.registerUser(newUser, loginPrams);
+    // console.log(newUser, "when registerring");
     this.handleLoginRequest();
   };
 
@@ -104,7 +153,9 @@ class UserAuthForm extends React.Component {
       building_number,
       address,
       zip_code,
-      password
+      password,
+      longitude,
+      latitude
     } = this.state;
 
     return (
@@ -142,6 +193,8 @@ class UserAuthForm extends React.Component {
                   address={address}
                   zip_code={zip_code}
                   password={password}
+                  longitude={longitude}
+                  latitude={latitude}
                   isLoggedIn={this.props.isLoggedIn}
                   handleLogin={this.handleLogin}
                   handleRegisterUser={this.handleRegisterUser}

@@ -4,7 +4,7 @@ const authHelpers = require("../../auth/helpers");
 //get only gmas
 const getAllUsers = (req, res, next) => {
   db.any(
-    "SELECT DISTINCT users.id AS id, isGrandma, first_name, last_name, latitude, longitude, profile_pic, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id  FROM users JOIN dishes ON dishes.user_id = users.id JOIN cuisines ON cuisines.id = users.cuisine_id"
+    "SELECT DISTINCT users.id AS id, isGrandma, first_name, last_name, latitude, longitude, profile_pic, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id  FROM users FULL JOIN dishes ON dishes.user_id = users.id JOIN cuisines ON cuisines.id = users.cuisine_id"
   )
     .then(users => {
       res.status(200).json({
@@ -98,12 +98,12 @@ const createNewUser = (req, res, next) => {
   req.body.address = req.body.address ? req.body.address : null;
   req.body.zip_code = req.body.zip_code ? req.body.zip_code : null;
   req.body.bio = req.body.bio ? req.body.bio : null;
-  req.body.latitude = req.body.latitude ? req.body.latitude : null;
-  req.body.longitude = req.body.longitude ? req.body.longitude : null;
+  // req.body.latitude = req.body.latitude ? req.body.latitude : null;
+  // req.body.longitude = req.body.longitude ? req.body.longitude : null;
   req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
   db.none(
-    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id})",
+    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id, latitude, longitude) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id},${latitude}, ${longitude})",
 
     {
       first_name: req.body.first_name,
@@ -115,7 +115,9 @@ const createNewUser = (req, res, next) => {
       building_number: Number(req.body.building_number),
       address: req.body.address,
       zip_code: req.body.zip_code,
-      cuisine_id: req.body.cuisine_id
+      cuisine_id: req.body.cuisine_id,
+      latitude: Number(req.body.latitude),
+      longitude: Number(req.body.longitude)
     }
   )
     .then(() => {
