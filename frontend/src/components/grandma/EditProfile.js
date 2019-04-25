@@ -46,7 +46,7 @@ class EditProfile extends React.Component {
     };
     // console.log(this.props.user.id);
     await axios.patch(`/users/update/${parseInt(this.props.user.id)}`, grandma);
-    await this.props.getOneGrandma(parseInt(this.props.user.id));
+    // await this.props.getOneGrandma(parseInt(this.props.user.id));
 
     this.setState({
       infoChanged: true
