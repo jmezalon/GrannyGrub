@@ -114,7 +114,7 @@ class MainPage extends Component {
         let coords = res.data.results[0].geometry.location;
         this.setState({
           center: coords,
-          zoom: 13,
+          zoom: 11,
           address: ""
         });
       });

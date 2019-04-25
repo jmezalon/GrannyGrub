@@ -30,7 +30,9 @@ class MapView extends Component {
   };
 
   componentDidUpdate = prevProps => {
-    if (
+    if (prevProps.center.lat !== this.props.center.lat) {
+      this.showMap();
+    } else if (
       prevProps.center.lat !== this.props.center.lat ||
       prevProps.grandmas.length !== this.props.grandmas.length ||
       prevProps.center.lat !== this.map.getCenter().lat()
