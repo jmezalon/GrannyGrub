@@ -10,56 +10,54 @@ class MapView extends Component {
     super(props);
     this.map = undefined;
     this.markers = [];
+    this.infoWindows = [];
   }
 
-  componentDidUpdate(prevProps) {
-    this.updateMap();
-  }
-
-  onMouseoverMarker = (props, marker, e) => {};
-
-  onMouseLeave = (props, marker, e) => {};
-
-  // getCoords = address => {
-  //   axios
-  //     .get(
-  //       `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${
-  //         secret.apiKey
-  //       }`
-  //     )
-  //     .then(res => {
-  //       this.setState({
-  //         coords: res.data.results[0].geometry.location
-  //       });
-  //     });
-  // };
-
-  // onMapClicked = props => {
-  //   if (this.state.showingInfoWindow) {
-  //     this.setState({
-  //       showingInfoWindow: false,
-  //       activeMarker: null
-  //     });
-  //   }
-  // };
-
-  infoWindow = (lastname, pic, cuisine) => {
+  infoWindow = (lastname, pic, cuisine, id) => {
     const divstyle = { width: "20px", height: "20px" };
     return `
-<div class="info">
-  <p>Grandma  ${lastname}</p>
-  <div id="image">
-  <img src=${pic}   alt="" />
-  </div>
-  <p>${cuisine} style</p>
-</div>
-`;
+    <div id=${id} class="info">
+      <p>Grandma  ${lastname}</p>
+      <div id="image">
+        <img src=${pic} alt="grandma ${lastname}" />
+      </div>
+      <p>${cuisine} style</p>
+    </div>`;
   };
 
-  componentDidMount() {
-    const zoom = this.props.showingMap ? 11 : 10;
+  componentDidMount = () => {
+    this.showMap();
+  };
+
+  componentDidUpdate = prevProps => {
+    if (prevProps.center.lat !== this.props.center.lat) {
+      this.showMap();
+    } else if (
+      prevProps.center.lat !== this.props.center.lat ||
+      prevProps.grandmas.length !== this.props.grandmas.length ||
+      prevProps.center.lat !== this.map.getCenter().lat()
+    ) {
+      this.updateMap();
+    }
+    // if hovred grandma
+    // wait for markers SAFE
+    // find the marker that matched the grandma
+    // show its infowindow.
+    if (this.props.hoveredGrandmaId) {
+      const [marker, infoWindow] = this.markers.find(m => {
+        return m[0].grandmaId === this.props.hoveredGrandmaId;
+      });
+      // const infoWindow = grandmaMapObject[1];
+      infoWindow.open(this.map, marker);
+      // TODO open the infowindow`
+    }
+  };
+
+  showMap = () => {
+    const zoom = this.props.zoom;
+    const center = this.props.center;
     this.map = new window.google.maps.Map(document.getElementById("map"), {
-      center: { lat: 40.639286, lng: -73.951499 },
+      center: center,
       zoom: zoom,
       streetViewControl: false,
       mapTypeControl: false,
@@ -176,9 +174,8 @@ class MapView extends Component {
         }
       ]
     });
-
     this.updateMap();
-  }
+  };
 
   updateMap = () => {
     if (this.markers.length) {
@@ -190,22 +187,31 @@ class MapView extends Component {
     this.markers = [];
 
     this.props.grandmas.forEach(grandma => {
-      // console.log(grandma.latitude, grandma.longitude);
-
       const infoWindow = new window.google.maps.InfoWindow({
         content: this.infoWindow(
           grandma.last_name,
           grandma.profile_pic,
-          grandma.cuisine_type
+          grandma.cuisine_type,
+          grandma.id
         )
+      });
+      const handleClick = this.props.handleClick.bind(this);
+      window.google.maps.event.addListener(infoWindow, "domready", function() {
+        document
+          .getElementById(grandma.id)
+          .addEventListener("click", function(e) {
+            handleClick(grandma.id);
+          });
       });
 
       const marker = new window.google.maps.Marker({
         position: { lat: grandma.latitude, lng: grandma.longitude },
         map: this.map,
         icon,
-        title: grandma.last_name
+        title: grandma.last_name,
+        grandmaId: grandma.id
       });
+
       this.markers.push([marker, infoWindow]);
 
       var myListener = marker.addListener("mouseover", () => {
@@ -215,10 +221,6 @@ class MapView extends Component {
         infoWindow.open(this.map, marker);
       });
 
-      // marker.addListener("mouseout", () => {
-      //   infoWindow.close(this.map, marker);
-      //   // console.log(marker);
-      // });
       marker.addListener("click", () => {
         this.props.handleClick(grandma.id);
       });
@@ -226,32 +228,13 @@ class MapView extends Component {
   };
 
   render() {
-    console.log("mapview render");
     let { grandmas, handleClick, showingMap } = this.props;
-
     if (!grandmas.length) return null;
-    // const locations = grandmas.map(granny => {
-    //   return (
-    //     <Marker
-    //       key={granny.id}
-    //       onClick={() => handleClick(granny.id)}
-    //       onMouseover={this.onMouseoverMarker}
-    //       onMouseout={this.onMouseLeave}
-    //       pic={granny.profile_pic}
-    //       name={granny.last_name}
-    //       icon={icon}
-    //       position={{
-    //         lat: granny.latitude,
-    //         lng: granny.longitude
-    //       }}
-    //     />
-    //   );
-    // });
-    // TODO Markers
     const divStyle = {
       width: "500px",
       height: "500px"
     };
+
     return (
       <div className={showingMap ? "map-main" : "map-list-veiw"}>
         <div id="map" />
