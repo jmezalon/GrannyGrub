@@ -134,14 +134,16 @@ const createNewUser = (req, res, next) => {
 const fixGrandma = (req, res, next) => {
   let queryStringArray = [];
   let bodyKeys = Object.keys(req.body);
+  console.log({ body: req.body });
   bodyKeys.forEach(key => {
     queryStringArray.push(key + "=${" + key + "}");
   });
   let queryString = queryStringArray.join(", ");
-  db.none(
-    "UPDATE users SET " + queryString + " WHERE id=" + req.params.id,
-    req.body
-  )
+  console.log(req.params);
+  const grannyId = parseInt(req.params.id, 10);
+  console.log({ grannyId });
+  console.log({ queryString });
+  db.none("UPDATE users SET " + queryString + " WHERE id=" + grannyId, req.body)
     .then(() => {
       res.status(200).json({
         status: "success",
