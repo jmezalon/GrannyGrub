@@ -1,6 +1,7 @@
 import React from "react";
 import NewDishForm from "./NewDishForm";
 import axios from "axios";
+import NewDishResults from "./NewDishResults";
 
 class HandleNewDish extends React.Component {
   state = {
@@ -74,6 +75,13 @@ class HandleNewDish extends React.Component {
   };
 
   handleSubmit = e => {
+    e.preventDefault();
+    this.setState({
+      submitted: true
+    });
+  };
+
+  handleResultSubmit = e => {
     const {
       dishName,
       dishImg,
@@ -90,6 +98,7 @@ class HandleNewDish extends React.Component {
 
     //if else statement
     e.preventDefault();
+    debugger;
     axios
       .post("/dishes/new", {
         name: dishName,
@@ -125,8 +134,7 @@ class HandleNewDish extends React.Component {
               ? "0" + (new Date().getDate() + 1)
               : new Date().getDate() + 1),
           user_id: 14,
-          price: "",
-          submitted: true
+          price: ""
         });
       })
       .then(() => {
@@ -162,37 +170,58 @@ class HandleNewDish extends React.Component {
       dishImg,
       user_id,
       date,
-      dishImgFile
+      dishImgFile,
+      submitted
     } = this.state;
 
-    return (
-      <>
+    if (!submitted) {
+      return (
+        <>
+          <div className="newDishContainer">
+            <NewDishForm
+              dishName={dishName}
+              quantity={quantity}
+              type={type}
+              description={description}
+              labels={this.props.labels}
+              label_id={label_id}
+              cuisines={this.props.cuisines}
+              dishImg={dishImg}
+              cuisine_type={cuisine_id}
+              user_id={user_id}
+              timeframe={timeframe}
+              price={price}
+              date={date}
+              dishImgFile={dishImgFile}
+              selectedQuantity={selectedQuantity}
+              handleChange={this.handleChange}
+              handleClick={this.handleClick}
+              handleQuantityChange={this.handleQuantityChange}
+              handleSubmit={this.handleSubmit}
+              handleTypeChange={this.handleTypeChange}
+            />
+          </div>
+        </>
+      );
+    } else {
+      return (
         <div className="newDishContainer">
-          <NewDishForm
+          <NewDishResults
             dishName={dishName}
             quantity={quantity}
             type={type}
             description={description}
-            labels={this.props.labels}
-            label_id={label_id}
-            cuisines={this.props.cuisines}
             dishImg={dishImg}
             cuisine_type={cuisine_id}
-            user_id={user_id}
             timeframe={timeframe}
             price={price}
             date={date}
-            dishImgFile={dishImgFile}
             selectedQuantity={selectedQuantity}
-            handleChange={this.handleChange}
-            handleClick={this.handleClick}
-            handleQuantityChange={this.handleQuantityChange}
-            handleSubmit={this.handleSubmit}
-            handleTypeChange={this.handleTypeChange}
+            handleResultSubmit={this.handleResultSubmit}
           />
         </div>
-      </>
-    );
+      );
+    }
   }
 }
 
