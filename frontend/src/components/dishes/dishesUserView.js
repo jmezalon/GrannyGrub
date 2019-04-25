@@ -9,7 +9,7 @@ class GrandmasDishes extends React.Component {
     if (!Object.values(dishes).length) {
       return (
         <div className="dish-view">
-          <h3> This granny currently doesn't have any dishes to offer</h3>
+          <h3> This granny currently does not have any dishes to offer</h3>
           <h4> please checkback later </h4>
         </div>
       );

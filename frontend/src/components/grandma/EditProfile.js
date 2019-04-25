@@ -32,6 +32,7 @@ class EditProfile extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+
     const grandma = this.state;
     delete grandma.cuisine_type;
 
