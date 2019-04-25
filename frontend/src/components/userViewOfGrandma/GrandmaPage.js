@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import '../../css/userViewOfGrandma/GrandmaPage.css';
-import GrandmasDishes from '../dishes/dishesUserView';
+import React, { Component } from "react";
+import axios from "axios";
+import "../../css/userViewOfGrandma/GrandmaPage.css";
+import GrandmasDishes from "../dishes/dishesUserView";
 
 class GrandmaPage extends Component {
   state = {
-    type: '',
-    selectedDish: [],
+    type: "",
+    selectedDish: []
   };
 
   componentDidMount() {
@@ -24,59 +24,40 @@ class GrandmaPage extends Component {
       prevProps.dishes[0].dish_id !== this.props.dishes[0].dish_id
     ) {
       this.setState({
-        type: this.props.dishes[0].type,
+        type: this.props.dishes[0].type
       });
     }
   }
 
-  handleTypeToggle = e => {
-    this.setState({
-      type: e.target.value,
-    });
-  };
-
-  handleChange = dish => {
+  handleClick = dish => {
     this.props.setSelectedDish(dish);
   };
 
   render() {
     let { grandma, dishes } = this.props;
+
+    let id = parseInt(this.props.match.params.id);
     if (!Object.values(grandma).length) return null;
 
     if (dishes.length && !this.state.type) {
       this.setState({
-        type: dishes[0].type,
+        type: dishes[0].type
       });
     }
     // console.log(this.state.selectedDish);
 
     let grannyId = this.props.match.params.id;
-    console.log('THE GRANDMA STATE', this.state);
+    console.log("THE GRANDMA STATE", this.state);
     return (
       <div className="user-view-granny-page">
-        <label htmlFor="pick-up"> pickup </label>
-        <input
-          type="radio"
-          name="type"
-          value="pick-up"
-          onChange={this.handleTypeToggle}
-          checked={this.state.type === 'pick-up'}
-        />
-        <label htmlFor="sit-down"> sitdown </label>
-        <input
-          type="radio"
-          name="type"
-          value="sit-down"
-          onChange={this.handleTypeToggle}
-          checked={this.state.type === 'sit-down'}
-        />
-
         <div>
           <GrandmasDishes
             dishes={this.props.dishes}
             type={this.state.type}
-            handleChange={this.handleChange}
+            handleClick={this.handleClick}
             setSelectedDish={this.props.setSelectedDish}
+            getGrandmasDishes={this.props.getGrandmasDishes}
+            id={id}
           />
         </div>
 

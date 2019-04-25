@@ -1,81 +1,60 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import DishList from "./dishList";
 
 class GrandmasDishes extends React.Component {
-  render() {
-    const { type, dishes } = this.props;
-    // console.log(this.props.dishes, "dishes consolelog");
+  state = {
+    sitdowndisplay: true
+  };
 
-    if (!Object.values(dishes).length) {
-      return (
-        <div className="dish-view">
-          <h3> This granny currently doesn't have any dishes to offer</h3>
-          <h4> please checkback later </h4>
-        </div>
-      );
-    }
+  componentDidMount = () => {
+    this.filterDishes();
+  };
 
-    let grannyDishDisplay = this.props.dishes.map(dish => {
-      if (dish.type === "sit-down" && type === "sit-down") {
-        return (
-          <div className="dish-view" key={dish.dish_id}>
-            <div className="dishInfo">
-              <h3> {dish.name}</h3>
-              <img src={dish.img_url} alt="dish" id="dish_img" />
-              <p> ${dish.price} </p>
-              <p> Meal type: {dish.type} </p>
-            </div>
-            <Link to={`/grandma/${dish.dish_id}/order`}>
-              <button
-                onClick={() => this.props.handleChange({ dish })}
-                value={dish}
-              >
-                {" "}
-                book{" "}
-              </button>
-            </Link>
-            <div className="time-date-div">
-              <p>timefrmae: {dish.timeframe} </p>
-              <p> date: {dish.date} </p>
-            </div>
-          </div>
-        );
-      } else if (dish.type === "pick-up" && type === "pick-up") {
-        return (
-          <div className="dish-view" key={dish.dish_id}>
-            <div className="dishInfo">
-              <h3> {dish.name}</h3>
-              <img src={dish.img_url} alt="dish" id="dish_img" />
-              <p> ${dish.price} </p>
-              <p> Meal type: {dish.type} </p>
-            </div>
-            <div>
-              <Link to={`/grandma/${dish.dish_id}/order`}>
-                <button onClick={() => this.props.handleChange({ dish })}>
-                  order{" "}
-                </button>
-              </Link>
-            </div>
-            <div className="time-date-div">
-              <p>timefrmae: {dish.timeframe} </p>
-              <p> date: {dish.date} </p>
-            </div>
-          </div>
-        );
-      } else if (!this.props.dishes) {
-        return (
-          <div>
-            <p>
-              this grandma currently has no offering, get in contact with her
-              and recomment something to eat
-            </p>
-          </div>
-        );
+  filterDishes = () => {
+    const filteredDishes = this.props.dishes.filter(dish => {
+      if (this.state.sitdowndisplay) {
+        return dish.type === "sit-down";
+      } else {
+        return dish.type === "pick-up";
       }
     });
+
+    return filteredDishes;
+  };
+
+  handleTypeToggle = e => {
+    const value = e.target.value;
+    this.setState(prevState => {
+      return {
+        type: value,
+        sitdowndisplay: !prevState.sitdowndisplay
+      };
+    });
+  };
+
+  render() {
+    const resultDishes = this.filterDishes();
     return (
       <>
-        <div className="dish-display">{grannyDishDisplay}</div>
+        <label htmlFor="pick-up"> pickup </label>
+        <input
+          type="radio"
+          name="type"
+          value="pick-up"
+          onChange={this.handleTypeToggle}
+          checked={!this.state.sitdowndisplay}
+        />
+        <label htmlFor="sit-down"> sitdown </label>
+        <input
+          type="radio"
+          name="type"
+          value="sit-down"
+          onChange={this.handleTypeToggle}
+          checked={this.state.sitdowndisplay}
+        />
+
+        <DishList dishes={resultDishes} handleClick={this.props.handleClick} />
       </>
     );
   }
