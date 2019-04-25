@@ -13,7 +13,9 @@ class EditProfile extends React.Component {
     cuisine_type: "",
     building_number: "",
     address: "",
-    zip_code: ""
+    zip_code: "",
+    longitude: "",
+    latitude: ""
   };
 
   handleChange = e => {
@@ -32,6 +34,22 @@ class EditProfile extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+    const { building_number, address, zip_code } = this.state;
+
+    if (
+      this.props.grandma.address !== address ||
+      this.props.grandma.building_number !== building_number ||
+      this.props.zip_code !== zip_code
+    ) {
+      let coords = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${building_number}, ${address}, New York, ${zip_code}&key=AIzaSyAThAa2thsgXHfh-D09OkhewLe5VVAlhYs`
+      );
+
+      this.setState({
+        longitude: coords.data.results[0].geometry.location.lng,
+        latitude: coords.data.results[0].geometry.location.lat
+      });
+    }
 
     const grandma = this.state;
     delete grandma.cuisine_type;
