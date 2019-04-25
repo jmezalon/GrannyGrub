@@ -24,3 +24,6 @@ const Dish = ({ dish, handleClick }) => {
   );
 };
 export default Dish;
+
+//todo
+//add if else for btn if remaining_quantity = 0.
