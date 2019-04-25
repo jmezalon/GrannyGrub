@@ -16,6 +16,8 @@ import NewDishContainer from './containers/NewDishContainer';
 import GrandmaPageContainer from './containers/GrandmaPageContainer.js';
 import DashboardContainer from './containers/DashboardContainer';
 
+import DashboardMain from './components/grandma/DashboardMain';
+
 import { PrivateRoute, AuthRoute } from './userauth/utils/privateRouting.js';
 
 class App extends Component {
@@ -37,8 +39,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Navbar user={this.props.userId} />
-
+        <Navbar id={this.props.userId} />
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" component={HomeContainer} />
@@ -47,6 +48,21 @@ class App extends Component {
           <PrivateRoute
             path={'/grandma/:id/dashboard'}
             component={DashboardContainer}
+            goBack={this.goBack}
+            id={this.props.userid}
+          />
+
+          <PrivateRoute
+            path={'/grandma/edit/:id'}
+            component={ProfileContainer}
+            goBack={this.goBack}
+            id={this.props.userid}
+          />
+
+          <PrivateRoute
+            path={'/grandma/newdish'}
+            component={NewDishContainer}
+            goBack={this.goBack}
           />
 
           <AuthRoute path={'/auth'} component={UserAuthContainer} />
@@ -56,15 +72,6 @@ class App extends Component {
             path={'/grandma/:id/order'}
             render={props => <OrderContainer {...props} goBack={this.goBack} />}
           />
-          <Route
-            exact
-            path={`/grandma/edit/:id`}
-            render={props => (
-              <ProfileContainer {...props} goBack={this.goBack} />
-            )}
-          />
-
-          <Route exact path="/grandma/newdish" component={NewDishContainer} />
 
           <Route exact path="/grandma/:id" component={GrandmaPageContainer} />
         </Switch>
@@ -115,3 +122,13 @@ export default withRouter(App);
 //   path={"/grandma/:id/dashboard"}
 //   component={DashboardContainer}
 // />
+
+// <Route
+//   exact
+//   path={`/grandma/edit/:id`}
+//   render={props => (
+//     <ProfileContainer {...props} goBack={this.goBack} />
+//   )}
+// />
+//
+// <Route exact path="/grandma/newdish" component={NewDishContainer} />

@@ -114,7 +114,6 @@ class UserAuthForm extends React.Component {
 
     this.props.registerUser(newUser, loginPrams);
     // console.log(newUser, "when registerring");
-    this.handleLoginRequest();
   };
 
   handleLogin = async e => {
