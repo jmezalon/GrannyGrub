@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router";
+import { withRouter, Link } from "react-router-dom";
 
 class GrandmasDishes extends React.Component {
   // componentDidMount() {
@@ -19,7 +19,9 @@ class GrandmasDishes extends React.Component {
             <p> Meal type: {dish.type} </p>
           </div>
           <div>
-            <button> edit </button>
+            <Link to={`/edit/newdish/${dish.dish_id}`}>
+              <button> edit </button>
+            </Link>
           </div>
           <div className="time-date-div">
             <p>timefrmae: {dish.timeframe} </p>
