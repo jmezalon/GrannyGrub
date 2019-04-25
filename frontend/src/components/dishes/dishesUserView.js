@@ -9,7 +9,12 @@ class GrandmasDishes extends React.Component {
 
 
   componentDidMount = () => {
-    this.filterDishes();
+    const resultDishes = this.filterDishes();
+    if (!resultDishes.length) {
+      this.setState({
+        sitdowndisplay: false
+      });
+    }
   };
 
 
