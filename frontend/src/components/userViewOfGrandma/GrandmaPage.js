@@ -11,22 +11,8 @@ class GrandmaPage extends Component {
 
   componentDidMount() {
     let id = parseInt(this.props.match.params.id);
-    this.props.getGrandmasDishes(id);
     this.props.getOneGrandma(id);
-  }
-
-  componentDidUpdate(prevProps) {
-    // let defaultDishes = prevProps.dishes;
-    // debugger;
-    if (
-      prevProps.dishes[0] &&
-      this.props.dishes[0] &&
-      prevProps.dishes[0].dish_id !== this.props.dishes[0].dish_id
-    ) {
-      this.setState({
-        type: this.props.dishes[0].type
-      });
-    }
+    this.props.getGrandmasDishes(id);
   }
 
   handleClick = dish => {
@@ -35,7 +21,7 @@ class GrandmaPage extends Component {
 
   render() {
     let { grandma, dishes } = this.props;
-
+    console.log(grandma);
     let id = parseInt(this.props.match.params.id);
     if (!Object.values(grandma).length) return null;
 
@@ -44,10 +30,8 @@ class GrandmaPage extends Component {
         type: dishes[0].type
       });
     }
-    // console.log(this.state.selectedDish);
 
     let grannyId = this.props.match.params.id;
-    console.log("THE GRANDMA STATE", this.state);
     return (
       <div className="user-view-granny-page">
         <div>
@@ -68,7 +52,7 @@ class GrandmaPage extends Component {
             src={grandma.profile_pic}
             alt=""
           />
-          <p>id: {grandma.user_id}</p>
+          <p>id: {grandma.id}</p>
           <p>cuisine type: {grandma.cuisine_type}</p>
           <p>bio: {grandma.bio}</p>
         </div>
