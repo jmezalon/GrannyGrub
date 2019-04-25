@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import React, { Component } from "react";
+import { NavLink, withRouter } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
-class Navbar extends Component {
+class GrannyNavbar extends Component {
   render() {
     const { loggedIn } = this.props;
+
     return (
       <div className="navbar-parent">
         <div className="logo-div">
@@ -13,16 +14,14 @@ class Navbar extends Component {
           </NavLink>
         </div>
         <div className="middle-options">
-          <NavLink to={`/grandma/edit/${parseInt(this.props.id)}`}>
-            edit profile
-          </NavLink>
           <NavLink to={`/grandma/${parseInt(this.props.id)}/dashboard`}>
             dashboard
           </NavLink>
+
+          <NavLink to={`/grandma/edit/${parseInt(this.props.id)}`}>
+            edit profile
+          </NavLink>
           <NavLink to="/grandma/newdish">new dish</NavLink>
-          <NavLink to="/grandma/5">user view of grandma</NavLink>
-          <NavLink to="/mainpage">Main Page</NavLink>
-          <NavLink to="/grandma/5/order">order</NavLink>
         </div>
       </div>
 
@@ -52,4 +51,4 @@ class Navbar extends Component {
 }
 
 //
-export default withRouter(Navbar);
+export default withRouter(GrannyNavbar);

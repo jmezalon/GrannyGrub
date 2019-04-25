@@ -36,17 +36,6 @@ const mapStateToProps = state => {
   };
 };
 
-//       Auth.isUserAuthenticated() ? (
-//         <Component {...props} {...rest} />
-//       ) : (
-//         <Redirect
-//           to={{ pathname: "./auth/login", state: { from: props.locations } }}
-//         />
-//       )
-//     }
-//   />
-// );
-
 export const PrivateRoute = withRouter(
   connect(
     mapStateToProps,
