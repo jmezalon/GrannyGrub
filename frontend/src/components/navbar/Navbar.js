@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import React, { Component } from "react";
+import { NavLink, withRouter } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 class Navbar extends Component {
   render() {
@@ -13,10 +13,10 @@ class Navbar extends Component {
           </NavLink>
         </div>
         <div className="middle-options">
-          <NavLink to={`/grandma/edit/${this.props.userId}`}>
+          <NavLink to={`/grandma/edit/${parseInt(this.props.userId)}`}>
             edit profile
           </NavLink>
-          <NavLink to={`/grandma/${this.props.userId}/dashboard`}>
+          <NavLink to={`/grandma/${parseInt(this.props.userId)}/dashboard`}>
             dashboard
           </NavLink>
           <NavLink to="/grandma/newdish">new dish</NavLink>

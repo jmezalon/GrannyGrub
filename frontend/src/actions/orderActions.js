@@ -1,25 +1,27 @@
-import axios from 'axios';
-import { GET_GRANDMAS_ORDERS, GOT_ERROR } from './actionTypes';
+import axios from "axios";
+import { GET_GRANDMAS_ORDERS, GOT_ERROR } from "./actionTypes";
 
 export const gotError = err => {
   return {
     type: GOT_ERROR,
-    payload: err,
+    payload: err
   };
 };
 
-const receiveAllOrders = order => {
+const receiveAllOrders = orders => {
   return {
     type: GET_GRANDMAS_ORDERS,
-    payload: order,
+    payload: orders
   };
 };
 
-export const getAllOrdersForGrandma = id => dispatch => {
+export const getAllOrdersForGrandma = grandma_id => dispatch => {
   axios
-    .get(`/orders/grandma/${id}`)
+    .get(`/orders/grandma/${grandma_id}`)
+
     .then(res => {
-      dispatch(receiveAllOrders(res.data.order));
+      console.log("got all orders");
+      dispatch(receiveAllOrders(res.data.orders));
     })
     .catch(err => {
       dispatch(gotError(err));

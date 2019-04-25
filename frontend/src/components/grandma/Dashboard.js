@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
-import axios from "axios";
-import GrandmasDishes from "../dishes/dishes";
-import Orders from "./grandmaOrders";
+import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
+import axios from 'axios';
+import GrandmasDishes from '../dishes/dishes';
+import Orders from './grandmaOrders';
 
 class Dashboard extends Component {
   componentWillMount() {
-    // let id = parseInt(this.props.grandma.id);
+
     this.props.getOneGrandma(this.props.id);
     this.props.getAllOrdersForGrandma(this.props.id);
     this.props.getGrandmasDishes(this.props.id);
@@ -27,9 +27,11 @@ class Dashboard extends Component {
             id="granny-view-granny-pic"
             alt=""
             src={
+
               this.props.grandma
                 ? this.props.grandma.profile_pic
                 : "http://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Contact-icon.png"
+
             }
           />
           <div className="info-box">
@@ -41,6 +43,7 @@ class Dashboard extends Component {
             <h6>
               {this.props.grandma.building_number} {this.props.grandma.address}{" "}
               {this.props.grandma.zip_code}
+
             </h6>
             <label htmlFor="bio" />
             <p>{this.props.grandma.bio}</p>
@@ -55,15 +58,15 @@ class Dashboard extends Component {
             onClick={() =>
               this.props
                 .logoutUser()
-                .then(() => this.props.history.push("/auth/login"))
+                .then(() => this.props.history.push('/auth/login'))
             }
           >
-            {" "}
-            logout{" "}
+            {' '}
+            logout{' '}
           </button>
         </div>
         <div>
-          <Orders />
+          <Orders orders={this.props.orders} />
         </div>
 
         <div className="granny_dishes">
