@@ -9,6 +9,7 @@ import {
 const initialState = {
   grandmas: [],
   grandma: [],
+
   callFailed: false
 };
 
@@ -19,7 +20,9 @@ export const grandmaReducer = (state = initialState, action) => {
     case FILTER_BY_CUISINES:
       return { ...state, grandmas: action.payload };
     case GET_ONE_GRANDMA:
-      return { ...state, grandma: action.payload };
+      state.grandma = action.payload;
+      return state;
+    // return { ...state, grandma: action.payload };
     case GOT_ERROR:
       return { ...state, callFailed: true };
     default:

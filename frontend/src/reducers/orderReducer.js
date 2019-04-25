@@ -1,14 +1,14 @@
-import { SET_SELECTED_DISH, GOT_ERROR } from "../actions/actionTypes";
+import { GET_GRANDMAS_ORDERS, GOT_ERROR } from "../actions/actionTypes";
 
 const initialState = {
-  selectedDish: [],
+  orders: [],
   callFailed: false
 };
 
-export const cuisineReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_CUISINES:
-      return { ...state, cuisines: action.payload };
+    case GET_GRANDMAS_ORDERS:
+      return { ...state, orders: action.payload };
     case GOT_ERROR:
       return { ...state, callFailed: true };
     default:

@@ -16,7 +16,9 @@ class UserAuthForm extends React.Component {
     building_number: "",
     address: "",
     zip_code: "",
-    password: ""
+    password: "",
+    longitude: "",
+    latitude: ""
   };
 
   handleChange = e => {
@@ -30,10 +32,11 @@ class UserAuthForm extends React.Component {
     this.setState({
       cuisine_id: e.target.value
     });
-    // console.log(e.target.value);
   };
 
   handleRegisterUser = async e => {
+    e.preventDefault();
+
     const {
       first_name,
       last_name,
@@ -44,8 +47,19 @@ class UserAuthForm extends React.Component {
       building_number,
       address,
       zip_code,
-      password
+      password,
+      longitude,
+      latitude
     } = this.state;
+
+    let coords = await axios.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${building_number}, ${address}, New York, ${zip_code}&key=AIzaSyAThAa2thsgXHfh-D09OkhewLe5VVAlhYs`
+    );
+
+    this.setState({
+      longitude: coords.data.results[0].geometry.location.lng,
+      latitude: coords.data.results[0].geometry.location.lat
+    });
 
     let newUser = {
       first_name,
@@ -57,15 +71,14 @@ class UserAuthForm extends React.Component {
       building_number,
       address,
       zip_code,
-      cuisine_id
+      cuisine_id,
+      longitude: this.state.longitude,
+      latitude: this.state.latitude
     };
 
     const loginPrams = { email, password };
 
-    e.preventDefault();
-
-    await this.props.registerUser(newUser, loginPrams);
-    this.handleLoginRequest();
+    this.props.registerUser(newUser, loginPrams);
   };
 
   handleLogin = async e => {
@@ -76,19 +89,13 @@ class UserAuthForm extends React.Component {
     console.log("LOGIN", this.props.loginUser);
 
     await this.props.loginUser(loginPrams);
-
-    this.handleLoginRequest();
-  };
-
-  handleLoginRequest = () => {
-    // this.handleLoginRequest().then(currentUser => {
-    this.props.history.push(`/grandma/${parseInt(this.props.id)}/dashboard`);
-    // });
   };
 
   render() {
-    // console.log(this.props);
-    // console.log("afterlogin", this.props.currentUser);
+    if (this.props.id) {
+      this.props.history.push(`/grandma/${this.props.id}/dashboard`);
+    }
+
     const {
       first_name,
       last_name,
@@ -99,7 +106,9 @@ class UserAuthForm extends React.Component {
       building_number,
       address,
       zip_code,
-      password
+      password,
+      longitude,
+      latitude
     } = this.state;
 
     return (
@@ -137,6 +146,8 @@ class UserAuthForm extends React.Component {
                   address={address}
                   zip_code={zip_code}
                   password={password}
+                  longitude={longitude}
+                  latitude={latitude}
                   isLoggedIn={this.props.isLoggedIn}
                   handleLogin={this.handleLogin}
                   handleRegisterUser={this.handleRegisterUser}

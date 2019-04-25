@@ -7,9 +7,11 @@ class GrandmasDishes extends React.Component {
     sitdowndisplay: true
   };
 
+
   componentDidMount = () => {
     this.filterDishes();
   };
+
 
   filterDishes = () => {
     const filteredDishes = this.props.dishes.filter(dish => {

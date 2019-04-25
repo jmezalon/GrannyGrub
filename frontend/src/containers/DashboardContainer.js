@@ -1,9 +1,10 @@
 import { connect } from "react-redux";
 
 import { getOneGrandma } from "../actions/grandmaActions";
-import Dashboard from "../components/grandma/Dashboard.js";
+import Dashboard from "../components/grandma/Dashboard";
 import { getGrandmasDishes } from "../actions/dishActions";
 import { logoutUser } from "../actions/userAuthActions";
+import { getAllOrdersForGrandma } from "../actions/orderActions";
 
 const mapStateToProps = state => {
   console.log("dash id", state.userAuth.userId);
@@ -11,7 +12,8 @@ const mapStateToProps = state => {
     grandma: state.grandmas.grandma,
     dishes: state.dishes.dishes,
     user: state.userAuth.currentUser,
-    id: state.userAuth.userId
+    id: state.userAuth.userId,
+    orders: state.orders.orders
   };
 };
 
@@ -19,6 +21,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getOneGrandma: id => dispatch(getOneGrandma(id)),
     getGrandmasDishes: id => dispatch(getGrandmasDishes(id)),
+    getAllOrdersForGrandma: id => dispatch(getAllOrdersForGrandma(id)),
     logoutUser: () => dispatch(logoutUser())
   };
 };

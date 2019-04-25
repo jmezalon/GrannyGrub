@@ -1,5 +1,9 @@
 import axios from "axios";
-import { SET_CURRENT_USER, GOT_ERROR } from "./actionTypes";
+import {
+  SET_CURRENT_USER,
+  REMOVE_CURRENT_USER,
+  GOT_ERROR
+} from "./actionTypes";
 
 import Auth from "../userauth/utils/Auth";
 
@@ -12,6 +16,10 @@ export const gotError = err => {
     type: GOT_ERROR,
     payload: err
   };
+};
+
+export const removeCurrentUser = currentUser => {
+  return { type: "REMOVE_CURRENT_USER", payload: currentUser };
 };
 
 export const registerUser = (user, loginPrams) => dispatch => {
@@ -49,7 +57,7 @@ export const getCurrentUser = user => dispatch => {
 };
 
 export const checkAuthenticateStatus = () => dispatch => {
-  return axios.get("/users/isLoggedIn").then(user => {
+  return axios.post("/users/isLoggedIn").then(user => {
     if (user.data.email === Auth.getToken()) {
       return dispatch(setCurrentUser(user.data));
     } else {
@@ -67,10 +75,9 @@ export const logoutUser = () => dispatch => {
     .post("/users/logout")
     .then(() => {
       Auth.deauthenticateUser();
+      return dispatch(removeCurrentUser(null));
     })
-    .then(() => {
-      checkAuthenticateStatus();
-    })
+
     .catch(err => {
       console.log("logout err", err);
     });

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_CUISINES, GOT_ERROR } from "./actionTypes";
+import { GET_GRANDMAS_ORDERS, GOT_ERROR } from "./actionTypes";
 
 export const gotError = err => {
   return {
@@ -8,18 +8,20 @@ export const gotError = err => {
   };
 };
 
-const receiveAllCuisines = cuisines => {
+const receiveAllOrders = orders => {
   return {
-    type: GET_ALL_CUISINES,
-    payload: cuisines
+    type: GET_GRANDMAS_ORDERS,
+    payload: orders
   };
 };
 
-export const getAllCuisines = () => dispatch => {
+export const getAllOrdersForGrandma = grandma_id => dispatch => {
   axios
-    .get("/cuisines")
+    .get(`/orders/grandma/${grandma_id}`)
+
     .then(res => {
-      dispatch(receiveAllCuisines(res.data.cuisines));
+      console.log("got all orders");
+      dispatch(receiveAllOrders(res.data.orders));
     })
     .catch(err => {
       dispatch(gotError(err));

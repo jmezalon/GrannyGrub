@@ -2,10 +2,11 @@ const db = require("../connection");
 
 const postNewOrder = (req, res, next) => {
   db.none(
-    "INSERT INTO orders (dish_id, user_id) VALUES (${dish_id}, ${user_id})",
+    "INSERT INTO orders (dish_id, user_id, isCompleted) VALUES (${dish_id}, ${user_id}, ${isCompleted})",
     {
-      dish_id: Number(req.body.dish_id),
-      user_id: Number(req.body.user_id)
+      dish_id: parseInt(req.body.dish_id),
+      user_id: parseInt(req.body.user_id),
+      isCompleted: false
     }
   )
     .then(() => {
@@ -20,7 +21,7 @@ const postNewOrder = (req, res, next) => {
 };
 
 const deleteOrder = (req, res, next) => {
-  const order_id = Number(req.params.id);
+  const order_id = parseInt(req.params.id);
   db.none("DELETE FROM orders WHERE id=$1", [order_id])
     .then(() => {
       res.status(200).json({
@@ -47,7 +48,7 @@ const deleteOrder = (req, res, next) => {
 // };
 
 const getAllOrderForSingleUser = (req, res, next) => {
-  const user_id = Number(req.params.user_id);
+  const user_id = parseInt(req.params.user_id);
   db.any(
     `SELECT orders.id AS order_id, users.id AS user_id, dishes.id AS dish_id, dishes.user_id AS grandma_id FROM orders JOIN users ON users.id = orders.user_id JOIN dishes ON dishes.id = orders.dish_id
     WHERE users.id = $1`,
@@ -64,15 +65,16 @@ const getAllOrderForSingleUser = (req, res, next) => {
 };
 
 const allOrdersForGrandma = (req, res, next) => {
-  const grandma_id = Number(req.params.grandma_id);
+  const grandma_id = parseInt(req.params.grandma_id);
+
   db.any(
-    `SELECT orders.id AS order_id, users.id AS user_id, dishes.id AS dish_id, dishes.user_id AS grandma_id FROM orders JOIN users ON users.id = orders.user_id JOIN dishes ON dishes.id = orders.dish_id WHERE dishes.user_id = $1`,
+    "SELECT orders.id AS order_id, users.id AS id, dishes.id AS dish_id, dishes.user_id AS grandma_id, name, dishes.type AS dish_type, quantity, remaining_quantity FROM orders FULL JOIN users ON users.id = orders.user_id FULL JOIN dishes ON dishes.id = orders.dish_id WHERE users.id = $1",
     [grandma_id]
   )
-    .then(order => {
+    .then(orders => {
       res.status(200).json({
         status: "success",
-        order,
+        orders: orders,
         message: "single order for user"
       });
     })
