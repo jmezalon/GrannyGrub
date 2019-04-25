@@ -13,11 +13,15 @@ class Order extends React.Component {
   };
 
   handleAddChange = () => {
-    console.log(this.props.dish.dish.quantity);
-    if (this.state.count < this.props.dish.dish.quantity) {
-      this.setState({
-        count: this.state.count + 1
-      });
+    // console.log(this.props.dish.dish.quantity);
+    if (this.props.dish.dish.remaining_quantity === null) {
+      if (this.props.dish.dish.quantity > this.state.count) {
+        this.setState({ count: this.state.count + 1 });
+      }
+    } else {
+      if (this.props.dish.dish.remaining_quantity > this.state.count) {
+        this.setState({ count: this.state.count + 1 });
+      }
     }
   };
 
@@ -47,15 +51,23 @@ class Order extends React.Component {
 
   handleFormSubmit = async e => {
     e.preventDefault();
-    let quantity =
-      parseInt(this.props.dish.dish.quantity) - parseInt(this.state.count);
+    let quantity;
+    if (!this.props.dish.dish.remaining_quantity) {
+      quantity = parseInt(this.props.dish.dish.quantity - this.state.count);
+    } else {
+      quantity = parseInt(
+        this.props.dish.dish.remaining_quantity - this.state.count
+      );
+    }
+
     let amount_left = {
       remaining_quantity: quantity
     };
     if (
       this.props.dish.dish.quantity &&
       this.state.full_name !== "" &&
-      this.state.phone_number !== ""
+      this.state.phone_number !== "" &&
+      this.props.dish.dish.remaining_quantity !== 0
     ) {
       await axios.post("/orders/new", {
         user_id: parseInt(this.props.dish.dish.user_id),

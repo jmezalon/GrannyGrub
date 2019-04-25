@@ -32,25 +32,7 @@ class UserAuthForm extends React.Component {
     this.setState({
       cuisine_id: e.target.value
     });
-    // console.log(e.target.value);
   };
-
-  // getCoords = coords => {
-  //   // console.log(this.state, "before");
-  //   axios
-  //     .get(
-  //       `https://maps.googleapis.com/maps/api/geocode/json?address=${coords}&key=AIzaSyAThAa2thsgXHfh-D09OkhewLe5VVAlhYs`
-  //     )
-  //     .then(res => {
-  //       this.setState({
-  //         longitude: res.data.results[0].geometry.location.lnt,
-  //         latitude: res.data.results[0].geometry.location.lat
-  //       });
-  //     });
-  //   // .then((err) => {
-  //   // console.log(err, "coords err");
-  //   // });
-  // };
 
   handleRegisterUser = async e => {
     e.preventDefault();
@@ -69,28 +51,15 @@ class UserAuthForm extends React.Component {
       longitude,
       latitude
     } = this.state;
-    // let grannyAddress = `${building_number}, ${address}, New York,  ${zip_code}`;
 
-    // await this.getCoords(
-    //   ``
-    // );
-    // this.getCoords = coords => {
-    //   // console.log(this.state, "before");
     let coords = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${building_number}, ${address}, New York, ${zip_code}&key=AIzaSyAThAa2thsgXHfh-D09OkhewLe5VVAlhYs`
     );
-    // .then(res => {
 
     this.setState({
       longitude: coords.data.results[0].geometry.location.lng,
       latitude: coords.data.results[0].geometry.location.lat
     });
-    // });
-    // .then((err) => {
-    // console.log(err, "coords err");
-    // });
-    // };
-    // console.log(this.state.latitude, "after");
 
     let newUser = {
       first_name,
@@ -108,12 +77,8 @@ class UserAuthForm extends React.Component {
     };
 
     const loginPrams = { email, password };
-    // console.log(newUser, "before registering");
-    // console.log(longitude, "before registering");
-    // console.log(latitude, "before registering");
 
     this.props.registerUser(newUser, loginPrams);
-    // console.log(newUser, "when registerring");
   };
 
   handleLogin = async e => {
@@ -125,19 +90,8 @@ class UserAuthForm extends React.Component {
 
     await this.props.loginUser(loginPrams);
   };
-  //
-  // handleLoginRequest = () => {
-  //   // this.handleLoginRequest().then(currentUser => {
-  //   console.log("here");
-  //   if (this.props.id) {
-  //     this.props.history.push(`/grandma/${this.props.id}/dashboard`);
-  //   }
-  // };
 
   render() {
-    // console.log(this.props);
-    // console.log("afterlogin", this.props.currentUser);
-    //
     if (this.props.id) {
       this.props.history.push(`/grandma/${this.props.id}/dashboard`);
     }
