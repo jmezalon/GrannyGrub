@@ -15,7 +15,8 @@ class EditProfile extends React.Component {
     address: "",
     zip_code: "",
     longitude: "",
-    latitude: ""
+    latitude: "",
+    delete: false
   };
 
   handleChange = e => {
