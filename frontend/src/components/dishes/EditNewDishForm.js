@@ -15,11 +15,30 @@ class EditNewDishForm extends React.Component {
     dishImgFile: ""
   };
 
+  uploadImage = () => {
+    var formData = new FormData();
+    var imagefile = this.state.dishImgFile;
+    formData.append("img", imagefile);
+
+    return axios
+      .post("/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then(res => {
+        this.setState({ img_url: res.data.url });
+      });
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
 
+    const res = await this.uploadImage();
+
     const updateDish = this.state;
     delete updateDish.dishImgFile;
+
     await axios.patch(`/dishes/update/${this.props.dish.id}`, updateDish);
     await this.props.getOneDish(parseInt(this.props.match.params.id));
     await this.props.history.push(
@@ -64,6 +83,12 @@ class EditNewDishForm extends React.Component {
       [e.target.name]: e.target.value
     });
     console.log(e.target.value);
+  };
+
+  handleImageInputChange = e => {
+    let file = e.target.files[0];
+    let previewImgUrl = URL.createObjectURL(file);
+    this.setState({ img_url: previewImgUrl, dishImgFile: file });
   };
 
   componentDidMount() {
@@ -261,20 +286,11 @@ class EditNewDishForm extends React.Component {
               onChange={this.handleChange}
             />
 
-            <label htmlFor="img_url">add a different image url </label>
-
-            <input
-              name="img_url"
-              type="text"
-              value={this.props.dish.img_url ? this.props.dish.dishImg : ""}
-              onChange={this.handleChange}
-            />
             <input
               type="file"
-              value={this.state.dishImgFile}
               name="dishImgFile"
               placeholder="Image url"
-              onChange={this.handleClick}
+              onChange={this.handleImageInputChange}
             />
           </section>
           <br />
