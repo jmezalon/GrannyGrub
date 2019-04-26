@@ -2,7 +2,8 @@ import {
   GRANDMAS_DISHES,
   ALL_LABELS,
   GOT_ERROR,
-  SET_SELECTED_DISH
+  SET_SELECTED_DISH,
+  GET_SINGLE_DISH
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -10,7 +11,8 @@ const initialState = {
   callFailed: false,
   labels: [],
   selectedDish: [],
-  type: []
+  type: [],
+  dish: []
 };
 
 export const dishReducer = (state = initialState, action) => {
@@ -22,6 +24,9 @@ export const dishReducer = (state = initialState, action) => {
       return { ...state, selectedDish: action.payload };
     case ALL_LABELS:
       return { ...state, labels: action.payload };
+
+    case GET_SINGLE_DISH:
+      return { ...state, dish: action.payload };
 
     case GOT_ERROR:
       return { ...state, callFailed: true };

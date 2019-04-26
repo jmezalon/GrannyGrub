@@ -68,7 +68,7 @@ class GrandmaPage extends Component {
             src={grandma.profile_pic}
             alt=""
           />
-          <p>id: {grandma.user_id}</p>
+          <p>id: {grandma.id}</p>
           <p>cuisine type: {grandma.cuisine_type}</p>
           <p>bio: {grandma.bio}</p>
         </div>
