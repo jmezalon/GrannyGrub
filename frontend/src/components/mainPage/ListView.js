@@ -21,6 +21,7 @@ class ListView extends Component {
           className="list-view-item"
           key={granny.id}
           onMouseEnter={() => this.handleGrandmaListItemHover(granny.id)}
+          onMouseLeave={() => this.handleGrandmaListItemHover(false)}
           onClick={() => handleClick(granny.id)}
         >
           <h3>Grandma {granny.last_name}</h3>
