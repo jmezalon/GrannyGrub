@@ -39,6 +39,11 @@ class MapView extends Component {
     ) {
       this.updateMap();
     }
+
+    // debugger;
+    // if (prevProps.match.params !== this.props.match.params) {
+    //   console.log("What up!");
+    // }
     // if hovred grandma
     // wait for markers SAFE
     // find the marker that matched the grandma
@@ -195,6 +200,7 @@ class MapView extends Component {
           grandma.id
         )
       });
+
       const handleClick = this.props.handleClick.bind(this);
       window.google.maps.event.addListener(infoWindow, "domready", function() {
         document
