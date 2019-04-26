@@ -39,11 +39,6 @@ class MapView extends Component {
     ) {
       this.updateMap();
     }
-
-    // debugger;
-    // if (prevProps.match.params !== this.props.match.params) {
-    //   console.log("What up!");
-    // }
     // if hovred grandma
     // wait for markers SAFE
     // find the marker that matched the grandma
