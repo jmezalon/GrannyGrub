@@ -1,39 +1,125 @@
 import React from "react";
-// import axios from 'axios';
+import axios from "axios";
 
 class EditNewDishForm extends React.Component {
   state = {
-    dishName: "",
-    dishImg: "",
-    quantity: "",
+    name: "",
+    img_url: "",
     cuisine_id: "",
-    selectedQuantity: "",
+    quantity: "",
+    date: "",
     description: "",
     timeframe: "",
     type: "",
     price: "",
-    date: "",
     dishImgFile: ""
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
 
-    let dish = this.state;
-    // const dish =
+    const updateDish = this.state;
+    delete updateDish.dishImgFile;
+    await axios.patch(`/dishes/update/${this.props.dish.id}`, updateDish);
+    await this.props.getOneDish(parseInt(this.props.match.params.id));
+    await this.props.history.push(
+      `/grandma/${parseInt(this.props.id)}/dashboard`
+    );
+  };
 
-    // axios.patch(`dishes/${this.props.dish.id}`, dish);
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    console.log(e.target.value);
+  };
+
+  handleTypeChange = e => {
+    e.preventDefault();
+    if (e.target.value === "0") {
+      this.setState({
+        type: "sit-down"
+      });
+    } else if (e.target.value === "1") {
+      this.setState({
+        type: "pick-up"
+      });
+    }
+    console.log(e.target.value);
+  };
+
+  // handleChange = e => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     selectedQuantity: e.target.value
+  //   });
+  //
+  //   console.log("quantity", this.state.selectedQuantity);
+  // };
+
+  handleClick = e => {
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    console.log(e.target.value);
   };
 
   componentDidMount() {
     this.props.getOneDish(parseInt(this.props.match.params.id));
+    this.props.getAllCuisines();
+    this.props.getAllLabels();
+
+    axios.get(`/dishes/${parseInt(this.props.match.params.id)}`).then(res => {
+      // debugger;
+      this.setState({ ...res.data.dish });
+      // console.log(this.state.name, "dish");
+      // console.log(this.);
+    });
   }
 
   render() {
+    // const quantityOptions = this.state.quantity.map((number, i) => {
+    //   return (
+    //     <option key={i + 1} value={i + 1} id="quantity" name="selectedQuantity">
+    //       {number}
+    //     </option>
+    //   );
+    // });
+
+    const labelTypes = this.props.labels.map(label => {
+      return (
+        <button
+          key={label.id}
+          value={label.id}
+          name="label_id"
+          onClick={this.handleClick}
+        >
+          {" "}
+          {label.label_name}
+        </button>
+      );
+    });
+
+    const cuisinesType = this.props.cuisines.map(cuisine => {
+      return (
+        <button
+          value={this.state.type === "sit-down" ? 1 : 0}
+          key={cuisine.id}
+          id="cuisineType"
+          name="cuisine_id"
+          onClick={this.handleClick}
+        >
+          {cuisine.type}
+        </button>
+      );
+    });
+
     const {
-      dishName,
-      dishImg,
-      quantity,
+      dish,
+      name,
+      img_url,
       cuisine_id,
       selectedQuantity,
       description,
@@ -41,173 +127,180 @@ class EditNewDishForm extends React.Component {
       type,
       price,
       date,
-      dishImgFile
-    } = this.state;
-
+      img_urlFile
+    } = this.props;
+    console.log(this.state);
     return (
       <div className="new-dish">
         <p>dish form</p>
-        <p>hi</p>
+        <form onSubmit={this.handleSubmit}>
+          <section>
+            <label htmlFor="dish-name">Dish Name</label>
+
+            <input
+              name="name"
+              type="text"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+            <br />
+            <br />
+            <span>
+              <div className="dishtype">
+                <label htmlFor="dishType"> Dish Type: </label>
+                <button
+                  onClick={this.handleTypeChange}
+                  value="1"
+                  name="type"
+                  className={+type ? "selected-type" : "unselected-type"}
+                >
+                  {" "}
+                  to-go{" "}
+                </button>
+
+                <button
+                  onClick={this.handleTypeChange}
+                  name="type"
+                  value="0"
+                  className={type ? "selected-type" : "unselected-type"}
+                >
+                  {" "}
+                  sit down{" "}
+                </button>
+              </div>
+            </span>
+          </section>
+
+          <br />
+          <section>
+            <div className="quantityForm">
+              <label htmlFor="quantity">Available Dishes: </label>
+
+              <input
+                name="quantity"
+                type="text"
+                value={this.state.quantity}
+                onChange={this.handleChange}
+              />
+            </div>
+            <br />
+            <div id="addDescription">
+              <br />
+              <br />
+              <label htmlFor="description">Description: </label>
+              <textarea
+                name="description"
+                type="text"
+                value={this.state.description}
+                onChange={this.handleChange}
+              />{" "}
+            </div>
+            <section />
+            <br />
+
+            <label htmlFor="cuisineType"> Pick a Cuisine </label>
+            <div className="filter-buttons">{cuisinesType}</div>
+          </section>
+          <br />
+          <br />
+
+          <label htmlFor="start">Date:</label>
+          <input
+            type="date"
+            id="start"
+            name="date"
+            value={this.state.date}
+            min={date}
+            max="2020-12-31"
+            onChange={this.handleChange}
+          />
+          <br />
+          <br />
+          <section>
+            <span>
+              <div>
+                <label htmlFor="lunch" />
+                <button
+                  onClick={this.handleClick}
+                  value="lunch"
+                  id="lunch"
+                  name="timeframe"
+                  className={
+                    timeframe === "lunch" ? "selected-type" : "unselected-type"
+                  }
+                >
+                  {" "}
+                  Lunch{" "}
+                </button>
+              </div>
+              <div>
+                <label htmlFor="dinner" />
+                <button
+                  onClick={this.handleClick}
+                  value="dinner"
+                  id="dinner"
+                  name="timeframe"
+                  className={
+                    timeframe === "lunch" ? "unselected-type" : "selected-type"
+                  }
+                >
+                  {" "}
+                  Dinner{" "}
+                </button>
+              </div>
+            </span>
+          </section>
+          <br />
+          <br />
+          <section>
+            <label htmlFor="img"> Dish Image </label>
+            <img
+              id="profile-pic"
+              alt=""
+              src={this.state.img_url}
+              onChange={this.handleChange}
+            />
+
+            <label htmlFor="img_url">add a different image url </label>
+
+            <input
+              name="img_url"
+              type="text"
+              value={this.props.dish.img_url ? this.props.dish.dishImg : ""}
+              onChange={this.handleChange}
+            />
+            <input
+              type="file"
+              value={this.state.dishImgFile}
+              name="dishImgFile"
+              placeholder="Image url"
+              onChange={this.handleClick}
+            />
+          </section>
+          <br />
+
+          <br />
+          <label htmlFor="price">Price</label>
+          <input
+            name="price"
+            type="text"
+            id="price"
+            value={this.state.price}
+            onChange={this.handleChange}
+          />
+          <br />
+          <br />
+
+          <div className="filter-buttons">
+            <label htmlFor="labels">labels </label> {labelTypes}
+          </div>
+          <br />
+          <br />
+          <input type="submit" value="save" />
+        </form>
       </div>
     );
   }
 }
 
 export default EditNewDishForm;
-
-// <form onSubmit={handleSubmit}>
-//   <section>
-//     <label htmlFor="dish-name">Dish Name</label>
-//
-//     <input
-//       name="dishName"
-//       type="text"
-//       value={dishName}
-//       onChange={handleChange}
-//     />
-//     <br />
-//     <br />
-//     <span>
-//       <div className="dishtype">
-//         <label htmlFor="dishType"> Dish Type: </label>
-//         <button
-//           onClick={handleTypeChange}
-//           value="1"
-//           name="type"
-//           className={+type ? "selected-type" : "unselected-type"}
-//         >
-//           {" "}
-//           to-go{" "}
-//         </button>
-//
-//         <button
-//           onClick={handleTypeChange}
-//           name="type"
-//           value="0"
-//           className={type ? "selected-type" : "unselected-type"}
-//         >
-//           {" "}
-//           sit down{" "}
-//         </button>
-//       </div>
-//     </span>
-//   </section>
-//
-//   <br />
-//   <section>
-//     <div className="quantityForm">
-//       <label htmlFor="quantity">Available Dishes: </label>
-//
-//       <select onChange={handleQuantityChange}>
-//         <option key="0" value="" />
-//         {quantityOptions}
-//       </select>
-//     </div>
-//     <br />
-//     <div id="addDescription">
-//       <br />
-//       <br />
-//       <label htmlFor="description">Description: </label>
-//       <textarea
-//         name="description"
-//         type="text"
-//         value={description}
-//         onChange={handleChange}
-//       />{" "}
-//     </div>
-//     <section />
-//     <br />
-//
-//     <label htmlFor="cuisineType"> Pick a Cuisine </label>
-//     <div className="filter-buttons">{cuisinesType}</div>
-//   </section>
-//   <br />
-//   <br />
-//
-//   <label htmlFor="start">Date:</label>
-//   <input
-//     type="date"
-//     id="start"
-//     name="date"
-//     value={date}
-//     min={date}
-//     max="2020-12-31"
-//     onChange={handleChange}
-//   />
-//   <br />
-//   <br />
-//   <section>
-//     <span>
-//       <div>
-//         <label htmlFor="lunch" />
-//         <button
-//           onClick={handleClick}
-//           value="lunch"
-//           id="lunch"
-//           name="timeframe"
-//           className={
-//             timeframe === "lunch" ? "selected-type" : "unselected-type"
-//           }
-//         >
-//           {" "}
-//           Lunch{" "}
-//         </button>
-//       </div>
-//       <div>
-//         <label htmlFor="dinner" />
-//         <button
-//           onClick={handleClick}
-//           value="dinner"
-//           id="dinner"
-//           name="timeframe"
-//           className={
-//             timeframe === "lunch" ? "unselected-type" : "selected-type"
-//           }
-//         >
-//           {" "}
-//           Dinner{" "}
-//         </button>
-//       </div>
-//     </span>
-//   </section>
-//   <br />
-//   <br />
-//   <section>
-//     <label htmlFor="img"> Dish Image </label>
-//     <input
-//       type="text"
-//       value={dishImg}
-//       id="img"
-//       name="dishImg"
-//       placeholder="Image url"
-//       onChange={handleChange}
-//     />
-//     <input
-//       type="file"
-//       value={dishImgFile}
-//       name="dishImgFile"
-//       placeholder="Image url"
-//       onChange={handleClick}
-//     />
-//   </section>
-//   <br />
-//
-//   <br />
-//   <label htmlFor="price">Price</label>
-//   <input
-//     name="price"
-//     type="text"
-//     id="price"
-//     value={price}
-//     onChange={handleChange}
-//   />
-//   <br />
-//   <br />
-//
-//   <div className="filter-buttons">
-//     <label htmlFor="labels">labels </label> {labelTypes}
-//   </div>
-//   <br />
-//   <br />
-//   <input type="submit" />
-// </form>
