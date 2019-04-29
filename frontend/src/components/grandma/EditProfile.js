@@ -33,6 +33,17 @@ class EditProfile extends React.Component {
     return path.substring(path.lastIndexOf("/") + 1);
   };
 
+  // handleFirstClick = e => {
+  //   e.preventDefault();
+  // };
+
+  handleDeleteAccount = e => {
+    e.preventDefault();
+    this.props.deleteGrandmaAccount(this.props.id);
+
+    this.props.history.push(`/`);
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
     const { building_number, address, zip_code } = this.state;
@@ -177,7 +188,7 @@ class EditProfile extends React.Component {
 
           <div>
             <label htmlFor="deleteAccount"> Delete Account </label>
-            <button> Delete Account </button>
+            <button onClick={this.handleDeleteAccount}> Delete Account </button>
             <p> please note that this will permanently delete your account </p>
           </div>
           <div className="save-button">

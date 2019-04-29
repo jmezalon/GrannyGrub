@@ -7,6 +7,9 @@ import {
   GOT_ERROR
 } from "./actionTypes";
 
+import Auth from "../userauth/utils/Auth";
+import { removeCurrentUser } from "./userAuthActions";
+
 export const gotError = err => {
   return {
     type: GOT_ERROR,
@@ -32,12 +35,12 @@ export const receiveOneGrandma = grandma => {
   };
 };
 
-export const deleteUserAccount = id => {
-  return {
-    type: DELETE_USER_ACCOUNT,
-    payload: id
-  };
-};
+// export const deleteUserAccount = id => {
+//   return {
+//     type: DELETE_USER_ACCOUNT,
+//     payload: id,
+//   };
+// };
 
 export const getAllGrandmas = () => dispatch => {
   axios
@@ -65,16 +68,15 @@ export const getOneGrandma = id => dispatch => {
     });
 };
 
-export const deleteGrandmaAccount = () => dispatch => {
+export const deleteGrandmaAccount = id => dispatch => {
   axios
-    .get("/users")
-    .then(res => {
-      // let grandmas = res.data.users.filter(user => {
-      //   return user.isgrandma;
-      // });
-      return dispatch(receiveAllGrandmas(res.data.users));
+    .delete(`/users/${id}`)
+    .then(() => {
+      Auth.deauthenticateUser();
+      return dispatch(removeCurrentUser(null));
     })
     .catch(err => {
       return dispatch(gotError(err));
+      console.log("deleted usesr");
     });
 };

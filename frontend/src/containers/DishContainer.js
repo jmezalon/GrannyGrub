@@ -1,20 +1,19 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { getGrandmasDishes } from "../actions/dishActions";
-import GrandmasDishes from "../components/dishes/dishes.js";
+import { getGrandmasDishes, deleteDish } from '../actions/dishActions';
+import GrandmasDishes from '../components/dishes/dishes.js';
 
 const mapStateToProps = state => {
   return {
     dishes: state.dishes.dishes,
-    id: state.userAuth.userId
+    userId: state.userAuth.userId,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getGrandmasDishes: id => {
-      dispatch(getGrandmasDishes(id));
-    }
+    getGrandmasDishes: id => dispatch(getGrandmasDishes(id)),
+    deleteDish: (dish_id, grannyId) => dispatch(deleteDish(dish_id, grannyId)),
   };
 };
 

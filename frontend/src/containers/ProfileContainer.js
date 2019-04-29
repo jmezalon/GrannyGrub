@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { getOneGrandma } from "../actions/grandmaActions";
+import { getOneGrandma, deleteGrandmaAccount } from "../actions/grandmaActions";
 import { getAllCuisines } from "../actions/cuisineActions";
 
 import EditProfile from "../components/grandma/EditProfile.js";
@@ -17,7 +17,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getOneGrandma: id => dispatch(getOneGrandma(id)),
-    getAllCuisines: () => dispatch(getAllCuisines())
+    getAllCuisines: () => dispatch(getAllCuisines()),
+    deleteGrandmaAccount: id => dispatch(deleteGrandmaAccount(id))
   };
 };
 
