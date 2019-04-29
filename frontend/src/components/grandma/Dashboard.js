@@ -58,7 +58,10 @@ class Dashboard extends Component {
 
           <div className="granny_dishes">
             <h2>Your current offerings:</h2>
-            <GrandmasDishes dishes={this.props.dishes} />
+            <GrandmasDishes
+              deleteDish={this.props.deleteDish}
+              dishes={this.props.dishes}
+            />
             <div className="addNew-page">
               <Link to={`/grandma/newdish`}>
                 <input type="button" value="Add a new dish!" />

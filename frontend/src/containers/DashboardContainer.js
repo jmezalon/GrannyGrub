@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import { getOneGrandma } from "../actions/grandmaActions";
 import Dashboard from "../components/grandma/Dashboard";
-import { getGrandmasDishes } from "../actions/dishActions";
+import { getGrandmasDishes, deleteDish } from "../actions/dishActions";
 import { logoutUser } from "../actions/userAuthActions";
 import { getAllOrdersForGrandma } from "../actions/orderActions";
 
@@ -22,7 +22,8 @@ const mapDispatchToProps = dispatch => {
     getOneGrandma: id => dispatch(getOneGrandma(id)),
     getGrandmasDishes: id => dispatch(getGrandmasDishes(id)),
     getAllOrdersForGrandma: id => dispatch(getAllOrdersForGrandma(id)),
-    logoutUser: () => dispatch(logoutUser())
+    logoutUser: () => dispatch(logoutUser()),
+    deleteDish: (dish_id, grannyId) => dispatch(deleteDish(dish_id, grannyId))
   };
 };
 
