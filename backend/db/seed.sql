@@ -29,8 +29,6 @@ CREATE TABLE users (
   cuisine_id INT REFERENCES cuisines(id)
 );
 
-
-
 CREATE TABLE dishes (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
@@ -50,7 +48,6 @@ CREATE TABLE labels (
   id SERIAL PRIMARY KEY,
   label_name VARCHAR
 );
-
 
 CREATE TABLE label_dishes (
     id SERIAL PRIMARY KEY,

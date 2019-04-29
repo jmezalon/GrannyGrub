@@ -10,6 +10,8 @@ class MainPage extends Component {
   state = {
     isSitdown: false,
     isPickup: false,
+    isLunch: false,
+    isDinner: false,
     cuisinesSelected: [],
     showingMap: true,
     address: "",
@@ -53,7 +55,6 @@ class MainPage extends Component {
     let checkList = document.getElementsByClassName("checkbox");
     for (let i = 0; i < checkList.length; i++) {
       if (checkList[i].checked) {
-        console.log(checkList[i]);
         checkList[i].checked = false;
       }
     }
@@ -127,6 +128,7 @@ class MainPage extends Component {
   // };
 
   render() {
+    console.log(this.state);
     const { showingMap } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
@@ -148,6 +150,24 @@ class MainPage extends Component {
     if (!grandmas.length) return null;
     return (
       <div className="mainpage">
+        <form>
+          <div>
+            <input
+              type="checkbox"
+              name="isLunch"
+              onChange={this.handleClickMealType}
+              className="checkbox"
+            />
+            Lunch
+            <input
+              type="checkbox"
+              name="isDinner"
+              onChange={this.handleClickMealType}
+              className="checkbox"
+            />
+            Dinner
+          </div>
+        </form>
         <form
           onSubmit={e => {
             this.getCoords(e, this.state.address);
