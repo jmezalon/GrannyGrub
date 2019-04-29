@@ -165,8 +165,8 @@ class HandleNewDish extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    if (!this.props.imgPreview) {
+    console.log(this.state.dishImgFile);
+    if (this.state.dishImgFile !== "") {
       this.uploadImage();
     }
     this.setState({
