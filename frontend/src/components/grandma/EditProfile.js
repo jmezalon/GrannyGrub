@@ -16,7 +16,8 @@ class EditProfile extends React.Component {
     zip_code: "",
     longitude: "",
     latitude: "",
-    delete: false
+    delete: false,
+    message: ""
   };
 
   handleChange = e => {
@@ -40,7 +41,6 @@ class EditProfile extends React.Component {
   handleDeleteAccount = e => {
     e.preventDefault();
     this.props.deleteGrandmaAccount(this.props.id);
-
     this.props.history.push(`/`);
   };
 
@@ -93,6 +93,12 @@ class EditProfile extends React.Component {
         </option>
       );
     });
+
+    const deleteAccount = () => {
+      if (!this.state.delete) {
+      }
+    };
+
     return (
       <div className="one-grandma">
         <h6>Edit your profile</h6>
@@ -191,9 +197,25 @@ class EditProfile extends React.Component {
 
           <div>
             <label htmlFor="deleteAccount"> Delete Account </label>
-            <button onClick={this.handleDeleteAccount}> Delete Account </button>
-            <p> please note that this will permanently delete your account </p>
+
+            <button
+              onClick={e => {
+                window.confirm(
+                  "Are you sure you wish to delete your GrannyGrub account?"
+                ) && this.handleDeleteAccount(e);
+              }}
+            >
+              {" "}
+              Delete Account{" "}
+            </button>
+            <p>
+              {" "}
+              {!this.state.delete
+                ? "Are you sure you want to delete your account"
+                : "please note that this will permanently delete your account"}{" "}
+            </p>
           </div>
+
           <div className="save-button">
             <button>Save</button>
           </div>

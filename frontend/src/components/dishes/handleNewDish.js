@@ -5,10 +5,10 @@ import NewDishResults from "./NewDishResults";
 
 class HandleNewDish extends React.Component {
   state = {
-    dishName: "",
+    name: "",
     description: "",
     type: "",
-    dishImg: "",
+    img_url: "",
     dishImgFile: "",
     cuisine_id: "",
     label_id: "",
@@ -34,6 +34,22 @@ class HandleNewDish extends React.Component {
     this.props.getAllCuisines();
     this.props.getAllLabels();
   }
+
+  uploadImage = () => {
+    var formData = new FormData();
+    var imagefile = this.state.dishImgFile;
+    formData.append("img", imagefile);
+
+    return axios
+      .post("/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then(res => {
+        this.setState({ img_url: res.data.url });
+      });
+  };
 
   handleChange = e => {
     e.preventDefault();
@@ -81,10 +97,10 @@ class HandleNewDish extends React.Component {
     });
   };
 
-  handleResultSubmit = e => {
+  handleResultSubmit = async e => {
     const {
-      dishName,
-      dishImg,
+      name,
+      img_url,
       cuisine_id,
       description,
       timeframe,
@@ -96,69 +112,64 @@ class HandleNewDish extends React.Component {
       selectedQuantity
     } = this.state;
 
-    //if else statement
     e.preventDefault();
-    debugger;
-    axios
-      .post("/dishes/new", {
-        name: dishName,
-        description: description,
-        user_id: parseInt(this.props.id),
-        cuisine_id: cuisine_id,
-        img_url: dishImg,
-        price: price,
-        date: date,
-        type: type,
-        timeframe: timeframe,
-        quantity: selectedQuantity
-      })
-      .then(() => {
-        this.setState({
-          dishName: "",
-          description: "",
-          type: "",
-          dishImg: "",
-          cuisine_id: "",
-          label_id: "",
-          quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-          selectedQuantity: "",
-          timeframe: "",
-          date:
-            new Date().getFullYear() +
-            "-" +
-            (new Date().getMonth() + 1 < 10
-              ? "0" + (new Date().getMonth() + 1)
-              : new Date().getMonth() + 1) +
-            "-" +
-            (new Date().getDate() + 1 < 10
-              ? "0" + (new Date().getDate() + 1)
-              : new Date().getDate() + 1),
-          user_id: 14,
-          price: ""
-        });
-      })
-      .then(() => {
-        this.props.history.push(
-          `/grandma/${parseInt(this.props.id)}/dashboard`
-        );
-      })
-      .catch(err => {
-        if (err.response.status === 500) {
-          console.log(err);
-          this.setState({
-            err_warning: true
-          });
-        } else {
-          console.log(err);
-        }
-      });
+
+    await this.uploadImage();
+
+    await axios.post("/dishes/new", {
+      name: name,
+      description: description,
+      user_id: parseInt(this.props.id),
+      cuisine_id: cuisine_id,
+      img_url: img_url,
+      price: price,
+      date: date,
+      type: type,
+      timeframe: timeframe,
+      quantity: selectedQuantity
+    });
+
+    this.setState({
+      name: "",
+      description: "",
+      type: "",
+      img_url: "",
+      cuisine_id: "",
+      label_id: "",
+      quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      selectedQuantity: "",
+      timeframe: "",
+      date:
+        new Date().getFullYear() +
+        "-" +
+        (new Date().getMonth() + 1 < 10
+          ? "0" + (new Date().getMonth() + 1)
+          : new Date().getMonth() + 1) +
+        "-" +
+        (new Date().getDate() + 1 < 10
+          ? "0" + (new Date().getDate() + 1)
+          : new Date().getDate() + 1),
+      user_id: "",
+      price: ""
+    });
+
+    await this.props.history.push(
+      `/grandma/${parseInt(this.props.id)}/dashboard`
+    );
+
     console.log("done");
+  };
+
+  handleImageInputChange = e => {
+    let file = e.target.files[0];
+    let previewImgUrl = URL.createObjectURL(file);
+    this.setState({ img_url: previewImgUrl, dishImgFile: file });
   };
 
   render() {
     // console.log(this.props.cuisines);
     const {
-      dishName,
+      name,
       cuisine_id,
       label_id,
       quantity,
@@ -167,7 +178,7 @@ class HandleNewDish extends React.Component {
       timeframe,
       type,
       price,
-      dishImg,
+      img_url,
       user_id,
       date,
       dishImgFile,
@@ -179,14 +190,14 @@ class HandleNewDish extends React.Component {
         <>
           <div className="newDishContainer">
             <NewDishForm
-              dishName={dishName}
+              name={name}
               quantity={quantity}
               type={type}
               description={description}
               labels={this.props.labels}
               label_id={label_id}
               cuisines={this.props.cuisines}
-              dishImg={dishImg}
+              img_url={img_url}
               cuisine_type={cuisine_id}
               user_id={user_id}
               timeframe={timeframe}
@@ -199,6 +210,7 @@ class HandleNewDish extends React.Component {
               handleQuantityChange={this.handleQuantityChange}
               handleSubmit={this.handleSubmit}
               handleTypeChange={this.handleTypeChange}
+              handleImageInputChange={this.handleImageInputChange}
             />
           </div>
         </>
@@ -207,22 +219,36 @@ class HandleNewDish extends React.Component {
       return (
         <div className="newDishContainer">
           <NewDishResults
-            dishName={dishName}
+            name={name}
             quantity={quantity}
             type={type}
+            dishImgFile={dishImgFile}
             description={description}
-            dishImg={dishImg}
+            img_url={img_url}
             cuisine_type={cuisine_id}
             timeframe={timeframe}
             price={price}
             date={date}
             selectedQuantity={selectedQuantity}
             handleResultSubmit={this.handleResultSubmit}
+            handleImageInputChange={this.handleImageInputChange}
           />
         </div>
       );
     }
   }
 }
+
+//
+// await catch(err => {
+//     if (err.response.status === 500) {
+//       console.log(err);
+//       this.setState({
+//         err_warning: true
+//       });
+//     } else {
+//       console.log(err);
+//     }
+//   });
 
 export default HandleNewDish;
