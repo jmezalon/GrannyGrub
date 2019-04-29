@@ -4,6 +4,7 @@ import React, { Component } from "react";
 // import { MainPageLoader } from "./loadingPages/MainpageLoader";
 import icon from "../../assets/icon.png";
 import axios from "axios";
+import "../../css/sample.css";
 
 class MapView extends Component {
   constructor(props) {
