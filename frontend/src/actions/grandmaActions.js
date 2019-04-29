@@ -3,6 +3,7 @@ import {
   GET_ALL_GRANDMAS,
   SET_CURRENT_USER,
   GET_ONE_GRANDMA,
+  DELETE_USER_ACCOUNT,
   GOT_ERROR
 } from "./actionTypes";
 
@@ -31,6 +32,13 @@ export const receiveOneGrandma = grandma => {
   };
 };
 
+export const deleteUserAccount = id => {
+  return {
+    type: DELETE_USER_ACCOUNT,
+    payload: id
+  };
+};
+
 export const getAllGrandmas = () => dispatch => {
   axios
     .get("/users")
@@ -51,6 +59,20 @@ export const getOneGrandma = id => dispatch => {
     .get(`/users/grandma/${id}`)
     .then(res => {
       return dispatch(receiveOneGrandma(res.data.user));
+    })
+    .catch(err => {
+      return dispatch(gotError(err));
+    });
+};
+
+export const deleteGrandmaAccount = () => dispatch => {
+  axios
+    .get("/users")
+    .then(res => {
+      // let grandmas = res.data.users.filter(user => {
+      //   return user.isgrandma;
+      // });
+      return dispatch(receiveAllGrandmas(res.data.users));
     })
     .catch(err => {
       return dispatch(gotError(err));
