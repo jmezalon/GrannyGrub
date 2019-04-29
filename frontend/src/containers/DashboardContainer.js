@@ -13,7 +13,8 @@ const mapStateToProps = state => {
     dishes: state.dishes.dishes,
     user: state.userAuth.currentUser,
     id: state.userAuth.userId,
-    orders: state.orders.orders
+    orders: state.orders.orders,
+    hasOrder: state.orders.hasOrder
   };
 };
 

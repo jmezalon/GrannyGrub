@@ -6,9 +6,15 @@ import Orders from "./grandmaOrders";
 import GrannyNavbar from "../navbar/GrannyNavbar";
 
 class Dashboard extends Component {
+  // state = {
+  //   newGrandma: false
+  // };
+
   componentWillMount() {
     this.props.getOneGrandma(this.props.id);
+    // if (!this.props.hasOrder) {
     this.props.getAllOrdersForGrandma(this.props.id);
+    // }
     this.props.getGrandmasDishes(this.props.id);
   }
   // <GrannyNavbar id={this.props.id} />
@@ -53,7 +59,7 @@ class Dashboard extends Component {
             </div>
           </div>
           <div>
-            <Orders orders={this.props.orders} />
+            <Orders hasOrder={this.props.hasOrder} orders={this.props.orders} />
           </div>
 
           <div className="granny_dishes">

@@ -131,9 +131,7 @@ class EditProfile extends React.Component {
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
-            value={
-              grandma.profile_pic ? grandma.profile_pic : this.state.profile_pic
-            }
+            value={grandma.profile_pic}
           />
 
           <br />
@@ -155,7 +153,7 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={grandma.bio ? grandma.bio : this.state.bio}
+            value={grandma.bio}
           />
           <br />
           <h3>address</h3>
