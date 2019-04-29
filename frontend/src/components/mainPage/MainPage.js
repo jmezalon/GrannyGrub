@@ -130,16 +130,17 @@ class MainPage extends Component {
     const { showingMap } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
-        <>
-          <input
-            onChange={this.handleClickCuisineType}
-            value={cuisine.id}
-            key={cuisine.id}
-            type="checkbox"
-            className="checkbox"
-          />
-          {cuisine.type}
-        </>
+        <div>
+          <label onChange={this.handleClickCuisineType}>
+            <input
+              value={cuisine.id}
+              key={cuisine.id}
+              type="checkbox"
+              className="checkbox"
+            />
+            {cuisine.type}
+          </label>
+        </div>
       );
     });
 

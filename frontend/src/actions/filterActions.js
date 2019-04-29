@@ -19,10 +19,10 @@ export const grandmasByMultiCriteria = data => dispatch => {
   axios
     .post(`/filter/criteria`, data)
     .then(res => {
-      dispatch(receiveAllCuisines(res.data.grandmas));
+      return dispatch(receiveAllCuisines(res.data.grandmas));
     })
     .catch(err => {
-      dispatch(gotError(err));
+      return dispatch(gotError(err));
     });
 };
 
