@@ -70,9 +70,7 @@ class EditNewDishForm extends React.Component {
       });
     }
 
-
     console.log(e.target.value);
-
   };
 
   // handleChange = e => {
