@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../css/Landingpage.css";
 
 import UserPortal from "./userPortal";
 import CookPortal from "./cookPortal";
@@ -9,31 +10,36 @@ class LandingPage extends React.Component {
     return (
       <>
         <div className="landingPage">
-          <h1> Welcome to GrannyGrub! </h1>
-          <div className="middle-landing">
-            <div className="middle-landing-left">
-              <div className="aboutUs">
-                <h3>About us</h3>
-                <p>
-                  Giving New Yorkers authentic home made taste that only comes
-                  from years of wisdom and experience. Our Grannies offer dishes
-                  that you won’t find elsewhere. We are confident that these are
-                  some of the best meals you’ll ever have.
-                </p>
-              </div>
+          <div className="topLanding">
+            <div className="info-button">
+              <p>Home cooked meal, unique experience</p>
+              <h1> grannygrub </h1>
               <div>
                 <Link to="/mainpage">
-                  <button id="taste-button"> Get a taste </button>
+                  <button id="taste-button"> Get started now </button>
                 </Link>
               </div>
-              <CookPortal />
             </div>
-            <img
-              src="https://cdn.dribbble.com/users/28275/screenshots/5369506/shostudio_grandma-1.gif"
-              alt="granny being cute"
-              id="lpImg"
-            />
           </div>
+
+          <div className="middle-landing">
+            <div className="middle-landing-left">
+              <h1>Authentic experience</h1>
+              <p>
+                Giving Newyorkers, authentic home made tastes that only comes
+                from years of wisdom and experience. Our grannys offer dishes
+                that you won’t find elsewhere.
+              </p>
+            </div>
+            <div className="middle-landing-right">
+              <h3>Food, folks and fun!</h3>
+              <p>Plan an event in a grandma place or order a deliciouse food</p>
+              <Link to="/mainpage">
+                <button id="taste-button2"> Get started now </button>
+              </Link>
+            </div>
+          </div>
+          <div className="footer" />
         </div>
       </>
     );
