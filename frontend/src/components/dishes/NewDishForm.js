@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 // import axios from 'axios';
 
 class NewDishForm extends React.Component {
   render() {
     const {
-      dishName,
-      dishImg,
+      name,
+      img_url,
       quantity,
       cuisine_id,
       selectedQuantity,
@@ -19,7 +19,8 @@ class NewDishForm extends React.Component {
       handleSubmit,
       handleQuantityChange,
       handleClick,
-      handleTypeChange
+      handleTypeChange,
+      handleImageInputChange,
     } = this.props;
 
     const quantityOptions = quantity.map((number, i) => {
@@ -38,7 +39,7 @@ class NewDishForm extends React.Component {
           name="label_id"
           onClick={handleClick}
         >
-          {" "}
+          {' '}
           {label.label_name}
         </button>
       );
@@ -65,9 +66,9 @@ class NewDishForm extends React.Component {
             <label htmlFor="dish-name">Dish Name</label>
 
             <input
-              name="dishName"
+              name="name"
               type="text"
-              value={dishName}
+              value={name}
               onChange={handleChange}
             />
             <br />
@@ -79,20 +80,20 @@ class NewDishForm extends React.Component {
                   onClick={handleTypeChange}
                   value="1"
                   name="type"
-                  className={+type ? "selected-type" : "unselected-type"}
+                  className={+type ? 'selected-type' : 'unselected-type'}
                 >
-                  {" "}
-                  to-go{" "}
+                  {' '}
+                  to-go{' '}
                 </button>
 
                 <button
                   onClick={handleTypeChange}
                   name="type"
                   value="0"
-                  className={type ? "selected-type" : "unselected-type"}
+                  className={type ? 'selected-type' : 'unselected-type'}
                 >
-                  {" "}
-                  sit down{" "}
+                  {' '}
+                  sit down{' '}
                 </button>
               </div>
             </span>
@@ -118,7 +119,7 @@ class NewDishForm extends React.Component {
                 type="text"
                 value={description}
                 onChange={handleChange}
-              />{" "}
+              />{' '}
             </div>
             <section />
             <br />
@@ -151,11 +152,11 @@ class NewDishForm extends React.Component {
                   id="lunch"
                   name="timeframe"
                   className={
-                    timeframe === "lunch" ? "selected-type" : "unselected-type"
+                    timeframe === 'lunch' ? 'selected-type' : 'unselected-type'
                   }
                 >
-                  {" "}
-                  Lunch{" "}
+                  {' '}
+                  Lunch{' '}
                 </button>
               </div>
               <div>
@@ -166,11 +167,11 @@ class NewDishForm extends React.Component {
                   id="dinner"
                   name="timeframe"
                   className={
-                    timeframe === "lunch" ? "unselected-type" : "selected-type"
+                    timeframe === 'lunch' ? 'unselected-type' : 'selected-type'
                   }
                 >
-                  {" "}
-                  Dinner{" "}
+                  {' '}
+                  Dinner{' '}
                 </button>
               </div>
             </span>
@@ -179,20 +180,25 @@ class NewDishForm extends React.Component {
           <br />
           <section>
             <label htmlFor="img"> Dish Image </label>
+            <img
+              id="profile-pic"
+              alt=""
+              src={img_url}
+              onChange={handleChange}
+            />
             <input
               type="text"
-              value={dishImg}
+              value={dishImgFile ? '' : img_url}
               id="img"
-              name="dishImg"
+              name="img_url"
               placeholder="Image url"
               onChange={handleChange}
             />
             <input
               type="file"
-              value={dishImgFile}
               name="dishImgFile"
               placeholder="Image url"
-              onChange={handleClick}
+              onChange={handleImageInputChange}
             />
           </section>
           <br />
