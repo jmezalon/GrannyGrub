@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 // import axios from 'axios';
 
 class NewDishForm extends React.Component {
@@ -19,8 +19,9 @@ class NewDishForm extends React.Component {
       handleSubmit,
       handleQuantityChange,
       handleClick,
+      imgPreview,
       handleTypeChange,
-      handleImageInputChange,
+      handleImageInputChange
     } = this.props;
 
     const quantityOptions = quantity.map((number, i) => {
@@ -39,7 +40,7 @@ class NewDishForm extends React.Component {
           name="label_id"
           onClick={handleClick}
         >
-          {' '}
+          {" "}
           {label.label_name}
         </button>
       );
@@ -80,20 +81,20 @@ class NewDishForm extends React.Component {
                   onClick={handleTypeChange}
                   value="1"
                   name="type"
-                  className={+type ? 'selected-type' : 'unselected-type'}
+                  className={+type ? "selected-type" : "unselected-type"}
                 >
-                  {' '}
-                  to-go{' '}
+                  {" "}
+                  to-go{" "}
                 </button>
 
                 <button
                   onClick={handleTypeChange}
                   name="type"
                   value="0"
-                  className={type ? 'selected-type' : 'unselected-type'}
+                  className={type ? "selected-type" : "unselected-type"}
                 >
-                  {' '}
-                  sit down{' '}
+                  {" "}
+                  sit down{" "}
                 </button>
               </div>
             </span>
@@ -119,7 +120,7 @@ class NewDishForm extends React.Component {
                 type="text"
                 value={description}
                 onChange={handleChange}
-              />{' '}
+              />{" "}
             </div>
             <section />
             <br />
@@ -152,11 +153,11 @@ class NewDishForm extends React.Component {
                   id="lunch"
                   name="timeframe"
                   className={
-                    timeframe === 'lunch' ? 'selected-type' : 'unselected-type'
+                    timeframe === "lunch" ? "selected-type" : "unselected-type"
                   }
                 >
-                  {' '}
-                  Lunch{' '}
+                  {" "}
+                  Lunch{" "}
                 </button>
               </div>
               <div>
@@ -167,11 +168,11 @@ class NewDishForm extends React.Component {
                   id="dinner"
                   name="timeframe"
                   className={
-                    timeframe === 'lunch' ? 'unselected-type' : 'selected-type'
+                    timeframe === "lunch" ? "unselected-type" : "selected-type"
                   }
                 >
-                  {' '}
-                  Dinner{' '}
+                  {" "}
+                  Dinner{" "}
                 </button>
               </div>
             </span>
@@ -183,12 +184,12 @@ class NewDishForm extends React.Component {
             <img
               id="profile-pic"
               alt=""
-              src={img_url}
+              src={this.props.imgPreview}
               onChange={handleChange}
             />
             <input
               type="text"
-              value={dishImgFile ? '' : img_url}
+              value={dishImgFile ? "" : img_url}
               id="img"
               name="img_url"
               placeholder="Image url"

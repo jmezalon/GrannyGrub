@@ -4,7 +4,6 @@ import { withRouter } from "react-router";
 const NewDishResults = props => {
   console.log(props);
 
-  debugger;
   return (
     <div className="dishInfo">
       <form onSubmit={props.handleResultSubmit}>
@@ -13,7 +12,7 @@ const NewDishResults = props => {
           {" "}
           dish Image:{" "}
           <img
-            src={!props.img_url ? props.dishImgFile : props.img_url}
+            src={props.img_url ? props.img_url : props.imgPreview}
             alt="dish"
             id="dish_img"
           />{" "}
