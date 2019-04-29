@@ -10,7 +10,7 @@ class EditProfile extends React.Component {
     bio: "",
     profile_pic: "",
     cuisine_id: "",
-    cuisine_type: "",
+    // cuisine_type: "",
     building_number: "",
     address: "",
     zip_code: "",
@@ -65,6 +65,7 @@ class EditProfile extends React.Component {
 
     const grandma = this.state;
     delete grandma.cuisine_type;
+    delete grandma.delete;
 
     await axios.patch(`/users/update/${this.grannyId()}`, grandma);
     await this.props.getOneGrandma(this.grannyId());
@@ -87,7 +88,7 @@ class EditProfile extends React.Component {
 
     const cuisineTypes = this.props.cuisines.map(cuisine => {
       return (
-        <option key={cuisine.id} value={cuisine.id}>
+        <option key={cuisine.id} value={Number(cuisine.id)}>
           {cuisine.type}
         </option>
       );
@@ -130,7 +131,9 @@ class EditProfile extends React.Component {
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
-            value={grandma.profile_pic ? grandma.profile_pic : ""}
+            value={
+              grandma.profile_pic ? grandma.profile_pic : this.state.profile_pic
+            }
           />
 
           <br />
@@ -139,7 +142,7 @@ class EditProfile extends React.Component {
 
           <select onChange={this.handleSelect}>
             <option key="0" value="">
-              {grandma.cuisine_type ? grandma.cuisine_type : "Select a cuisine"}
+              {grandma.cuisine_type ? "new cuisine" : "Select a cuisine"}
             </option>
             {cuisineTypes}
           </select>
@@ -152,7 +155,7 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={grandma.bio ? grandma.bio : ""}
+            value={grandma.bio ? grandma.bio : this.state.bio}
           />
           <br />
           <h3>address</h3>

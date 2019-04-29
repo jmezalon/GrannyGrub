@@ -34,7 +34,11 @@ class EditNewDishForm extends React.Component {
   handleSubmit = async e => {
     e.preventDefault();
 
-    const res = await this.uploadImage();
+    // const res
+
+    if (this.state.img_url !== this.props.dish.img_url) {
+      await this.uploadImage();
+    }
 
     const updateDish = this.state;
     delete updateDish.dishImgFile;
@@ -51,7 +55,7 @@ class EditNewDishForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   handleTypeChange = e => {
@@ -66,7 +70,9 @@ class EditNewDishForm extends React.Component {
       });
     }
 
+
     console.log(e.target.value);
+
   };
 
   // handleChange = e => {
@@ -83,7 +89,7 @@ class EditNewDishForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   handleImageInputChange = e => {
@@ -104,8 +110,8 @@ class EditNewDishForm extends React.Component {
       // console.log(this.);
     });
   }
-
   render() {
+    console.log(this.props.dish.date);
     // const quantityOptions = this.state.quantity.map((number, i) => {
     //   return (
     //     <option key={i + 1} value={i + 1} id="quantity" name="selectedQuantity">
@@ -196,7 +202,6 @@ class EditNewDishForm extends React.Component {
               </div>
             </span>
           </section>
-
           <br />
           <section>
             <div className="quantityForm">
@@ -229,14 +234,18 @@ class EditNewDishForm extends React.Component {
           </section>
           <br />
           <br />
-
-          <label htmlFor="start">Date:</label>
+          <label htmlFor="start">
+            Date:{" "}
+            {this.state.date !== this.props.dish.date
+              ? this.state.date
+              : this.props.dish.date}
+          </label>{" "}
+          <span>change date</span>
           <input
             type="date"
             id="start"
             name="date"
             value={this.state.date}
-            min={date}
             max="2020-12-31"
             onChange={this.handleChange}
           />
@@ -295,7 +304,6 @@ class EditNewDishForm extends React.Component {
             />
           </section>
           <br />
-
           <br />
           <label htmlFor="price">Price</label>
           <input
@@ -307,7 +315,6 @@ class EditNewDishForm extends React.Component {
           />
           <br />
           <br />
-
           <div className="filter-buttons">
             <label htmlFor="labels">labels </label> {labelTypes}
           </div>

@@ -23,7 +23,13 @@ class LandingPage extends React.Component {
               </div>
               <div>
                 <Link to="/mainpage">
-                  <button id="taste-button"> Get a taste </button>
+                  <button
+                    id="taste-button"
+                    onClick={this.props.handleGetATaste}
+                  >
+                    {" "}
+                    Get a taste{" "}
+                  </button>
                 </Link>
               </div>
               <CookPortal />
