@@ -1,29 +1,34 @@
-import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import React, { Component } from "react";
+import { NavLink, Link, withRouter } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 class Navbar extends Component {
   render() {
     const { loggedIn } = this.props;
+    // console.log(this.props);
     return (
       <div className="navbar-parent">
-        <div className="logo-div">
+        <div className="logo-div" onClick={this.props.handleGetATasteReset}>
           <NavLink to="/">
             <img id="logo" alt="" src={logo} />
           </NavLink>
         </div>
-        <div className="middle-options">
-          <NavLink to={`/grandma/edit/${parseInt(this.props.id)}`}>
-            edit profile
-          </NavLink>
-          <NavLink to={`/grandma/${parseInt(this.props.id)}/dashboard`}>
-            dashboard
-          </NavLink>
-          <NavLink to="/grandma/newdish">new dish</NavLink>
-          <NavLink to="/grandma/5">user view of grandma</NavLink>
-          <NavLink to="/mainpage">Main Page</NavLink>
-          <NavLink to="/grandma/5/order">order</NavLink>
-        </div>
+        {this.props.isOrdering ? (
+          <div className="middle-options">
+            <NavLink to="/mainpage">Our Grandmas</NavLink>
+            <NavLink to="/about">About us</NavLink>
+          </div>
+        ) : (
+          <div>
+            {this.props.location.pathname === "/" ? (
+              <Link to="/auth/signup">
+                <button>Become A Grandma</button>
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
+        )}
       </div>
 
       //

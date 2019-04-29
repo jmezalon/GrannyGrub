@@ -5,23 +5,27 @@ import logo from "../../assets/logo.png";
 class GrannyNavbar extends Component {
   render() {
     const { loggedIn } = this.props;
-
     return (
       <div className="navbar-parent">
-        <div className="logo-div">
-          <NavLink to="/">
+        <div className="logo-div" onClick={this.props.handleGetATasteReset}>
+          <NavLink to={`/grandma/${parseInt(this.props.id)}/dashboard`}>
             <img id="logo" alt="" src={logo} />
           </NavLink>
         </div>
         <div className="middle-options">
           <NavLink to={`/grandma/${parseInt(this.props.id)}/dashboard`}>
-            dashboard
+            Dashboard
           </NavLink>
 
           <NavLink to={`/grandma/edit/${parseInt(this.props.id)}`}>
-            edit profile
+            Edit Profile
           </NavLink>
-          <NavLink to="/grandma/newdish">new dish</NavLink>
+          <NavLink to="/grandma/newdish">New Dish</NavLink>
+        </div>
+        <div className="logout-div" onClick={() => this.props.logoutUser()}>
+          <NavLink to="/">
+            <button id="logout-button">Log out</button>
+          </NavLink>
         </div>
       </div>
 
