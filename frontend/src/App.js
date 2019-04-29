@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   render() {
-    // console.log('YO User', this.state.user);
+    // console.log("YO User", this.props.currentUser);
     // console.log("YO loser", this.props.currentUser.id);
 
     // if (this.props.currentUser) {
@@ -54,7 +54,7 @@ class App extends Component {
     // }
     return (
       <div className="App">
-        {this.props.currentUser ? (
+        {this.props.userId ? (
           <GrannyNavbar
             id={this.props.userId}
             logoutUser={this.props.logoutUser}

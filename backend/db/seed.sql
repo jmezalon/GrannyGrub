@@ -57,6 +57,8 @@ CREATE TABLE label_dishes (
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  phone_number VARCHAR NOT NULL,
   dish_id  INT REFERENCES dishes(id) ON DELETE CASCADE,
   user_id INT REFERENCES users(id) ON DELETE CASCADE,
   isCompleted BOOLEAN
