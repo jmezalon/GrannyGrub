@@ -62,6 +62,7 @@ class EditProfile extends React.Component {
   };
 
   // TODO with correct redux we can probably kill this.
+
   componentDidMount() {
     // this.props.getOneGrandma(parseInt(this.props.user.id));
     this.props.getAllCuisines();
@@ -172,6 +173,12 @@ class EditProfile extends React.Component {
                 value={grandma.zip_code}
               />
             </span>
+          </div>
+
+          <div>
+            <label htmlFor="deleteAccount"> Delete Account </label>
+            <button> Delete Account </button>
+            <p> please note that this will permanently delete your account </p>
           </div>
           <div className="save-button">
             <button>Save</button>
