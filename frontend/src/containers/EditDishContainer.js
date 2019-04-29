@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import { getOneDish } from "../actions/dishActions";
-import { getAllLabels } from "../actions/dishActions";
+import { getAllLabels, deleteDish } from "../actions/dishActions";
 
 import { getAllCuisines } from "../actions/cuisineActions";
 

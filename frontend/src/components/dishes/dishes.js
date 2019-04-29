@@ -5,10 +5,18 @@ class GrandmasDishes extends React.Component {
   // componentDidMount() {
   //   this.props.getGrandmasDishes(parseInt(this.props.id));
   // }
+  //
+
+  handleDeleteDish = (dish_id, grannyId) => {
+    debugger;
+    this.props.deleteDish(dish_id, grannyId);
+    // this.props.history.push(`/grandma/${this.props.id}/dashboard`);
+  };
 
   render() {
     // console.log("userid", this.props.id);
-    // console.log(this.props);
+    console.log("dish page", this.props);
+    let grannyId = parseInt(this.props.match.params.id);
     let grannyDishDisplay = this.props.dishes.map(dish => {
       return (
         <div className="dish-view" key={dish.dish_id}>
@@ -26,6 +34,14 @@ class GrandmasDishes extends React.Component {
           <div className="time-date-div">
             <p>timefrmae: {dish.timeframe} </p>
             <p> date: {dish.date} </p>
+          </div>
+          <div>
+            <button
+              onClick={() => this.handleDeleteDish(dish.dish_id, grannyId)}
+            >
+              {" "}
+              Delete dish{" "}
+            </button>
           </div>
         </div>
       );
