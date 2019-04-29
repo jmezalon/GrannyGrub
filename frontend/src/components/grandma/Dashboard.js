@@ -51,17 +51,6 @@ class Dashboard extends Component {
                 <input type="button" value="edit" />
               </Link>
             </div>
-
-            <button
-              onClick={() =>
-                this.props
-                  .logoutUser()
-                  .then(() => this.props.history.push("/auth/login"))
-              }
-            >
-              {" "}
-              logout{" "}
-            </button>
           </div>
           <div>
             <Orders orders={this.props.orders} />
@@ -83,3 +72,14 @@ class Dashboard extends Component {
 }
 
 export default withRouter(Dashboard);
+
+// <button
+// onClick={() =>
+//   this.props
+//   .logoutUser()
+//   .then(() => this.props.history.push("/auth/login"))
+// }
+// >
+// {" "}
+// logout{" "}
+// </button>
