@@ -51,7 +51,7 @@ class EditNewDishForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   handleTypeChange = e => {
@@ -65,7 +65,7 @@ class EditNewDishForm extends React.Component {
         type: "pick-up"
       });
     }
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   // handleChange = e => {
@@ -82,7 +82,7 @@ class EditNewDishForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   handleImageInputChange = e => {
