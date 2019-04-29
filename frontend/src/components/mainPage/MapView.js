@@ -4,6 +4,7 @@ import React, { Component } from "react";
 // import { MainPageLoader } from "./loadingPages/MainpageLoader";
 import icon from "../../assets/icon.png";
 import axios from "axios";
+import "../../css/sample.css";
 
 class MapView extends Component {
   constructor(props) {
@@ -30,7 +31,9 @@ class MapView extends Component {
   };
 
   componentDidUpdate = prevProps => {
-    if (
+    if (prevProps.center.lat !== this.props.center.lat) {
+      this.showMap();
+    } else if (
       prevProps.center.lat !== this.props.center.lat ||
       prevProps.grandmas.length !== this.props.grandmas.length ||
       prevProps.center.lat !== this.map.getCenter().lat()
@@ -193,6 +196,7 @@ class MapView extends Component {
           grandma.id
         )
       });
+
       const handleClick = this.props.handleClick.bind(this);
       window.google.maps.event.addListener(infoWindow, "domready", function() {
         document

@@ -38,10 +38,10 @@ export const getAllGrandmas = () => dispatch => {
       // let grandmas = res.data.users.filter(user => {
       //   return user.isgrandma;
       // });
-      dispatch(receiveAllGrandmas(res.data.users));
+      return dispatch(receiveAllGrandmas(res.data.users));
     })
     .catch(err => {
-      dispatch(gotError(err));
+      return dispatch(gotError(err));
     });
 };
 
@@ -50,9 +50,9 @@ export const getOneGrandma = id => dispatch => {
   axios
     .get(`/users/grandma/${id}`)
     .then(res => {
-      dispatch(receiveOneGrandma(res.data.user));
+      return dispatch(receiveOneGrandma(res.data.user));
     })
     .catch(err => {
-      dispatch(gotError(err));
+      return dispatch(gotError(err));
     });
 };
