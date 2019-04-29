@@ -61,15 +61,41 @@ class MainPage extends Component {
   };
 
   filterGrannies = () => {
-    let { cuisinesSelected, isSitdown, isPickup } = this.state;
+    let {
+      cuisinesSelected,
+      isSitdown,
+      isPickup,
+      isLunch,
+      isDinner
+    } = this.state;
     let dataObj = {
       cusineIds: cuisinesSelected,
       isPickup,
-      isSitdown
+      isSitdown,
+      isLunch,
+      isDinner
     };
     if (
-      (!cuisinesSelected.length && !isPickup && !isSitdown) ||
-      (!cuisinesSelected.length && isPickup && isSitdown)
+      (!cuisinesSelected.length &&
+        !isPickup &&
+        !isSitdown &&
+        !isLunch &&
+        !isDinner) ||
+      (!cuisinesSelected.length &&
+        isPickup &&
+        isSitdown &&
+        isLunch &&
+        isDinner) ||
+      (!cuisinesSelected.length &&
+        !isPickup &&
+        !isSitdown &&
+        isLunch &&
+        isDinner) ||
+      (!cuisinesSelected.length &&
+        isPickup &&
+        isSitdown &&
+        !isLunch &&
+        !isDinner)
     ) {
       this.props.getAllGrandmas();
     } else {
@@ -128,7 +154,7 @@ class MainPage extends Component {
   // };
 
   render() {
-    console.log(this.state);
+    console.log("here ", this.state);
     const { showingMap } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
@@ -147,7 +173,7 @@ class MainPage extends Component {
     });
 
     let { grandmas } = this.props;
-    if (!grandmas.length) return null;
+    // if (!grandmas.length) return null;
     return (
       <div className="mainpage">
         <form>

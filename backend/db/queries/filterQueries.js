@@ -21,35 +21,46 @@ const filterByCuisineMap = (req, res, next) => {
 };
 
 const filterByTypeAndCuisine = (req, res, next) => {
-  let cuisine_arr = req.body.cusineIds;
-  let { isPickup, isSitdown } = req.body;
+  let { isPickup, isSitdown, isLunch, isDinner, cusineIds } = req.body;
   let mealType = "";
+  let mealTime = "";
   let cuisineQueryString = [];
 
-  cuisine_arr.forEach(cusine_id => {
+  cusineIds.forEach(cusine_id => {
     cuisineQueryString.push("users.cuisine_id = " + cusine_id);
   });
   let queryString = cuisineQueryString.join(" OR ");
-
-  if (isPickup && isSitdown) {
-    queryString = queryString;
-  } else if ((isPickup || isSitdown) && !cuisine_arr.length) {
-    if (isPickup) mealType = "pick-up";
-    if (isSitdown) mealType = "sit-down";
-    queryString = `dishes.type = '${mealType}'`;
-  } else if (cuisine_arr.length && (isPickup || isSitdown)) {
-    if (isPickup) mealType = "pick-up";
-    if (isSitdown) mealType = "sit-down";
-    queryString = queryString.concat(` AND dishes.type = '${mealType}'`);
+  if (
+    (isPickup || isSitdown) &&
+    ((isLunch && isDinner) || (!isLunch && !isDinner))
+  ) {
+    mealType = isPickup ? "pick-up" : "sit-down";
+    queryString = !cusineIds.length
+      ? `dishes.type = '${mealType}'`
+      : queryString.concat(` AND dishes.type = '${mealType}'`);
+  } else if (
+    (isLunch || isDinner) &&
+    ((isPickup && isSitdown) || (!isPickup && !isSitdown))
+  ) {
+    mealTime = isLunch ? "Lunch" : "Dinner";
+    queryString = !cusineIds.length
+      ? `dishes.timeframe = '${mealTime}'`
+      : queryString.concat(` AND dishes.timeframe = '${mealTime}'`);
+  } else if ((isLunch || isDinner) && (isPickup || isSitdown)) {
+    mealTime = isLunch ? "Lunch" : "Dinner";
+    mealType = isPickup ? "pick-up" : "sit-down";
+    queryString = !cusineIds.length
+      ? `dishes.type = '${mealType}' AND dishes.timeframe = '${mealTime}'`
+      : `dishes.type = '${mealType}' AND dishes.timeframe = '${mealTime}' AND (${queryString})`;
   }
-  console.log("here ", queryString);
 
   db.any(
     `SELECT users.id AS id, longitude, latitude,
     first_name, last_name,  profile_pic, ARRAY_AGG(dishes.timeframe)
-    AS timeframes, cuisines.type AS cuisine_type, ARRAY_AGG(dishes.type)
-    AS dish_type FROM users LEFT JOIN dishes ON users.id = dishes.user_id
-    JOIN cuisines ON cuisines.id = users.cuisine_id WHERE ${queryString}
+    AS timeframes, cuisines.type AS cuisine_type, ARRAY_AGG(dishes.type) AS dish_type
+    FROM users
+    LEFT JOIN dishes ON users.id = dishes.user_id
+    LEFT JOIN cuisines ON cuisines.id = users.cuisine_id WHERE ${queryString}
     GROUP BY users.id, longitude, latitude, first_name, last_name, cuisines.type`
   )
     .then(grandmas => {
@@ -127,7 +138,7 @@ const filterByLabel = (req, res, next) => {
   label_id = parseInt(req.params.id);
 
   db.any(
-    "ELECT DISTINCT label_name, labels.id AS label_id, dishes.id AS dish_id, dishes.user_id AS grandma_id,  profile_pic,longitude, latitude, first_name, last_name,dishes.type AS dish_type, timeframe FROM label_dishes JOIN dishes ON label_dishes.dish_id = dishes.id JOIN users ON dishes.user_id = users.id  JOIN labels ON label_dishes.label_id = labels.id  WHERE label_dishes.label_id = $1",
+    "SELECT DISTINCT label_name, labels.id AS label_id, dishes.id AS dish_id, dishes.user_id AS grandma_id,  profile_pic,longitude, latitude, first_name, last_name,dishes.type AS dish_type, timeframe FROM label_dishes JOIN dishes ON label_dishes.dish_id = dishes.id JOIN users ON dishes.user_id = users.id  JOIN labels ON label_dishes.label_id = labels.id  WHERE label_dishes.label_id = $1",
 
     [label_id]
   )

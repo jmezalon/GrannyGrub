@@ -13,7 +13,7 @@ class ListView extends Component {
 
   render() {
     let { grandmas, handleClick, center, zoom } = this.props;
-    if (!grandmas.length) return null;
+    // if (!grandmas.length) return null;
 
     const grannies = grandmas.map(granny => {
       return (
