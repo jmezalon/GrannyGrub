@@ -44,15 +44,23 @@ class GrandmaPage extends Component {
         </div>
 
         <div className="profile-sidebar">
-          <p>{grandma.first_name}</p>
+          <p> Granny {grandma.first_name}</p>
           <img
             className="user-view-granny-pic"
             src={grandma.profile_pic}
             alt=""
           />
-          <p>id: {grandma.id}</p>
           <p>cuisine type: {grandma.cuisine_type}</p>
           <p>bio: {grandma.bio}</p>
+          {grandma.ispublic ? (
+            <div>
+              <p> Phone number: {grandma.phone_number} </p>
+              <p> Email: {grandma.email} </p>
+              <p>{grandma.zip_code}</p>
+            </div>
+          ) : (
+            <p>{grandma.zip_code}</p>
+          )}
         </div>
       </div>
     );
