@@ -4,7 +4,8 @@ import { getOneGrandma } from "../actions/grandmaActions";
 import {
   setCurrentUser,
   checkAuthenticateStatus,
-  getCurrentUser
+  getCurrentUser,
+  logoutUser
 } from "../actions/userAuthActions";
 
 import App from "../App.js";
@@ -22,7 +23,8 @@ const mapDispatchToProps = dispatch => {
   return {
     checkAuthenticateStatus: () => dispatch(checkAuthenticateStatus()),
     getCurrentUser: () => dispatch(getCurrentUser()),
-    setCurrentUser: currentUser => dispatch(setCurrentUser(currentUser))
+    setCurrentUser: currentUser => dispatch(setCurrentUser(currentUser)),
+    logoutUser: () => dispatch(logoutUser())
   };
 };
 

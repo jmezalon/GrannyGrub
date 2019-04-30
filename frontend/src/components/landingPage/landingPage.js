@@ -16,7 +16,16 @@ class LandingPage extends React.Component {
               <h1> grannygrub </h1>
               <div>
                 <Link to="/mainpage">
-                  <button id="taste-button"> Get started now </button>
+
+
+                  <button
+                    id="taste-button"
+                    onClick={this.props.handleGetATaste}
+                  >
+                    {" "}
+                    Get started now{" "}
+                  </button>
+
                 </Link>
               </div>
             </div>

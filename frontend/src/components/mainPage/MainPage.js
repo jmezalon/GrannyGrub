@@ -10,6 +10,8 @@ class MainPage extends Component {
   state = {
     isSitdown: false,
     isPickup: false,
+    isLunch: false,
+    isDinner: false,
     cuisinesSelected: [],
     showingMap: true,
     address: "",
@@ -53,22 +55,47 @@ class MainPage extends Component {
     let checkList = document.getElementsByClassName("checkbox");
     for (let i = 0; i < checkList.length; i++) {
       if (checkList[i].checked) {
-        console.log(checkList[i]);
         checkList[i].checked = false;
       }
     }
   };
 
   filterGrannies = () => {
-    let { cuisinesSelected, isSitdown, isPickup } = this.state;
+    let {
+      cuisinesSelected,
+      isSitdown,
+      isPickup,
+      isLunch,
+      isDinner
+    } = this.state;
     let dataObj = {
       cusineIds: cuisinesSelected,
       isPickup,
-      isSitdown
+      isSitdown,
+      isLunch,
+      isDinner
     };
     if (
-      (!cuisinesSelected.length && !isPickup && !isSitdown) ||
-      (!cuisinesSelected.length && isPickup && isSitdown)
+      (!cuisinesSelected.length &&
+        !isPickup &&
+        !isSitdown &&
+        !isLunch &&
+        !isDinner) ||
+      (!cuisinesSelected.length &&
+        isPickup &&
+        isSitdown &&
+        isLunch &&
+        isDinner) ||
+      (!cuisinesSelected.length &&
+        !isPickup &&
+        !isSitdown &&
+        isLunch &&
+        isDinner) ||
+      (!cuisinesSelected.length &&
+        isPickup &&
+        isSitdown &&
+        !isLunch &&
+        !isDinner)
     ) {
       this.props.getAllGrandmas();
     } else {
@@ -127,6 +154,7 @@ class MainPage extends Component {
   // };
 
   render() {
+    console.log("here ", this.state);
     const { showingMap } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
@@ -145,9 +173,27 @@ class MainPage extends Component {
     });
 
     let { grandmas } = this.props;
-    if (!grandmas.length) return null;
+    // if (!grandmas.length) return null;
     return (
       <div className="mainpage">
+        <form>
+          <div>
+            <input
+              type="checkbox"
+              name="isLunch"
+              onChange={this.handleClickMealType}
+              className="checkbox"
+            />
+            Lunch
+            <input
+              type="checkbox"
+              name="isDinner"
+              onChange={this.handleClickMealType}
+              className="checkbox"
+            />
+            Dinner
+          </div>
+        </form>
         <form
           onSubmit={e => {
             this.getCoords(e, this.state.address);

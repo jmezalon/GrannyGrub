@@ -10,13 +10,14 @@ class EditProfile extends React.Component {
     bio: "",
     profile_pic: "",
     cuisine_id: "",
-    cuisine_type: "",
+    // cuisine_type: "",
     building_number: "",
     address: "",
     zip_code: "",
     longitude: "",
     latitude: "",
-    delete: false
+    delete: false,
+    message: ""
   };
 
   handleChange = e => {
@@ -31,6 +32,16 @@ class EditProfile extends React.Component {
   grannyId = () => {
     const path = this.props.location.pathname;
     return path.substring(path.lastIndexOf("/") + 1);
+  };
+
+  // handleFirstClick = e => {
+  //   e.preventDefault();
+  // };
+
+  handleDeleteAccount = e => {
+    e.preventDefault();
+    this.props.deleteGrandmaAccount(this.props.id);
+    this.props.history.push(`/`);
   };
 
   handleSubmit = async e => {
@@ -54,6 +65,7 @@ class EditProfile extends React.Component {
 
     const grandma = this.state;
     delete grandma.cuisine_type;
+    delete grandma.delete;
 
     await axios.patch(`/users/update/${this.grannyId()}`, grandma);
     await this.props.getOneGrandma(this.grannyId());
@@ -62,6 +74,7 @@ class EditProfile extends React.Component {
   };
 
   // TODO with correct redux we can probably kill this.
+
   componentDidMount() {
     // this.props.getOneGrandma(parseInt(this.props.user.id));
     this.props.getAllCuisines();
@@ -75,11 +88,17 @@ class EditProfile extends React.Component {
 
     const cuisineTypes = this.props.cuisines.map(cuisine => {
       return (
-        <option key={cuisine.id} value={cuisine.id}>
+        <option key={cuisine.id} value={Number(cuisine.id)}>
           {cuisine.type}
         </option>
       );
     });
+
+    const deleteAccount = () => {
+      if (!this.state.delete) {
+      }
+    };
+
     return (
       <div className="one-grandma">
         <h6>Edit your profile</h6>
@@ -118,7 +137,7 @@ class EditProfile extends React.Component {
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
-            value={grandma.profile_pic ? grandma.profile_pic : ""}
+            value={grandma.profile_pic}
           />
 
           <br />
@@ -127,7 +146,7 @@ class EditProfile extends React.Component {
 
           <select onChange={this.handleSelect}>
             <option key="0" value="">
-              {grandma.cuisine_type ? grandma.cuisine_type : "Select a cuisine"}
+              {grandma.cuisine_type ? "new cuisine" : "Select a cuisine"}
             </option>
             {cuisineTypes}
           </select>
@@ -140,7 +159,7 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={grandma.bio ? grandma.bio : ""}
+            value={grandma.bio}
           />
           <br />
           <h3>address</h3>
@@ -173,6 +192,28 @@ class EditProfile extends React.Component {
               />
             </span>
           </div>
+
+          <div>
+            <label htmlFor="deleteAccount"> Delete Account </label>
+
+            <button
+              onClick={e => {
+                window.confirm(
+                  "Are you sure you wish to delete your GrannyGrub account?"
+                ) && this.handleDeleteAccount(e);
+              }}
+            >
+              {" "}
+              Delete Account{" "}
+            </button>
+            <p>
+              {" "}
+              {!this.state.delete
+                ? "Are you sure you want to delete your account"
+                : "please note that this will permanently delete your account"}{" "}
+            </p>
+          </div>
+
           <div className="save-button">
             <button>Save</button>
           </div>

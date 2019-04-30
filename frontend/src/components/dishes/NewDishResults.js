@@ -1,5 +1,5 @@
-import React from 'react';
-import { withRouter } from 'react-router';
+import React from "react";
+import { withRouter } from "react-router";
 
 const NewDishResults = props => {
   console.log(props);
@@ -8,10 +8,15 @@ const NewDishResults = props => {
   return (
     <div className="dishInfo">
       <form onSubmit={props.handleResultSubmit}>
-        <h3> Dish name: {props.dishName}</h3>
+        <h3> Dish name: {props.name}</h3>
         <p>
-          {' '}
-          dish Image: <img src={props.dishImg} alt="dish" id="dish_img" />{' '}
+          {" "}
+          dish Image:{" "}
+          <img
+            src={!props.img_url ? props.dishImgFile : props.img_url}
+            alt="dish"
+            id="dish_img"
+          />{" "}
         </p>
 
         <p> Price: ${props.price} </p>

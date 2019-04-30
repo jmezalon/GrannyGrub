@@ -6,9 +6,15 @@ import Orders from "./grandmaOrders";
 import GrannyNavbar from "../navbar/GrannyNavbar";
 
 class Dashboard extends Component {
+  // state = {
+  //   newGrandma: false
+  // };
+
   componentWillMount() {
     this.props.getOneGrandma(this.props.id);
+    // if (!this.props.hasOrder) {
     this.props.getAllOrdersForGrandma(this.props.id);
+    // }
     this.props.getGrandmasDishes(this.props.id);
   }
   // <GrannyNavbar id={this.props.id} />
@@ -51,25 +57,17 @@ class Dashboard extends Component {
                 <input type="button" value="edit" />
               </Link>
             </div>
-
-            <button
-              onClick={() =>
-                this.props
-                  .logoutUser()
-                  .then(() => this.props.history.push("/auth/login"))
-              }
-            >
-              {" "}
-              logout{" "}
-            </button>
           </div>
           <div>
-            <Orders orders={this.props.orders} />
+            <Orders hasOrder={this.props.hasOrder} orders={this.props.orders} />
           </div>
 
           <div className="granny_dishes">
             <h2>Your current offerings:</h2>
-            <GrandmasDishes dishes={this.props.dishes} />
+            <GrandmasDishes
+              deleteDish={this.props.deleteDish}
+              dishes={this.props.dishes}
+            />
             <div className="addNew-page">
               <Link to={`/grandma/newdish`}>
                 <input type="button" value="Add a new dish!" />
@@ -83,3 +81,14 @@ class Dashboard extends Component {
 }
 
 export default withRouter(Dashboard);
+
+// <button
+// onClick={() =>
+//   this.props
+//   .logoutUser()
+//   .then(() => this.props.history.push("/auth/login"))
+// }
+// >
+// {" "}
+// logout{" "}
+// </button>

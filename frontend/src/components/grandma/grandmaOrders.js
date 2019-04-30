@@ -6,8 +6,13 @@ class Orders extends React.Component {
       return (
         <div key={order.order_id} className="dish-view">
           <p>Order Number: {order.order_id} </p>
-          <p>{order.name} </p>
+          <p>{order.dish_name} </p>
           <p>{order.dish_type} </p>
+          <br />
+          <span>
+            for {order.full_name}, <br /> phone number: {order.phone_number}
+            <br />
+          </span>
           <p>
             remaining_quantity:{" "}
             {order.remaining_quantity !== null
@@ -20,10 +25,13 @@ class Orders extends React.Component {
     });
 
     return (
-      <>
-        <h1>orders go here </h1>
-        <div>{orderDisplay}</div>
-      </>
+      <div>
+        <h1>Your orders</h1>
+
+        {this.props.orders.length
+          ? orderDisplay
+          : "you currently have no orders yet"}
+      </div>
     );
   }
 }

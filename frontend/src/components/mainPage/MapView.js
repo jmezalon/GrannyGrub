@@ -32,7 +32,7 @@ class MapView extends Component {
 
   componentDidUpdate = prevProps => {
     if (prevProps.center.lat !== this.props.center.lat) {
-      this.showMap();
+      this.updateMap();
     } else if (
       prevProps.center.lat !== this.props.center.lat ||
       prevProps.grandmas.length !== this.props.grandmas.length ||
@@ -184,9 +184,7 @@ class MapView extends Component {
         marker[0].setMap(null);
       });
     }
-
     this.markers = [];
-
     this.props.grandmas.forEach(grandma => {
       const infoWindow = new window.google.maps.InfoWindow({
         content: this.infoWindow(
@@ -196,7 +194,6 @@ class MapView extends Component {
           grandma.id
         )
       });
-
       const handleClick = this.props.handleClick.bind(this);
       window.google.maps.event.addListener(infoWindow, "domready", function() {
         document
@@ -205,7 +202,6 @@ class MapView extends Component {
             handleClick(grandma.id);
           });
       });
-
       const marker = new window.google.maps.Marker({
         position: { lat: grandma.latitude, lng: grandma.longitude },
         map: this.map,
@@ -213,16 +209,13 @@ class MapView extends Component {
         title: grandma.last_name,
         grandmaId: grandma.id
       });
-
       this.markers.push([marker, infoWindow]);
-
       var myListener = marker.addListener("mouseover", () => {
         this.markers.map(markInfo => {
           markInfo[1].close(this.map, markInfo[0]);
         });
         infoWindow.open(this.map, marker);
       });
-
       marker.addListener("click", () => {
         this.props.handleClick(grandma.id);
       });
@@ -231,7 +224,7 @@ class MapView extends Component {
 
   render() {
     let { grandmas, handleClick, showingMap } = this.props;
-    if (!grandmas.length) return null;
+    // if (!grandmas.length) return null;
     const divStyle = {
       width: "500px",
       height: "500px"

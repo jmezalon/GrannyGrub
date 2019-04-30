@@ -10,6 +10,7 @@ import ProfileContainer from "./containers/ProfileContainer";
 import HomeContainer from "./containers/HomeContainer";
 import MainPageContainer from "./containers/MainPageContainer";
 import Navbar from "./components/navbar/Navbar.js";
+import GrannyNavbar from "./components/navbar/GrannyNavbar.js";
 import UserAuthContainer from "./containers/userAuthContainer.js";
 import DishContainer from "./containers/DishContainer";
 import NewDishContainer from "./containers/NewDishContainer";
@@ -22,6 +23,20 @@ import DashboardMain from "./components/grandma/DashboardMain";
 import { PrivateRoute, AuthRoute } from "./userauth/utils/privateRouting.js";
 
 class App extends Component {
+  state = {
+    isOrdering: false
+  };
+
+  handleGetATaste = () => {
+    if (!this.state.currentUser) {
+      this.setState({ isOrdering: true });
+    }
+  };
+
+  handleGetATasteReset = () => {
+    this.setState({ isOrdering: false });
+  };
+
   goBack = () => {
     this.props.history.goBack();
   };
@@ -31,18 +46,39 @@ class App extends Component {
   }
 
   render() {
-    // console.log('YO User', this.state.user);
+    // console.log("YO User", this.props.currentUser);
     // console.log("YO loser", this.props.currentUser.id);
 
     // if (this.props.currentUser) {
     //   const { id } = this.props.currentUser.id;
     // }
-
     return (
       <div className="App">
-        <Navbar id={this.props.userId} />
+        {this.props.userId ? (
+          <GrannyNavbar
+            id={this.props.userId}
+            logoutUser={this.props.logoutUser}
+            handleGetATasteReset={this.handleGetATasteReset}
+          />
+        ) : (
+          <Navbar
+            isOrdering={this.state.isOrdering}
+            handleGetATasteReset={this.handleGetATasteReset}
+            id={this.props.userId}
+          />
+        )}
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route
+            exact
+            path={"/"}
+            render={props => (
+              <LandingPage
+                {...props}
+                handleGetATaste={this.handleGetATaste}
+                isOrdering={this.state.isOrdering}
+              />
+            )}
+          />
           <Route exact path="/home" component={HomeContainer} />
           <Route exact path="/mainpage" component={MainPageContainer} />
 

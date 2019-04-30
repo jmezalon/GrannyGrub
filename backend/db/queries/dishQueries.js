@@ -61,8 +61,8 @@ const addNewDish = (req, res, next) => {
     {
       name: req.body.name,
       description: req.body.description,
-      user_id: req.body.user_id,
-      cuisine_id: req.body.cuisine_id,
+      user_id: parseInt(req.body.user_id),
+      cuisine_id: parseInt(req.body.cuisine_id),
       img_url: req.body.img_url,
       price: req.body.price,
       date: req.body.date,
