@@ -96,18 +96,30 @@
   height: 130px;
 }
 
-.info img {
-  width: 60px;
-  height: auto;
-  border-radius: 2px;
+.info {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  height: 50px;
+}
+
+.info-in-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-in-window h3 {
+  font-weight: bold;
+  font-family: futura;
 }
 
 #image {
+  align-items: center;
+  width: 60px;
   height: 60px;
-  overflow-y: hidden;
 }
-.info {
-  width: 160px;
-  overflow-x: hidden;
-  border-radius: 10px;
+#image img {
+  width: 40px;
+  filter: grayscale(70%);
 }

@@ -4,7 +4,6 @@ import React, { Component } from "react";
 // import { MainPageLoader } from "./loadingPages/MainpageLoader";
 import icon from "../../assets/icon.png";
 import axios from "axios";
-import "../../css/sample.css";
 
 class MapView extends Component {
   constructor(props) {
@@ -18,11 +17,14 @@ class MapView extends Component {
     const divstyle = { width: "20px", height: "20px" };
     return `
     <div id=${id} class="info">
-      <p>Grandma  ${lastname}</p>
       <div id="image">
         <img src=${pic} alt="grandma ${lastname}" />
       </div>
+      <div class="info-in-window">
+      <h3>Grandma  ${lastname}</h3>
+
       <p>${cuisine} style</p>
+      </div>
     </div>`;
   };
 
