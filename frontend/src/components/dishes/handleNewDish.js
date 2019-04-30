@@ -36,6 +36,12 @@ class HandleNewDish extends React.Component {
     this.props.getAllLabels();
   }
 
+  goBack = () => {
+    this.setState({
+      submitted: false
+    });
+  };
+
   uploadImage = () => {
     var formData = new FormData();
     var imagefile = this.state.dishImgFile;
@@ -88,30 +94,6 @@ class HandleNewDish extends React.Component {
       timeframe: timeframe,
       quantity: selectedQuantity
     });
-
-    // await this.setState({
-    //   name: "",
-    //   description: "",
-    //   type: "",
-    //   img_url: "",
-    //   cuisine_id: "",
-    //   label_id: "",
-    //   quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    //   selectedQuantity: "",
-    //   timeframe: "",
-    //   date:
-    //     new Date().getFullYear() +
-    //     "-" +
-    //     (new Date().getMonth() + 1 < 10
-    //       ? "0" + (new Date().getMonth() + 1)
-    //       : new Date().getMonth() + 1) +
-    //     "-" +
-    //     (new Date().getDate() + 1 < 10
-    //       ? "0" + (new Date().getDate() + 1)
-    //       : new Date().getDate() + 1),
-    //   user_id: "",
-    //   price: ""
-    // });
 
     await this.props.history.push(
       `/grandma/${parseInt(this.props.id)}/dashboard`
@@ -234,6 +216,8 @@ class HandleNewDish extends React.Component {
             timeframe={timeframe}
             price={price}
             date={date}
+            submitted={submitted}
+            goBack={this.goBack}
             imgPreview={this.state.imgPreview}
             selectedQuantity={selectedQuantity}
             handleResultSubmit={this.handleResultSubmit}

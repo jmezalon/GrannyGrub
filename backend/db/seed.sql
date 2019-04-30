@@ -89,7 +89,7 @@ INSERT INTO cuisines (type, description, img_url) VALUES ('Chinese', 'we have de
 ('Italian', 'not just pizza, but a whole lot more', 'https://serafinamia.com/wp-content/uploads/2018/09/10-Italian-Fun-Facts-The-Food-Fashion-and-Culture-of-Italy.jpg');
 
 INSERT INTO cuisines (type) VALUES ('Indian'),
-('Greek'), ('Polish'),('Mexican'), ('Thai'), ('Turksih'),('Middle-Eastern'), ('Korean'), ('Japanese'),('Bengali'),('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal');
+('Greek'), ('Polish'),('Mexican'), ('Thai'), ('Turksih'),('Middle-Eastern'), ('Korean'), ('Japanese'),('Bengali');
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic) VALUES
 ('Max', 'Mezalon', 'jmezalon@gmail.com', '123-234,4067', false, 1234, 'https://media.licdn.com/dms/image/C5603AQGRdf5YV2R8_g/profile-displayphoto-shrink_200_200/0?e=1559779200&v=beta&t=RyKqHF_KvRhK4pD2Di5ywRbTVql5MYD_1iHS7ASkoUM'),
@@ -197,7 +197,7 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type
 
 
 
-INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'), ('Contains-Eggs'),('Contains-nuts'),('Contains-Shellfish');
+INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'),('Contains-Eggs'),('Contains-nuts'),('Contains-Shellfish');
 
 
 INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 4),(3, 9),(3, 6), (4, 9), (4,4), (5,5), (5,6), (5,7), (6, 1);

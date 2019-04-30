@@ -1,5 +1,5 @@
-import React from "react";
-import { withRouter } from "react-router";
+import React from 'react';
+import { withRouter } from 'react-router';
 
 const NewDishResults = props => {
   // console.log(props);
@@ -9,13 +9,13 @@ const NewDishResults = props => {
       <form onSubmit={props.handleResultSubmit}>
         <h3> Dish name: {props.name}</h3>
         <p>
-          {" "}
-          dish Image:{" "}
+          {' '}
+          dish Image:{' '}
           <img
             src={props.img_url ? props.img_url : props.imgPreview}
             alt="dish"
             id="dish_img"
-          />{" "}
+          />{' '}
         </p>
 
         <p> Price: ${props.price} </p>
@@ -26,6 +26,7 @@ const NewDishResults = props => {
         <p> timeframe: {props.timeframe} </p>
         <p> date: {props.date} </p>
 
+        <button onClick={() => props.goBack()}> Edit </button>
         <input type="submit" value="Add Dish!" />
       </form>
     </div>
