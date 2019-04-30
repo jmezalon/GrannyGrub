@@ -225,7 +225,7 @@ class MapView extends Component {
   };
 
   render() {
-    let { grandmas, handleClick, showingMap } = this.props;
+    let { grandmas, handleClick } = this.props;
     // if (!grandmas.length) return null;
     const divStyle = {
       width: "500px",
@@ -233,7 +233,7 @@ class MapView extends Component {
     };
 
     return (
-      <div className={showingMap ? "map-main" : "map-list-veiw"}>
+      <div className="map-main">
         <div id="map" />
       </div>
     );
