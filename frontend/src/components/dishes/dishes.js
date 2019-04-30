@@ -35,7 +35,7 @@ class GrandmasDishes extends React.Component {
 
           <div className="time-date-div">
             <p>timefrmae: {dish.timeframe} </p>
-            <p> date: {dish.date} </p>
+            <p> date: {dish.date.slice(0, 10)} </p>
           </div>
 
           <button
