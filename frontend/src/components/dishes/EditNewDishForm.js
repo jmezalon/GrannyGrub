@@ -66,6 +66,8 @@ class EditNewDishForm extends React.Component {
         type: "pick-up"
       });
     }
+
+    console.log(e.target.value, this.state.type);
   };
 
   // handleChange = e => {
@@ -125,7 +127,7 @@ class EditNewDishForm extends React.Component {
     const cuisinesType = this.props.cuisines.map(cuisine => {
       return (
         <button
-          value={this.state.type === "sit-down" ? 1 : 0}
+          value={cuisine.id}
           key={cuisine.id}
           id="cuisineType"
           name="cuisine_id"
@@ -135,8 +137,6 @@ class EditNewDishForm extends React.Component {
         </button>
       );
     });
-
-    const { timeframe, type } = this.props;
 
     return (
       <div className="new-dish">
@@ -160,20 +160,28 @@ class EditNewDishForm extends React.Component {
                   onClick={this.handleTypeChange}
                   value="1"
                   name="type"
-                  className={+type ? "selected-type" : "unselected-type"}
+                  className={
+                    this.state.type === "pick-up"
+                      ? "selected-type"
+                      : "unselected-type"
+                  }
                 >
                   {" "}
-                  to-go{" "}
+                  Pick Up{" "}
                 </button>
 
                 <button
                   onClick={this.handleTypeChange}
                   name="type"
                   value="0"
-                  className={type ? "selected-type" : "unselected-type"}
+                  className={
+                    this.state.type === "sit-down"
+                      ? "selected-type"
+                      : "unselected-type"
+                  }
                 >
                   {" "}
-                  sit down{" "}
+                  Sit Down{" "}
                 </button>
               </div>
             </span>
@@ -237,7 +245,9 @@ class EditNewDishForm extends React.Component {
                   id="lunch"
                   name="timeframe"
                   className={
-                    timeframe === "lunch" ? "selected-type" : "unselected-type"
+                    this.state.timeframe === "lunch"
+                      ? "selected-type"
+                      : "unselected-type"
                   }
                 >
                   {" "}
@@ -252,7 +262,9 @@ class EditNewDishForm extends React.Component {
                   id="dinner"
                   name="timeframe"
                   className={
-                    timeframe === "lunch" ? "unselected-type" : "selected-type"
+                    this.state.timeframe === "dinner"
+                      ? "selected-type"
+                      : "unselected-type"
                   }
                 >
                   {" "}
