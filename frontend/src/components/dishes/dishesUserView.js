@@ -18,6 +18,7 @@ class GrandmasDishes extends React.Component {
 
   filterDishes = () => {
     const filteredDishes = this.props.dishes.filter(dish => {
+      // return (i.key = i);
       if (this.state.sitdowndisplay) {
         return dish.type === "sit-down";
       } else {
