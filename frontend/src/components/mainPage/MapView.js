@@ -32,24 +32,24 @@ class MapView extends Component {
 
   componentDidUpdate = prevProps => {
     if (prevProps.center.lat !== this.props.center.lat) {
-      this.updateMap();
-    } else if (
-      prevProps.center.lat !== this.props.center.lat ||
-      prevProps.grandmas.length !== this.props.grandmas.length ||
-      prevProps.center.lat !== this.map.getCenter().lat()
-    ) {
+      this.showMap();
+    } else if (prevProps.grandmas.length !== this.props.grandmas.length) {
       this.updateMap();
     }
     // if hovred grandma
     // wait for markers SAFE
     // find the marker that matched the grandma
     // show its infowindow.
+
     if (this.props.hoveredGrandmaId) {
-      const [marker, infoWindow] = this.markers.find(m => {
-        return m[0].grandmaId === this.props.hoveredGrandmaId;
+      this.markers.forEach(m => {
+        if (m[0].grandmaId === this.props.hoveredGrandmaId) {
+          m[1].open(this.map, m[0]);
+        } else {
+          m[1].close(this.map, m[0]);
+        }
       });
       // const infoWindow = grandmaMapObject[1];
-      infoWindow.open(this.map, marker);
       // TODO open the infowindow`
     }
   };
@@ -210,12 +210,14 @@ class MapView extends Component {
         grandmaId: grandma.id
       });
       this.markers.push([marker, infoWindow]);
+
       var myListener = marker.addListener("mouseover", () => {
         this.markers.map(markInfo => {
           markInfo[1].close(this.map, markInfo[0]);
         });
         infoWindow.open(this.map, marker);
       });
+
       marker.addListener("click", () => {
         this.props.handleClick(grandma.id);
       });
