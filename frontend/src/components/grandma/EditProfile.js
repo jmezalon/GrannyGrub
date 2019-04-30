@@ -1,24 +1,24 @@
-import React from "react";
-import axios from "axios";
-import { withRouter, Link } from "react-router-dom";
+import React from 'react';
+import axios from 'axios';
+import { withRouter, Link } from 'react-router-dom';
 
 class EditProfile extends React.Component {
   state = {
-    first_name: "",
-    last_name: "",
-    phone_number: "",
-    bio: "",
-    profile_pic: "",
-    cuisine_id: "",
+    first_name: '',
+    last_name: '',
+    phone_number: '',
+    bio: '',
+    profile_pic: '',
+    cuisine_id: '',
     // cuisine_type: "",
-    building_number: "",
-    address: "",
-    zip_code: "",
-    longitude: "",
-    latitude: "",
+    building_number: '',
+    address: '',
+    zip_code: '',
+    longitude: '',
+    latitude: '',
     delete: false,
-    message: "",
-    ispublic: false
+    message: '',
+    ispublic: false,
   };
 
   handleChange = e => {
@@ -36,7 +36,7 @@ class EditProfile extends React.Component {
 
   grannyId = () => {
     const path = this.props.location.pathname;
-    return path.substring(path.lastIndexOf("/") + 1);
+    return path.substring(path.lastIndexOf('/') + 1);
   };
 
   // handleFirstClick = e => {
@@ -65,7 +65,7 @@ class EditProfile extends React.Component {
 
       this.setState({
         longitude: coords.data.results[0].geometry.location.lng,
-        latitude: coords.data.results[0].geometry.location.lat
+        latitude: coords.data.results[0].geometry.location.lat,
       });
     }
 
@@ -138,7 +138,7 @@ class EditProfile extends React.Component {
             src={
               grandma.profile_pic
                 ? grandma.profile_pic
-                : "http://www.oakhillcamp.org/wp-content/uploads/2018/02/blank-profile.png"
+                : 'http://www.oakhillcamp.org/wp-content/uploads/2018/02/blank-profile.png'
             }
           />
           <label htmlFor="profile_pic">add a different image url </label>
@@ -147,7 +147,7 @@ class EditProfile extends React.Component {
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
-            value={grandma.profile_pic ? grandma.profile_pic : ""}
+            value={grandma.profile_pic ? grandma.profile_pic : ''}
           />
 
           <br />
@@ -156,7 +156,7 @@ class EditProfile extends React.Component {
 
           <select onChange={this.handleSelect}>
             <option key="0" value="">
-              {grandma.cuisine_type ? "new cuisine" : "Select a cuisine"}
+              {grandma.cuisine_type ? 'new cuisine' : 'Select a cuisine'}
             </option>
             {cuisineTypes}
           </select>
@@ -169,8 +169,8 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            placeholder={grandma.bio ? "" : "add some info"}
-            value={grandma.bio ? grandma.bio : ""}
+            placeholder={grandma.bio ? '' : 'add some info'}
+            value={grandma.bio ? grandma.bio : ''}
           />
           <br />
           <h3>address</h3>
@@ -205,17 +205,21 @@ class EditProfile extends React.Component {
           </div>
           <div className="switchBtn-container">
             <label htmlFor="public-display">
-              {" "}
-              {this.state.ispublic
-                ? "Your Account is set to Public"
-                : "Your Account is set to Private"}{" "}
+              {' '}
+              {grandma.ispublic
+                ? 'Your Account is set to Public'
+                : 'Your Account is set to Private'}{' '}
             </label>
             <input
               onChange={this.handleIsPublic}
-              value={this.state.ispublic}
-              ref="switch"
+              value={
+                grandma.ispublic
+                  ? this.props.grandma.ispublic
+                  : grandma.ispublic
+              }
               type="checkbox"
               className="switch"
+              name="ispublic"
             />
           </div>
 
@@ -225,12 +229,12 @@ class EditProfile extends React.Component {
             <button
               onClick={e => {
                 window.confirm(
-                  "Are you sure you wish to delete your GrannyGrub account?"
+                  'Are you sure you wish to delete your GrannyGrub account?'
                 ) && this.handleDeleteAccount(e);
               }}
             >
-              {" "}
-              Delete Account{" "}
+              {' '}
+              Delete Account{' '}
             </button>
             <p> please note that this will permanently delete your account </p>
           </div>

@@ -25,6 +25,7 @@ const NewDishResults = props => {
         <p> Cuisine: {props.cuisine_type} </p>
         <p> timeframe: {props.timeframe} </p>
         <p> date: {props.date} </p>
+        <p> lable: {props.label_id} </p>
 
         <button onClick={() => props.goBack()}> Edit </button>
         <input type="submit" value="Add Dish!" />

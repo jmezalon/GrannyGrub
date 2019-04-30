@@ -56,8 +56,8 @@ const addNewDish = (req, res, next) => {
   // req.body.date = req.body.date ? req.body.date : null;
   // req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
-  db.none(
-    'INSERT INTO dishes( name, description,type, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${type}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity})',
+  db.one(
+    'INSERT INTO dishes( name, description,type, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${type}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity}) RETURNING *',
     {
       name: req.body.name,
       description: req.body.description,
@@ -71,11 +71,22 @@ const addNewDish = (req, res, next) => {
       quantity: parseInt(req.body.quantity),
     }
   )
+    .then(dish => {
+      console.log(dish);
+      db.none(
+        'INSERT INTO label_dishes(dish_id, label_id) VALUES (${dish_id}, ${label_id})',
+        {
+          dish_id: parseInt(dish.id),
+          label_id: parseInt(req.body.label_id),
+        }
+      );
+    })
     .then(() => {
       res.status(200).json({
-        message: 'success',
+        message: 'sucess',
       });
     })
+
     .catch(err => {
       console.log('error', err);
       return next(err);
