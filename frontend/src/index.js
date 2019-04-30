@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import AppContainer from "./containers/AppContainer.js";
+import "./index.css";
 
 import thunk from "redux-thunk";
 import logger from "redux-logger";
