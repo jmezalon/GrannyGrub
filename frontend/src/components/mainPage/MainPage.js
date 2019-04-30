@@ -154,11 +154,10 @@ class MainPage extends Component {
   // };
 
   render() {
-    console.log("here ", this.state);
     const { showingMap } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
-        <div>
+        <div key={cuisine.id}>
           <label onChange={this.handleClickCuisineType}>
             <input
               value={cuisine.id}
