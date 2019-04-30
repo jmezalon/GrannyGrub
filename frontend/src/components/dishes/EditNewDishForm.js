@@ -8,6 +8,16 @@ class EditNewDishForm extends React.Component {
     cuisine_id: "",
     quantity: "",
     date: "",
+    currentDate:
+      new Date().getFullYear() +
+      "-" +
+      (new Date().getMonth() + 1 < 10
+        ? "0" + (new Date().getMonth() + 1)
+        : new Date().getMonth() + 1) +
+      "-" +
+      (new Date().getDate() + 1 < 10
+        ? "0" + new Date().getDate()
+        : new Date().getDate()),
     description: "",
     timeframe: "",
     type: "",
@@ -40,6 +50,7 @@ class EditNewDishForm extends React.Component {
 
     const updateDish = this.state;
     delete updateDish.dishImgFile;
+    delete updateDish.currentDate;
 
     await axios.patch(`/dishes/update/${this.props.dish.id}`, updateDish);
     await this.props.getOneDish(parseInt(this.props.match.params.id));
@@ -94,7 +105,6 @@ class EditNewDishForm extends React.Component {
     this.props.getOneDish(parseInt(this.props.match.params.id));
     this.props.getAllCuisines();
     this.props.getAllLabels();
-
     axios.get(`/dishes/${parseInt(this.props.match.params.id)}`).then(res => {
       // debugger;
       this.setState({ ...res.data.dish });
@@ -137,6 +147,15 @@ class EditNewDishForm extends React.Component {
         </button>
       );
     });
+
+
+    const { timeframe, type } = this.props;
+    console.log(this.state.date, "date");
+
+    let dateFormState = !this.state.date ? null : this.state.date.slice(0, 10);
+    let dateFormProps = !this.props.dish.date
+      ? null
+      : this.props.dish.date.slice(0, 10);
 
     return (
       <div className="new-dish">
@@ -218,18 +237,21 @@ class EditNewDishForm extends React.Component {
           </section>
           <br />
           <br />
-          <label htmlFor="start">
-            Date:{" "}
-            {this.state.date !== this.props.dish.date
-              ? this.state.date
-              : this.props.dish.date}
-          </label>{" "}
-          <span>change date</span>
+          {!this.props.dish.date ? null : this.props.dish.date.slice(0, 10)}
+          <span>change </span>
+          <label htmlFor="start">date: </label>
           <input
             type="date"
             id="start"
             name="date"
-            value={this.state.date}
+            value={
+              dateFormState === dateFormProps
+                ? this.state.currentDate
+                : dateFormState !== dateFormProps
+                ? this.state.date
+                : this.state.currentDate
+            }
+            min={this.state.currentDate}
             max="2020-12-31"
             onChange={this.handleChange}
           />
