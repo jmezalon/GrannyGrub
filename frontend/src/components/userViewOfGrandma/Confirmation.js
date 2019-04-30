@@ -4,7 +4,7 @@ const Confirmation = ({ price, count, grandma, dish }) => {
   return (
     <div>
       <h1>Your receipt</h1>
-      <p>Order Total: {price}</p>
+      <p>Order Total: ${price}</p>
       <h1>
         {dish.type === "pick-up" ? (
           <label>
