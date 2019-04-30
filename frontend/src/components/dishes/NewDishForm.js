@@ -17,7 +17,6 @@ class NewDishForm extends React.Component {
       handleSubmit,
       handleQuantityChange,
       handleClick,
-
       handleTypeChange,
       handleImageInputChange
     } = this.props;
@@ -57,7 +56,7 @@ class NewDishForm extends React.Component {
         </button>
       );
     });
-
+    console.log(date, "date");
     return (
       <div className="new-dish">
         <form onSubmit={handleSubmit}>
