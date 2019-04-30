@@ -89,6 +89,7 @@ class Order extends React.Component {
     } else if (!this.state.full_name) {
       this.setState({ empty_field_name: true });
     }
+    // await this.props.match.history.push("/order/confirmation");
   };
 
   render() {
@@ -101,7 +102,9 @@ class Order extends React.Component {
       count
     } = this.state;
     let dish = this.props.dish.dish;
-    let price = parseInt(dish.price) * parseInt(this.state.count);
+    if (dish === undefined)
+      return <p>Please check your email/phone for confirmation</p>;
+    let price = dish.price * this.state.count;
     return (
       <div className="order-page">
         {this.state.confirmation ? (

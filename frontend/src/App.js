@@ -105,7 +105,7 @@ class App extends Component {
 
           <Route
             exact
-            path={"/grandma/:id/order"}
+            path={"/dish/:id/order"}
             render={props => <OrderContainer {...props} goBack={this.goBack} />}
           />
 
