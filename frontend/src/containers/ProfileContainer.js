@@ -5,6 +5,8 @@ import { getAllCuisines } from "../actions/cuisineActions";
 
 import EditProfile from "../components/grandma/EditProfile.js";
 
+import { logoutUser } from "../actions/userAuthActions";
+
 const mapStateToProps = state => {
   return {
     grandma: state.grandmas.grandma,
@@ -16,6 +18,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    logoutUser: () => dispatch(logoutUser()),
     getOneGrandma: id => dispatch(getOneGrandma(id)),
     getAllCuisines: () => dispatch(getAllCuisines()),
     deleteGrandmaAccount: id => dispatch(deleteGrandmaAccount(id))

@@ -38,10 +38,11 @@ class EditProfile extends React.Component {
   //   e.preventDefault();
   // };
 
-  handleDeleteAccount = e => {
+  handleDeleteAccount = async e => {
     e.preventDefault();
-    this.props.deleteGrandmaAccount(this.props.id);
-    this.props.history.push(`/`);
+    await this.props.logoutUser();
+    await this.props.deleteGrandmaAccount(this.props.id);
+    await this.props.history.push(`/`);
   };
 
   handleSubmit = async e => {
@@ -66,6 +67,7 @@ class EditProfile extends React.Component {
     const grandma = this.state;
     delete grandma.cuisine_type;
     delete grandma.delete;
+    delete grandma.message;
 
     await axios.patch(`/users/update/${this.grannyId()}`, grandma);
     await this.props.getOneGrandma(this.grannyId());
@@ -84,6 +86,7 @@ class EditProfile extends React.Component {
   }
 
   render() {
+    console.log(this.props, "checking for logout function");
     const grandma = this.state;
 
     const cuisineTypes = this.props.cuisines.map(cuisine => {
@@ -130,14 +133,22 @@ class EditProfile extends React.Component {
           <br />
           <br />
 
-          <img id="profile-pic" alt="" src={grandma.profile_pic} />
+          <img
+            id="profile-pic"
+            alt=""
+            src={
+              grandma.profile_pic
+                ? grandma.profile_pic
+                : "http://www.oakhillcamp.org/wp-content/uploads/2018/02/blank-profile.png"
+            }
+          />
           <label htmlFor="profile_pic">add a different image url </label>
 
           <input
             name="profile_pic"
             type="text"
             onChange={this.handleChange}
-            value={grandma.profile_pic}
+            value={grandma.profile_pic ? grandma.profile_pic : ""}
           />
 
           <br />
@@ -159,7 +170,8 @@ class EditProfile extends React.Component {
             name="bio"
             onChange={this.handleChange}
             type="text"
-            value={grandma.bio}
+            placeholder={grandma.bio ? "" : "add some info"}
+            value={grandma.bio ? grandma.bio : ""}
           />
           <br />
           <h3>address</h3>
