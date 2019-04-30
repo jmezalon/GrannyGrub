@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Route, Switch, withRouter } from "react-router-dom";
-import Auth from "./utils/Auth";
+// import Auth from "./utils/Auth";
 import SignUp from "./SignUp";
 import LogIn from "./Login";
 
@@ -47,9 +47,7 @@ class UserAuthForm extends React.Component {
       building_number,
       address,
       zip_code,
-      password,
-      longitude,
-      latitude
+      password
     } = this.state;
 
     let coords = await axios.get(
@@ -85,8 +83,6 @@ class UserAuthForm extends React.Component {
     e.preventDefault();
     const { email, password } = this.state;
     const loginPrams = { email, password };
-
-    console.log("LOGIN", this.props.loginUser);
 
     await this.props.loginUser(loginPrams);
   };

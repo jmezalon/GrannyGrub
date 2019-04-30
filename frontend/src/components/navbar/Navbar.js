@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { NavLink, Link, withRouter } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import React, { Component } from 'react';
+import { NavLink, Link, withRouter } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 
 class Navbar extends Component {
   render() {
-    const { loggedIn } = this.props;
+    // const { loggedIn } = this.props;
     // console.log(this.props);
     return (
       <div className="navbar-parent">
@@ -20,12 +20,12 @@ class Navbar extends Component {
           </div>
         ) : (
           <div>
-            {this.props.location.pathname === "/" ? (
+            {this.props.location.pathname === '/' ? (
               <Link to="/auth/signup">
                 <button>Become A Grandma</button>
               </Link>
             ) : (
-              ""
+              ''
             )}
           </div>
         )}

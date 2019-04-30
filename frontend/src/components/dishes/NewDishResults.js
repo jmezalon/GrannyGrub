@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router";
 
 const NewDishResults = props => {
-  console.log(props);
+  // console.log(props);
 
   return (
     <div className="dishInfo">

@@ -47,10 +47,8 @@ class HandleNewDish extends React.Component {
         }
       })
       .then(res => {
-        debugger;
         this.setState({ img_url: res.data.url });
       });
-    // console.log(this.state.img_url);
   };
 
   handleImageInputChange = e => {
@@ -68,9 +66,7 @@ class HandleNewDish extends React.Component {
       timeframe,
       type,
       price,
-      user_id,
       date,
-      label_id,
       selectedQuantity
     } = this.state;
 
@@ -121,7 +117,7 @@ class HandleNewDish extends React.Component {
       `/grandma/${parseInt(this.props.id)}/dashboard`
     );
 
-    console.log("done");
+    // console.log("done");
   };
 
   handleChange = e => {
@@ -129,7 +125,7 @@ class HandleNewDish extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   handleQuantityChange = e => {
@@ -138,7 +134,7 @@ class HandleNewDish extends React.Component {
       selectedQuantity: e.target.value
     });
 
-    console.log("quantity", this.state.selectedQuantity);
+    // console.log("quantity", this.state.selectedQuantity);
   };
 
   handleTypeChange = e => {
@@ -152,7 +148,7 @@ class HandleNewDish extends React.Component {
         type: "pick-up"
       });
     }
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   handleClick = e => {
@@ -160,12 +156,12 @@ class HandleNewDish extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.dishImgFile);
+    // console.log(this.state.dishImgFile);
     if (this.state.dishImgFile !== "") {
       this.uploadImage();
     }
