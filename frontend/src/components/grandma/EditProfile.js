@@ -18,6 +18,7 @@ class EditProfile extends React.Component {
     latitude: '',
     delete: false,
     message: '',
+    ispublic: false,
   };
 
   handleChange = e => {
@@ -27,6 +28,10 @@ class EditProfile extends React.Component {
   handleSelect = e => {
     e.preventDefault();
     this.setState({ cuisine_id: e.target.value });
+  };
+
+  handleIsPublic = () => {
+    this.setState({ ispublic: !this.state.ispublic });
   };
 
   grannyId = () => {
@@ -198,6 +203,21 @@ class EditProfile extends React.Component {
               />
             </span>
           </div>
+          <div className="switchBtn-container">
+            <label htmlFor="public-display">
+              {' '}
+              {this.state.isPublic
+                ? 'Your Account is set to Public'
+                : 'Your Account is set to Private'}{' '}
+            </label>
+            <input
+              onChange={this.handleIsPublic}
+              value={this.state.ispublic}
+              ref="switch"
+              type="checkbox"
+              className="switch"
+            />
+          </div>
 
           <div>
             <label htmlFor="deleteAccount"> Delete Account </label>
@@ -212,12 +232,7 @@ class EditProfile extends React.Component {
               {' '}
               Delete Account{' '}
             </button>
-            <p>
-              {' '}
-              {!this.state.delete
-                ? 'Are you sure you want to delete your account'
-                : 'please note that this will permanently delete your account'}{' '}
-            </p>
+            <p> please note that this will permanently delete your account </p>
           </div>
 
           <div className="save-button">

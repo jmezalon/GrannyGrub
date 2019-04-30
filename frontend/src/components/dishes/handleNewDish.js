@@ -148,7 +148,7 @@ class HandleNewDish extends React.Component {
         type: "pick-up"
       });
     }
-    // console.log(e.target.value);
+    console.log(e.target.value);
   };
 
   handleClick = e => {
