@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Confirmation from "./Confirmation";
+import Checkout from "./Checkout";
 
 class Order extends React.Component {
   state = {
@@ -92,6 +93,13 @@ class Order extends React.Component {
 
   render() {
     let { grandma } = this.props;
+    let {
+      full_name,
+      phone_number,
+      empty_field_name,
+      empty_field_number,
+      count
+    } = this.state;
     let dish = this.props.dish.dish;
     let price = parseInt(dish.price) * parseInt(this.state.count);
     return (
@@ -128,47 +136,19 @@ class Order extends React.Component {
             <button onClick={this.handleCheckOutClick}>Checkout</button>
           </div>
         ) : !this.state.orderSummary ? (
-          <div>
-            <h4>Please provide your contact information below</h4>
-            <p onClick={() => this.props.goBack()}> {"<--"} to Grandma</p>
-            <div>
-              <form className="user-info-form" onSubmit={this.handleFormSubmit}>
-                <input
-                  name="full_name"
-                  placeholder="your full name"
-                  value={this.state.full_name}
-                  onChange={this.handleChange}
-                />
-
-                <input
-                  name="phone_number"
-                  placeholder="phone number"
-                  value={this.state.phone_number}
-                  onChange={this.handleChange}
-                />
-                {this.state.empty_field_name &&
-                this.state.empty_field_number ? (
-                  <p>please add your contact info</p>
-                ) : this.state.empty_field_name ? (
-                  <p>please add your name</p>
-                ) : this.state.empty_field_number ? (
-                  <p>please add your number</p>
-                ) : (
-                  ""
-                )}
-
-                <button>order</button>
-              </form>
-            </div>
-            <div>
-              <p>
-                {this.state.count} {dish.name} for ${price}{" "}
-              </p>
-              <img src={dish.img_url} alt="dish" id="dishImg" />
-
-              <button onClick={this.handleEdit}>edit</button>
-            </div>
-          </div>
+          <Checkout
+            handleFormSubmit={this.handleFormSubmit}
+            handleChange={this.handleChange}
+            handleEdit={this.handleEdit}
+            full_name={full_name}
+            phone_number={phone_number}
+            empty_field_name={empty_field_name}
+            empty_field_number={empty_field_number}
+            count={count}
+            dish={dish}
+            price={price}
+            goBack={this.props.goBack}
+          />
         ) : (
           <Confirmation
             price={price}
