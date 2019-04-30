@@ -103,7 +103,7 @@ class Order extends React.Component {
 
             <h1>Your order</h1>
             <div className="dish-info">
-              <p>{dish.name}</p>
+              <p>{dish.full_name}</p>
               <img src={dish.img_url} alt="dish" id="dishImg" />
               <p>${dish.price}</p>
               <p>{dish.timeframe}</p>
