@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Confirmation from "./Confirmation";
 
 class Order extends React.Component {
   state = {
@@ -90,6 +91,7 @@ class Order extends React.Component {
   };
 
   render() {
+    let { grandma } = this.props;
     let dish = this.props.dish.dish;
     let price = parseInt(dish.price) * parseInt(this.state.count);
     return (
@@ -168,18 +170,12 @@ class Order extends React.Component {
             </div>
           </div>
         ) : (
-          <div>
-            <h1>Your receipt</h1>
-            <p>
-              {this.state.count} {dish.name} for ${price}
-            </p>
-            <p>
-              {dish.type === "pick-up" ? "around" : "at"} {dish.timeframe}{" "}
-              {dish.date ? "on" : ""} {dish.date ? dish.date : ""}
-            </p>
-            <br />
-            <p>We cannot wait to serve you!!!</p>
-          </div>
+          <Confirmation
+            price={price}
+            count={this.state.count}
+            dish={dish}
+            grandma={grandma}
+          />
         )}
       </div>
     );
