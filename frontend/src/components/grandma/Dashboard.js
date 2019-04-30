@@ -13,9 +13,9 @@ class Dashboard extends Component {
   componentWillMount() {
     this.props.getOneGrandma(this.props.id);
     // if (!this.props.hasOrder) {
+    this.props.getGrandmasDishes(this.props.id);
     this.props.getAllOrdersForGrandma(this.props.id);
     // }
-    this.props.getGrandmasDishes(this.props.id);
   }
   // <GrannyNavbar id={this.props.id} />
   render() {
@@ -34,7 +34,7 @@ class Dashboard extends Component {
               id="granny-view-granny-pic"
               alt=""
               src={
-                this.props.grandma
+                this.props.grandma.profile_pic
                   ? this.props.grandma.profile_pic
                   : "http://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Contact-icon.png"
               }

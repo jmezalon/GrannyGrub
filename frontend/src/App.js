@@ -94,6 +94,7 @@ class App extends Component {
             component={ProfileContainer}
             goBack={this.goBack}
             id={this.props.userid}
+            logoutUser={this.props.logoutUser}
           />
 
           <PrivateRoute
