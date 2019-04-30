@@ -23,8 +23,8 @@ class HandleNewDish extends React.Component {
         : new Date().getMonth() + 1) +
       "-" +
       (new Date().getDate() + 1 < 10
-        ? "0" + (new Date().getDate() + 1)
-        : new Date().getDate() + 1),
+        ? "0" + new Date().getDate()
+        : new Date().getDate()),
     user_id: "",
     price: "",
     imgPreview: "",
