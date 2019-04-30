@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import "../../css/userViewOfGrandma/GrandmaPage.css";
 import GrandmasDishes from "../dishes/dishesUserView";
 
@@ -21,7 +20,7 @@ class GrandmaPage extends Component {
 
   render() {
     let { grandma, dishes } = this.props;
-    console.log(grandma);
+
     let id = parseInt(this.props.match.params.id);
     if (!Object.values(grandma).length) return null;
 
@@ -31,7 +30,6 @@ class GrandmaPage extends Component {
       });
     }
 
-    let grannyId = this.props.match.params.id;
     return (
       <div className="user-view-granny-page">
         <div>

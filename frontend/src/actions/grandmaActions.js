@@ -1,19 +1,13 @@
-import axios from "axios";
-import {
-  GET_ALL_GRANDMAS,
-  SET_CURRENT_USER,
-  GET_ONE_GRANDMA,
-  DELETE_USER_ACCOUNT,
-  GOT_ERROR
-} from "./actionTypes";
+import axios from 'axios';
+import { GET_ALL_GRANDMAS, GET_ONE_GRANDMA, GOT_ERROR } from './actionTypes';
 
-import Auth from "../userauth/utils/Auth";
-import { removeCurrentUser } from "./userAuthActions";
+import Auth from '../userauth/utils/Auth';
+import { removeCurrentUser } from './userAuthActions';
 
 export const gotError = err => {
   return {
     type: GOT_ERROR,
-    payload: err
+    payload: err,
   };
 };
 
@@ -24,14 +18,14 @@ export const gotError = err => {
 export const receiveAllGrandmas = grandmas => {
   return {
     type: GET_ALL_GRANDMAS,
-    payload: grandmas
+    payload: grandmas,
   };
 };
 
 export const receiveOneGrandma = grandma => {
   return {
     type: GET_ONE_GRANDMA,
-    payload: grandma
+    payload: grandma,
   };
 };
 
@@ -44,7 +38,7 @@ export const receiveOneGrandma = grandma => {
 
 export const getAllGrandmas = () => dispatch => {
   axios
-    .get("/users")
+    .get('/users')
     .then(res => {
       // let grandmas = res.data.users.filter(user => {
       //   return user.isgrandma;
@@ -77,6 +71,5 @@ export const deleteGrandmaAccount = id => dispatch => {
     })
     .catch(err => {
       return dispatch(gotError(err));
-      console.log("deleted usesr");
     });
 };

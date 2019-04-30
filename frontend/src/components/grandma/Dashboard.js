@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import axios from "axios";
 import GrandmasDishes from "../dishes/dishes";
 import Orders from "./grandmaOrders";
-import GrannyNavbar from "../navbar/GrannyNavbar";
 
 class Dashboard extends Component {
   // state = {

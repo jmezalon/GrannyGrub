@@ -8,14 +8,12 @@ class GrandmasDishes extends React.Component {
   //
 
   handleDeleteDish = (dish_id, grannyId) => {
-    debugger;
     this.props.deleteDish(dish_id, grannyId);
     // this.props.history.push(`/grandma/${this.props.id}/dashboard`);
   };
 
   render() {
-    // console.log("userid", this.props.id);
-    console.log("dish page", this.props);
+    // console.log("dish page", this.props);
 
     let grannyId = parseInt(this.props.match.params.id);
 

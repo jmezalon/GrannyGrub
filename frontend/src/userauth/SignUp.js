@@ -1,4 +1,3 @@
-import { connect } from "react-redux";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -20,7 +19,7 @@ class SignUp extends React.Component {
       last_name,
       email,
       phone_number,
-      cuisine_id,
+
       building_number,
       address,
       zip_code,

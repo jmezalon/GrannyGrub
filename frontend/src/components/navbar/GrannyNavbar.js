@@ -4,7 +4,6 @@ import logo from "../../assets/logo.png";
 
 class GrannyNavbar extends Component {
   render() {
-    const { loggedIn } = this.props;
     return (
       <div className="navbar-parent">
         <div className="logo-div" onClick={this.props.handleGetATasteReset}>

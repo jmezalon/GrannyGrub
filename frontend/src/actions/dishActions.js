@@ -1,30 +1,30 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   ALL_LABELS,
   GRANDMAS_DISHES,
   GET_SINGLE_DISH,
   GOT_ERROR,
   SET_SELECTED_DISH
-} from './actionTypes';
+} from "./actionTypes";
 
 export const gotError = err => {
   return {
     type: GOT_ERROR,
-    payload: err,
+    payload: err
   };
 };
 
 export const setSelectedDish = dish => {
   return {
     type: SET_SELECTED_DISH,
-    payload: dish,
+    payload: dish
   };
 };
 
 export const receiveGrandmasDishes = dish => {
   return {
     type: GRANDMAS_DISHES,
-    payload: dish,
+    payload: dish
   };
 };
 
@@ -42,13 +42,13 @@ export const getGrandmasDishes = id => dispatch => {
 export const receiveAllLabels = labels => {
   return {
     type: ALL_LABELS,
-    payload: labels,
+    payload: labels
   };
 };
 
 export const getAllLabels = id => dispatch => {
   axios
-    .get('/labels')
+    .get("/labels")
     .then(res => {
       dispatch(receiveAllLabels(res.data.labels));
     })
@@ -60,7 +60,7 @@ export const getAllLabels = id => dispatch => {
 export const receiveOneDish = dish => {
   return {
     type: GET_SINGLE_DISH,
-    payload: dish,
+    payload: dish
   };
 };
 
@@ -77,7 +77,6 @@ export const getOneDish = id => dispatch => {
 };
 
 export const deleteDish = (dish_id, grannyId) => dispatch => {
-  debugger;
   axios
     .delete(`/dishes/${dish_id}`)
     .then(() => {
@@ -85,6 +84,5 @@ export const deleteDish = (dish_id, grannyId) => dispatch => {
     })
     .catch(err => {
       return dispatch(gotError(err));
-      console.log('deleted dish');
     });
 };

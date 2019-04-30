@@ -34,8 +34,6 @@ class EditNewDishForm extends React.Component {
   handleSubmit = async e => {
     e.preventDefault();
 
-    // const res
-
     if (this.state.img_url !== this.props.dish.img_url) {
       await this.uploadImage();
     }
@@ -55,7 +53,6 @@ class EditNewDishForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    // console.log(e.target.value);
   };
 
   handleTypeChange = e => {
@@ -69,8 +66,6 @@ class EditNewDishForm extends React.Component {
         type: "pick-up"
       });
     }
-
-    console.log(e.target.value);
   };
 
   // handleChange = e => {
@@ -79,15 +74,12 @@ class EditNewDishForm extends React.Component {
   //     selectedQuantity: e.target.value
   //   });
   //
-  //   console.log("quantity", this.state.selectedQuantity);
-  // };
 
   handleClick = e => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value
     });
-    // console.log(e.target.value);
   };
 
   handleImageInputChange = e => {
@@ -104,12 +96,10 @@ class EditNewDishForm extends React.Component {
     axios.get(`/dishes/${parseInt(this.props.match.params.id)}`).then(res => {
       // debugger;
       this.setState({ ...res.data.dish });
-      // console.log(this.state.name, "dish");
-      // console.log(this.);
     });
   }
+
   render() {
-    console.log(this.props.dish.date);
     // const quantityOptions = this.state.quantity.map((number, i) => {
     //   return (
     //     <option key={i + 1} value={i + 1} id="quantity" name="selectedQuantity">
@@ -146,20 +136,8 @@ class EditNewDishForm extends React.Component {
       );
     });
 
-    const {
-      dish,
-      name,
-      img_url,
-      cuisine_id,
-      selectedQuantity,
-      description,
-      timeframe,
-      type,
-      price,
-      date,
-      img_urlFile
-    } = this.props;
-    console.log(this.state);
+    const { timeframe, type } = this.props;
+
     return (
       <div className="new-dish">
         <p>dish form</p>

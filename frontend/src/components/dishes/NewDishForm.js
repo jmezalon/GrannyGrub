@@ -7,8 +7,6 @@ class NewDishForm extends React.Component {
       name,
       img_url,
       quantity,
-      cuisine_id,
-      selectedQuantity,
       description,
       timeframe,
       type,
@@ -19,7 +17,7 @@ class NewDishForm extends React.Component {
       handleSubmit,
       handleQuantityChange,
       handleClick,
-      imgPreview,
+
       handleTypeChange,
       handleImageInputChange
     } = this.props;

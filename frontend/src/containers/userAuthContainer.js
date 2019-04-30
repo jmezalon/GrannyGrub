@@ -1,10 +1,6 @@
 import { connect } from "react-redux";
 
-import {
-  getOneGrandma,
-  registerUser,
-  loginUser
-} from "../actions/userAuthActions";
+import { registerUser, loginUser } from "../actions/userAuthActions";
 
 // import { setCurrentUser } from "../actions/grandmaActions";
 

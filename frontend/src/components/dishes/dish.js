@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 const Dish = ({ dish, handleClick }) => {
   return (
@@ -12,8 +12,8 @@ const Dish = ({ dish, handleClick }) => {
       </div>
       <Link to={`/grandma/${dish.dish_id}/order`}>
         <button onClick={() => handleClick({ dish })} value={dish}>
-          {" "}
-          {dish.type === "sit-down" ? "book" : "order"}{" "}
+          {' '}
+          {dish.type === 'sit-down' ? 'book' : 'order'}{' '}
         </button>
       </Link>
       <div className="time-date-div">
@@ -23,7 +23,8 @@ const Dish = ({ dish, handleClick }) => {
     </div>
   );
 };
-export default Dish;
+
+export default withRouter(Dish);
 
 //todo
 //add if else for btn if remaining_quantity = 0.

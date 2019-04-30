@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import "./App.css";
-import axios from "axios";
 
-import Auth from "./userauth/utils/Auth";
 import LandingPage from "./components/landingPage/landingPage";
 import OrderContainer from "./containers/OrderContainer";
 import ProfileContainer from "./containers/ProfileContainer";
@@ -12,13 +10,10 @@ import MainPageContainer from "./containers/MainPageContainer";
 import Navbar from "./components/navbar/Navbar.js";
 import GrannyNavbar from "./components/navbar/GrannyNavbar.js";
 import UserAuthContainer from "./containers/userAuthContainer.js";
-import DishContainer from "./containers/DishContainer";
 import NewDishContainer from "./containers/NewDishContainer";
 import EditDishContainer from "./containers/EditDishContainer";
 import GrandmaPageContainer from "./containers/GrandmaPageContainer.js";
 import DashboardContainer from "./containers/DashboardContainer";
-
-import DashboardMain from "./components/grandma/DashboardMain";
 
 import { PrivateRoute, AuthRoute } from "./userauth/utils/privateRouting.js";
 
@@ -46,9 +41,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log("YO User", this.props.currentUser);
-    // console.log("YO loser", this.props.currentUser.id);
-
     // if (this.props.currentUser) {
     //   const { id } = this.props.currentUser.id;
     // }

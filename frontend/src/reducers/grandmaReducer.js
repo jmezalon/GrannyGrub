@@ -2,7 +2,6 @@ import {
   GET_ALL_GRANDMAS,
   GET_ONE_GRANDMA,
   GOT_ERROR,
-  SET_CURRENT_USER,
   FILTER_BY_CUISINES
 } from "../actions/actionTypes";
 

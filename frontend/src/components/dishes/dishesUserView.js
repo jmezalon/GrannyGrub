@@ -1,12 +1,11 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import DishList from "./dishList";
 
 class GrandmasDishes extends React.Component {
   state = {
     sitdowndisplay: true
   };
-
 
   componentDidMount = () => {
     const resultDishes = this.filterDishes();
@@ -16,7 +15,6 @@ class GrandmasDishes extends React.Component {
       });
     }
   };
-
 
   filterDishes = () => {
     const filteredDishes = this.props.dishes.filter(dish => {

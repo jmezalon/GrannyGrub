@@ -4,8 +4,6 @@ import {
   REMOVE_CURRENT_USER
 } from "../actions/actionTypes";
 
-import Auth from "../userauth/utils/Auth";
-
 const initialState = {
   currentUser: [],
   userId: "",
