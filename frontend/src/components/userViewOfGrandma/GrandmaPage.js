@@ -14,10 +14,6 @@ class GrandmaPage extends Component {
     this.props.getGrandmasDishes(id);
   }
 
-  handleClick = dish => {
-    this.props.setSelectedDish(dish);
-  };
-
   render() {
     let { grandma, dishes } = this.props;
 
