@@ -12,7 +12,6 @@
   width: 32%;
   padding-top: 10%;
   padding-left: 10%;
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -27,10 +26,11 @@
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
-  line-height: 4.5;
+  line-height: 2.5;
   letter-spacing: normal;
   padding-left: 10px;
   color: #ffffff;
+  position: absolute;
 }
 .info-button h1 {
   width: 462px;
