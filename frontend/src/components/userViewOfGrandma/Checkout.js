@@ -54,7 +54,7 @@ const Checkout = ({
         </p>
         <img src={dish.img_url} alt="dish" id="dishImg" />
 
-        <Link to={`/order/dish/${parseInt(dish.dish_id)}`}>
+        <Link to={`/order/dish/${parseInt(dish.id)}`}>
           <button>edit</button>
         </Link>
       </div>
