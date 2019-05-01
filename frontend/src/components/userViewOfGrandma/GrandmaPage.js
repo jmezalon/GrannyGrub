@@ -32,18 +32,7 @@ class GrandmaPage extends Component {
 
     return (
       <div className="user-view-granny-page">
-        <div>
-          <GrandmasDishes
-            dishes={this.props.dishes}
-            type={this.state.type}
-            handleClick={this.handleClick}
-            setSelectedDish={this.props.setSelectedDish}
-            getGrandmasDishes={this.props.getGrandmasDishes}
-            id={id}
-          />
-        </div>
-
-        <div className="profile-sidebar">
+        <div className="top-granny-profile">
           <p>{grandma.first_name}</p>
           <img
             className="user-view-granny-pic"
@@ -53,6 +42,17 @@ class GrandmaPage extends Component {
           <p>id: {grandma.id}</p>
           <p>cuisine type: {grandma.cuisine_type}</p>
           <p>bio: {grandma.bio}</p>
+        </div>
+
+        <div>
+          <GrandmasDishes
+            dishes={this.props.dishes}
+            type={this.state.type}
+            handleClick={this.handleClick}
+            setSelectedDish={this.props.setSelectedDish}
+            getGrandmasDishes={this.props.getGrandmasDishes}
+            id={id}
+          />
         </div>
       </div>
     );
