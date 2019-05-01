@@ -16,7 +16,8 @@ class MainPage extends Component {
     address: "",
     center: { lat: 40.692053, lng: -73.991104 },
     zoom: 13,
-    hoveredGrandmaId: false
+    hoveredGrandmaId: false,
+    selectedAll: true
   };
 
   handleClickCuisineType = async e => {
@@ -24,14 +25,16 @@ class MainPage extends Component {
     let target = parseInt(e.target.value);
     if (!cuisinesSelected.includes(target)) {
       await this.setState({
-        cuisinesSelected: [...cuisinesSelected, target]
+        cuisinesSelected: [...cuisinesSelected, target],
+        selectedAll: false
       });
     } else {
       let filtered = cuisinesSelected.filter(grannyId => {
         return target !== grannyId;
       });
       await this.setState({
-        cuisinesSelected: filtered
+        cuisinesSelected: filtered,
+        selectedAll: false
       });
     }
     await this.filterGrannies();
@@ -40,7 +43,8 @@ class MainPage extends Component {
   handleClickMealType = async e => {
     let { isSitdown, isPickup } = this.state;
     await this.setState({
-      [e.target.name]: !this.state[e.target.name]
+      [e.target.name]: !this.state[e.target.name],
+      selectedAll: false
     });
     await this.filterGrannies();
   };
@@ -113,7 +117,10 @@ class MainPage extends Component {
     await this.setState({
       isSitdown: false,
       isPickup: false,
-      cuisinesSelected: []
+      isLunch: false,
+      isDinner: false,
+      cuisinesSelected: [],
+      selectedAll: true
     });
   };
 
@@ -152,7 +159,18 @@ class MainPage extends Component {
   // };
 
   render() {
-    const { center, zoom, hoveredGrandmaId, cuisinesSelected } = this.state;
+    console.log(this.state);
+    const {
+      center,
+      zoom,
+      hoveredGrandmaId,
+      cuisinesSelected,
+      isLunch,
+      isDinner,
+      isPickup,
+      isSitdown,
+      selectedAll
+    } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
         <div
@@ -181,20 +199,24 @@ class MainPage extends Component {
           <div className="lunch-dinner">
             <form>
               <div>
-                <button
-                  type="button"
-                  name="isLunch"
-                  onClick={this.handleClickMealType}
-                >
-                  Lunch
-                </button>
-                <button
-                  type="button"
-                  name="isDinner"
-                  onClick={this.handleClickMealType}
-                >
-                  Dinner
-                </button>
+                <div className={isLunch ? "highlighted" : null}>
+                  <button
+                    type="button"
+                    name="isLunch"
+                    onClick={this.handleClickMealType}
+                  >
+                    Lunch
+                  </button>
+                </div>
+                <div className={isDinner ? "highlighted" : null}>
+                  <button
+                    type="button"
+                    name="isDinner"
+                    onClick={this.handleClickMealType}
+                  >
+                    Dinner
+                  </button>
+                </div>
               </div>
             </form>
           </div>
@@ -209,28 +231,36 @@ class MainPage extends Component {
                 type="text"
                 onChange={this.changeHandler}
                 name="address"
+                placeholder="Search by address..."
               />
               <button type="submit">Search Address</button>
             </form>
           </div>
           <div className="order-type">
-            <input
-              type="checkbox"
-              name="isSitdown"
-              onChange={this.handleClickMealType}
-              className="checkbox"
-            />
-            Sit-Down
-            <input
-              type="checkbox"
-              name="isPickup"
-              onChange={this.handleClickMealType}
-              className="checkbox"
-            />
-            Pick-Up
+            <div className={isSitdown ? "highlighted" : null}>
+              <button
+                type="checkbox"
+                name="isSitdown"
+                onClick={this.handleClickMealType}
+              >
+                Sit-Down{" "}
+              </button>
+            </div>
+            <div className={isPickup ? "highlighted" : null}>
+              <button
+                type="checkbox"
+                name="isPickup"
+                onClick={this.handleClickMealType}
+              >
+                Pick-Up{" "}
+              </button>
+            </div>
           </div>
 
-          <div className="filter-buttons">
+          <div
+            className="filter-buttons"
+            className={selectedAll ? "highlighted" : null}
+          >
             <button onClick={this.displayAllGrandmas}>See All</button>
             {cuisinesType}
           </div>
