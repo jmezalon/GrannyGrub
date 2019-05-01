@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../../css/userViewOfGrandma/GrandmaPage.css";
 import GrandmasDishes from "../dishes/dishesUserView";
 
@@ -28,6 +29,9 @@ class GrandmaPage extends Component {
 
     return (
       <div className="user-view-granny-page">
+        <Link to="/mainpage">
+          <button>back to grandmas</button>
+        </Link>
         <div>
           <GrandmasDishes
             dishes={this.props.dishes}

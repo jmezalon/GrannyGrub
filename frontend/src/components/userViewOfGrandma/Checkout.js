@@ -17,8 +17,8 @@ const Checkout = ({
   return (
     <div>
       <h4>Please provide your contact information below</h4>
-      <Link to={"/mainpage"}>
-        <button>{"<--"} to Grandma</button>
+      <Link to="/mainpage">
+        <p>{"<--"} to Grandma</p>
       </Link>
       <div>
         <form className="user-info-form" onSubmit={handleFormSubmit}>
@@ -54,7 +54,7 @@ const Checkout = ({
         </p>
         <img src={dish.img_url} alt="dish" id="dishImg" />
 
-        <Link to={`/order/dish/${parseInt(dish.dish_id)}`}>
+        <Link to={`/order/dish/${parseInt(dish.id)}`}>
           <button>edit</button>
         </Link>
       </div>

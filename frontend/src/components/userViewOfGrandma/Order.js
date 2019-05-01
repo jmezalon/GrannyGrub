@@ -10,10 +10,9 @@ class Order extends React.Component {
     const { dish } = this.props;
     return (
       <div>
-        <p id="back-button" onClick={() => this.props.goBack()}>
-          {" "}
-          {"<--"} to Grandma
-        </p>
+        <Link to="/mainpage">
+          <p id="back-button"> {"<--"} view all cuisines</p>
+        </Link>
 
         <h1>Your order</h1>
         <div className="dish-info">
@@ -38,8 +37,16 @@ class Order extends React.Component {
         <br />
         <br />
 
-        <Link to={`/order/dish/${dish.id}/checkout`}>
-          <button onClick={this.props.handleCheckOutClick}>Checkout</button>
+        <Link
+          to={
+            dish.remaining_quantity !== 0
+              ? `/order/dish/${dish.id}/checkout`
+              : `/grandma/${dish.user_id}`
+          }
+        >
+          <button onClick={this.props.handleCheckOutClick}>
+            {dish.remaining_quantity === 0 ? "back to grandma" : "Checkout"}
+          </button>
         </Link>
       </div>
     );
