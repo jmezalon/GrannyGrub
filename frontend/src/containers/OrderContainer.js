@@ -1,11 +1,14 @@
 import { connect } from "react-redux";
 
 import { getAllOrdersForGrandma } from "../actions/orderActions";
-import Order from "../components/userViewOfGrandma/Order";
+import { getOneGrandma } from "../actions/grandmaActions.js";
+import { getOneDish } from "../actions/dishActions.js";
+import OrderRoutes from "../components/userViewOfGrandma/OrderRoutes";
 
 const mapStateToProps = state => {
   return {
-    dish: state.dishes.selectedDish,
+    grandma: state.grandmas.grandma,
+    dish: state.dishes.dish,
     orders: state.orders.orders,
     id: state.userAuth.userId
   };
@@ -13,16 +16,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllOrdersForGrandma: id => dispatch(getAllOrdersForGrandma(id))
+    getAllOrdersForGrandma: id => dispatch(getAllOrdersForGrandma(id)),
+    getOneGrandma: id => dispatch(getOneGrandma(id)),
+    getOneDish: id => dispatch(getOneDish(id))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Order);
-
-//   id => {
-//     dispatch(getGrandmasDishes(id));
-//   };
-// }
+)(OrderRoutes);

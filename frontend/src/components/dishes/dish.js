@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
 
 const Dish = ({ dish, handleClick }) => {
   return (
@@ -10,15 +10,23 @@ const Dish = ({ dish, handleClick }) => {
         <p> ${dish.price} </p>
         <p> Meal type: {dish.type} </p>
       </div>
-      <Link to={`/grandma/${dish.dish_id}/order`}>
-        <button onClick={() => handleClick({ dish })} value={dish}>
-          {' '}
-          {dish.type === 'sit-down' ? 'book' : 'order'}{' '}
+      <Link
+        to={
+          dish.remaining_quantity !== 0 ? `/order/dish/${dish.dish_id}` : null
+        }
+      >
+        <button>
+          {" "}
+          {dish.remaining_quantity === 0
+            ? "sold out"
+            : dish.type === "sit-down"
+            ? "book"
+            : "order"}{" "}
         </button>
       </Link>
       <div className="time-date-div">
         <p>timefrmae: {dish.timeframe} </p>
-        <p> date: {dish.date} </p>
+        <p> date: {dish.date.slice(0, 10)} </p>
       </div>
     </div>
   );
