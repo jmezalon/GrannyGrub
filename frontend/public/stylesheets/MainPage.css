@@ -35,7 +35,7 @@
   height: 800px;
 }
 
-.filter-buttons {
+/* .filter-buttons {
   width: 50%;
   margin-top: 1%;
   margin-left: 10%;
@@ -48,7 +48,7 @@
   width: 75px;
   height: 35px;
   border-radius: 5px;
-}
+} */
 
 /* ListView css */
 
@@ -112,6 +112,14 @@
 .info-in-window h3 {
   font-weight: bold;
   font-family: futura;
+}
+
+.highlighted > button {
+  background-color: red;
+}
+
+.highlighted > button:hover {
+  border: 2px solid green;
 }
 
 #image {

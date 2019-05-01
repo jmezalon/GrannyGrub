@@ -152,19 +152,23 @@ class MainPage extends Component {
   // };
 
   render() {
-    const { center, zoom, hoveredGrandmaId } = this.state;
+    const { center, zoom, hoveredGrandmaId, cuisinesSelected } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
-        <div key={cuisine.id}>
-          <label onChange={this.handleClickCuisineType}>
-            <input
-              value={cuisine.id}
-              key={cuisine.id}
-              type="checkbox"
-              className="checkbox"
-            />
+        <div
+          key={cuisine.id}
+          className={
+            cuisinesSelected.includes(cuisine.id) ? "highlighted" : null
+          }
+        >
+          <button
+            value={cuisine.id}
+            key={cuisine.id}
+            type="button"
+            onClick={this.handleClickCuisineType}
+          >
             {cuisine.type}
-          </label>
+          </button>
         </div>
       );
     });
@@ -177,20 +181,20 @@ class MainPage extends Component {
           <div className="lunch-dinner">
             <form>
               <div>
-                <input
-                  type="checkbox"
+                <button
+                  type="button"
                   name="isLunch"
-                  onChange={this.handleClickMealType}
-                  className="checkbox"
-                />
-                Lunch
-                <input
-                  type="checkbox"
+                  onClick={this.handleClickMealType}
+                >
+                  Lunch
+                </button>
+                <button
+                  type="button"
                   name="isDinner"
-                  onChange={this.handleClickMealType}
-                  className="checkbox"
-                />
-                Dinner
+                  onClick={this.handleClickMealType}
+                >
+                  Dinner
+                </button>
               </div>
             </form>
           </div>
