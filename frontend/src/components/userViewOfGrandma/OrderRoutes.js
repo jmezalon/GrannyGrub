@@ -8,7 +8,6 @@ import Order from "./Order";
 class OrderRoutes extends React.Component {
   state = {
     count: 1,
-    // confirmation: true,
     full_name: "",
     phone_number: "",
     orderSummary: false,
@@ -17,7 +16,6 @@ class OrderRoutes extends React.Component {
   };
 
   handleAddChange = () => {
-    // console.log(this.props.dish.dish.quantity);
     if (this.props.dish.remaining_quantity === null) {
       if (this.props.dish.quantity > this.state.count) {
         this.setState({ count: this.state.count + 1 });
@@ -36,10 +34,6 @@ class OrderRoutes extends React.Component {
       });
     }
   };
-
-  // handleCheckOutClick = () => {
-  //   this.setState({ confirmation: false });
-  // };
 
   handleChange = e => {
     this.setState({
