@@ -189,11 +189,11 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, type, date, timeframe,quantity) VALUES
 
 -- bengali
-('Bengali mustard fish', 'A simple seafood curry of white fish, tomatoes and whole green chillies that is deliciously spicy, healthy and quick enough for every day', 7, 14, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/bengali-mustard-fish_0.jpg?itok=KfunH1Zb', 5.73, 'sit-down', '2019-05-21','Lunch',8),
+('Bengali mustard fish', 'A simple seafood curry of white fish, tomatoes and whole green chillies that is deliciously spicy, healthy and quick enough for every day', 7, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/bengali-mustard-fish_0.jpg?itok=KfunH1Zb', 5.73, 'sit-down', '2019-05-21','Lunch',8),
 
 -- southern
-('Southern-style mac ‘n’ cheese', 'Round out this cheesy pasta classic with roasted sweet potato, a staple food in the southern US states, and turn up the temperature with a pinch of cayenne', 7, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/12/mac-n-cheese.jpg?itok=vs4eBfiK', 10.89,' pick-up','2019-05-21','Dinner',8),
-('Southern fried chicken', 'Great for feeding a crowd, simply kick back, enjoy and relax this fried chicken recipe with homemade slaw', 6, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273636_8.jpg?itok=VxE-1zWU', 8.98,'pick-up','2019-05-21', 'Lunch',7);
+('Southern-style mac ‘n’ cheese', 'Round out this cheesy pasta classic with roasted sweet potato, a staple food in the southern US states, and turn up the temperature with a pinch of cayenne', 7, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/12/mac-n-cheese.jpg?itok=vs4eBfiK', 10.89,' pick-up','2019-05-21','Dinner',8),
+('Southern fried chicken', 'Great for feeding a crowd, simply kick back, enjoy and relax this fried chicken recipe with homemade slaw', 6, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273636_8.jpg?itok=VxE-1zWU', 8.98,'pick-up','2019-05-21', 'Lunch',7);
 
 
 
