@@ -195,28 +195,44 @@ class MainPage extends Component {
     // if (!grandmas.length) return null;
     return (
       <div className="mainpage">
-        <div className="left-mainpage">
+        <div className="top-mainpage">
+          <div
+            className={
+              selectedAll ? "highlighted filter-buttons" : "filter-buttons"
+            }
+          >
+            {" "}
+            <h1>🍴 cuisines </h1>{" "}
+            <button onClick={this.displayAllGrandmas}>See All</button>
+            {cuisinesType}
+          </div>
           <div className="lunch-dinner">
-            <form>
-              <div>
-                <div className={isLunch ? "highlighted" : null}>
-                  <button
-                    type="button"
-                    name="isLunch"
-                    onClick={this.handleClickMealType}
-                  >
-                    Lunch
-                  </button>
-                </div>
-                <div className={isDinner ? "highlighted" : null}>
-                  <button
-                    type="button"
-                    name="isDinner"
-                    onClick={this.handleClickMealType}
-                  >
-                    Dinner
-                  </button>
-                </div>
+            <form className="lunch-dinner">
+              <div
+                className={
+                  isLunch ? "highlighted filter-buttons" : "filter-buttons"
+                }
+              >
+                <button
+                  type="button"
+                  name="isLunch"
+                  onClick={this.handleClickMealType}
+                >
+                  Lunch
+                </button>
+              </div>
+              <div
+                className={
+                  isDinner ? "highlighted filter-buttons" : "filter-buttons"
+                }
+              >
+                <button
+                  type="button"
+                  name="isDinner"
+                  onClick={this.handleClickMealType}
+                >
+                  Dinner
+                </button>
               </div>
             </form>
           </div>
@@ -237,7 +253,11 @@ class MainPage extends Component {
             </form>
           </div>
           <div className="order-type">
-            <div className={isSitdown ? "highlighted" : null}>
+            <div
+              className={
+                isSitdown ? "highlighted filter-buttons" : "filter-buttons"
+              }
+            >
               <button
                 type="checkbox"
                 name="isSitdown"
@@ -246,7 +266,11 @@ class MainPage extends Component {
                 Sit-Down{" "}
               </button>
             </div>
-            <div className={isPickup ? "highlighted" : null}>
+            <div
+              className={
+                isPickup ? "highlighted filter-buttons" : "filter-buttons"
+              }
+            >
               <button
                 type="checkbox"
                 name="isPickup"
@@ -256,32 +280,27 @@ class MainPage extends Component {
               </button>
             </div>
           </div>
-
-          <div
-            className="filter-buttons"
-            className={selectedAll ? "highlighted" : null}
-          >
-            <button onClick={this.displayAllGrandmas}>See All</button>
-            {cuisinesType}
-          </div>
-
-          <ListView
-            zoom={zoom}
-            center={center}
-            handleClick={this.handleClick}
-            handleGrandmaListItemHover={this.handleGrandmaListItemHover}
-            grandmas={grandmas}
-          />
         </div>
-        <div className="right-mainpage">
-          <div className="map-list">
-            <MapView
+        <div className="button-mainpage">
+          <div className="left-mainpage">
+            <ListView
               zoom={zoom}
               center={center}
               handleClick={this.handleClick}
-              hoveredGrandmaId={hoveredGrandmaId}
+              handleGrandmaListItemHover={this.handleGrandmaListItemHover}
               grandmas={grandmas}
             />
+          </div>
+          <div className="right-mainpage">
+            <div className="map-list">
+              <MapView
+                zoom={zoom}
+                center={center}
+                handleClick={this.handleClick}
+                hoveredGrandmaId={hoveredGrandmaId}
+                grandmas={grandmas}
+              />
+            </div>
           </div>
         </div>
       </div>
