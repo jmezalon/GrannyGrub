@@ -1,9 +1,9 @@
 import React from "react";
 import { Modal } from "./Modal.js";
 
-const Confirmation = ({ price, count, grandma, dish }) => {
+const Confirmation = ({ price, count, confirmation, grandma, dish }) => {
   // <img style={{ width: "300px" }} src={dish.img_url} alt={dish.name} />
-  if (dish.id) {
+  if (dish.id && confirmation) {
     return (
       <Modal>
         <div className="confirm-info-container">
@@ -42,7 +42,9 @@ const Confirmation = ({ price, count, grandma, dish }) => {
       </Modal>
     );
   } else {
-    return <p>Loading...</p>;
+    return (
+      <p>this page has expired and will go to the home page in 30 seconds.</p>
+    );
   }
 };
 
