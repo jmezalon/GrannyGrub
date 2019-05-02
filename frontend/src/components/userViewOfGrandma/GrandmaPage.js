@@ -36,13 +36,12 @@ class GrandmaPage extends Component {
             <button>back to grandmas</button>
           </Link>
 
-          <p> Granny {grandma.first_name}</p>
-
           <img
             className="user-view-granny-pic"
             src={grandma.profile_pic}
             alt=""
           />
+          <p> Granny {grandma.first_name}</p>
           <p>cuisine type: {grandma.cuisine_type}</p>
           <p>bio: {grandma.bio}</p>
           {grandma.ispublic ? (

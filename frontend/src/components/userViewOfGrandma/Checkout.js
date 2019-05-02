@@ -17,14 +17,18 @@ const Checkout = ({
 }) => {
   return (
     <Modal>
-      <div>
-        <h4>Please provide your contact information below</h4>
-        <Link to="/mainpage">
+      <div className="info-order">
+        <div id="dish-image-order">
+          <img src={dish.img_url} alt="dish" />
+        </div>
+        <Link className="grandma-link" to="/mainpage">
           <p>{"<--"} to Grandma</p>
         </Link>
-        <div>
-          <form className="user-info-form" onSubmit={handleFormSubmit}>
+        <h4>Please provide your contact information below</h4>
+        <form className="user-info-form" onSubmit={handleFormSubmit}>
+          <div className="user-input">
             <input
+              id="full-name"
               name="full_name"
               placeholder="your full name"
               value={full_name}
@@ -32,11 +36,14 @@ const Checkout = ({
             />
 
             <input
+              id="phone-number"
               name="phone_number"
               placeholder="phone number"
               value={phone_number}
               onChange={handleChange}
             />
+          </div>
+          <div id="required-info">
             {empty_field_name && empty_field_number ? (
               <p>please add your contact info</p>
             ) : empty_field_name ? (
@@ -46,20 +53,19 @@ const Checkout = ({
             ) : (
               ""
             )}
+          </div>
+          <div>
+            <button id="dish-checkout-button">order</button>
+          </div>
+        </form>
 
-            <button>order</button>
-          </form>
-        </div>
-        <div>
-          <p>
-            {count} {dish.name} for ${price}{" "}
-          </p>
-          <img src={dish.img_url} alt="dish" id="dishImg" />
+        <p>
+          {count} {dish.name} for ${price}{" "}
+        </p>
 
-          <Link to={`/order/dish/${parseInt(dish.id)}`}>
-            <button>edit</button>
-          </Link>
-        </div>
+        <Link to={`/order/dish/${parseInt(dish.id)}`}>
+          <button id="edit-button">edit</button>
+        </Link>
       </div>
     </Modal>
   );

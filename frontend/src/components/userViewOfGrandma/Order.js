@@ -3,53 +3,63 @@ import { Link, withRouter, Redirect } from "react-router-dom";
 import { Modal } from "./Modal.js";
 
 class Order extends React.Component {
-  componentDidMount() {
-    this.props.getOneDish(parseInt(this.props.match.params.id));
-  }
-
   render() {
     const { dish } = this.props;
     return (
       <Modal>
         <div>
-          <Link to="/mainpage">
-            <p id="back-button"> {"<--"} view all cuisines</p>
-          </Link>
+          <div id="dish-image">
+            <img src={dish.img_url} alt="dish" />
+          </div>
 
-          <h1>Your order</h1>
           <div className="dish-info">
-            <p>{dish.name}</p>
-            <img src={dish.img_url} alt="dish" id="dishImg" />
-            <p>${dish.price}</p>
-            <p>{dish.timeframe}</p>
-          </div>
-          <label>oder type: </label>
-          {dish.type}
-          <div className="plus-minus-button">
-            <label>quantity: </label>
-            <button onClick={this.props.handleSubChange}>-</button>{" "}
-            {this.props.count}{" "}
-            <button onClick={this.props.handleAddChange}>+</button>
-            <br />
-          </div>
-          <>
-            <label>description: </label>
-            {dish.description}
-          </>
-          <br />
-          <br />
+            <div id="name-price-time">
+              <Link className="grandma-link" to="/mainpage">
+                <p id="back-button"> {"<--"} view all cuisines</p>
+              </Link>
+              <p id="dish-name">{dish.name}</p>
+              <p>${dish.price}</p>
+              <p>{dish.timeframe}</p>
+            </div>
+            <div className="dish-right-sie">
+              <div id="dish-label">
+                <div>
+                  <label>oder type: </label>
+                  {dish.type}
+                </div>
+                <div className="plus-minus-button">
+                  <label>quantity: </label>
+                  <button onClick={this.props.handleSubChange}>-</button>{" "}
+                  {this.props.count}{" "}
+                  <button onClick={this.props.handleAddChange}>+</button>
+                  <br />
+                </div>
+              </div>
+              <div id="dish-desc">
+                <label>description: </label>
+                <p>{dish.description}</p>
+              </div>
 
-          <Link
-            to={
-              dish.remaining_quantity !== 0
-                ? `/order/dish/${dish.id}/checkout`
-                : `/grandma/${dish.user_id}`
-            }
-          >
-            <button onClick={this.props.handleCheckOutClick}>
-              {dish.remaining_quantity === 0 ? "back to grandma" : "Checkout"}
-            </button>
-          </Link>
+              <div id="dish-checkout">
+                <Link
+                  to={
+                    dish.remaining_quantity !== 0
+                      ? `/order/dish/${dish.id}/checkout`
+                      : `/grandma/${dish.user_id}`
+                  }
+                >
+                  <button
+                    id="dish-checkout-button"
+                    onClick={this.props.handleCheckOutClick}
+                  >
+                    {dish.remaining_quantity === 0
+                      ? "back to grandma"
+                      : "Checkout"}
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </Modal>
     );
