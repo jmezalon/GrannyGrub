@@ -1,0 +1,52 @@
+#dish-image-order {
+  display: flex;
+  width: 720px;
+  height: 30%;
+}
+
+#dish-image-order img {
+  /* background-size: auto; */
+  /* width: 100%; */
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.user-info-form {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px;
+  flex-direction: column;
+}
+
+.user-input #full-name {
+  margin: 10px;
+  width: 175px;
+  height: 25px;
+}
+
+.user-input #phone-number {
+  margin: 10px;
+  width: 175px;
+  height: 25px;
+}
+
+#required-info p {
+  color: red;
+}
+
+#edit-button {
+  width: 100px;
+  height: 35px;
+  border-radius: 4px;
+  background-color: #f23232;
+  margin-top: 2%;
+  /* font-family: Futura; */
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}

@@ -12,7 +12,7 @@ const initialState = {
   labels: [],
   selectedDish: [],
   type: [],
-  dish: []
+  dish: {}
 };
 
 export const dishReducer = (state = initialState, action) => {

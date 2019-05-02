@@ -15,6 +15,10 @@ class OrderRoutes extends React.Component {
     empty_field_number: false
   };
 
+  componentDidMount() {
+    this.props.getOneDish(parseInt(this.props.match.params.id));
+  }
+
   handleAddChange = () => {
     if (this.props.dish.remaining_quantity === null) {
       if (this.props.dish.quantity > this.state.count) {
@@ -121,7 +125,7 @@ class OrderRoutes extends React.Component {
         />
 
         <Route
-          path={"/order/dish/:id/Checkout"}
+          path={"/order/dish/:id/checkout"}
           render={props => (
             <Checkout
               handleFormSubmit={this.handleFormSubmit}

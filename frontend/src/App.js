@@ -104,7 +104,7 @@ class App extends Component {
           <AuthRoute path={"/auth"} component={UserAuthContainer} />
 
           <Route
-            path={"/order"}
+            path={"/order/dish/:id"}
             render={props => <OrderContainer {...props} goBack={this.goBack} />}
           />
 
