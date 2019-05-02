@@ -7,7 +7,7 @@ const Confirmation = ({ price, count, grandma, dish }) => {
     return (
       <Modal>
         <div className="confirm-info-container">
-          <h1>Your receipt</h1>
+          <h1>Your receipt:</h1>
           <p>Order Total: ${price}</p>
           <h2>
             {dish.type === "pick-up" ? (
