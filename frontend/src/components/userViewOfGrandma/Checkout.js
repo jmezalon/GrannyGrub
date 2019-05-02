@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Checkout = ({
   handleFormSubmit,
@@ -16,7 +17,9 @@ const Checkout = ({
   return (
     <div>
       <h4>Please provide your contact information below</h4>
-      <p onClick={() => goBack()}> {"<--"} to Grandma</p>
+      <Link to="/mainpage">
+        <p>{"<--"} to Grandma</p>
+      </Link>
       <div>
         <form className="user-info-form" onSubmit={handleFormSubmit}>
           <input
@@ -51,7 +54,9 @@ const Checkout = ({
         </p>
         <img src={dish.img_url} alt="dish" id="dishImg" />
 
-        <button onClick={handleEdit}>edit</button>
+        <Link to={`/order/dish/${parseInt(dish.id)}`}>
+          <button>edit</button>
+        </Link>
       </div>
     </div>
   );

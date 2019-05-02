@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../../css/userViewOfGrandma/GrandmaPage.css";
 import GrandmasDishes from "../dishes/dishesUserView";
 
@@ -14,10 +15,6 @@ class GrandmaPage extends Component {
     this.props.getGrandmasDishes(id);
   }
 
-  handleClick = dish => {
-    this.props.setSelectedDish(dish);
-  };
-
   render() {
     let { grandma, dishes } = this.props;
 
@@ -32,19 +29,17 @@ class GrandmaPage extends Component {
 
     return (
       <div className="user-view-granny-page">
-        <div>
-          <GrandmasDishes
-            dishes={this.props.dishes}
-            type={this.state.type}
-            handleClick={this.handleClick}
-            setSelectedDish={this.props.setSelectedDish}
-            getGrandmasDishes={this.props.getGrandmasDishes}
-            id={id}
-          />
-        </div>
 
-        <div className="profile-sidebar">
+        <div className="top-granny-profile">
+          <p>{grandma.first_name}</p>
+
+        <Link to="/mainpage">
+          <button>back to grandmas</button>
+        </Link>
+      
+
           <p> Granny {grandma.first_name}</p>
+
           <img
             className="user-view-granny-pic"
             src={grandma.profile_pic}
@@ -61,6 +56,17 @@ class GrandmaPage extends Component {
           ) : (
             <p>{grandma.zip_code}</p>
           )}
+        </div>
+
+        <div>
+          <GrandmasDishes
+            dishes={this.props.dishes}
+            type={this.state.type}
+            handleClick={this.handleClick}
+            setSelectedDish={this.props.setSelectedDish}
+            getGrandmasDishes={this.props.getGrandmasDishes}
+            id={id}
+          />
         </div>
       </div>
     );

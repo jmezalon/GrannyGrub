@@ -13,10 +13,11 @@ class MainPage extends Component {
     isLunch: false,
     isDinner: false,
     cuisinesSelected: [],
-    showingMap: true,
     address: "",
-    center: { lat: 40.639286, lng: -73.951499 },
-    zoom: 11
+    center: { lat: 40.692053, lng: -73.991104 },
+    zoom: 13,
+    hoveredGrandmaId: false,
+    selectedAll: true
   };
 
   handleClickCuisineType = async e => {
@@ -24,14 +25,16 @@ class MainPage extends Component {
     let target = parseInt(e.target.value);
     if (!cuisinesSelected.includes(target)) {
       await this.setState({
-        cuisinesSelected: [...cuisinesSelected, target]
+        cuisinesSelected: [...cuisinesSelected, target],
+        selectedAll: false
       });
     } else {
       let filtered = cuisinesSelected.filter(grannyId => {
         return target !== grannyId;
       });
       await this.setState({
-        cuisinesSelected: filtered
+        cuisinesSelected: filtered,
+        selectedAll: false
       });
     }
     await this.filterGrannies();
@@ -40,7 +43,8 @@ class MainPage extends Component {
   handleClickMealType = async e => {
     let { isSitdown, isPickup } = this.state;
     await this.setState({
-      [e.target.name]: !this.state[e.target.name]
+      [e.target.name]: !this.state[e.target.name],
+      selectedAll: false
     });
     await this.filterGrannies();
   };
@@ -107,19 +111,16 @@ class MainPage extends Component {
     this.props.history.push(`/grandma/${id}`);
   };
 
-  toggleView = () => {
-    this.setState({
-      showingMap: !this.state.showingMap
-    });
-  };
-
   displayAllGrandmas = async () => {
     await this.unCheck();
     await this.props.getAllGrandmas();
     await this.setState({
       isSitdown: false,
       isPickup: false,
-      cuisinesSelected: []
+      isLunch: false,
+      isDinner: false,
+      cuisinesSelected: [],
+      selectedAll: true
     });
   };
 
@@ -147,6 +148,10 @@ class MainPage extends Component {
       });
   };
 
+  handleGrandmaListItemHover = hoveredGrandmaId => {
+    this.setState({ hoveredGrandmaId });
+  };
+
   // searchAddress = async e => {
   //   e.preventDefault();
   //   let coords = await this.getCoords(this.state.address);
@@ -154,19 +159,34 @@ class MainPage extends Component {
   // };
 
   render() {
-    const { showingMap } = this.state;
+    console.log(this.state);
+    const {
+      center,
+      zoom,
+      hoveredGrandmaId,
+      cuisinesSelected,
+      isLunch,
+      isDinner,
+      isPickup,
+      isSitdown,
+      selectedAll
+    } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
-        <div key={cuisine.id}>
-          <label onChange={this.handleClickCuisineType}>
-            <input
-              value={cuisine.id}
-              key={cuisine.id}
-              type="checkbox"
-              className="checkbox"
-            />
+        <div
+          key={cuisine.id}
+          className={
+            cuisinesSelected.includes(cuisine.id) ? "highlighted" : null
+          }
+        >
+          <button
+            value={cuisine.id}
+            key={cuisine.id}
+            type="button"
+            onClick={this.handleClickCuisineType}
+          >
             {cuisine.type}
-          </label>
+          </button>
         </div>
       );
     });
@@ -175,82 +195,95 @@ class MainPage extends Component {
     // if (!grandmas.length) return null;
     return (
       <div className="mainpage">
-        <form>
-          <div>
-            <input
-              type="checkbox"
-              name="isLunch"
-              onChange={this.handleClickMealType}
-              className="checkbox"
-            />
-            Lunch
-            <input
-              type="checkbox"
-              name="isDinner"
-              onChange={this.handleClickMealType}
-              className="checkbox"
-            />
-            Dinner
+        <div className="left-mainpage">
+          <div className="lunch-dinner">
+            <form>
+              <div>
+                <div className={isLunch ? "highlighted" : null}>
+                  <button
+                    type="button"
+                    name="isLunch"
+                    onClick={this.handleClickMealType}
+                  >
+                    Lunch
+                  </button>
+                </div>
+                <div className={isDinner ? "highlighted" : null}>
+                  <button
+                    type="button"
+                    name="isDinner"
+                    onClick={this.handleClickMealType}
+                  >
+                    Dinner
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
-        <form
-          onSubmit={e => {
-            this.getCoords(e, this.state.address);
-          }}
-        >
-          <input
-            value={this.state.address}
-            type="text"
-            onChange={this.changeHandler}
-            name="address"
-          />
-          <button type="submit">Search Address</button>
-        </form>
-        <div>
-          <input
-            type="checkbox"
-            name="isSitdown"
-            onChange={this.handleClickMealType}
-            className="checkbox"
-          />
-          Sit-Down
-          <input
-            type="checkbox"
-            name="isPickup"
-            onChange={this.handleClickMealType}
-            className="checkbox"
-          />
-          Pick-Up
-        </div>
-        <div className="show-button">
-          {showingMap ? (
-            <button onClick={this.toggleView}>Show List View</button>
-          ) : (
-            <button onClick={this.toggleView}> Show Map View</button>
-          )}
-        </div>
-        <br />
+          <div className="search-address">
+            <form
+              onSubmit={e => {
+                this.getCoords(e, this.state.address);
+              }}
+            >
+              <input
+                value={this.state.address}
+                type="text"
+                onChange={this.changeHandler}
+                name="address"
+                placeholder="Search by address..."
+              />
+              <button type="submit">Search Address</button>
+            </form>
+          </div>
+          <div className="order-type">
+            <div className={isSitdown ? "highlighted" : null}>
+              <button
+                type="checkbox"
+                name="isSitdown"
+                onClick={this.handleClickMealType}
+              >
+                Sit-Down{" "}
+              </button>
+            </div>
+            <div className={isPickup ? "highlighted" : null}>
+              <button
+                type="checkbox"
+                name="isPickup"
+                onClick={this.handleClickMealType}
+              >
+                Pick-Up{" "}
+              </button>
+            </div>
+          </div>
 
-        <div className="filter-buttons">
-          <button onClick={this.displayAllGrandmas}>See All</button>
-          {cuisinesType}
-        </div>
-        {showingMap ? (
-          <MapView
-            zoom={this.state.zoom}
-            center={this.state.center}
-            handleClick={this.handleClick}
-            showingMap={showingMap}
-            grandmas={grandmas}
-          />
-        ) : (
+          <div
+            className="filter-buttons"
+            className={selectedAll ? "highlighted" : null}
+          >
+            <button onClick={this.displayAllGrandmas}>See All</button>
+            {cuisinesType}
+          </div>
+
           <ListView
-            zoom={this.state.zoom}
-            center={this.state.center}
+            zoom={zoom}
+            center={center}
             handleClick={this.handleClick}
+            handleGrandmaListItemHover={this.handleGrandmaListItemHover}
             grandmas={grandmas}
           />
-        )}
+        </div>
+        <div className="right-mainpage">
+          <div className="map-list">
+            <MapView
+              zoom={zoom}
+              center={center}
+              handleClick={this.handleClick}
+              hoveredGrandmaId={hoveredGrandmaId}
+              grandmas={grandmas}
+            />
+          </div>
+        </div>
       </div>
     );
   }

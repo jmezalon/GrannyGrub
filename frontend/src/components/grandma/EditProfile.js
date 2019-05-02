@@ -213,7 +213,7 @@ class EditProfile extends React.Component {
             <input
               onChange={this.handleIsPublic}
               value={
-                grandma.ispublic
+                grandma.ispublic === this.props.grandma.ispublic
                   ? this.props.grandma.ispublic
                   : grandma.ispublic
               }

@@ -4,7 +4,7 @@ const Confirmation = ({ price, count, grandma, dish }) => {
   return (
     <div>
       <h1>Your receipt</h1>
-      <p>Order Total: {price}</p>
+      <p>Order Total: ${price}</p>
       <h1>
         {dish.type === "pick-up" ? (
           <label>
@@ -30,7 +30,8 @@ const Confirmation = ({ price, count, grandma, dish }) => {
 
       <p>
         Time: {dish.type === "pick-up" ? "around" : "at"} {dish.timeframe}{" "}
-        {dish.date ? "on" : ""} {dish.date ? dish.date : ""}
+        {dish.date.slice(0, 10) ? "on" : ""}{" "}
+        {dish.date.slice(0, 10) ? dish.date.slice(0, 10) : ""}
       </p>
       <br />
       <p>Grandma {grandma.last_name} cannot wait to see you!!!</p>

@@ -10,10 +10,18 @@ const Dish = ({ dish, handleClick }) => {
         <p> ${dish.price} </p>
         <p> Meal type: {dish.type} </p>
       </div>
-      <Link to={`/grandma/${dish.dish_id}/order`}>
-        <button onClick={() => handleClick({ dish })} value={dish}>
+      <Link
+        to={
+          dish.remaining_quantity !== 0 ? `/order/dish/${dish.dish_id}` : null
+        }
+      >
+        <button>
           {" "}
-          {dish.type === "sit-down" ? "book" : "order"}{" "}
+          {dish.remaining_quantity === 0
+            ? "sold out"
+            : dish.type === "sit-down"
+            ? "book"
+            : "order"}{" "}
         </button>
       </Link>
       <div className="time-date-div">
