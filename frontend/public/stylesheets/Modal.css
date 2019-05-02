@@ -11,13 +11,13 @@
   display: flex;
   justify-content: space-around;
   position: absolute;
-  width: 30%;
-  height: 60%;
+  width: 50%;
+  height: 90%;
   z-index: 2;
   overflow-x: hidden;
-  left: calc(35%);
+  left: calc(25%);
   background-color: white;
-  top: 20%;
+  top: 2%;
   padding: 20px;
   border-radius: 10px;
 }
