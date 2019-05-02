@@ -16,11 +16,18 @@
   object-fit: cover;
 }
 
-.dish-view {
+#dish-container {
+  border: solid 3px black;
   width: 35%;
-  border: 1px solid darkgreen;
   margin: 3%;
   padding: 10px;
+  background: URL("https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60");
+}
+
+.dish-view {
+  border: 1px solid darkgreen;
+  margin: 2%;
+  padding: 3px;
   display: grid;
   grid-template-columns: 5% 60% 35%;
   grid-template-rows: 10% 65% 25%;
@@ -28,6 +35,7 @@
     " leftside leftside rightside  "
     " leftside leftside rightside "
     " leftside leftside  . ";
+  background-color: white;
 }
 
 .dish-left-side {
@@ -65,6 +73,9 @@
 }
 
 #dish-quantity {
+}
+
+.remaining_quantity {
 }
 
 .dish-right-side {
