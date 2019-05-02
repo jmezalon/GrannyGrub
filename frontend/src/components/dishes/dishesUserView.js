@@ -59,8 +59,12 @@ class GrandmasDishes extends React.Component {
           onChange={this.handleTypeToggle}
           checked={this.state.sitdowndisplay}
         />
-
-        <DishList dishes={resultDishes} handleClick={this.props.handleClick} />
+        <div id="dish-display-main">
+          <DishList
+            dishes={resultDishes}
+            handleClick={this.props.handleClick}
+          />
+        </div>
       </>
     );
   }

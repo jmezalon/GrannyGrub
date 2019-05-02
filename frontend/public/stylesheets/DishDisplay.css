@@ -1,44 +1,35 @@
-.selected-type {
-  border: 3px solid darkgreen;
-  margin: 1%;
+
+#tag {
+  font-weight: bold;
+  color: red;
 }
 
-.cuisineType {
-  margin: 1%;
-}
-.unselected-type {
-  margin: 1%;
-}
-
-.newDishContainer {
-  border: 2px solid pink;
-  width: 80%;
-  height: auto;
-  margin: 1%;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.new-dish {
+.dish-view {
+  width: 35%;
+  border: 1px solid darkgreen;
   margin: 2%;
-  width: 90%;
+  padding: 10px;
 }
 
-/* .dish-view {
+#dish-display-main {
   margin-top: 30px;
-  width: 65%;
   border: 1px solid #909bf9;
   margin: 2%;
   padding: 10px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   box-sizing: content-box;
   object-fit: cover;
-} */
+}
 
-.granny_profile-sidebar {
-  width: 55%;
+#dish-bottom-left {
+  border: 1px solid blue;
+}
+
+.dish-right-side{
+  border: 1px dashed pink;
 }
 
 .dishInfo {
