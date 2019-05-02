@@ -20,15 +20,14 @@ const Confirmation = ({ price, count, grandma, dish }) => {
         </h1>
         <img style={{ width: "300px" }} src={dish.img_url} alt={dish.name} />
 
-        <h1>From Grandma {grandma.last_name}</h1>
+        <h1>From Grandma {dish.last_name}</h1>
         <img
           style={{ width: "300px" }}
-          src={grandma.profile_pic}
-          alt={grandma.last_name}
+          src={dish.profile_pic}
+          alt={dish.last_name}
         />
         <p>
-          Address: {grandma.building_number} {grandma.address}{" "}
-          {grandma.zip_code}
+          Address: {dish.building_number} {dish.address} {dish.zip_code}
         </p>
 
         <p>
@@ -37,7 +36,7 @@ const Confirmation = ({ price, count, grandma, dish }) => {
           {dish.date.slice(0, 10) ? dish.date.slice(0, 10) : ""}
         </p>
         <br />
-        <p>Grandma {grandma.last_name} cannot wait to see you!!!</p>
+        <p>Grandma {dish.last_name} cannot wait to see you!!!</p>
       </div>
     );
   } else {
