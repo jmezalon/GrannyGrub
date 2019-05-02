@@ -13,7 +13,8 @@ const Checkout = ({
   empty_field_number,
   count,
   dish,
-  price
+  price,
+  confirmation
 }) => {
   return (
     <Modal>

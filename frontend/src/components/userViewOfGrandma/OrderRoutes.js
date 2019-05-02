@@ -12,7 +12,8 @@ class OrderRoutes extends React.Component {
     phone_number: "",
     orderSummary: false,
     empty_field_name: false,
-    empty_field_number: false
+    empty_field_number: false,
+    confirmation: false
   };
 
   componentDidMount() {
@@ -39,6 +40,10 @@ class OrderRoutes extends React.Component {
     }
   };
 
+  // handleOrderClick = () => {
+  //   this.setState({ confirmation: true });
+  // };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -47,9 +52,9 @@ class OrderRoutes extends React.Component {
     });
   };
 
-  handleEdit = () => {
-    this.setState({ confirmation: true });
-  };
+  // handleEdit = () => {
+  //   this.setState({ confirmation: true });
+  // };
 
   handleFormSubmit = async e => {
     e.preventDefault();
@@ -81,7 +86,7 @@ class OrderRoutes extends React.Component {
         `/dishes/update/${parseInt(this.props.dish.id)}`,
         amount_left
       );
-      this.setState({ orderSummary: true });
+      this.setState({ confirmation: true });
       await this.props.history.push(
         `/order/dish/${this.props.dish.id}/confirmation`
       );
@@ -120,6 +125,7 @@ class OrderRoutes extends React.Component {
               count={this.state.count}
               dish={dish}
               grandma={grandma}
+              confirmation={this.state.confirmation}
             />
           )}
         />
@@ -137,6 +143,7 @@ class OrderRoutes extends React.Component {
               empty_field_number={empty_field_number}
               count={this.state.count}
               dish={dish}
+              confirmation={this.state.confirmation}
               price={price}
               goBack={this.props.goBack}
             />
