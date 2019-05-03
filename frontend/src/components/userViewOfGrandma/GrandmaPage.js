@@ -29,39 +29,46 @@ class GrandmaPage extends Component {
 
     return (
       <div className="user-view-granny-page">
-        <div>
-          <button className="back-btn">
-            <Link to="/mainpage" id="back-link">
-              back to grandmas
-            </Link>
-          </button>
-        </div>
-
         <div className="top-granny-profile">
-          <div id="granny-img">
-            <img
-              className="user-view-granny-pic"
-              src={grandma.profile_pic}
-              alt=""
-            />
+          <div className="back-btn">
+            <button>
+              <Link to="/mainpage" id="back-link">
+                back to grandmas
+              </Link>
+            </button>
           </div>
-          <div id="main-info">
-            <p> Granny {grandma.first_name}</p>
-
-            <p>cuisine type: {grandma.cuisine_type}</p>
-            <p>bio: {grandma.bio}</p>
-          </div>
-          {grandma.ispublic ? (
-            <div id="contact-info">
-              <p> Phone number: {grandma.phone_number} </p>
-              <p> Email: {grandma.email} </p>
-              <p>{grandma.zip_code}</p>
+          <div className="granny-profile-display">
+            <div id="granny-img">
+              <img
+                className="user-view-granny-pic"
+                src={grandma.profile_pic}
+                alt=""
+              />
             </div>
-          ) : (
-            <p>{grandma.zip_code}</p>
-          )}
-        </div>
 
+            <div id="main-info">
+              <h3 id="granny_name"> Granny {grandma.first_name}</h3>
+
+              <p> Granny's Specialty: {grandma.cuisine_type} Cuisine</p>
+              <p>
+                A little about granny {grandma.first_name}: {grandma.bio}
+              </p>
+
+              {grandma.ispublic ? (
+                <div>
+                  <p> Phone number: {grandma.phone_number} </p>
+                  <p> Email: {grandma.email} </p>
+                  <p>{grandma.zip_code}</p>
+                </div>
+              ) : (
+                <div>
+                  <p> Email: {grandma.email} </p>
+                  <p>{grandma.zip_code}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
         <div>
           <GrandmasDishes
             dishes={this.props.dishes}
