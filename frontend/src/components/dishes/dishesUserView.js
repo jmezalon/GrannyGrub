@@ -43,22 +43,33 @@ class GrandmasDishes extends React.Component {
     const resultDishes = this.filterDishes();
     return (
       <>
-        <label htmlFor="pick-up"> pickup </label>
-        <input
-          type="radio"
-          name="type"
-          value="pick-up"
-          onChange={this.handleTypeToggle}
-          checked={!this.state.sitdowndisplay}
-        />
-        <label htmlFor="sit-down"> sitdown </label>
-        <input
-          type="radio"
-          name="type"
-          value="sit-down"
-          onChange={this.handleTypeToggle}
-          checked={this.state.sitdowndisplay}
-        />
+        <div id="dish-btns-container">
+          <label htmlFor="pick-up" />
+          <button
+            name="type"
+            value="pick-up"
+            onClick={this.handleTypeToggle}
+            checked={!this.state.sitdowndisplay}
+            className={
+              !this.state.sitdowndisplay ? "filter-btn-selected" : "filter-btn"
+            }
+          >
+            {" "}
+            Pick Up{" "}
+          </button>
+          <label htmlFor="sit-down" />
+          <button
+            name="type"
+            value="sit-down"
+            onClick={this.handleTypeToggle}
+            checked={this.state.sitdowndisplay}
+            className={
+              this.state.sitdowndisplay ? "filter-btn-selected" : "filter-btn"
+            }
+          >
+            Sit Down{" "}
+          </button>
+        </div>
         <div id="dish-display-main">
           <DishList
             dishes={resultDishes}

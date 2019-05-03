@@ -5,14 +5,127 @@
 
 .top-granny-profile {
   background: linear-gradient(rgb(52, 49, 49, 0.2), rgb(7, 7, 7, 0.75)),
-    url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi9SeZgZ_Q4peEuunjmnB2oNk6lxTusPyzXlaA6NEGibMQvLHJGw");
+    url("https://images.unsplash.com/photo-1551199870-171befeb59ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1009&q=80");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   width: 100%;
   height: 380px;
+  display: flex;
+  box-sizing: content-box;
+  object-fit: cover;
 }
 
+.granny-profile-display {
+  display: flex;
+  padding-left: 30%;
+  padding-top: 27px;
+}
+/*
+.granny-profile-display {
+  display: grid;
+  grid-template-columns: 25% 25% 50%;
+  grid-template-rows: 20% 50% 30%;
+  grid-template-areas:
+    "back-btn . img"
+    "back-btn . info"
+    ". . info";
+} */
+
 .top-granny-profile img {
-  width: 200px;
+  grid-area: img;
+  width: 220px;
+  height: 200px;
+  border-radius: 13px;
+  object-fit: cover;
+  margin: 2px;
+}
+
+.back-btn {
+  margin: 2%;
+  grid-area: back-btn;
+}
+
+.back-btn button {
+  width: 193px;
+  height: 32px;
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+#main-info {
+  width: 350px;
+  height: 190px;
+  grid-area: info;
+  background-color: white;
+  border: 1px double #ed3941;
+  border-radius: 3px;
+  color: #ed3941;
+  padding: 15px;
+  margin: 10px;
+  font-family: "Cormorant Garamond", serif;
+}
+
+#back-link {
+  text-decoration: none;
+  color: #ed3941;
+  font-size: 1rem;
+  font-family: "Libre Baskerville", serif;
+}
+
+#dish-btns-container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+#main-info p {
+  padding: 3px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.filter-btn-selected {
+  width: 183px;
+  height: 42px;
+  background-color: #ed3941;
+  display: inline-block;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  font-family: "Libre Baskerville", serif;
+  margin: 2%;
+}
+
+.filter-btn {
+  width: 183px;
+  height: 42px;
+  background-color: white;
+  display: inline-block;
+  color: #ed3941;
+  border: 1px solid #ed3941;
+  border-radius: 3px;
+  font-size: 1rem;
+  font-family: "Libre Baskerville", serif;
+  margin: 2%;
+}
+
+#granny_name {
+  font-size: 25px;
+  font-family: "Libre Baskerville", serif;
+
+  border-bottom: 1px solid #ed3941;
+  color: #1a4951;
+}
+
+.tag {
+  color: #6d1a1d;
+  font-size: 17px;
+}
+
+#main-info {
+  margin: 0;
+  margin-left: 3%;
 }

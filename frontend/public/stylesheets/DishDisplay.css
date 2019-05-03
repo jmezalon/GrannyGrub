@@ -1,13 +1,6 @@
-#tag {
-  font-weight: bold;
-  color: red;
-}
-
 #dish-display-main {
   margin-top: 30px;
-  border: 1px solid #909bf9;
   margin: 2%;
-  padding: 10px;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -19,19 +12,22 @@
 #dish-container {
   border: solid 1px #ed3941;
   width: 35%;
+  height: 55%;
   margin: 3%;
   padding: 10px;
   object-fit: cover;
   border-radius: 6px;
+  /* background-image: URL("https://images.unsplash.com/photo-1509746840536-510fb809a015?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"); */
+  object-fit: cover;
+  object-position: center;
 }
 
 .dish-view {
-  border: 1px solid darkgreen;
   margin: 2%;
   padding: 3px;
   display: grid;
   grid-template-columns: 5% 60% 35%;
-  grid-template-rows: 10% 65% 25%;
+  grid-template-rows: 15% 65% 20%;
   grid-template-areas:
     " leftside leftside rightside  "
     " leftside leftside rightside "
@@ -40,7 +36,6 @@
 }
 
 .dish-left-side {
-  border: 1px solid green;
   grid-area: leftside;
   margin: 1px;
   display: grid;
@@ -53,42 +48,51 @@
 }
 
 .dishInfo {
-  border: 1px dashed orange;
   grid-area: dishInfo;
   margin-top: 8px;
   padding: 5px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: flex-start;
+  font-family: "Gentium Basic", serif;
+  font-size: 18px;
 }
 
 #dish-header {
-  padding: 2px;
-  margin: 3px;
-  border: 1px dashed yellow;
+  padding-bottom: 5px;
   grid-area: dishheader;
   display: flex;
   justify-content: space-around;
   font-family: "Libre Baskerville", serif;
+  border-bottom: 2px solid #ed3941;
+  object-fit: contain;
 }
 
-#dish-name {
+#dish_name {
   font-weight: bold;
 }
+
 #dish-bottom-left {
-  border: 1px dashed blue;
   grid-area: dishbtn;
   display: flex;
   justify-content: space-around;
   padding: 5px;
+  align-items: center;
+  font-family: "Libre Baskerville", serif;
 }
 
 #dish-quantity {
+  width: 50%;
 }
 
 .remaining_quantity {
+  font-family: "Libre Baskerville", serif;
 }
 
 .dish-right-side {
   grid-area: rightside;
-  border: 1px solid pink;
   margin: 1px;
   object-fit: cover;
 }
@@ -102,4 +106,17 @@
 }
 
 #dish-lables {
+  font-family: "Cormorant Garamond", serif;
+}
+
+#orderBtn {
+  width: 113px;
+  height: 32px;
+  background-color: #ed3941;
+  display: inline-block;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  font-family: "Libre Baskerville", serif;
 }
