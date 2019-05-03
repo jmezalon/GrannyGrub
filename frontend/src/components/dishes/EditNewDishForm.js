@@ -51,6 +51,12 @@ class EditNewDishForm extends React.Component {
     const updateDish = this.state;
     delete updateDish.dishImgFile;
     delete updateDish.currentDate;
+    delete updateDish.first_name;
+    delete updateDish.last_name;
+    delete updateDish.profile_pic;
+    delete updateDish.building_number;
+    delete updateDish.address;
+    delete updateDish.zip_code;
 
     await axios.patch(`/dishes/update/${this.props.dish.id}`, updateDish);
     await this.props.getOneDish(parseInt(this.props.match.params.id));
@@ -147,7 +153,6 @@ class EditNewDishForm extends React.Component {
         </button>
       );
     });
-
 
     const { timeframe, type } = this.props;
     console.log(this.state.date, "date");
