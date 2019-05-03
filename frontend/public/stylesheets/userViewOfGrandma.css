@@ -18,7 +18,8 @@
 
 .granny-profile-display {
   display: flex;
-  flex-direction: row-reverse;
+  padding-left: 30%;
+  padding-top: 27px;
 }
 /*
 .granny-profile-display {
@@ -122,4 +123,9 @@
 .tag {
   color: #6d1a1d;
   font-size: 17px;
+}
+
+#main-info {
+  margin: 0;
+  margin-left: 3%;
 }
