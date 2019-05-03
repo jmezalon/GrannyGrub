@@ -48,7 +48,7 @@ class GrandmasDishes extends React.Component {
           <button
             name="type"
             value="pick-up"
-            onChange={this.handleTypeToggle}
+            onClick={this.handleTypeToggle}
             checked={!this.state.sitdowndisplay}
             className={
               !this.state.sitdowndisplay ? "filter-btn-selected" : "filter-btn"
@@ -61,7 +61,7 @@ class GrandmasDishes extends React.Component {
           <button
             name="type"
             value="sit-down"
-            onChange={this.handleTypeToggle}
+            onClick={this.handleTypeToggle}
             checked={this.state.sitdowndisplay}
             className={
               this.state.sitdowndisplay ? "filter-btn-selected" : "filter-btn"
