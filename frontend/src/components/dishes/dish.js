@@ -8,7 +8,7 @@ const Dish = ({ dish, handleClick }) => {
       <div className="dish-view" key={dish.dish_id}>
         <div className="dish-left-side">
           <div id="dish-header">
-            <h2 id="dish-name"> {dish_name}</h2>
+            <h2 id="dish_name"> {dish_name}</h2>
             <p> ${dish.price} </p>
           </div>
 
@@ -27,7 +27,7 @@ const Dish = ({ dish, handleClick }) => {
                   : null
               }
             >
-              <button>
+              <button id="orderBtn">
                 {" "}
                 {dish.remaining_quantity === 0
                   ? "sold out"
@@ -52,7 +52,6 @@ const Dish = ({ dish, handleClick }) => {
         </div>
         <div className="dish-right-side">
           <img src={dish.img_url} alt="dish" className="dish_img" />
-          <p id="dish-lables"> lables go here </p>
         </div>
       </div>
     </div>
@@ -60,6 +59,8 @@ const Dish = ({ dish, handleClick }) => {
 };
 
 export default withRouter(Dish);
+
+//<p id="dish-lables"> lables go here </p>
 
 //todo
 //add if else for btn if remaining_quantity = 0.

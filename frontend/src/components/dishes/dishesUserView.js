@@ -50,6 +50,7 @@ class GrandmasDishes extends React.Component {
           value="pick-up"
           onChange={this.handleTypeToggle}
           checked={!this.state.sitdowndisplay}
+          className="filter-buttons"
         />
         <label htmlFor="sit-down"> sitdown </label>
         <input
