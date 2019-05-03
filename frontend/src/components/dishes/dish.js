@@ -2,12 +2,13 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
 const Dish = ({ dish, handleClick }) => {
+  let dish_name = dish.name.toUpperCase();
   return (
     <div id="dish-container">
       <div className="dish-view" key={dish.dish_id}>
         <div className="dish-left-side">
           <div id="dish-header">
-            <h2> {dish.name}</h2>
+            <h2 id="dish-name"> {dish_name}</h2>
             <p> ${dish.price} </p>
           </div>
 

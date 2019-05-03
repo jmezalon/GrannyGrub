@@ -17,11 +17,12 @@
 }
 
 #dish-container {
-  border: solid 3px black;
+  border: solid 1px #ed3941;
   width: 35%;
   margin: 3%;
   padding: 10px;
-  background: URL("https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60");
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .dish-view {
@@ -54,16 +55,23 @@
 .dishInfo {
   border: 1px dashed orange;
   grid-area: dishInfo;
-  margin: 1px;
+  margin-top: 8px;
+  padding: 5px;
 }
 
 #dish-header {
+  padding: 2px;
+  margin: 3px;
   border: 1px dashed yellow;
   grid-area: dishheader;
   display: flex;
   justify-content: space-around;
+  font-family: "Libre Baskerville", serif;
 }
 
+#dish-name {
+  font-weight: bold;
+}
 #dish-bottom-left {
   border: 1px dashed blue;
   grid-area: dishbtn;
