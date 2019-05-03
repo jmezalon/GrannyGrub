@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import cuisineIcon from "../../assets/cutlery.png";
+import timeIcon from "../../assets/hourglass.png";
+import serviceIcon from "../../assets/people.png";
 
 import MapView from "./MapView";
 import ListView from "./ListView";
@@ -142,7 +145,7 @@ class MainPage extends Component {
         let coords = res.data.results[0].geometry.location;
         this.setState({
           center: coords,
-          zoom: 11,
+          zoom: 10,
           address: ""
         });
       });
@@ -196,88 +199,103 @@ class MainPage extends Component {
     return (
       <div className="mainpage">
         <div className="top-mainpage">
-          <div
-            className={
-              selectedAll ? "highlighted filter-buttons" : "filter-buttons"
-            }
-          >
-            {" "}
-            <h1>🍴 cuisines </h1>{" "}
-            <button onClick={this.displayAllGrandmas}>See All</button>
-            {cuisinesType}
-          </div>
-          <div className="lunch-dinner">
-            <form className="lunch-dinner">
-              <div
-                className={
-                  isLunch ? "highlighted filter-buttons" : "filter-buttons"
-                }
-              >
-                <button
-                  type="button"
-                  name="isLunch"
-                  onClick={this.handleClickMealType}
-                >
-                  Lunch
-                </button>
-              </div>
-              <div
-                className={
-                  isDinner ? "highlighted filter-buttons" : "filter-buttons"
-                }
-              >
-                <button
-                  type="button"
-                  name="isDinner"
-                  onClick={this.handleClickMealType}
-                >
-                  Dinner
-                </button>
-              </div>
-            </form>
-          </div>
-          <div className="search-address">
-            <form
-              onSubmit={e => {
-                this.getCoords(e, this.state.address);
-              }}
-            >
-              <input
-                value={this.state.address}
-                type="text"
-                onChange={this.changeHandler}
-                name="address"
-                placeholder="Search by address..."
-              />
-              <button type="submit">Search Address</button>
-            </form>
-          </div>
-          <div className="order-type">
-            <div
-              className={
-                isSitdown ? "highlighted filter-buttons" : "filter-buttons"
-              }
-            >
-              <button
-                type="checkbox"
-                name="isSitdown"
-                onClick={this.handleClickMealType}
-              >
-                Sit-Down{" "}
-              </button>
+          <div className="filter-part1">
+            <div className="icon">
+              <img src={cuisineIcon} alt="" />
+              <h1> cuisines </h1>
             </div>
             <div
               className={
-                isPickup ? "highlighted filter-buttons" : "filter-buttons"
+                selectedAll ? "highlighted filter-buttons" : "filter-buttons"
               }
             >
-              <button
-                type="checkbox"
-                name="isPickup"
-                onClick={this.handleClickMealType}
+              <button onClick={this.displayAllGrandmas}>See All</button>
+              {cuisinesType}
+            </div>
+          </div>
+          <div className="filter-part2">
+            <div className="lunch-dinner">
+              <div className="icon">
+                <img src={timeIcon} alt="" /> <h1> time </h1>
+              </div>
+              <form className="lunch-dinner-form">
+                <div
+                  className={
+                    isLunch ? "highlighted filter-buttons" : "filter-buttons"
+                  }
+                >
+                  <button
+                    type="button"
+                    name="isLunch"
+                    onClick={this.handleClickMealType}
+                  >
+                    Lunch
+                  </button>
+                </div>
+                <div
+                  className={
+                    isDinner ? "highlighted filter-buttons" : "filter-buttons"
+                  }
+                >
+                  <button
+                    type="button"
+                    name="isDinner"
+                    onClick={this.handleClickMealType}
+                  >
+                    Dinner
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div className="order-type">
+              <div className="icon">
+                <img src={serviceIcon} alt="" />
+                <h1> service </h1>
+              </div>
+              <form className="order-type-form">
+                <div
+                  className={
+                    isSitdown ? "highlighted filter-buttons" : "filter-buttons"
+                  }
+                >
+                  <button
+                    type="checkbox"
+                    name="isSitdown"
+                    onClick={this.handleClickMealType}
+                  >
+                    Sit-Down{" "}
+                  </button>
+                </div>
+                <div
+                  className={
+                    isPickup ? "highlighted filter-buttons" : "filter-buttons"
+                  }
+                >
+                  <button
+                    type="checkbox"
+                    name="isPickup"
+                    onClick={this.handleClickMealType}
+                  >
+                    Pick-Up{" "}
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div className="search-address">
+              <form
+                onSubmit={e => {
+                  this.getCoords(e, this.state.address);
+                }}
               >
-                Pick-Up{" "}
-              </button>
+                <input
+                  value={this.state.address}
+                  type="text"
+                  onChange={this.changeHandler}
+                  name="address"
+                  placeholder="🔍 Find a granny near by"
+                />
+              </form>
             </div>
           </div>
         </div>
