@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { NavLink, Link, withRouter } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import React, { Component } from "react";
+import { NavLink, Link, withRouter } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 class Navbar extends Component {
   render() {
@@ -15,17 +15,18 @@ class Navbar extends Component {
         </div>
         {this.props.isOrdering ? (
           <div className="middle-options">
-            <NavLink to="/mainpage">Our Grandmas</NavLink>
-            <NavLink to="/about">About us</NavLink>
+            <NavLink to="/about">
+              <h1>About us</h1>
+            </NavLink>
           </div>
         ) : (
-          <div>
-            {this.props.location.pathname === '/' ? (
+          <div id="grandma-navbar">
+            {this.props.location.pathname === "/" ? (
               <Link to="/auth/signup">
-                <button>Become A Grandma</button>
+                <h1>Become a grrany</h1>
               </Link>
             ) : (
-              ''
+              ""
             )}
           </div>
         )}
