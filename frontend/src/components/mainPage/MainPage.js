@@ -163,6 +163,7 @@ class MainPage extends Component {
   // };
 
   render() {
+    var addressInput = document.getElementById("input");
     const {
       center,
       zoom,
@@ -289,6 +290,7 @@ class MainPage extends Component {
                 }}
               >
                 <input
+                  id="input"
                   value={this.state.address}
                   type="text"
                   onChange={this.changeHandler}
@@ -312,6 +314,7 @@ class MainPage extends Component {
           <div className="right-mainpage">
             <div className="map-list">
               <MapView
+                addressInput={addressInput}
                 zoom={zoom}
                 center={center}
                 handleClick={this.handleClick}
