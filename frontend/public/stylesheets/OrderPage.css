@@ -81,9 +81,12 @@
 
 #dish-checkout {
   display: flex;
-  position: absolute;
   bottom: 40px;
   right: 250px;
+}
+
+#dish-checkout a {
+  margin: auto;
 }
 
 #dish-checkout-button {
