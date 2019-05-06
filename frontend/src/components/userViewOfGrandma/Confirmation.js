@@ -4,19 +4,13 @@ import { Modal } from "./Modal.js";
 import queryString from "query-string";
 
 const Confirmation = ({ location: { search } }) => {
-  // <img style={{ width: "300px" }} src={dish.img_url} alt={dish.name} />
-
   // TODO update our server side db.
+  let dish = JSON.parse(window.localStorage.getItem("grandma")).dish;
 
-  let mockGrandmaPic = "http://placekitten.com/200/300";
-  let mockLasagnaPic = "http://placekitten.com/200/300";
-  let lastName = "Malmberg";
-  const dishType = "pick-up";
-  const dishTimeframe = "dinner";
-  const dishDate = "Fri May 03 2019 17:36:51 GMT-0400 (Eastern Daylight Time)";
-
-  const { price, count, name, grandma } = queryString.parse(search);
-  let formattedPrice = (parseFloat(price, 10) * parseInt(count)).toFixed(2);
+  const { count } = queryString.parse(search);
+  let formattedPrice = (parseFloat(dish.price, 10) * parseInt(count)).toFixed(
+    2
+  );
 
   return (
     <Modal>
@@ -24,34 +18,34 @@ const Confirmation = ({ location: { search } }) => {
         <h1>Your receipt:</h1>
         <p>Order Total: ${formattedPrice}</p>
         <h2>
-          {dishType === "pick-up" ? (
+          {dish.type === "pick-up" ? (
             <label>
-              {count} {name}(s) for pickup
+              {count} {dish.name}(s) for {dish.type}
             </label>
           ) : (
             <label>
-              {count} {name}(s) to sit down
+              {count} {dish.name}(s) to {dish.type}
             </label>
           )}
         </h2>
 
-        <h2>From Grandma {lastName}</h2>
+        <h2>From Grandma {dish.first_name}</h2>
         <img
           className="confirm-granny-img"
-          src={mockGrandmaPic}
-          alt={"grandma Klein"}
+          src={dish.profile_pic}
+          alt={"Kaira"}
         />
         <p>
           {/* Address: {dish.building_number} {dish.address} {dish.zip_code} */}
-          Address: 24 Jump Street, 123 45
+          Address: {dish.address} {dish.zip_code}
         </p>
 
         <p>
-          Time: {dishType === "pick-up" ? "around" : "at"} {dishTimeframe}{" "}
-          {dishDate.slice(0, 10) ? "on" : ""}{" "}
-          {dishDate.slice(0, 10) ? dishDate.slice(0, 10) : ""}
+          Time: {dish.type === "pick-up" ? "around" : "at"} {dish.timeframe}{" "}
+          {dish.date.slice(0, 10) ? "on" : ""}{" "}
+          {dish.date.slice(0, 10) ? dish.date.slice(0, 10) : ""}
         </p>
-        <p>Grandma {lastName} cannot wait to see you!!!</p>
+        <p>Grandma {dish.first_name} cannot wait to see you!!!</p>
         <h1>Thank You!</h1>
       </div>
     </Modal>
