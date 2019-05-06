@@ -19,7 +19,7 @@ class SignUp extends React.Component {
       last_name,
       email,
       phone_number,
-
+      isGrandma,
       building_number,
       address,
       zip_code,
@@ -82,48 +82,53 @@ class SignUp extends React.Component {
                 type="text"
               />
             </div>
-            <div className="">
-              <select onChange={handleSelect}>
-                <option key="0" value="">
-                  select a cuisines
-                </option>
-                {cuisineTypes}
-              </select>
-            </div>
+            {isGrandma ? (
+              <>
+                <div className="cuisine-selection">
+                  <select onChange={handleSelect}>
+                    <option key="0" value="">
+                      select a cuisines
+                    </option>
+                    {cuisineTypes}
+                  </select>
+                </div>
 
-            <div className="address">
-              <span>
-                <input
-                  id="building-number"
-                  name="building_number"
-                  onChange={handleChange}
-                  value={building_number}
-                  placeholder="building number"
-                  type="text"
-                />
-              </span>
-              <span>
-                <input
-                  id="street-adress"
-                  name="address"
-                  onChange={handleChange}
-                  value={address}
-                  placeholder="street"
-                  type="text"
-                />
-              </span>
-              <span>
-                <input
-                  id="zip-code"
-                  name="zip_code"
-                  onChange={handleChange}
-                  value={zip_code}
-                  placeholder="Zip code"
-                  type="text"
-                />
-              </span>
-            </div>
-
+                <div className="address">
+                  <span>
+                    <input
+                      id="building-number"
+                      name="building_number"
+                      onChange={handleChange}
+                      value={building_number}
+                      placeholder="building number"
+                      type="text"
+                    />
+                  </span>
+                  <span>
+                    <input
+                      id="street-adress"
+                      name="address"
+                      onChange={handleChange}
+                      value={address}
+                      placeholder="street"
+                      type="text"
+                    />
+                  </span>
+                  <span>
+                    <input
+                      id="zip-code"
+                      name="zip_code"
+                      onChange={handleChange}
+                      value={zip_code}
+                      placeholder="Zip code"
+                      type="text"
+                    />
+                  </span>
+                </div>
+              </>
+            ) : (
+              ""
+            )}
             <div className="">
               <input
                 id="password"

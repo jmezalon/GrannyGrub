@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import GrandmasDishes from "../dishes/dishes";
 import Orders from "./grandmaOrders";
+import GrannyInfo from "./GrannyInfo";
 
 class Dashboard extends Component {
   // state = {
@@ -20,56 +21,31 @@ class Dashboard extends Component {
     // console.log(this.props.id);
     return (
       <>
-        <div className="grandma-dash">
-          <div className="granny_profile-sidebar">
-            <div className="contact-name">
-              <label htmlFor="full Name" />
-              <h1>
-                {this.props.grandma.first_name} {this.props.grandma.last_name}
-              </h1>
-            </div>
-            <img
-              id="granny-view-granny-pic"
-              alt=""
-              src={
-                this.props.grandma.profile_pic
-                  ? this.props.grandma.profile_pic
-                  : "http://icons.iconarchive.com/icons/pelfusion/long-shadow-media/256/Contact-icon.png"
-              }
-            />
-            <div className="info-box">
-              <p>Your Info</p>
-              <label htmlFor="contact" />
-              <p>{this.props.grandma.email}</p>
-              <p>{this.props.grandma.phone_number}</p>
-              <label htmlFor="address" />
-              <h6>
-                {this.props.grandma.building_number}{" "}
-                {this.props.grandma.address} {this.props.grandma.zip_code}
-              </h6>
-              <label htmlFor="bio" />
-              <p>{this.props.grandma.bio}</p>
-            </div>
-            <div className="edit-page">
-              <Link to={`/grandma/edit/${this.props.id}`}>
-                <input type="button" value="edit" />
-              </Link>
-            </div>
+        <div className="grandma_dash">
+          <div className="top-granny-dash">
+            <GrannyInfo grandma={this.props.grandma} id={this.props.id} />
           </div>
-          <div>
-            <Orders hasOrder={this.props.hasOrder} orders={this.props.orders} />
-          </div>
+          <div id="bottom-granny-dash">
+            <div id="granny-orders">
+              <Orders
+                hasOrder={this.props.hasOrder}
+                orders={this.props.orders}
+              />
+            </div>
 
-          <div className="granny_dishes">
-            <h2>Your current offerings:</h2>
-            <GrandmasDishes
-              deleteDish={this.props.deleteDish}
-              dishes={this.props.dishes}
-            />
-            <div className="addNew-page">
-              <Link to={`/grandma/newdish`}>
-                <input type="button" value="Add a new dish!" />
-              </Link>
+            <div className="granny_dishes">
+              <h2>Your current offerings:</h2>
+
+              <GrandmasDishes
+                deleteDish={this.props.deleteDish}
+                dishes={this.props.dishes}
+              />
+
+              <div className="add-dish">
+                <Link to={`/grandma/newdish`}>
+                  <input type="button" value="Add a new dish!" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

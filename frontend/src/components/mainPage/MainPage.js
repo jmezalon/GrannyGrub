@@ -44,6 +44,7 @@ class MainPage extends Component {
   };
 
   handleClickMealType = async e => {
+    e.preventDefault();
     let { isSitdown, isPickup } = this.state;
     await this.setState({
       [e.target.name]: !this.state[e.target.name],
@@ -162,7 +163,6 @@ class MainPage extends Component {
   // };
 
   render() {
-    console.log(this.state);
     const {
       center,
       zoom,

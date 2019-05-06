@@ -37,7 +37,7 @@ const Dish = ({ dish, handleClick }) => {
               </button>
             </Link>
 
-            <div id="dish-quantity">
+            <div className="dish-quantity">
               <p className="remaining-quantity">
                 {dish.type === "pick-up"
                   ? "Available Dishes:"

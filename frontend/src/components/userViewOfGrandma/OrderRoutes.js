@@ -40,65 +40,6 @@ class OrderRoutes extends React.Component {
     }
   };
 
-  // handleOrderClick = () => {
-  //   this.setState({ confirmation: true });
-  // };
-
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-      empty_field_name: false,
-      empty_field_number: false
-    });
-  };
-
-  // handleEdit = () => {
-  //   this.setState({ confirmation: true });
-  // };
-
-  handleFormSubmit = async e => {
-    e.preventDefault();
-    let quantity;
-    if (!this.props.dish.remaining_quantity) {
-      quantity = parseInt(this.props.dish.quantity - this.state.count);
-    } else {
-      quantity = parseInt(
-        this.props.dish.remaining_quantity - this.state.count
-      );
-    }
-
-    let amount_left = {
-      remaining_quantity: quantity
-    };
-    if (
-      this.props.dish.quantity &&
-      this.state.full_name !== "" &&
-      this.state.phone_number !== "" &&
-      this.props.dish.remaining_quantity !== 0
-    ) {
-      await axios.post("/orders/new", {
-        user_id: parseInt(this.props.dish.user_id),
-        dish_id: parseInt(this.props.dish.id),
-        full_name: this.state.full_name,
-        phone_number: this.state.phone_number
-      });
-      await axios.patch(
-        `/dishes/update/${parseInt(this.props.dish.id)}`,
-        amount_left
-      );
-      this.setState({ confirmation: true });
-      await this.props.history.push(
-        `/order/dish/${this.props.dish.id}/confirmation`
-      );
-    } else if (!this.state.full_name && !this.state.phone_number) {
-      this.setState({ empty_field_name: true, empty_field_number: true });
-    } else if (!this.state.phone_number) {
-      this.setState({ empty_field_number: true });
-    } else if (!this.state.full_name) {
-      this.setState({ empty_field_name: true });
-    }
-  };
-
   render() {
     let { grandma } = this.props;
     const {
@@ -113,34 +54,27 @@ class OrderRoutes extends React.Component {
     if (!dish) {
       return <p>LOADING...</p>;
     }
-    let price = dish.price * this.state.count;
-    console.log(this.props);
+
+    // This error for 3 * 6.89 is worth exploring why it was happening.
+    // maybe look at video https://www.youtube.com/watch?v=PZRI1IfStY0
+    let price = (dish.price * this.state.count).toFixed(2);
+
+    // <Confirmation
+    //   price={price}
+    //   count={this.state.count}
+    //   dish={dish}
+    //   grandma={grandma}
+    //   confirmation={this.state.confirmation}
+    // />
+
     return (
       <Switch>
-        <Route
-          path={"/order/dish/:id/confirmation"}
-          render={props => (
-            <Confirmation
-              price={price}
-              count={this.state.count}
-              dish={dish}
-              grandma={grandma}
-              confirmation={this.state.confirmation}
-            />
-          )}
-        />
+        <Route path={"/order/dish/:id/confirmation"} render={Confirmation} />
 
         <Route
           path={"/order/dish/:id/checkout"}
           render={props => (
             <Checkout
-              handleFormSubmit={this.handleFormSubmit}
-              handleChange={this.handleChange}
-              handleEdit={this.handleEdit}
-              full_name={full_name}
-              phone_number={phone_number}
-              empty_field_name={empty_field_name}
-              empty_field_number={empty_field_number}
               count={this.state.count}
               dish={dish}
               confirmation={this.state.confirmation}
