@@ -11,7 +11,7 @@ class UserAuthForm extends React.Component {
     last_name: "",
     email: "",
     phone_number: "",
-    isGrandma: true,
+    isGrandma: false,
     cuisine_id: "",
     building_number: "",
     address: "",
@@ -59,12 +59,12 @@ class UserAuthForm extends React.Component {
       latitude: coords.data.results[0].geometry.location.lat
     });
 
-    let newUser = {
+    let newGrandma = {
       first_name,
       last_name,
       email,
       phone_number,
-      isGrandma,
+      isGrandma: this.props.isGrandma,
       password,
       building_number,
       address,
@@ -74,9 +74,22 @@ class UserAuthForm extends React.Component {
       latitude: this.state.latitude
     };
 
+    let newUser = {
+      first_name,
+      last_name,
+      email,
+      phone_number,
+      isGrandma,
+      password
+    };
+
     const loginPrams = { email, password };
 
-    this.props.registerUser(newUser, loginPrams);
+    if (isGrandma) {
+      this.props.registerUser(newGrandma, loginPrams);
+    } else {
+      this.props.registerUser(newUser, loginPrams);
+    }
   };
 
   handleLogin = async e => {
@@ -88,8 +101,10 @@ class UserAuthForm extends React.Component {
   };
 
   render() {
-    if (this.props.id) {
+    if (this.props.id && this.props.currentUser.isGrandma) {
       this.props.history.push(`/grandma/${this.props.id}/dashboard`);
+    } else if (this.props.id && !this.props.currentUser.isGrandma) {
+      this.props.history.push(`/user/${this.props.id}/dashboard`);
     }
 
     const {

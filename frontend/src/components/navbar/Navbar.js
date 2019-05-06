@@ -15,6 +15,9 @@ class Navbar extends Component {
         </div>
         {this.props.isOrdering ? (
           <div className="middle-options">
+            <NavLink to="/auth/signup">
+              <h1>create an account</h1>
+            </NavLink>
             <NavLink to="/about">
               <h1>About us</h1>
             </NavLink>
@@ -23,7 +26,7 @@ class Navbar extends Component {
           <div id="grandma-navbar">
             {this.props.location.pathname === "/" ? (
               <Link to="/auth/signup">
-                <h1>Become a grrany</h1>
+                <h1>Become a granny</h1>
               </Link>
             ) : (
               ""
