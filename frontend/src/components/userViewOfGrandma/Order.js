@@ -4,7 +4,8 @@ import { Modal } from "./Modal.js";
 
 class Order extends React.Component {
   render() {
-    const { dish } = this.props;
+    const { dish, count } = this.props;
+    let price = (dish.price * count).toFixed(2);
     return (
       <Modal>
         <div>
@@ -18,13 +19,13 @@ class Order extends React.Component {
                 <p id="back-button"> {"<--"} view all cuisines</p>
               </Link>
               <p id="dish-name">{dish.name}</p>
-              <p>${dish.price}</p>
+              <p>${price}</p>
               <p>{dish.timeframe}</p>
             </div>
             <div className="dish-right-sie">
               <div id="dish-label">
                 <div>
-                  <label>oder type: </label>
+                  <label>order type: </label>
                   {dish.type}
                 </div>
                 <div className="plus-minus-button">

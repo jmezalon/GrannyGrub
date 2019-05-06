@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "./Modal.js";
+import OrderForm from "./OrderForm";
 
 const Checkout = ({
-  handleFormSubmit,
-  handleChange,
-  handleEdit,
   goBack,
   full_name,
   phone_number,
@@ -26,39 +24,8 @@ const Checkout = ({
           <p>{"<--"} to Grandma</p>
         </Link>
         <h4>Please provide your contact information below</h4>
-        <form className="user-info-form" onSubmit={handleFormSubmit}>
-          <div className="user-input">
-            <input
-              id="full-name"
-              name="full_name"
-              placeholder="your full name"
-              value={full_name}
-              onChange={handleChange}
-            />
 
-            <input
-              id="phone-number"
-              name="phone_number"
-              placeholder="phone number"
-              value={phone_number}
-              onChange={handleChange}
-            />
-          </div>
-          <div id="required-info">
-            {empty_field_name && empty_field_number ? (
-              <p>please add your contact info</p>
-            ) : empty_field_name ? (
-              <p>please add your name</p>
-            ) : empty_field_number ? (
-              <p>please add your number</p>
-            ) : (
-              ""
-            )}
-          </div>
-          <div>
-            <button id="dish-checkout-button">order</button>
-          </div>
-        </form>
+        <OrderForm full_name={full_name} dish={dish} count={count} />
 
         <p>
           {count} {dish.name} for ${price}{" "}
