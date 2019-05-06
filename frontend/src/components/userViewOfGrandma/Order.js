@@ -1,68 +1,77 @@
 import React from "react";
 import { Link, withRouter, Redirect } from "react-router-dom";
 import { Modal } from "./Modal.js";
-
+// grandma/7
 class Order extends React.Component {
   render() {
     const { dish, count } = this.props;
     let price = (dish.price * count).toFixed(2);
     return (
-      <Modal>
-        <div>
-          <div id="dish-image">
-            <img src={dish.img_url} alt="dish" />
-          </div>
-
-          <div className="dish-info">
-            <div id="name-price-time">
-              <Link className="grandma-link" to="/mainpage">
-                <p id="back-button"> {"<--"} view all cuisines</p>
-              </Link>
-              <p id="dish-name">{dish.name}</p>
-              <p>${price}</p>
-              <p>{dish.timeframe}</p>
+      <>
+        <button className="back-to-grandma">
+          <Link className="grandma-link" to={`/grandma/${dish.user_id}`}>
+            Back to Grandma's Page
+          </Link>
+        </button>
+        <Modal>
+          <div>
+            <div id="dish-image">
+              <img src={dish.img_url} alt="dish" />
             </div>
-            <div className="dish-right-sie">
-              <div id="dish-label">
-                <div>
-                  <label>order type: </label>
-                  {dish.type}
-                </div>
-                <div className="plus-minus-button">
-                  <label>quantity: </label>
-                  <button onClick={this.props.handleSubChange}>-</button>{" "}
-                  {this.props.count}{" "}
-                  <button onClick={this.props.handleAddChange}>+</button>
-                  <br />
-                </div>
-              </div>
-              <div id="dish-desc">
-                <label>description: </label>
-                <p>{dish.description}</p>
-              </div>
 
-              <div id="dish-checkout">
-                <Link
-                  to={
-                    dish.remaining_quantity !== 0
-                      ? `/order/dish/${dish.id}/checkout`
-                      : `/grandma/${dish.user_id}`
-                  }
-                >
-                  <button
-                    id="dish-checkout-button"
-                    onClick={this.props.handleCheckOutClick}
+            <div className="dish-info">
+              <div id="name-price-time">
+                <p id="dish-name">{dish.name}</p>
+                <p className="checkout-order-info">Amount: ${price}</p>
+                <p className="checkout-order-info">
+                  Order Type: {dish.timeframe}{" "}
+                  {dish.type === "pick-up" ? "for" : "to"}{" "}
+                  {dish.type === "pick-up" ? "Pick-up" : "Stay"}
+                </p>
+              </div>
+              <div className="dish-right-sie">
+                <div id="dish-label">
+                  <div className="plus-minus-button">
+                    <label>Quantity: </label>
+                    <i
+                      onClick={this.props.handleSubChange}
+                      className="fas fa-minus-square"
+                    />{" "}
+                    {this.props.count}{" "}
+                    <i
+                      onClick={this.props.handleAddChange}
+                      className="fas fa-plus-square"
+                    />
+                  </div>
+                </div>
+                <div id="dish-desc">
+                  <label>Description: </label>
+                  <p>{dish.description}</p>
+                </div>
+
+                <div id="dish-checkout">
+                  <Link
+                    to={
+                      dish.remaining_quantity !== 0
+                        ? `/order/dish/${dish.id}/checkout`
+                        : `/grandma/${dish.user_id}`
+                    }
                   >
-                    {dish.remaining_quantity === 0
-                      ? "back to grandma"
-                      : "Checkout"}
-                  </button>
-                </Link>
+                    <button
+                      id="dish-checkout-button"
+                      onClick={this.props.handleCheckOutClick}
+                    >
+                      {dish.remaining_quantity === 0
+                        ? "back to grandma"
+                        : "Checkout"}
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      </>
     );
   }
 }

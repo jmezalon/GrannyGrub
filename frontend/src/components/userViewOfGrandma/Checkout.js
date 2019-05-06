@@ -20,9 +20,6 @@ const Checkout = ({
         <div id="dish-image-order">
           <img src={dish.img_url} alt="dish" />
         </div>
-        <Link className="grandma-link" to="/mainpage">
-          <p>{"<--"} to Grandma</p>
-        </Link>
         <h4>Please provide your contact information below</h4>
 
         <OrderForm full_name={full_name} dish={dish} count={count} />

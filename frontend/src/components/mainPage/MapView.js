@@ -29,12 +29,12 @@ class MapView extends Component {
   };
 
   componentDidMount = () => {
-    this.showMap();
+    this.initMap();
   };
 
   componentDidUpdate = prevProps => {
     if (prevProps.center.lat !== this.props.center.lat) {
-      this.showMap();
+      this.initMap();
     } else if (prevProps.grandmas.length !== this.props.grandmas.length) {
       this.updateMap();
     }
@@ -56,9 +56,8 @@ class MapView extends Component {
     }
   };
 
-  showMap = () => {
-    const zoom = this.props.zoom;
-    const center = this.props.center;
+  initMap = () => {
+    const { zoom, center } = this.props;
     this.map = new window.google.maps.Map(document.getElementById("map"), {
       center: center,
       zoom: zoom,
@@ -177,6 +176,9 @@ class MapView extends Component {
         }
       ]
     });
+    // var addressInput = document.getElementById("pac-input");
+    // var autocomplete = new window.google.maps.places.Autocomplete(addressInput);
+    // autocomplete.bindTo("bounds", this.map);
     this.updateMap();
   };
 
@@ -227,13 +229,12 @@ class MapView extends Component {
   };
 
   render() {
-    let { grandmas, handleClick } = this.props;
+    let { grandmas, handleClick, addressInput } = this.props;
     // if (!grandmas.length) return null;
     const divStyle = {
       width: "500px",
       height: "500px"
     };
-
     return (
       <div className="map-main">
         <div id="map" />
@@ -243,3 +244,10 @@ class MapView extends Component {
 }
 
 export default MapView;
+//
+// <input
+//   id="pac-input"
+//   type="text"
+//   name="address"
+//   placeholder="🔍 Find a granny near by"
+// />;
