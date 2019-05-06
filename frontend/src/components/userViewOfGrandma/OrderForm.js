@@ -17,12 +17,12 @@ function OrderForm({ dish, count }) {
       phoneNumber !== "" &&
       dish.remaining_quantity !== 0
     ) {
-      let granny = { name, phoneNumber, dish };
+      let granny = { name, phoneNumber, dish, count: count };
       window.localStorage.setItem("grandma", JSON.stringify(granny));
       stripe
         .redirectToCheckout({
           items: [{ sku: "sku_F07j4svNDL4kN4", quantity: count }],
-          successUrl: `http://localhost:3000/order/dish/10/confirmation?count=${count}`,
+          successUrl: `http://localhost:3000/order/dish/10/confirmation`,
           cancelUrl: "https://example.com/cancel"
         })
         .then(result => {
