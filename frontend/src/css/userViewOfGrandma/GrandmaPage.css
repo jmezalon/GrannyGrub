@@ -1,0 +1,22 @@
+.user-view-granny-page {
+  display: flex;
+}
+
+.menu-view {
+  margin-top: 40px;
+  width: 60%;
+}
+
+.profile-sidebar {
+  width: 30%;
+}
+
+.user-view-granny-pic {
+  width: 50%;
+}
+
+.menu-view div {
+  height: 50px;
+  width: 90%;
+  border: 2px solid red;
+}
