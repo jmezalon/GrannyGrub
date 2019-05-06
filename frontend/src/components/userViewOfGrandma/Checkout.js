@@ -28,7 +28,7 @@ const Checkout = ({
         <OrderForm full_name={full_name} dish={dish} count={count} />
 
         <p>
-          {count} {dish.name} for ${price}{" "}
+          {count} {dish.name}(s) for ${price}{" "}
         </p>
 
         <Link to={`/order/dish/${parseInt(dish.id)}`}>
