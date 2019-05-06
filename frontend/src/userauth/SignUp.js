@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 class SignUp extends React.Component {
   componentDidMount() {
-    this.props.getAllCuisines();
+    if (this.props.isGrandma) {
+      this.props.getAllCuisines();
+    }
   }
 
   render() {
@@ -89,7 +91,7 @@ class SignUp extends React.Component {
                     <option key="0" value="">
                       select a cuisines
                     </option>
-                    {cuisineTypes}
+                    {isGrandma ? cuisineTypes : ""}
                   </select>
                 </div>
 

@@ -11,7 +11,7 @@ class UserAuthForm extends React.Component {
     last_name: "",
     email: "",
     phone_number: "",
-    isGrandma: false,
+    // isGrandma: false,
     cuisine_id: "",
     building_number: "",
     address: "",
@@ -42,7 +42,7 @@ class UserAuthForm extends React.Component {
       last_name,
       email,
       phone_number,
-      isGrandma,
+      // isGrandma,
       cuisine_id,
       building_number,
       address,
@@ -79,13 +79,13 @@ class UserAuthForm extends React.Component {
       last_name,
       email,
       phone_number,
-      isGrandma,
+      isGrandma: this.props.isGrandma,
       password
     };
 
     const loginPrams = { email, password };
 
-    if (isGrandma) {
+    if (this.props.isGrandma) {
       this.props.registerUser(newGrandma, loginPrams);
     } else {
       this.props.registerUser(newUser, loginPrams);
@@ -101,9 +101,9 @@ class UserAuthForm extends React.Component {
   };
 
   render() {
-    if (this.props.id && this.props.currentUser.isGrandma) {
+    if (this.props.id && this.props.isGrandma) {
       this.props.history.push(`/grandma/${this.props.id}/dashboard`);
-    } else if (this.props.id && !this.props.currentUser.isGrandma) {
+    } else if (this.props.id && !this.props.isGrandma) {
       this.props.history.push(`/user/${this.props.id}/dashboard`);
     }
 
@@ -151,7 +151,7 @@ class UserAuthForm extends React.Component {
                   last_name={last_name}
                   email={email}
                   phone_number={phone_number}
-                  isGrandma={isGrandma}
+                  isGrandma={this.props.isGrandma}
                   cuisine_id={cuisine_id}
                   building_number={building_number}
                   address={address}

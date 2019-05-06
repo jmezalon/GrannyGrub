@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // import { getOneGrandma } from "../actions/grandmaActions";
 import {
@@ -6,16 +6,16 @@ import {
   checkAuthenticateStatus,
   getCurrentUser,
   logoutUser
-} from '../actions/userAuthActions';
+} from "../actions/userAuthActions";
 
-import App from '../App.js';
+import App from "../App.js";
 
 const mapStateToProps = state => {
   return {
-    // grandma: state.grandmas.grandma,
+    isGrandma: state.userAuth.isGrandma,
     currentUser: state.userAuth.currentUser,
     userId: state.userAuth.userId,
-    loggedIn: state.userAuth.loggedIn,
+    loggedIn: state.userAuth.loggedIn
   };
 };
 
@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => {
     checkAuthenticateStatus: () => dispatch(checkAuthenticateStatus()),
     getCurrentUser: () => dispatch(getCurrentUser()),
     setCurrentUser: currentUser => dispatch(setCurrentUser(currentUser)),
-    logoutUser: () => dispatch(logoutUser()),
+    logoutUser: () => dispatch(logoutUser())
   };
 };
 

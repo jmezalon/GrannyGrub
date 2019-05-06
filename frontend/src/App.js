@@ -29,8 +29,12 @@ class App extends Component {
     }
   };
 
+  handleUserSignUpType = () => {
+    this.setState({ isGrandma: false });
+  };
+
   handleGetATasteReset = () => {
-    this.setState({ isOrdering: false });
+    this.setState({ isOrdering: false, isGrandma: true });
   };
 
   goBack = () => {
@@ -58,6 +62,7 @@ class App extends Component {
             isOrdering={this.state.isOrdering}
             handleGetATasteReset={this.handleGetATasteReset}
             id={this.props.userId}
+            handleUserSignUpType={this.handleUserSignUpType}
           />
         )}
         <Switch>
@@ -74,14 +79,12 @@ class App extends Component {
           />
           <Route exact path="/home" component={HomeContainer} />
           <Route exact path="/mainpage" component={MainPageContainer} />
-
           <PrivateRoute
             path={"/grandma/:id/dashboard"}
             component={DashboardContainer}
             goBack={this.goBack}
             id={this.props.userid}
           />
-
           <PrivateRoute
             path={"/grandma/edit/:id"}
             component={ProfileContainer}
@@ -89,30 +92,26 @@ class App extends Component {
             id={this.props.userid}
             logoutUser={this.props.logoutUser}
           />
-
           <PrivateRoute
             path={"/grandma/newdish"}
             component={NewDishContainer}
             goBack={this.goBack}
           />
-
           <PrivateRoute
             path={"/edit/newdish/:id"}
             component={EditDishContainer}
             goBack={this.goBack}
           />
-
           <AuthRoute
             path={"/auth"}
             component={UserAuthContainer}
             isGrandma={this.state.isGrandma}
+            handleUserSignUpType={this.handleUserSignUpType}
           />
-
           <Route
             path={"/order/dish/:id"}
             render={props => <OrderContainer {...props} goBack={this.goBack} />}
           />
-
           <Route exact path="/grandma/:id" component={GrandmaPageContainer} />
         </Switch>
       </div>
@@ -121,6 +120,8 @@ class App extends Component {
 }
 
 export default withRouter(App);
+
+// ask muna about the difference between AuthRoute and Route
 
 // <Route exact path="/grandma/main" component={DishContainer} />
 
