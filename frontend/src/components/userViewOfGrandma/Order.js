@@ -22,23 +22,30 @@ class Order extends React.Component {
             <div className="dish-info">
               <div id="name-price-time">
                 <p id="dish-name">{dish.name}</p>
-                <p>Amount: ${price}</p>
-                <p>
-                  {dish.timeframe} {dish.type === "pick-up" ? "for" : "to"}{" "}
+                <p className="checkout-order-info">Amount: ${price}</p>
+                <p className="checkout-order-info">
+                  Order Type: {dish.timeframe}{" "}
+                  {dish.type === "pick-up" ? "for" : "to"}{" "}
                   {dish.type === "pick-up" ? "Pick-up" : "Stay"}
                 </p>
               </div>
               <div className="dish-right-sie">
                 <div id="dish-label">
                   <div className="plus-minus-button">
-                    <label>quantity: </label>
-                    <button onClick={this.props.handleSubChange}>-</button>{" "}
+                    <label>Quantity: </label>
+                    <i
+                      onClick={this.props.handleSubChange}
+                      className="fas fa-minus-square"
+                    />{" "}
                     {this.props.count}{" "}
-                    <button onClick={this.props.handleAddChange}>+</button>
+                    <i
+                      onClick={this.props.handleAddChange}
+                      className="fas fa-plus-square"
+                    />
                   </div>
                 </div>
                 <div id="dish-desc">
-                  <label>description: </label>
+                  <label>Description: </label>
                   <p>{dish.description}</p>
                 </div>
 

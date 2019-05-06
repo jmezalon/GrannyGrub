@@ -11,6 +11,18 @@
   border-radius: 3px;
 }
 
+.checkout-order-info {
+  font-size: 22px;
+  margin: 5px;
+}
+
+.plus-minus-button {
+  font-size: 22px;
+}
+.fas {
+  color: red;
+}
+
 .back-to-grandma a {
   text-decoration: none;
   color: red;
@@ -20,7 +32,7 @@
 #dish-image {
   display: flex;
   width: 100%;
-  height: 30%;
+  height: 35%;
 }
 
 #dish-image img {
@@ -75,6 +87,7 @@
 #dish-desc {
   padding-bottom: 20px;
   font-size: 20px;
+  font-family: Lora;
   /* display: flex; */
   /* align-items: flex-start; */
 }
