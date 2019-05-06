@@ -1,3 +1,22 @@
+.back-to-grandma {
+  z-index: 20;
+  position: absolute;
+  top: 75px;
+  left: 25px;
+  width: auto;
+  height: 32px;
+  color: red;
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+.back-to-grandma a {
+  text-decoration: none;
+  color: red;
+  font-family: "Libre Baskerville", serif;
+}
+
 #dish-image {
   display: flex;
   width: 100%;
