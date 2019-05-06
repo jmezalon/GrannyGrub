@@ -19,7 +19,8 @@ import { PrivateRoute, AuthRoute } from "./userauth/utils/privateRouting.js";
 
 class App extends Component {
   state = {
-    isOrdering: false
+    isOrdering: false,
+    isGrandma: true
   };
 
   handleGetATaste = () => {
@@ -101,7 +102,11 @@ class App extends Component {
             goBack={this.goBack}
           />
 
-          <AuthRoute path={"/auth"} component={UserAuthContainer} />
+          <AuthRoute
+            path={"/auth"}
+            component={UserAuthContainer}
+            isGrandma={this.state.isGrandma}
+          />
 
           <Route
             path={"/order/dish/:id"}
