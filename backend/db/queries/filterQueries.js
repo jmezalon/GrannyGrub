@@ -30,7 +30,9 @@ const filterByTypeAndCuisine = (req, res, next) => {
     cuisineQueryString.push("users.cuisine_id = " + cusine_id);
   });
   let queryString = cuisineQueryString.join(" OR ");
-  if (
+  if ((isPickup && isSitdown) || (isLunch && isDinner)) {
+    cuisineQueryString = cuisineQueryString;
+  } else if (
     (isPickup || isSitdown) &&
     ((isLunch && isDinner) || (!isLunch && !isDinner))
   ) {
