@@ -4,7 +4,13 @@ import { Modal } from "./Modal.js";
 // grandma/7
 class Order extends React.Component {
   render() {
-    const { dish, count } = this.props;
+    const {
+      dish,
+      count,
+      handleAddChange,
+      handleSubChange,
+      handleCheckOutClick
+    } = this.props;
     let price = (dish.price * count).toFixed(2);
     return (
       <>
@@ -34,12 +40,12 @@ class Order extends React.Component {
                   <div className="plus-minus-button">
                     <label>Quantity: </label>
                     <i
-                      onClick={this.props.handleSubChange}
+                      onClick={handleSubChange}
                       className="fas fa-minus-square"
                     />{" "}
-                    {this.props.count}{" "}
+                    {count}{" "}
                     <i
-                      onClick={this.props.handleAddChange}
+                      onClick={handleAddChange}
                       className="fas fa-plus-square"
                     />
                   </div>
@@ -59,7 +65,7 @@ class Order extends React.Component {
                   >
                     <button
                       id="dish-checkout-button"
-                      onClick={this.props.handleCheckOutClick}
+                      onClick={handleCheckOutClick}
                     >
                       {dish.remaining_quantity === 0
                         ? "back to grandma"
