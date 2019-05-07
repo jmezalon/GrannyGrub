@@ -4,10 +4,19 @@
 }
 
 .top-mainpage {
+  width: 90%;
+
+  margin: auto;
+  padding-top: 1%;
+  padding-bottom: 2%;
+
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   height: 20%;
+  background-color: whitesmoke;
+  box-shadow: 3px 3px 4px gray;
+  border: 1px solid #fb4b37;
 }
 
 .button-mainpage {
@@ -17,14 +26,14 @@
 
 .left-mainpage {
   margin-top: 1%;
-  width: 43%;
+  width: 30%;
   overflow-x: scroll;
   align-items: flex-start;
 }
 
 .right-mainpage {
   margin-top: 1%;
-  width: 57%;
+  width: 70%;
 }
 
 .filter-part1 {
@@ -118,6 +127,7 @@
   height: 100%;
   margin-left: 0px;
   margin-top: 0px;
+  border: 1px solid #fb4b37;
   /* border: 1px solid lightblue; */
   /* position: relative !important; */
 }
@@ -135,18 +145,24 @@
 /* ListView css */
 
 .list-view-item {
-  width: 90%;
+  width: 94%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: white;
-  margin: auto;
-  margin-bottom: 1%;
+  margin-left: 2.5%;
+  margin-right: 3.5%;
+  margin-bottom: 2%;
+  box-shadow: 3px 3px 4px gray;
+  border: 1px solid #fb4b37;
 }
 
 .list-view-item img {
   margin: 3%;
   height: 100px;
+  width: 100px;
+  object-fit: cover;
+  object-position: 50% 0;
   border-radius: 5px;
 }
 
@@ -203,5 +219,8 @@
 }
 #image img {
   width: 40px;
+  height: 40px;
   filter: grayscale(70%);
+  object-fit: cover;
+  object-position: 50% 0;
 }
