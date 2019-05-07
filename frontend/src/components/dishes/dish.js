@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 const Dish = ({ dish, handleClick }) => {
   let dish_name = dish.name.toUpperCase();
@@ -28,24 +28,24 @@ const Dish = ({ dish, handleClick }) => {
               }
             >
               <button id="orderBtn">
-                {" "}
+                {' '}
                 {dish.remaining_quantity === 0
-                  ? "sold out"
-                  : dish.type === "sit-down"
-                  ? "book"
-                  : "order"}{" "}
+                  ? 'sold out'
+                  : dish.type === 'sit-down'
+                  ? 'book'
+                  : 'order'}{' '}
               </button>
             </Link>
 
             <div className="dish-quantity">
               <p className="remaining-quantity">
-                {dish.type === "pick-up"
-                  ? "Available Dishes:"
-                  : "Available Seats:"}{" "}
+                {dish.type === 'pick-up'
+                  ? 'Available Dishes:'
+                  : 'Available Seats:'}{' '}
                 {dish.remaining_quantity === null
                   ? dish.quantity
-                  : dish.remaining_quantity}{" "}
-                / {dish.quantity}{" "}
+                  : dish.remaining_quantity}{' '}
+                / {dish.quantity}{' '}
               </p>
             </div>
           </div>

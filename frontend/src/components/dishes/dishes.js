@@ -24,39 +24,41 @@ class GrandmasDishes extends React.Component {
             <p> ${dish.price} </p>
           </div>
 
-          <div className="dish-info">
+          <div className="dish-quantity">
+            <p className="remaining-quantity">
+              {dish.type === "pick-up"
+                ? "Available Dishes:"
+                : "Available Seats:"}{" "}
+              {dish.remaining_quantity === null
+                ? dish.quantity
+                : dish.remaining_quantity}{" "}
+              / {dish.quantity}{" "}
+            </p>
+          </div>
+
+          <div className="granny-dish-info">
             <div id="right-side-img">
               <img src={dish.img_url} alt="dish" id="dish_img" />
               <p> {dish.description} </p>
             </div>
 
-            <div className="dish-quantity">
-              <p className="remaining-quantity">
-                {dish.type === "pick-up"
-                  ? "Available Dishes:"
-                  : "Available Seats:"}{" "}
-                {dish.remaining_quantity === null
-                  ? dish.quantity
-                  : dish.remaining_quantity}{" "}
-                / {dish.quantity}{" "}
-              </p>
+            <div id="dish-display-btns">
+              <Link to={`/edit/newdish/${dish.dish_id}`}>
+                <button className="dishBtns"> Edit Dish </button>
+              </Link>
+
+              <button
+                onClick={e => {
+                  window.confirm(
+                    "Are you sure you wish to delete this dish?"
+                  ) && this.handleDeleteDish(dish.dish_id, grannyId);
+                }}
+                className="dishBtns"
+              >
+                {" "}
+                Delete dish
+              </button>
             </div>
-          </div>
-
-          <div id="dish-display-btns">
-            <Link to={`/edit/newdish/${dish.dish_id}`}>
-              <button> edit </button>
-            </Link>
-
-            <button
-              onClick={e => {
-                window.confirm("Are you sure you wish to delete this dish?") &&
-                  this.handleDeleteDish(dish.dish_id, grannyId);
-              }}
-            >
-              {" "}
-              Delete dish{" "}
-            </button>
           </div>
         </div>
       );
