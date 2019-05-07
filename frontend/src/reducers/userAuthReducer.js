@@ -7,8 +7,7 @@ import {
 const initialState = {
   currentUser: [],
   userId: "",
-  loggedIn: false,
-  isGrandma: false
+  loggedIn: false
 };
 
 export const userAuthReducer = (state = initialState, action) => {
@@ -19,8 +18,7 @@ export const userAuthReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
-        userId: action.payload.id,
-        isGrandma: action.payload.isGrandma
+        userId: action.payload.id
       };
 
     case REMOVE_CURRENT_USER:
@@ -28,8 +26,7 @@ export const userAuthReducer = (state = initialState, action) => {
         ...state,
         currentUser: action.payload,
         userId: null,
-        loggedIn: false,
-        isGrandma: false
+        loggedIn: false
       };
     case GOT_ERROR:
       return { ...state, callFailed: true };

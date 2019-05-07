@@ -25,7 +25,9 @@ const Authorize = ({ component: Component, ...props }) => {
           <Redirect to={`/grandma/${props.id}/dashboard`} />
         ) : props.loggedIn && !props.isGrandma ? (
           <Redirect to={`/user/${props.id}/dashboard`} />
-        ) : null
+        ) : (
+          <Component {...props} />
+        )
       }
     />
   );
@@ -34,8 +36,7 @@ const Authorize = ({ component: Component, ...props }) => {
 const mapStateToProps = state => {
   return {
     loggedIn: Auth.isUserAuthenticated(),
-    id: state.userAuth.userId,
-    isGrandma: state.userAuth.isGrandma
+    id: state.userAuth.userId
   };
 };
 

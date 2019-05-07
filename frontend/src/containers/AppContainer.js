@@ -12,7 +12,7 @@ import App from "../App.js";
 
 const mapStateToProps = state => {
   return {
-    isGrandma: state.userAuth.isGrandma,
+    // isGrandma: state.userAuth.isGrandma,
     currentUser: state.userAuth.currentUser,
     userId: state.userAuth.userId,
     loggedIn: state.userAuth.loggedIn

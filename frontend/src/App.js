@@ -20,6 +20,7 @@ import { PrivateRoute, AuthRoute } from "./userauth/utils/privateRouting.js";
 class App extends Component {
   state = {
     isOrdering: false,
+    isUser: false,
     isGrandma: true
   };
 
@@ -30,11 +31,11 @@ class App extends Component {
   };
 
   handleUserSignUpType = () => {
-    this.setState({ isGrandma: false });
+    this.setState({ isUser: true, isGrandma: false });
   };
 
   handleGetATasteReset = () => {
-    this.setState({ isOrdering: false, isGrandma: true });
+    this.setState({ isOrdering: false, isUser: false, isGrandma: true });
   };
 
   goBack = () => {
@@ -105,8 +106,8 @@ class App extends Component {
           <AuthRoute
             path={"/auth"}
             component={UserAuthContainer}
+            isUser={this.state.isUser}
             isGrandma={this.state.isGrandma}
-            handleUserSignUpType={this.handleUserSignUpType}
           />
           <Route
             path={"/order/dish/:id"}

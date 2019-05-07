@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class SignUp extends React.Component {
   componentDidMount() {
-    if (this.props.isGrandma) {
+    if (!this.props.isUser) {
       this.props.getAllCuisines();
     }
   }
@@ -21,6 +21,7 @@ class SignUp extends React.Component {
       last_name,
       email,
       phone_number,
+      isUser,
       isGrandma,
       building_number,
       address,
@@ -35,7 +36,7 @@ class SignUp extends React.Component {
         </option>
       );
     });
-
+    console.log("i am rendering");
     return (
       <div className="grandma-signup">
         <div className="signup-div">
@@ -91,7 +92,7 @@ class SignUp extends React.Component {
                     <option key="0" value="">
                       select a cuisines
                     </option>
-                    {isGrandma ? cuisineTypes : ""}
+                    {cuisineTypes}
                   </select>
                 </div>
 
