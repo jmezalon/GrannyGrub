@@ -66,7 +66,7 @@ class UserAuthForm extends React.Component {
       last_name,
       email,
       phone_number,
-      isGrandma: this.props.isUser,
+      isGrandma: this.props.isGrandma,
       password,
       building_number,
       address,

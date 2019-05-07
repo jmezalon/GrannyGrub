@@ -36,7 +36,6 @@ class SignUp extends React.Component {
         </option>
       );
     });
-    console.log("i am rendering");
     return (
       <div className="grandma-signup">
         <div className="signup-div">
