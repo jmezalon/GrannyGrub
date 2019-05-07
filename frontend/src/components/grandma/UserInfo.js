@@ -5,7 +5,7 @@ const UserInfo = ({ grandma, id }) => {
   return (
     <>
       <div className="granny-profile-display">
-        <label ht mlFor="full Name" />
+        <label htmlFor="full Name" />
         <h1> Welcome User {grandma.last_name}</h1>
       </div>
 

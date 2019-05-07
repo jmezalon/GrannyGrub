@@ -5,6 +5,7 @@ import "./App.css";
 import LandingPage from "./components/landingPage/landingPage";
 import OrderContainer from "./containers/OrderContainer";
 import ProfileContainer from "./containers/ProfileContainer";
+import UserProfileContainer from "./containers/UserProfileContainer";
 import HomeContainer from "./containers/HomeContainer";
 import MainPageContainer from "./containers/MainPageContainer";
 import Navbar from "./components/navbar/Navbar.js";
@@ -107,6 +108,13 @@ class App extends Component {
           <PrivateRoute
             path={"/grandma/edit/:id"}
             component={ProfileContainer}
+            goBack={this.goBack}
+            id={this.props.userid}
+            logoutUser={this.props.logoutUser}
+          />
+          <PrivateRoute
+            path={"/user/edit/:id"}
+            component={UserProfileContainer}
             goBack={this.goBack}
             id={this.props.userid}
             logoutUser={this.props.logoutUser}
