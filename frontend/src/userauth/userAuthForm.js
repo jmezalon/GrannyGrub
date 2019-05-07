@@ -11,7 +11,6 @@ class UserAuthForm extends React.Component {
     last_name: "",
     email: "",
     phone_number: "",
-    isGrandma: false,
     cuisine_id: "",
     building_number: "",
     address: "",
@@ -42,7 +41,7 @@ class UserAuthForm extends React.Component {
       last_name,
       email,
       phone_number,
-      isGrandma,
+      // isGrandma,
       cuisine_id,
       building_number,
       address,
@@ -50,21 +49,24 @@ class UserAuthForm extends React.Component {
       password
     } = this.state;
 
-    let coords = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${building_number}, ${address}, New York, ${zip_code}&key=AIzaSyAThAa2thsgXHfh-D09OkhewLe5VVAlhYs`
-    );
+    let coords;
+    if (this.props.isGrandma) {
+      coords = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${building_number}, ${address}, New York, ${zip_code}&key=AIzaSyAThAa2thsgXHfh-D09OkhewLe5VVAlhYs`
+      );
 
-    this.setState({
-      longitude: coords.data.results[0].geometry.location.lng,
-      latitude: coords.data.results[0].geometry.location.lat
-    });
+      this.setState({
+        longitude: coords.data.results[0].geometry.location.lng,
+        latitude: coords.data.results[0].geometry.location.lat
+      });
+    }
 
     let newGrandma = {
       first_name,
       last_name,
       email,
       phone_number,
-      isGrandma: this.props.isGrandma,
+      isGrandma: this.props.isUser,
       password,
       building_number,
       address,
@@ -79,16 +81,16 @@ class UserAuthForm extends React.Component {
       last_name,
       email,
       phone_number,
-      isGrandma,
+      isGrandma: this.props.isGrandma,
       password
     };
 
     const loginPrams = { email, password };
 
-    if (isGrandma) {
-      this.props.registerUser(newGrandma, loginPrams);
-    } else {
+    if (this.props.isUser) {
       this.props.registerUser(newUser, loginPrams);
+    } else {
+      this.props.registerUser(newGrandma, loginPrams);
     }
   };
 
@@ -101,9 +103,9 @@ class UserAuthForm extends React.Component {
   };
 
   render() {
-    if (this.props.id && this.props.currentUser.isGrandma) {
+    if (this.props.id && this.props.isGrandma) {
       this.props.history.push(`/grandma/${this.props.id}/dashboard`);
-    } else if (this.props.id && !this.props.currentUser.isGrandma) {
+    } else if (this.props.id && !this.props.isGrandma) {
       this.props.history.push(`/user/${this.props.id}/dashboard`);
     }
 
@@ -112,7 +114,7 @@ class UserAuthForm extends React.Component {
       last_name,
       email,
       phone_number,
-      isGrandma,
+      // isGrandma,
       cuisine_id,
       building_number,
       address,
@@ -151,7 +153,8 @@ class UserAuthForm extends React.Component {
                   last_name={last_name}
                   email={email}
                   phone_number={phone_number}
-                  isGrandma={isGrandma}
+                  isUser={this.props.isUser}
+                  isGrandma={this.props.isGrandma}
                   cuisine_id={cuisine_id}
                   building_number={building_number}
                   address={address}

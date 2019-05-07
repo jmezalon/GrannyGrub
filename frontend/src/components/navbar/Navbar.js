@@ -16,7 +16,9 @@ class Navbar extends Component {
         {this.props.isOrdering ? (
           <div className="middle-options">
             <NavLink to="/auth/signup">
-              <h1>create an account</h1>
+              <h1 onClick={this.props.handleUserSignUpType}>
+                create a user account
+              </h1>
             </NavLink>
             <NavLink to="/about">
               <h1>About us</h1>

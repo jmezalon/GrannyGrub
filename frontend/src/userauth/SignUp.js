@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 class SignUp extends React.Component {
   componentDidMount() {
-    this.props.getAllCuisines();
+    if (!this.props.isUser) {
+      this.props.getAllCuisines();
+    }
   }
 
   render() {
@@ -19,6 +21,7 @@ class SignUp extends React.Component {
       last_name,
       email,
       phone_number,
+      isUser,
       isGrandma,
       building_number,
       address,
@@ -33,7 +36,7 @@ class SignUp extends React.Component {
         </option>
       );
     });
-
+    console.log("i am rendering");
     return (
       <div className="grandma-signup">
         <div className="signup-div">
