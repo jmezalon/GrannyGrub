@@ -117,3 +117,17 @@
   letter-spacing: normal;
   color: #ffffff;
 }
+
+#full-name,
+#phone-number {
+  padding-left: 6px;
+  border-radius: 3px;
+  border: 1px solid grey;
+  width: 200px;
+  height: 25px;
+  margin: 12px;
+}
+
+#provide-info-message {
+  margin-top: 15px;
+}
