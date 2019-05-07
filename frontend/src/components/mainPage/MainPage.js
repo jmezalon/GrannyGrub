@@ -18,7 +18,9 @@ class MainPage extends Component {
     cuisinesSelected: [],
     address: "",
     center: { lat: 40.692053, lng: -73.991104 },
-    zoom: 11,
+
+    zoom: 12.5,
+
     hoveredGrandmaId: false,
     selectedAll: true
   };
@@ -213,7 +215,6 @@ class MainPage extends Component {
   // };
 
   render() {
-
     var addressInput = document.getElementById("input");
     console.log(this.state.address, this.state.center);
     const {

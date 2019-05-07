@@ -33,7 +33,7 @@
 
 .right-mainpage {
   margin-top: 1%;
-  width: 70%;
+  width: 69%;
 }
 
 .filter-part1 {
@@ -79,6 +79,7 @@
 }
 .filter-part2 {
   display: flex;
+  align-items: flex-end;
 }
 
 .lunch-dinner {
@@ -110,12 +111,13 @@
 }
 
 .search-address {
+  width: 35%;
   margin-left: 6%;
-  margin-top: 3.5%;
+  margin-top: 3.9%;
 }
 
 .search-address input {
-  width: 200%;
+  width: 100%;
   height: 28px;
   font-size: 13px;
   border-radius: 6px;
@@ -128,6 +130,7 @@
   margin-left: 0px;
   margin-top: 0px;
   border: 1px solid #fb4b37;
+  box-shadow: 3px 3px 4px gray;
   /* border: 1px solid lightblue; */
   /* position: relative !important; */
 }
@@ -149,12 +152,16 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: white;
+  background-image: linear-gradient(whitesmoke, #e4efe9);
   margin-left: 2.5%;
   margin-right: 3.5%;
   margin-bottom: 2%;
   box-shadow: 3px 3px 4px gray;
   border: 1px solid #fb4b37;
+}
+
+.list-view-item:hover {
+  width: 95%;
 }
 
 .list-view-item img {
@@ -167,10 +174,21 @@
 }
 
 .grandma-list-info {
-  padding-right: 25%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 70%;
+  margin-top: 6%;
+  margin-bottom: 7%;
+}
+
+.grandma-list-info h3 {
+  font-size: 18px;
+  /* color: #5f646a; */
+}
+.grandma-list-info p {
+  font-size: 16px;
+  color: #5f646a;
 }
 
 .list-view-page {
@@ -186,7 +204,7 @@
 .info {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 200px;
   height: 50px;
 }
@@ -194,23 +212,26 @@
 .info-in-window {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
 
 .info-in-window h3 {
-  font-weight: bold;
+  /* font-weight: bold; */
   font-family: futura;
+  color: #5f646a;
 }
 
 #image {
   align-items: center;
   width: 60px;
   height: 60px;
+  margin-top: 4%;
 }
 #image img {
   width: 40px;
   height: 40px;
-  filter: grayscale(70%);
+  filter: grayscale(30%);
   object-fit: cover;
   object-position: 50% 0;
 }
