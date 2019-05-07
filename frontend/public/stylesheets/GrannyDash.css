@@ -1,0 +1,139 @@
+.grandma-dash {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.top-granny-dash {
+  background: linear-gradient(rgb(52, 49, 49, 0.2), rgb(7, 7, 7, 0.75)),
+    url("https://cdn.pixabay.com/photo/2016/12/18/02/39/paper-1914906_960_720.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 280px;
+  display: flex;
+  box-sizing: content-box;
+  object-fit: cover;
+}
+
+#granny-view-granny-pic {
+  align-items: flex-start;
+  width: 150px;
+  height: 130px;
+}
+
+#bottom-granny-dash{
+  border 2px dashed purple;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-areas:
+    " orders  dishes  "
+}
+
+
+#granny-orders {
+  grid-area: orders;
+  border: 1px solid blue;
+  margin-top: 30px;
+
+  margin: 2%;
+  padding: 10px;
+}
+
+.granny_dishes {
+  grid-area: dishes;
+  margin-top: 30px;
+  margin: 2%;
+  box-sizing: content-box;
+  object-fit: cover;
+}
+
+.granny-dish-display {
+border: solid 1px #ed3941;
+display: grid;
+grid-template-columns: 43% 55%;
+grid-template-rows: 10% 70% 20%;
+grid-template-areas:
+" dishheader dishheader "
+" leftside righttop"
+"quantity righttop"
+}
+
+.granny-dish-info {
+  grid-area: righttop;
+  display: grid;
+  grid-template-rows:  65% 35%;
+  grid-template-areas:
+  "top "
+  "dishbtns";
+}
+
+#right-side-img {
+  grid-area:top;
+  margin: 1%;
+  display: flex;
+justify-content: flex-end;
+}
+
+.dish-quantity {
+  grid-area: quantity;
+}
+
+#granny-dish-header {
+  grid-area: dishheader;
+  display: flex;
+  justify-content: space-around;
+  font-family: "Libre Baskerville", serif;
+  border-bottom: 2px solid #ed3941;
+  object-fit: contain;
+}
+
+#dish-display-btns {
+  grid-area: dishbtns;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.dishBtns {
+background-color: #ed3941;
+display: inline-block;
+height: 36px;
+color: white;
+border: none;
+border-radius: 3px;
+font-size: 6%;
+margin: 1%;
+font-family: "Libre Baskerville", serif;
+object-fit: contain;
+
+}
+
+#time-date-div {
+grid-area: leftside;
+border: 1px solid pink;
+font-family: 'PT Sans Narrow', sans-serif;
+font-size: 19px;
+display: flex;
+flex-flow: column;
+justify-content: center;
+
+}
+
+#time-date-div p {
+  margin: 1%;
+}
+
+#dish_img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+
+}
+
+#dish-date {
+font-family: "Libre Baskerville", serif;
+}

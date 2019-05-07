@@ -167,16 +167,6 @@
   height: 650px;
   overflow-y: scroll;
 }
-
-.grandma-dash {
-}
-
-#granny-view-granny-pic {
-  align-items: flex-start;
-  width: 150px;
-  height: 130px;
-}
-
 .info {
   display: flex;
   flex-direction: row;

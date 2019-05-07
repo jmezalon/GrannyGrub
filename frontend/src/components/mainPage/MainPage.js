@@ -163,6 +163,7 @@ class MainPage extends Component {
   // };
 
   render() {
+
     var addressInput = document.getElementById("input");
     const {
       center,

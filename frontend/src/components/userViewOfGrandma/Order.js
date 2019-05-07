@@ -7,6 +7,7 @@ class Order extends React.Component {
     const { dish, count } = this.props;
     let price = (dish.price * count).toFixed(2);
     return (
+
       <>
         <button className="back-to-grandma">
           <Link className="grandma-link" to={`/grandma/${dish.user_id}`}>
