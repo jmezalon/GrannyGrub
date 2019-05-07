@@ -38,17 +38,19 @@ function OrderForm({ dish, count }) {
     <form className="user-info-form" onSubmit={handleSubmit}>
       <div className="user-input">
         <input
+          required
           id="full-name"
           name="full_name"
-          placeholder="your full name"
+          placeholder="Your Full Name"
           value={name}
           onChange={e => setName(e.target.value)}
         />
 
         <input
+          required
           id="phone-number"
           name="phone_number"
-          placeholder="phone number"
+          placeholder="Phone Number"
           value={phoneNumber}
           onChange={e => setPhoneNumber(e.target.value)}
         />
