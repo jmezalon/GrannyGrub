@@ -176,8 +176,13 @@ class MapView extends Component {
         }
       ]
     });
-    var addressInput = document.getElementById("pac-input");
+    var addressInput = document.getElementById("input");
     var autocomplete = new window.google.maps.places.Autocomplete(addressInput);
+    autocomplete.addListener("place_changed", async () => {
+      const place = autocomplete.getPlace();
+      await this.props.submitFormHandler(place.formatted_address);
+    });
+
     this.updateMap();
   };
 
@@ -236,12 +241,6 @@ class MapView extends Component {
     };
     return (
       <div className="map-main">
-        <input
-          id="pac-input"
-          type="text"
-          name="address"
-          placeholder="🔍 Find a granny near by"
-        />
         <div id="map" />
       </div>
     );

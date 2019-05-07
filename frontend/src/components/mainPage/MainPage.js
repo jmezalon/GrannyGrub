@@ -18,9 +18,35 @@ class MainPage extends Component {
     cuisinesSelected: [],
     address: "",
     center: { lat: 40.692053, lng: -73.991104 },
-    zoom: 13,
+    zoom: 11,
     hoveredGrandmaId: false,
     selectedAll: true
+  };
+
+  submitFormHandler = address => {
+    if (address) {
+      this.setState({
+        address: address
+      });
+    }
+    return (
+      <div className="search-address">
+        <form
+          onSubmit={e => {
+            this.getCoords(e, this.state.address);
+          }}
+        >
+          <input
+            id="input"
+            value={this.state.address}
+            type="text"
+            onChange={this.changeHandler}
+            name="address"
+            placeholder="🔍 Find a granny near by"
+          />
+        </form>
+      </div>
+    );
   };
 
   handleClickCuisineType = async e => {
@@ -76,6 +102,15 @@ class MainPage extends Component {
       isLunch,
       isDinner
     } = this.state;
+    if (isSitdown && isPickup) {
+      isSitdown = false;
+      isPickup = false;
+    }
+    if (isLunch && isDinner) {
+      isLunch = false;
+      isDinner = false;
+    }
+
     let dataObj = {
       cusineIds: cuisinesSelected,
       isPickup,
@@ -143,13 +178,28 @@ class MainPage extends Component {
         }`
       )
       .then(res => {
-        let coords = res.data.results[0].geometry.location;
+        if (res.data.results[0] === undefined) {
+          this.setState({
+            address: "",
+            center: { lat: 40.692053, lng: -73.991104 },
+            zoom: 11
+          });
+        } else {
+          let coords = res.data.results[0].geometry.location;
+          this.setState({
+            center: coords,
+            zoom: 13,
+            address: ""
+          });
+        }
+      })
+      .catch(
         this.setState({
-          center: coords,
-          zoom: 10,
-          address: ""
-        });
-      });
+          address: "",
+          center: { lat: 40.692053, lng: -73.991104 },
+          zoom: 11
+        })
+      );
   };
 
   handleGrandmaListItemHover = hoveredGrandmaId => {
@@ -164,6 +214,7 @@ class MainPage extends Component {
 
   render() {
     var addressInput = document.getElementById("input");
+    console.log(this.state.address, this.state.center);
     const {
       center,
       zoom,
@@ -283,22 +334,7 @@ class MainPage extends Component {
                 </div>
               </form>
             </div>
-            <div className="search-address">
-              <form
-                onSubmit={e => {
-                  this.getCoords(e, this.state.address);
-                }}
-              >
-                <input
-                  id="input"
-                  value={this.state.address}
-                  type="text"
-                  onChange={this.changeHandler}
-                  name="address"
-                  placeholder="🔍 Find a granny near by"
-                />
-              </form>
-            </div>
+            {this.submitFormHandler()}
           </div>
         </div>
         <div className="button-mainpage">
@@ -314,6 +350,7 @@ class MainPage extends Component {
           <div className="right-mainpage">
             <div className="map-list">
               <MapView
+                submitFormHandler={this.submitFormHandler}
                 addressInput={addressInput}
                 zoom={zoom}
                 center={center}
