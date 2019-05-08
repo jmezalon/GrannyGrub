@@ -6,41 +6,53 @@ export default class Login extends React.Component {
     const { email, password, handleLogin, handleChange } = this.props;
 
     return (
-      <div className="grandma-login">
-        <div className="login-div">
+      <div className="grandma-signup">
+        <div className="side-signup">
           <h1>GrannyGrub</h1>
           <p>
             Where hungry New Yorkers are connected with professional Grandmas
           </p>
+        </div>
+        <div className="signup-div">
+          <div className="signup-login">
+            <div id={!this.props.zip_code ? "signup" : "login"}>
+              <Link to="/auth/signup">
+                <h1>Login</h1>
+              </Link>
+            </div>
+          </div>
           <form className="login-form" onSubmit={handleLogin}>
-            <div className="">
+            <div>
+              <label for="email">
+                <b>Email: </b>
+              </label>{" "}
               <input
                 id="email"
                 name="email"
                 onChange={handleChange}
                 value={email}
-                placeholder="EMAIL"
                 type="text"
               />
             </div>
-
-            <div className="">
+            <div>
+              <label for="password">
+                <b>Password: </b>
+              </label>{" "}
               <input
                 id="password"
                 name="password"
                 onChange={handleChange}
                 value={password}
-                placeholder="Password"
                 type="password"
               />
             </div>
             <div className="toggle-signup">
-              <button>Login</button>
+              <button id="continue-button">Continue</button>
               <br />
               <br />
-              <p>Do you want to cook?</p>
+              <p id="switch-p2">Do you want to cook?</p>
               <Link to="/auth/signup">
-                <p>Sign up</p>
+                <button id="signup-buttons">Sign up</button>
               </Link>
             </div>
           </form>

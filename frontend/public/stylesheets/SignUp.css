@@ -1,0 +1,133 @@
+.grandma-signup {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  min-height: 100%;
+}
+
+.side-signup h1 {
+  width: 462px;
+  height: auto;
+  font-family: Futura;
+  font-size: 72px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 25%;
+}
+
+.side-signup p {
+  color: red;
+}
+
+.signup-login a {
+  text-decoration: none;
+}
+
+.side-signup {
+  background: linear-gradient(rgb(52, 49, 49, 0.2), rgb(7, 7, 7, 0.55)),
+    url("https://civileats.com/wp-content/uploads/2018/03/180316-grandmas-cook-top1.jpg");
+}
+
+.signup-div {
+  display: grid;
+  grid-template-rows: 20% 80%;
+}
+
+.signup-login {
+  /* display: grid; */
+  /* grid-template-columns: 50% */
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.signup-login #signup {
+  background: linear-gradient(red, rgb(7, 7, 7, 0.55));
+  color: white;
+
+  height: 100%;
+}
+
+.signup-login #login {
+  background: linear-gradient(red, rgb(7, 7, 7, 0.55));
+  color: white;
+
+  height: 100%;
+}
+
+#signup-buttons {
+  width: 20%;
+  height: 50px;
+  border-radius: 4px;
+  background-color: #f23232;
+  margin-top: 2%;
+  font-family: Futura;
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+
+  height: 100%;
+}
+
+#continue-button {
+  width: 30%;
+  height: 50px;
+  border-radius: 4px;
+  background-color: #f23232;
+  margin-top: 2%;
+  font-family: Futura;
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+
+  height: 70%;
+}
+
+.signup-login h1 {
+  width: 462px;
+  height: auto;
+  font-family: Futura;
+  font-size: 32px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+.cuisine-selection {
+  padding-bottom: 15px;
+}
+
+.login-form input {
+  border: none;
+  border-bottom: solid 1px red;
+  margin-bottom: 30px;
+}
+
+.signup-form input {
+  border: none;
+  border-bottom: solid 1px red;
+  margin-bottom: 30px;
+}
+
+#switch-p {
+  padding-top: 90px;
+}
+
+#switch-p2 {
+  padding-top: 160px;
+}
