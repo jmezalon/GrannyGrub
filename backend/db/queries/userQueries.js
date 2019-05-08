@@ -25,7 +25,7 @@ const getOneGrandmaInfo = (req, res, next) => {
   let userId = parseInt(req.params.user_id);
 
   db.one(
-    "SELECT users.id AS id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, isPublic, isDelivery, isPickup, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users FULL JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = $1 GROUP BY users.id, cuisines.id",
+    "SELECT users.id AS id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, ARRAY_AGG(l.label_name), isPublic, isDelivery, isPickup, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users FULL JOIN cuisines ON cuisines.id = users.cuisine_id FULL JOIN label_dishes AS l_d ON l_d.dish_id = d.id JOIN labels AS l ON l_d.label_id  = l.id WHERE users.id = $1 GROUP BY users.id, cuisines.id",
     [userId]
   )
     .then(user => {
@@ -104,7 +104,7 @@ const createNewUser = (req, res, next) => {
   req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
   db.none(
-    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id, latitude, longitude) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id},${latitude}, ${longitude})",
+    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id, latitude, longitude, isDelivery) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id},${latitude}, ${longitude}, ${isDelivery})",
 
     {
       first_name: req.body.first_name,
@@ -118,7 +118,8 @@ const createNewUser = (req, res, next) => {
       zip_code: req.body.zip_code,
       cuisine_id: req.body.cuisine_id,
       latitude: Number(req.body.latitude),
-      longitude: Number(req.body.longitude)
+      longitude: Number(req.body.longitude),
+      isDelivery: req.body.isDelivery
     }
   )
     .then(() => {

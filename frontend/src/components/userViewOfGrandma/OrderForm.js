@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-const stripe = window.Stripe("pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk");
+import React, { useState } from 'react';
+const stripe = window.Stripe('pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk');
 
 function OrderForm({ dish, count }) {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
   const [hasAttemptedToSubmit, setHasAttemptedToSubmit] = useState(false);
 
   const handleSubmit = async e => {
@@ -13,20 +14,20 @@ function OrderForm({ dish, count }) {
 
     if (
       dish.quantity &&
-      name !== "" &&
-      phoneNumber !== "" &&
+      name !== '' &&
+      phoneNumber !== '' &&
       dish.remaining_quantity !== 0
     ) {
       let granny = { name, phoneNumber, dish, count: count };
-      window.localStorage.setItem("grandma", JSON.stringify(granny));
+      window.localStorage.setItem('grandma', JSON.stringify(granny));
       stripe
         .redirectToCheckout({
-          items: [{ sku: "sku_F07j4svNDL4kN4", quantity: count }],
+          items: [{ sku: 'sku_F07j4svNDL4kN4', quantity: count }],
           successUrl: `http://localhost:3000/order/dish/10/confirmation`,
-          cancelUrl: "https://example.com/cancel"
+          cancelUrl: 'https://example.com/cancel',
         })
         .then(result => {
-          console.log("where am I?!");
+          console.log('where am I?!');
           // If `redirectToCheckout` fails due to a browser or network
           // error, display the localized error message to your customer
           // using `result.error.message`.
@@ -54,7 +55,17 @@ function OrderForm({ dish, count }) {
           value={phoneNumber}
           onChange={e => setPhoneNumber(e.target.value)}
         />
+
+        <input
+          required
+          id="address"
+          name="address"
+          placeholder="address"
+          value={address}
+          onChange={e => setAddress(e.target.value)}
+        />
       </div>
+
       {hasAttemptedToSubmit && (
         <div id="required-info">
           {!name && <p>Please add your name</p>}
