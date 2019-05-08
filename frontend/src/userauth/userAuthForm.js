@@ -126,8 +126,6 @@ class UserAuthForm extends React.Component {
 
     return (
       <>
-        <h1> user auth here </h1>
-
         <Switch>
           <Route
             path="/auth/login"

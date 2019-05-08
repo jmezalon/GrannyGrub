@@ -38,54 +38,73 @@ class SignUp extends React.Component {
     });
     return (
       <div className="grandma-signup">
-        <div className="signup-div">
+        <div className="side-signup">
           <h1>GrannyGrub</h1>
           <p>
             Where hungry New Yorkers are connected with professional Grandmas
           </p>
+        </div>
+        <div className="signup-div">
+          <div className="signup-login">
+            <div id={zip_code ? "login" : "signup"}>
+              <Link to="/auth/login">
+                <h1>Sign up for {isGrandma ? " Grandma" : " User"}</h1>
+              </Link>
+            </div>
+          </div>
+
           <form className="signup-form" onSubmit={handleRegisterUser}>
-            <div className="">
+            <div className="full-name">
+              <label for="first-name">
+                <b>First name: </b>
+              </label>{" "}
               <input
                 id="first-name"
                 name="first_name"
                 onChange={handleChange}
-                placeholder="First Name"
                 type="text"
                 value={first_name}
               />
-            </div>
-            <div className="">
+              <label for="last-name">
+                <b>Last name: </b>
+              </label>{" "}
               <input
                 id="last-name"
                 name="last_name"
                 onChange={handleChange}
-                placeholder="Last Name"
                 type="text"
                 value={last_name}
               />
             </div>
-            <div className="">
+
+            <div className="contact-info">
+              <label for="email">
+                <b>Email: </b>
+              </label>{" "}
               <input
                 id="email"
                 name="email"
                 onChange={handleChange}
                 value={email}
-                placeholder="EMAIL"
                 type="text"
               />
-            </div>
-            <div className="">
+              <label for="phone-number">
+                <b>Phone number: </b>
+              </label>{" "}
               <input
                 id="phone_number"
                 name="phone_number"
                 onChange={handleChange}
                 value={phone_number}
-                placeholder="Phone Number"
                 type="text"
               />
             </div>
+
             {isGrandma ? (
-              <>
+              <div>
+                <label for="cuisine">
+                  <b>Cuisines selection: </b>
+                </label>{" "}
                 <div className="cuisine-selection">
                   <select onChange={handleSelect}>
                     <option key="0" value="">
@@ -94,8 +113,10 @@ class SignUp extends React.Component {
                     {cuisineTypes}
                   </select>
                 </div>
-
                 <div className="address">
+                  <label for="address">
+                    <b>address: </b>
+                  </label>{" "}
                   <span>
                     <input
                       id="building-number"
@@ -127,30 +148,32 @@ class SignUp extends React.Component {
                     />
                   </span>
                 </div>
-              </>
+              </div>
             ) : (
               ""
             )}
             <div className="">
+              <label for="password">
+                <b>Password: </b>
+              </label>{" "}
               <input
                 id="password"
                 name="password"
                 onChange={handleChange}
                 value={password}
-                placeholder="Password"
                 type="password"
               />
             </div>
 
             <div className="toggle-login">
-              <button>Sign up</button>
+              <button id="continue-button">Continue</button>
 
               <br />
               <br />
 
-              <p>already have an account?</p>
+              <p id="switch-p">already have an account?</p>
               <Link to="/auth/login">
-                <p>Log in</p>
+                <button id="signup-buttons">Log in</button>
               </Link>
             </div>
           </form>
