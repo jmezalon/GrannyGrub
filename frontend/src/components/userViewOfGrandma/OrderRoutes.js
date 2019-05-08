@@ -13,6 +13,7 @@ class OrderRoutes extends React.Component {
     orderSummary: false,
     empty_field_name: false,
     empty_field_number: false,
+    order_type: "delivery",
     confirmation: false
   };
 
@@ -40,13 +41,21 @@ class OrderRoutes extends React.Component {
     }
   };
 
+  handleTypeChange = e => {
+    e.preventDefault();
+    this.setState({
+      order_type: e.target.value
+    });
+  };
+
   render() {
     let { grandma } = this.props;
     const {
       full_name,
       phone_number,
       empty_field_name,
-      empty_field_number
+      empty_field_number,
+      order_type
     } = this.state;
 
     let dish = this.props.dish;
@@ -101,6 +110,8 @@ class OrderRoutes extends React.Component {
               empty_field_name={empty_field_name}
               empty_field_number={empty_field_number}
               grandma={grandma}
+              order_type={order_type}
+              handleTypeChange={this.handleTypeChange}
             />
           )}
         />

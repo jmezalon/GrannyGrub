@@ -64,7 +64,8 @@ CREATE TABLE orders (
   phone_number VARCHAR NOT NULL,
   dish_id  INT REFERENCES dishes(id) ON DELETE CASCADE,
   user_id INT REFERENCES users(id) ON DELETE CASCADE,
-  isCompleted BOOLEAN
+  isCompleted BOOLEAN,
+  order_type VARCHAR
 );
 
 

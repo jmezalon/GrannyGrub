@@ -14,7 +14,7 @@
 #dish-image {
   display: flex;
   width: 100%;
-  height: 35%;
+  height: 40%;
 }
 
 #dish-image img {
@@ -27,24 +27,28 @@
 
 .dish-info {
   /* align-items: flex-start; */
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
   padding-top: 1%;
-  grid-template-rows: 50%;
+  /* grid-template-rows: 50%; */
   /* grid-template-columns: 40% 60%; */
 }
 
 #dish-name {
   margin-top: 15px;
   padding: 3px;
-  font-size: 30px;
+  font-size: 45px;
   font-weight: bold;
   color: #ed3941;
+  display: flex;
+  align-content: flex-start;
 }
 
 #order-header {
   display: flex;
   justify-content: space-around;
-  font-family: "Libre Baskerville", serif;
+  font-family: Futura;
   align-items: baseline;
   object-fit: contain;
 }
@@ -52,16 +56,28 @@
 .checkout-order-info {
   font-size: 22px;
   margin: 5px;
+  border-bottom: 1px solid #ed3941;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-order-info p {
+  display: flex;
+  padding: 10px;
 }
 
 .plus-minus-button {
   font-size: 22px;
   padding-bottom: 25px;
-  flex-direction: column;
+  display: flex;
+  padding: 10px;
 }
 
 .fas {
   color: red;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .back-to-grandma a {
@@ -88,22 +104,46 @@
 } */
 
 #dish-desc {
-  padding-bottom: 2px;
-  font-size: 20px;
-  font-family: Lora;
+  margin-top: 1%;
+
+  font-family: "Libre Baskerville", serif;
+
   /* display: flex; */
   /* align-items: flex-start; */
 }
 
-#dish-checkout {
+#dish-desc p {
+  margin: 1%;
   display: flex;
-  bottom: 40px;
-  right: 250px;
+  margin-bottom: 10px;
+  font-size: 17px;
+  justify-content: flex-start;
 }
 
-#dish-checkout a {
-  margin: auto;
+#dish-desc h4 {
+  margin: 1%;
+  margin-top: 10px;
+  display: flex;
+  color: #ed3941;
+  font-weight: bold;
+  justify-content: flex-start;
 }
+
+.dish-checkout {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.dish-checkout p {
+  font-size: 19px;
+}
+
+/* .dish-checkout a {
+  margin: auto;
+} */
 
 #dish-checkout-button {
   width: 200px;
@@ -111,7 +151,6 @@
   border-radius: 4px;
   background-color: #ed3941;
   margin-top: 2%;
-  /* font-family: Futura; */
   font-size: 20px;
   font-weight: 500;
   font-style: normal;
@@ -119,6 +158,7 @@
   line-height: normal;
   letter-spacing: normal;
   color: #ffffff;
+  font-family: Futura;
 }
 
 #full-name,
@@ -133,4 +173,46 @@
 
 #provide-info-message {
   margin-top: 15px;
+}
+
+#info-container {
+  border-bottom: 1px solid #ed3941;
+  margin: 1%;
+  padding: 2%;
+}
+
+.order-type-btns {
+  width: 150px;
+  height: 35px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  margin-top: 2%;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ed3941;
+  font-family: Futura;
+  margin: 1%;
+  align-self: baseline;
+}
+
+.order-type-btns-selected {
+  width: 150px;
+  height: 35px;
+  border-radius: 4px;
+  background-color: #ed3941;
+  margin-top: 2%;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  font-family: Futura;
+  margin: 1%;
+  align-self: baseline;
 }
