@@ -38,6 +38,7 @@
   height: 200px;
   border-radius: 13px;
   object-fit: cover;
+  object-position: 50% 0;
   margin: 2px;
 }
 
