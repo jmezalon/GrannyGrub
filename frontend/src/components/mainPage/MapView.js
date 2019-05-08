@@ -178,11 +178,10 @@ class MapView extends Component {
     });
     var addressInput = document.getElementById("input");
     var autocomplete = new window.google.maps.places.Autocomplete(addressInput);
-    autocomplete.addListener("place_changed", async () => {
+    autocomplete.addListener("place_changed", () => {
       const place = autocomplete.getPlace();
-      await this.props.submitFormHandler(place.formatted_address);
+      this.props.submitFormHandler(place.formatted_address);
     });
-
     this.updateMap();
   };
 
