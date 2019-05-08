@@ -25,7 +25,7 @@ const getOneGrandmaInfo = (req, res, next) => {
   let userId = parseInt(req.params.user_id);
 
   db.one(
-    "SELECT users.id AS id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, ARRAY_AGG(l.label_name), isPublic, isDelivery, isPickup, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users FULL JOIN cuisines ON cuisines.id = users.cuisine_id FULL JOIN label_dishes AS l_d ON l_d.dish_id = d.id JOIN labels AS l ON l_d.label_id  = l.id WHERE users.id = $1 GROUP BY users.id, cuisines.id",
+    "SELECT users.id AS id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, isPublic, isDelivery, isPickup, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users FULL JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = $1 GROUP BY users.id, cuisines.id",
     [userId]
   )
     .then(user => {
@@ -42,7 +42,7 @@ const getDishesByGrandmaId = (req, res, next) => {
   let userId = parseInt(req.params.id);
 
   db.any(
-    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, isDelivery, isPickup, price,timeframe, date, quantity, remaining_quantity, isGrandma, users.id AS user_id, type FROM dishes JOIN users ON users.id = dishes.user_id WHERE dishes.user_id= $1 GROUP BY dishes.id, users.id",
+    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, isDelivery, isPickup, price,timeframe, date, quantity, remaining_quantity, isGrandma, users.id AS user_id FROM dishes JOIN users ON users.id = dishes.user_id WHERE dishes.user_id= $1 GROUP BY dishes.id, users.id",
     [userId]
   )
     .then(dishes => {
