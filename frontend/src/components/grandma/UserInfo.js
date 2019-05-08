@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-const GrannyInfo = ({ grandma, id }) => {
+const UserInfo = ({ grandma, id }) => {
   return (
     <>
       <div className="granny-profile-display">
         <label htmlFor="full Name" />
-        <h1> Welcome Granny {grandma.last_name}</h1>
+        <h1> Welcome User {grandma.last_name}</h1>
       </div>
 
       <img
@@ -24,22 +24,10 @@ const GrannyInfo = ({ grandma, id }) => {
         <h3> Contact information: </h3>
         <p>{grandma.email}</p>
         <p>{grandma.phone_number}</p>
-        <div id="granny-address">
-          <label htmlFor="address" />
-          <h3> Operating Address: </h3>
-          <h6>
-            {grandma.building_number} {grandma.address} {grandma.zip_code}
-          </h6>
-        </div>
-        <div id="granny-bio">
-          <label htmlFor="bio" />
-          <h3> About you: </h3>
-          <p>{grandma.bio}</p>
-        </div>
       </div>
 
       <div className="edit-page">
-        <Link to={`/grandma/edit/${id}`}>
+        <Link to={`/user/edit/${id}`}>
           <input type="button" value="edit" />
         </Link>
       </div>
@@ -47,4 +35,4 @@ const GrannyInfo = ({ grandma, id }) => {
   );
 };
 
-export default GrannyInfo;
+export default UserInfo;

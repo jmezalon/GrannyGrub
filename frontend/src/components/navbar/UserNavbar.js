@@ -1,42 +1,32 @@
 import React, { Component } from "react";
-import { NavLink, Link, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
-class Navbar extends Component {
+class UserNavbar extends Component {
   render() {
-    // const { loggedIn } = this.props;
-    // console.log(this.props);
     return (
       <div className="navbar-parent">
         <div className="logo-div" onClick={this.props.handleGetATasteReset}>
-          <NavLink to="/">
+          <NavLink to={`/user/${parseInt(this.props.id)}/dashboard`}>
             <img id="logo" alt="" src={logo} />
           </NavLink>
         </div>
-        {this.props.isOrdering ? (
-          <div className="middle-options">
-            <NavLink to="/auth/signup">
-              <h1 onClick={this.props.handleUserSignUpType}>
-                create a user account
-              </h1>
-            </NavLink>
-            <NavLink to="/about">
-              <h1>About us</h1>
-            </NavLink>
-          </div>
-        ) : (
-          <div id="grandma-navbar">
-            {this.props.location.pathname === "/" ? (
-              <Link to="/auth/signup">
-                <h1 onClick={this.props.handleUserSignUpType2}>
-                  Become a granny
-                </h1>
-              </Link>
-            ) : (
-              ""
-            )}
-          </div>
-        )}
+        <div className="middle-options">
+          <NavLink to={`/user/${parseInt(this.props.id)}/dashboard`}>
+            Dashboard
+          </NavLink>
+
+          <NavLink to={`/user/edit/${parseInt(this.props.id)}`}>
+            Edit Profile
+          </NavLink>
+          <NavLink to="/favorite">Favorite Dish</NavLink>
+          <NavLink to="/mainpage">Order</NavLink>
+        </div>
+        <div className="logout-div" onClick={() => this.props.logoutUser()}>
+          <NavLink to="/">
+            <button id="logout-button">Log out</button>
+          </NavLink>
+        </div>
       </div>
 
       //
@@ -65,4 +55,4 @@ class Navbar extends Component {
 }
 
 //
-export default withRouter(Navbar);
+export default withRouter(UserNavbar);

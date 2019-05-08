@@ -176,9 +176,13 @@ class MapView extends Component {
         }
       ]
     });
-    // var addressInput = document.getElementById("pac-input");
-    // var autocomplete = new window.google.maps.places.Autocomplete(addressInput);
-    // autocomplete.bindTo("bounds", this.map);
+    var addressInput = document.getElementById("input");
+    var autocomplete = new window.google.maps.places.Autocomplete(addressInput);
+    autocomplete.addListener("place_changed", async () => {
+      const place = autocomplete.getPlace();
+      await this.props.submitFormHandler(place.formatted_address);
+    });
+
     this.updateMap();
   };
 

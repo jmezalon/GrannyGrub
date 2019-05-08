@@ -19,20 +19,7 @@
 .user-info-form {
   display: flex;
   justify-content: space-evenly;
-  padding: 15px;
   flex-direction: column;
-}
-
-.user-input #full-name {
-  margin: 10px;
-  width: 175px;
-  height: 25px;
-}
-
-.user-input #phone-number {
-  margin: 10px;
-  width: 175px;
-  height: 25px;
 }
 
 #required-info p {

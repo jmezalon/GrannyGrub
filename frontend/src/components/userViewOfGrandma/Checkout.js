@@ -20,13 +20,23 @@ const Checkout = ({
         <div id="dish-image-order">
           <img src={dish.img_url} alt="dish" />
         </div>
-        <h4>Please provide your contact information below</h4>
+        <h4 id="provide-info-message" className="checkout-order-info">
+          Please provide your contact information below.
+        </h4>
 
         <OrderForm full_name={full_name} dish={dish} count={count} />
 
-        <p>
-          {count} {dish.name}(s) for ${price}{" "}
-        </p>
+        <div id="name-price-time">
+          <p id="dish-name">
+            {count} {dish.name}(s)
+          </p>
+          <p className="checkout-order-info">Amount: ${price}</p>
+          <p className="checkout-order-info">
+            Order Type: {dish.timeframe}{" "}
+            {dish.type === "pick-up" ? "for" : "to"}{" "}
+            {dish.type === "pick-up" ? "Pick-up" : "Stay"}
+          </p>
+        </div>
 
         <Link to={`/order/dish/${parseInt(dish.id)}`}>
           <button id="edit-button">edit</button>

@@ -5,15 +5,21 @@ import "./App.css";
 import LandingPage from "./components/landingPage/landingPage";
 import OrderContainer from "./containers/OrderContainer";
 import ProfileContainer from "./containers/ProfileContainer";
+import UserProfileContainer from "./containers/UserProfileContainer";
 import HomeContainer from "./containers/HomeContainer";
 import MainPageContainer from "./containers/MainPageContainer";
 import Navbar from "./components/navbar/Navbar.js";
 import GrannyNavbar from "./components/navbar/GrannyNavbar.js";
+import UserNavbar from "./components/navbar/UserNavbar.js";
+
 import UserAuthContainer from "./containers/userAuthContainer.js";
 import NewDishContainer from "./containers/NewDishContainer";
 import EditDishContainer from "./containers/EditDishContainer";
 import GrandmaPageContainer from "./containers/GrandmaPageContainer.js";
 import DashboardContainer from "./containers/DashboardContainer";
+import UserDashboardContainer from "./containers/UserDashboardContainer";
+
+import About from "./components/about";
 
 import { PrivateRoute, AuthRoute } from "./userauth/utils/privateRouting.js";
 
@@ -34,6 +40,10 @@ class App extends Component {
     this.setState({ isUser: true, isGrandma: false });
   };
 
+  handleUserSignUpType2 = () => {
+    this.setState({ isUser: false, isGrandma: true });
+  };
+
   handleGetATasteReset = () => {
     this.setState({ isOrdering: false, isUser: false, isGrandma: true });
   };
@@ -52,8 +62,14 @@ class App extends Component {
     // }
     return (
       <div className="App">
-        {this.props.userId ? (
+        {this.props.userId && this.props.currentUser.isgrandma ? (
           <GrannyNavbar
+            id={this.props.userId}
+            logoutUser={this.props.logoutUser}
+            handleGetATasteReset={this.handleGetATasteReset}
+          />
+        ) : this.props.userId && !this.props.currentUser.isgrandma ? (
+          <UserNavbar
             id={this.props.userId}
             logoutUser={this.props.logoutUser}
             handleGetATasteReset={this.handleGetATasteReset}
@@ -64,6 +80,7 @@ class App extends Component {
             handleGetATasteReset={this.handleGetATasteReset}
             id={this.props.userId}
             handleUserSignUpType={this.handleUserSignUpType}
+            handleUserSignUpType2={this.handleUserSignUpType2}
           />
         )}
         <Switch>
@@ -79,6 +96,7 @@ class App extends Component {
             )}
           />
           <Route exact path="/home" component={HomeContainer} />
+          <Route exact path="/about" component={About} />
           <Route exact path="/mainpage" component={MainPageContainer} />
           <PrivateRoute
             path={"/grandma/:id/dashboard"}
@@ -87,8 +105,19 @@ class App extends Component {
             id={this.props.userid}
           />
           <PrivateRoute
+            path={"/user/:id/dashboard"}
+            component={UserDashboardContainer}
+          />
+          <PrivateRoute
             path={"/grandma/edit/:id"}
             component={ProfileContainer}
+            goBack={this.goBack}
+            id={this.props.userid}
+            logoutUser={this.props.logoutUser}
+          />
+          <PrivateRoute
+            path={"/user/edit/:id"}
+            component={UserProfileContainer}
             goBack={this.goBack}
             id={this.props.userid}
             logoutUser={this.props.logoutUser}
