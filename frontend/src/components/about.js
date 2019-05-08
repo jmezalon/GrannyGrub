@@ -14,13 +14,13 @@ const About = () => {
           <h1 id="card-header">The Mission</h1>
           <p id="card-desc">
             Finding Really Authentic, Home-cooked Food is Not a Luxury Many City
-            Dwellers Can Afford Easily. Yes, We Have Access to Hundreds of Food
+            Dwellers Can Easily Afford. Yes, We Have Access to Hundreds of Food
             Choices at Our Fingertips. But None Are as Authentic as a Meal From
             a Grandma's Kitchen. Our Mission is to Connect New Yorkers to
             Home-cooked Meals in Their Area. Wether You're Feeling a Little
             Home-sick or Want to Try a Home-cooked Meal From a Different
-            Culture, We Will Provide You With an Experience You Won't Easily
-            Forget.
+            Culture, We Strive to Deliver You With a Meal You Won't Find
+            Elsewhere.
           </p>
         </div>
       </div>
