@@ -11,16 +11,14 @@ import icon from "../../assets/icon.png";
 
 class MainPage extends Component {
   state = {
-    isSitdown: false,
+    isDelivery: false,
     isPickup: false,
     isLunch: false,
     isDinner: false,
     cuisinesSelected: [],
     address: "",
     center: { lat: 40.692053, lng: -73.991104 },
-
     zoom: 12.5,
-
     hoveredGrandmaId: false,
     selectedAll: true
   };
@@ -73,7 +71,7 @@ class MainPage extends Component {
 
   handleClickMealType = async e => {
     e.preventDefault();
-    let { isSitdown, isPickup } = this.state;
+    let { isDelivery, isPickup } = this.state;
     await this.setState({
       [e.target.name]: !this.state[e.target.name],
       selectedAll: false
@@ -99,15 +97,12 @@ class MainPage extends Component {
   filterGrannies = () => {
     let {
       cuisinesSelected,
-      isSitdown,
+      isDelivery,
       isPickup,
       isLunch,
       isDinner
     } = this.state;
-    if (isSitdown && isPickup) {
-      isSitdown = false;
-      isPickup = false;
-    }
+
     if (isLunch && isDinner) {
       isLunch = false;
       isDinner = false;
@@ -116,29 +111,24 @@ class MainPage extends Component {
     let dataObj = {
       cusineIds: cuisinesSelected,
       isPickup,
-      isSitdown,
+      isDelivery,
       isLunch,
       isDinner
     };
     if (
       (!cuisinesSelected.length &&
         !isPickup &&
-        !isSitdown &&
+        !isDelivery &&
         !isLunch &&
         !isDinner) ||
       (!cuisinesSelected.length &&
         isPickup &&
-        isSitdown &&
+        isDelivery &&
         isLunch &&
         isDinner) ||
       (!cuisinesSelected.length &&
         !isPickup &&
-        !isSitdown &&
-        isLunch &&
-        isDinner) ||
-      (!cuisinesSelected.length &&
-        isPickup &&
-        isSitdown &&
+        isDelivery &&
         !isLunch &&
         !isDinner)
     ) {
@@ -156,7 +146,7 @@ class MainPage extends Component {
     await this.unCheck();
     await this.props.getAllGrandmas();
     await this.setState({
-      isSitdown: false,
+      isDelivery: false,
       isPickup: false,
       isLunch: false,
       isDinner: false,
@@ -225,7 +215,7 @@ class MainPage extends Component {
       isLunch,
       isDinner,
       isPickup,
-      isSitdown,
+      isDelivery,
       selectedAll
     } = this.state;
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
@@ -310,12 +300,12 @@ class MainPage extends Component {
               <form className="order-type-form">
                 <div
                   className={
-                    isSitdown ? "highlighted filter-buttons" : "filter-buttons"
+                    isDelivery ? "highlighted filter-buttons" : "filter-buttons"
                   }
                 >
                   <button
                     type="checkbox"
-                    name="isSitdown"
+                    name="isDelivery"
                     onClick={this.handleClickMealType}
                   >
                     Sit-Down{" "}
