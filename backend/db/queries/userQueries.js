@@ -1,16 +1,17 @@
-const db = require('../connection');
-const authHelpers = require('../../auth/helpers');
+const db = require("../connection");
+const authHelpers = require("../../auth/helpers");
 
 //get only gmas
+
 const getAllUsers = (req, res, next) => {
   db.any(
-    'SELECT DISTINCT users.id AS id, isGrandma, first_name, last_name, latitude, longitude, profile_pic, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id  FROM users FULL JOIN dishes ON dishes.user_id = users.id JOIN cuisines ON cuisines.id = users.cuisine_id'
+    "SELECT DISTINCT users.id AS id, isGrandma, first_name, last_name, latitude, longitude, profile_pic,isDelivery, isPickup, cuisines.type AS cuisine_type, ARRAY_AGG(dishes.img_url) AS dishImgs, cuisines.id AS cuisine_id FROM users FULL JOIN dishes ON dishes.user_id = users.id JOIN cuisines ON cuisines.id = users.cuisine_id GROUP BY users.id, cuisines.type, cuisines.id"
   )
     .then(users => {
       res.status(200).json({
-        status: 'success',
+        status: "success",
         users: users,
-        message: 'all users',
+        message: "all users"
       });
     })
     .catch(err => next(err));
@@ -24,14 +25,14 @@ const getOneGrandmaInfo = (req, res, next) => {
   let userId = parseInt(req.params.user_id);
 
   db.one(
-    'SELECT users.id AS id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, isPublic, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users FULL JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = $1 GROUP BY users.id, cuisines.id',
+    "SELECT users.id AS id, first_name, last_name, profile_pic, phone_number, address, building_number, zip_code, email, bio, isPublic, isDelivery, isPickup, cuisines.type AS cuisine_type, cuisines.id AS cuisine_id FROM users FULL JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.id = $1 GROUP BY users.id, cuisines.id",
     [userId]
   )
     .then(user => {
       res.status(200).json({
-        status: 'success',
+        status: "success",
         user: user,
-        message: 'single user',
+        message: "single user"
       });
     })
     .catch(err => next(err));
@@ -41,14 +42,14 @@ const getDishesByGrandmaId = (req, res, next) => {
   let userId = parseInt(req.params.id);
 
   db.any(
-    'SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, price,timeframe, date, quantity, remaining_quantity, isGrandma, users.id AS user_id, type FROM dishes JOIN users ON users.id = dishes.user_id WHERE dishes.user_id= $1 GROUP BY dishes.id, users.id',
+    "SELECT dishes.id AS dish_id, name, dishes.description AS description, dishes.img_url AS img_url, isDelivery, isPickup, price,timeframe, date, quantity, remaining_quantity, isGrandma, users.id AS user_id, type FROM dishes JOIN users ON users.id = dishes.user_id WHERE dishes.user_id= $1 GROUP BY dishes.id, users.id",
     [userId]
   )
     .then(dishes => {
       res.status(200).json({
-        status: 'success',
+        status: "success",
         dishes: dishes,
-        message: 'all dishes for a grandma',
+        message: "all dishes for a grandma"
       });
     })
     .catch(err => next(err));
@@ -56,13 +57,13 @@ const getDishesByGrandmaId = (req, res, next) => {
 
 const getAllUsersListView = (req, res, next) => {
   db.any(
-    'SELECT users.id AS user_id, first_name, last_name, latitude, longitude, timeframe, cuisines.type AS cuisine_type FROM users JOIN dishes ON dishes.user_id = users.id JOIN cuisines ON cuisines.id = users.cuisine_id'
+    "SELECT users.id AS user_id, first_name, last_name, latitude, longitude, timeframe, cuisines.type AS cuisine_type FROM users JOIN dishes ON dishes.user_id = users.id JOIN cuisines ON cuisines.id = users.cuisine_id"
   )
     .then(users => {
       res.status(200).json({
-        status: 'success',
+        status: "success",
         users: users,
-        message: 'all users',
+        message: "all users"
       });
     })
     .catch(err => next(err));
@@ -103,7 +104,7 @@ const createNewUser = (req, res, next) => {
   req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
   db.none(
-    'INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id, latitude, longitude) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id},${latitude}, ${longitude})',
+    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id, latitude, longitude) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id},${latitude}, ${longitude})",
 
     {
       first_name: req.body.first_name,
@@ -117,12 +118,12 @@ const createNewUser = (req, res, next) => {
       zip_code: req.body.zip_code,
       cuisine_id: req.body.cuisine_id,
       latitude: Number(req.body.latitude),
-      longitude: Number(req.body.longitude),
+      longitude: Number(req.body.longitude)
     }
   )
     .then(() => {
       res.status(200).json({
-        message: 'success',
+        message: "success"
       });
     })
     .catch(err => {
@@ -136,18 +137,18 @@ const fixGrandma = (req, res, next) => {
   let bodyKeys = Object.keys(req.body);
   console.log({ body: req.body });
   bodyKeys.forEach(key => {
-    queryStringArray.push(key + '=${' + key + '}');
+    queryStringArray.push(key + "=${" + key + "}");
   });
-  let queryString = queryStringArray.join(', ');
+  let queryString = queryStringArray.join(", ");
   console.log(req.params);
   const grannyId = parseInt(req.params.id, 10);
   console.log({ grannyId });
   console.log({ queryString });
-  db.none('UPDATE users SET ' + queryString + ' WHERE id=' + grannyId, req.body)
+  db.none("UPDATE users SET " + queryString + " WHERE id=" + grannyId, req.body)
     .then(() => {
       res.status(200).json({
-        status: 'success',
-        message: 'Updated a grandma!',
+        status: "success",
+        message: "Updated a grandma!"
       });
     })
     .catch(err => next(err));
@@ -155,7 +156,7 @@ const fixGrandma = (req, res, next) => {
 
 function logoutUser(req, res, next) {
   req.logout();
-  res.status(200).send('log out success');
+  res.status(200).send("log out success");
 }
 
 function loginUser(req, res) {
@@ -168,17 +169,17 @@ function isLoggedIn(req, res) {
   if (req.user) {
     res.json(req.user);
   } else {
-    res.status(200).json({ err: 'Nobody logged in' });
-    console.log('no one is logged in');
+    res.status(200).json({ err: "Nobody logged in" });
+    console.log("no one is logged in");
   }
 }
 
 const recordNaturalCauses = (req, res, next) => {
   let userId = parseInt(req.params.user_id);
-  db.none('DELETE FROM users WHERE id = ${userId}', { userId })
+  db.none("DELETE FROM users WHERE id = ${userId}", { userId })
     .then(() => {
       res.status(200).json({
-        message: 'granny rest in peace',
+        message: "granny rest in peace"
       });
     })
     .catch(err => next(err));
@@ -194,5 +195,5 @@ module.exports = {
   loginUser,
   isLoggedIn,
   recordNaturalCauses,
-  getAllUsersListView,
+  getAllUsersListView
 };
