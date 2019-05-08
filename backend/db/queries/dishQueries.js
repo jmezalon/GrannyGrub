@@ -1,4 +1,4 @@
-const db = require('../connection');
+const db = require("../connection");
 
 // const getAllDishesByGrandma = (req, res, next) => {
 //   let grandmaId = parseInt(req.params.id);
@@ -57,7 +57,7 @@ const addNewDish = (req, res, next) => {
   // req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
   db.one(
-    'INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${type}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity}) RETURNING *',
+    "INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${type}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity}) RETURNING *",
     {
       name: req.body.name,
       description: req.body.description,
@@ -67,27 +67,27 @@ const addNewDish = (req, res, next) => {
       price: req.body.price,
       date: req.body.date,
       timeframe: req.body.timeframe,
-      quantity: parseInt(req.body.quantity),
+      quantity: parseInt(req.body.quantity)
     }
   )
     .then(dish => {
       console.log(dish);
       db.none(
-        'INSERT INTO label_dishes(dish_id, label_id) VALUES (${dish_id}, ${label_id})',
+        "INSERT INTO label_dishes(dish_id, label_id) VALUES (${dish_id}, ${label_id})",
         {
           dish_id: parseInt(dish.id),
-          label_id: parseInt(req.body.label_id),
+          label_id: parseInt(req.body.label_id)
         }
       );
     })
     .then(() => {
       res.status(200).json({
-        message: 'success',
+        message: "success"
       });
     })
 
     .catch(err => {
-      console.log('error', err);
+      console.log("error", err);
       return next(err);
     });
 
@@ -104,18 +104,18 @@ const getSingleDish = (req, res, next) => {
   const dish_id = parseInt(req.params.dish_id);
 
   db.one(
-    'SELECT d.*, u.first_name, u.ispickup, u.last_name, u.profile_pic, u.building_number, u.address, u.zip_code FROM dishes AS d FULL JOIN users AS u ON d.user_id = u.id  WHERE d.id=$1',
+    "SELECT DISTINCT d.*, u.first_name, u.ispickup, u.last_name, u.profile_pic, u.building_number, u.address, u.zip_code, ARRAY_AGG(l.label_name) AS lable_list FROM dishes AS d FULL JOIN users AS u ON d.user_id = u.id FULL JOIN label_dishes AS l_d ON l_d.dish_id = d.id JOIN labels AS l ON l_d.label_id  = l.id WHERE d.id=$1 GROUP BY u.id, d.id",
     [dish_id]
   )
     .then(dish => {
       res.status(200).json({
-        status: 'success',
+        status: "success",
         dish: dish,
-        message: 'got single dish',
+        message: "got single dish"
       });
     })
     .catch(err => {
-      console.log('error', err);
+      console.log("error", err);
       // next(err);
     });
 };
@@ -124,17 +124,17 @@ const fixDish = (req, res, next) => {
   let queryStringArray = [];
   let bodyKeys = Object.keys(req.body);
   bodyKeys.forEach(key => {
-    queryStringArray.push(key + '=${' + key + '}');
+    queryStringArray.push(key + "=${" + key + "}");
   });
-  let queryString = queryStringArray.join(', ');
+  let queryString = queryStringArray.join(", ");
   db.none(
-    'UPDATE dishes SET ' + queryString + ' WHERE id=' + req.params.id,
+    "UPDATE dishes SET " + queryString + " WHERE id=" + req.params.id,
     req.body
   )
     .then(() => {
       res.status(200).json({
-        status: 'success',
-        message: 'Updated a user!',
+        status: "success",
+        message: "Updated a user!"
       });
     })
     .catch(err => next(err));
@@ -158,12 +158,12 @@ const fixDish = (req, res, next) => {
 
 const deleteDish = (req, res, next) => {
   const dish_id = parseInt(req.params.id);
-  db.none('DELETE FROM dishes WHERE id= $1', [dish_id])
+  db.none("DELETE FROM dishes WHERE id= $1", [dish_id])
     .then(() => {
-      res.status(200).json({ message: 'dish deleted' });
+      res.status(200).json({ message: "dish deleted" });
     })
     .catch(err => {
-      console.log('error', err);
+      console.log("error", err);
     });
 };
 
@@ -171,5 +171,5 @@ module.exports = {
   addNewDish,
   getSingleDish,
   fixDish,
-  deleteDish,
+  deleteDish
 };
