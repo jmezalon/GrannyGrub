@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-const stripe = window.Stripe('pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk');
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+const stripe = window.Stripe("pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk");
 
 function OrderForm({ dish, count }) {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
   const [hasAttemptedToSubmit, setHasAttemptedToSubmit] = useState(false);
 
   const handleSubmit = async e => {
@@ -14,20 +16,20 @@ function OrderForm({ dish, count }) {
 
     if (
       dish.quantity &&
-      name !== '' &&
-      phoneNumber !== '' &&
+      name !== "" &&
+      phoneNumber !== "" &&
       dish.remaining_quantity !== 0
     ) {
       let granny = { name, phoneNumber, dish, count: count };
-      window.localStorage.setItem('grandma', JSON.stringify(granny));
+      window.localStorage.setItem("grandma", JSON.stringify(granny));
       stripe
         .redirectToCheckout({
-          items: [{ sku: 'sku_F07j4svNDL4kN4', quantity: count }],
+          items: [{ sku: "sku_F07j4svNDL4kN4", quantity: count }],
           successUrl: `http://localhost:3000/order/dish/10/confirmation`,
-          cancelUrl: 'https://example.com/cancel',
+          cancelUrl: "https://example.com/cancel"
         })
         .then(result => {
-          console.log('where am I?!');
+          console.log("where am I?!");
           // If `redirectToCheckout` fails due to a browser or network
           // error, display the localized error message to your customer
           // using `result.error.message`.
@@ -65,6 +67,21 @@ function OrderForm({ dish, count }) {
           onChange={e => setAddress(e.target.value)}
         />
       </div>
+      <br />
+      <h1>OR</h1>
+      <br />
+      <div>
+        <h1 id="checkout-as"> Join the grannygrub family </h1>
+        <label>First time user? Register here: </label>
+        <Link to="/auth/signup">
+          <button> Sign Up </button>
+        </Link>
+        <br />
+        <label> Already a member? Login here:</label>
+        <Link to="/auth/login">
+          <button> Login </button>
+        </Link>
+      </div>
 
       {hasAttemptedToSubmit && (
         <div id="required-info">
@@ -72,7 +89,7 @@ function OrderForm({ dish, count }) {
           {!phoneNumber && <p>Please add your phone number</p>}
         </div>
       )}
-      <div>
+      <div id="checkout-order-btn">
         <button id="dish-checkout-button">order</button>
       </div>
     </form>

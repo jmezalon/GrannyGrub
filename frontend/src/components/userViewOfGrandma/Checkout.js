@@ -12,6 +12,7 @@ const Checkout = ({
   count,
   dish,
   price,
+  order_type,
   address,
   confirmation
 }) => {
@@ -22,33 +23,38 @@ const Checkout = ({
           <img src={dish.img_url} alt="dish" />
         </div>
 
-        <div id="name-price-time">
-          <p id="dish-name">
-            {count} {dish.name}(s)
-          </p>
-          <p className="checkout-order-info">Amount: ${price}</p>
-          <p className="checkout-order-info">
-            Order Type: {dish.timeframe}{" "}
-            {dish.type === "pick-up" ? "for" : "to"}{" "}
-            {dish.type === "pick-up" ? "Pick-up" : "Stay"}
+        <div id="checkout-left-side">
+          <h3> Order details: </h3>
+          <p id="checkout-dish-name">
+            {count} X {dish.name}
+            {count > 1 ? "s" : ""}
           </p>
 
-          <Link to={`/order/dish/${parseInt(dish.id)}`}>
-            <button id="edit-button">edit</button>
-          </Link>
+          <div className="checkout-order-info">
+            <p>Order Total: ${price}</p>
+            <p>Order Type: {order_type}</p>
+          </div>
+
+          <div>
+            <p> Need to make changes to this order? </p>
+            <Link to={`/order/dish/${parseInt(dish.id)}`}>
+              <button id="edit-button">edit</button>
+            </Link>
+          </div>
         </div>
 
-        <h4 id="provide-info-message" className="checkout-order-info">
-          Please provide your contact information below.
-        </h4>
+        <div id="checkout-right-side">
+          <h1 id="checkout-as"> Checkout As Guest: </h1>
+          <h6>Please provide your contact information below.</h6>
 
-        <div>
-          <OrderForm
-            full_name={full_name}
-            dish={dish}
-            count={count}
-            address={address}
-          />
+          <div>
+            <OrderForm
+              full_name={full_name}
+              dish={dish}
+              count={count}
+              address={address}
+            />
+          </div>
         </div>
       </div>
     </Modal>
