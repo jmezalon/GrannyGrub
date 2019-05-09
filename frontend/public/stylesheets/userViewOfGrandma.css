@@ -18,7 +18,7 @@
 
 .granny-profile-display {
   display: flex;
-  padding-left: 15%;
+  padding-left: 20%;
   padding-top: 30px;
 }
 /*
@@ -56,11 +56,10 @@
 }
 
 #main-info {
-  width: 350px;
-  height: 190px;
+  width: 50%;
+  max-height: 190px;
   grid-area: info;
   background-color: transparent;
-  /* border: 1px double #ed3941; */
   border-radius: 5px;
   color: black;
   padding: 15px;
@@ -122,9 +121,17 @@
 #granny_name {
   font-size: 25px;
   font-family: "Libre Baskerville", serif;
-
-  border-bottom: 1px solid #ed3941;
+  font-weight: bold;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: #ed3941;
   color: white;
+}
+
+.fa-arrow-left {
+  font-size: 40px;
+  color: white;
+  margin-left: 50px;
 }
 
 .tag {

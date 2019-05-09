@@ -31,11 +31,9 @@ class GrandmaPage extends Component {
       <div className="user-view-granny-page">
         <div className="top-granny-profile">
           <div className="back-btn">
-            <button>
-              <Link to="/mainpage" id="back-link">
-                back to grandmas
-              </Link>
-            </button>
+            <Link to="/mainpage" id="back-link">
+              <i className="fas fa-arrow-left" />
+            </Link>
           </div>
           <div className="granny-profile-display">
             <div id="granny-img">
@@ -49,14 +47,14 @@ class GrandmaPage extends Component {
             <div id="main-info">
               <h3 id="granny_name"> Granny {grandma.first_name}</h3>
 
-              <p> Granny's Specialty: {grandma.cuisine_type} Cuisine</p>
+              <p> Specialty: {grandma.cuisine_type} Cuisine</p>
               <p>Quote: {grandma.bio}</p>
 
               {grandma.ispublic ? (
                 <div>
                   <p> Phone number: {grandma.phone_number} </p>
                   <p> Email: {grandma.email} </p>
-                  <p>{grandma.zip_code}</p>
+                  <p>Zip Code: {grandma.zip_code}</p>
                 </div>
               ) : (
                 <div>
