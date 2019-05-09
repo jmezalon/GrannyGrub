@@ -19,7 +19,7 @@ import GrandmaPageContainer from "./containers/GrandmaPageContainer.js";
 import DashboardContainer from "./containers/DashboardContainer";
 import UserDashboardContainer from "./containers/UserDashboardContainer";
 
-import About from "./components/about";
+import AboutUs from "./components/AboutUsPage/AboutUs";
 
 import { PrivateRoute, AuthRoute } from "./userauth/utils/privateRouting.js";
 
@@ -96,7 +96,7 @@ class App extends Component {
             )}
           />
           <Route exact path="/home" component={HomeContainer} />
-          <Route exact path="/about" component={About} />
+          <Route exact path="/about" component={AboutUs} />
           <Route exact path="/mainpage" component={MainPageContainer} />
           <PrivateRoute
             path={"/grandma/:id/dashboard"}

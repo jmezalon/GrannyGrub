@@ -1,6 +1,7 @@
 import React from "react";
+import TeamMember from "./TeamMember";
 
-const About = () => {
+const AboutUs = () => {
   return (
     <div className="about-page">
       <div className="about-card">
@@ -43,7 +44,7 @@ const About = () => {
           </p>
         </div>
       </div>
-      <div className="about-card">
+      <div className="team-about-card">
         <div className="about-image-div">
           <img
             alt="fried rice on pot"
@@ -53,38 +54,39 @@ const About = () => {
         <div className="about-info-div">
           <h1 id="card-header">The Team</h1>
           <div id="team">
-            <div className="team-member">
-              <p>Morteza</p>
-              <img src="https://media.licdn.com/dms/image/C4D03AQE9CB7TIg5eUw/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=l1cLjb7TPzeN93lo5oqdl4D-qPmMpVy8arjaaDARvkM" />
-              <a href="https://www.linkedin.com/in/morteza-khaki-a7b207175/">
-                LinkedIn
-              </a>
-              <br />
-              <a href="https://github.com/khakimorteza">GitHub</a>
-            </div>
-            <div className="team-member">
-              <p>Muna</p>
-              <img src="https://media.licdn.com/dms/image/C4E03AQGzTZdZzGbevA/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=dkis0-ZP5nd3A1yvP1GAX0yRpOiV05RaqSuYwKt_8zk" />
-              <a href="https://www.linkedin.com/in/muna-r-sharma/">LinkedIn</a>
-              <br />
-              <a href="https://github.com/munarsharma">GitHub</a>
-            </div>
-            <div className="team-member">
-              <p>Max</p>
-              <img src="https://media.licdn.com/dms/image/C5603AQGRdf5YV2R8_g/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=2vVK6MFkqAgYnsdmFQQxQSd-qrtDY2UsFUOvSE42yPA" />
-              <a href="https://www.linkedin.com/in/jean-mezalon/">LinkedIn</a>
-              <br />
-              <a href="https://github.com/jmezalon">GitHub</a>
-            </div>
-            <div className="team-member">
-              <p>Abid</p>
-              <img src="https://media.licdn.com/dms/image/C5603AQGwxa271VdxpQ/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=rc3ElUSnHFylChERC7B_ZHyFSiKtoE3WGMQVgW9LrsM" />
-              <a href="https://www.linkedin.com/in/abid-h-39626b140/">
-                LinkedIn
-              </a>
-              <br />
-              <a href="https://github.com/Ne0phite">GitHub</a>
-            </div>
+            <TeamMember
+              name="Morteza Khaki"
+              img={
+                "https://media.licdn.com/dms/image/C4D03AQE9CB7TIg5eUw/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=l1cLjb7TPzeN93lo5oqdl4D-qPmMpVy8arjaaDARvkM"
+              }
+              linkedin={"https://www.linkedin.com/in/morteza-khaki-a7b207175/"}
+              github={"https://github.com/khakimorteza"}
+            />
+            <TeamMember
+              name="Muna Sharma"
+              img={
+                "https://media.licdn.com/dms/image/C4E03AQGzTZdZzGbevA/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=dkis0-ZP5nd3A1yvP1GAX0yRpOiV05RaqSuYwKt_8zk"
+              }
+              linkedin={"https://www.linkedin.com/in/muna-r-sharma/"}
+              github={"https://github.com/munarsharma"}
+            />
+
+            <TeamMember
+              name="Jean Max Mezalon"
+              img={
+                "https://media.licdn.com/dms/image/C5603AQGRdf5YV2R8_g/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=2vVK6MFkqAgYnsdmFQQxQSd-qrtDY2UsFUOvSE42yPA"
+              }
+              linkedin={"https://www.linkedin.com/in/jean-mezalon/"}
+              github={"https://github.com/jmezalon"}
+            />
+            <TeamMember
+              name="Abid Hussain"
+              img={
+                "https://media.licdn.com/dms/image/C5603AQGwxa271VdxpQ/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=rc3ElUSnHFylChERC7B_ZHyFSiKtoE3WGMQVgW9LrsM"
+              }
+              linkedin={"https://www.linkedin.com/in/abid-h-39626b140/"}
+              github={"https://github.com/Ne0phite"}
+            />
           </div>
         </div>
       </div>
@@ -92,4 +94,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutUs;
