@@ -103,11 +103,6 @@ class MainPage extends Component {
       isDinner
     } = this.state;
 
-    if (isLunch && isDinner) {
-      isLunch = false;
-      isDinner = false;
-    }
-
     let dataObj = {
       cusineIds: cuisinesSelected,
       isPickup,
@@ -121,11 +116,6 @@ class MainPage extends Component {
         !isDelivery &&
         !isLunch &&
         !isDinner) ||
-      (!cuisinesSelected.length &&
-        isPickup &&
-        isDelivery &&
-        isLunch &&
-        isDinner) ||
       (!cuisinesSelected.length &&
         !isPickup &&
         isDelivery &&
@@ -308,7 +298,7 @@ class MainPage extends Component {
                     name="isDelivery"
                     onClick={this.handleClickMealType}
                   >
-                    Sit-Down{" "}
+                    Delivery{" "}
                   </button>
                 </div>
                 <div
