@@ -81,6 +81,8 @@
 }
 .filter-part2 {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   align-items: flex-end;
   margin-top: 1%;
 }
@@ -113,11 +115,11 @@
   width: 40%;
 }
 
-/* .search-address {
+.search-address {
   width: 35%;
-  margin-left: 6%;
-  margin-top: 3.9%;
-} */
+  margin-left: 5%;
+  margin-bottom: 0.2%;
+}
 
 .search-address input {
   width: 100%;

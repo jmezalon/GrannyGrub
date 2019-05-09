@@ -13,7 +13,7 @@ class Navbar extends Component {
             <img id="logo" alt="" src={logo} />
           </NavLink>
         </div>
-        {this.props.isOrdering ? (
+        {this.props.location.pathname === "/mainpage" ? (
           <div className="middle-options">
             <NavLink to="/auth/signup">
               <h1 onClick={this.props.handleUserSignUpType}>
