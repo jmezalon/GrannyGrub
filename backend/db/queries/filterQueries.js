@@ -1,21 +1,21 @@
-const db = require("../connection");
+const db = require('../connection');
 
 const filterByCuisineMap = (req, res, next) => {
   cuisine_id = parseInt(req.params.id);
 
   db.any(
-    "SELECT users.id AS id, longitude, latitude, first_name, last_name, profile_pic, cuisines.type AS cuisine_type FROM users LEFT JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.cuisine_id = $1 GROUP BY users.id, longitude, latitude, first_name, last_name, cuisines.type",
+    'SELECT users.id AS id, longitude, latitude, first_name, last_name, profile_pic, cuisines.type AS cuisine_type FROM users LEFT JOIN cuisines ON cuisines.id = users.cuisine_id WHERE users.cuisine_id = $1 GROUP BY users.id, longitude, latitude, first_name, last_name, cuisines.type',
     [cuisine_id]
   )
     .then(grandmas => {
       res.status(200).json({
-        status: "success",
+        status: 'success',
         grandma: grandmas,
-        message: "filtered by cuisine"
+        message: 'filtered by cuisine',
       });
     })
     .catch(err => {
-      console.log("error", err);
+      console.log('error', err);
       next(err);
     });
 };
@@ -23,14 +23,14 @@ const filterByCuisineMap = (req, res, next) => {
 const filterByTypeAndCuisine = (req, res, next) => {
   console.log(req.body);
   let { isPickup, isDelivery, isLunch, isDinner, cusineIds } = req.body;
-  let deliveryOption = "";
-  let mealTime = "";
+  let deliveryOption = '';
+  let mealTime = '';
   let cuisineQueryString = [];
   cusineIds.forEach(cusine_id => {
-    cuisineQueryString.push("users.cuisine_id = " + cusine_id);
+    cuisineQueryString.push('users.cuisine_id = ' + cusine_id);
   });
 
-  let queryString = "(" + cuisineQueryString.join(" OR ") + ")";
+  let queryString = '(' + cuisineQueryString.join(' OR ') + ')';
 
   if (isPickup && !isDelivery && !isLunch && !isDinner) {
     queryString = !cusineIds.length
@@ -38,84 +38,88 @@ const filterByTypeAndCuisine = (req, res, next) => {
       : queryString.concat(` AND users.ispickup = TRUE`);
   } else if (!isPickup && !isDelivery && !isLunch && isDinner) {
     if (!cusineIds.length) {
-      queryString = "";
+      queryString = '';
     }
+
     mealTime = "HAVING 'Dinner' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (!isPickup && !isDelivery && isLunch && !isDinner) {
     if (!cusineIds.length) {
-      queryString = "";
+      queryString = '';
     }
+
     mealTime = "HAVING 'Lunch' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (!isPickup && !isDelivery && isLunch && isDinner) {
     if (!cusineIds.length) {
-      queryString = "";
+      queryString = '';
     }
+
     mealTime =
       "HAVING 'Lunch' = ANY(ARRAY_AGG(dishes.timeframe)) AND 'Dinner' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (isPickup && isDelivery && !isLunch && !isDinner) {
-    deliveryOption = "users.isdelivery = TRUE AND users.ispickup = FALSE";
+    deliveryOption = 'users.isdelivery = TRUE AND users.ispickup = FALSE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
-    mealTime = "";
+      : queryString.concat(' AND ' + deliveryOption);
+    mealTime = '';
   } else if (!isPickup && isDelivery && isLunch && !isDinner) {
-    deliveryOption = "users.isdelivery = TRUE";
+    deliveryOption = 'users.isdelivery = TRUE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
+      : queryString.concat(' AND ' + deliveryOption);
     mealTime = "HAVING 'Lunch' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (!isPickup && isDelivery && !isLunch && isDinner) {
-    deliveryOption = "users.isdelivery = TRUE";
+    deliveryOption = 'users.isdelivery = TRUE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
+      : queryString.concat(' AND ' + deliveryOption);
     mealTime = "HAVING 'Dinner' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (isPickup && !isDelivery && isLunch && !isDinner) {
-    deliveryOption = "users.ispickup = TRUE";
+    deliveryOption = 'users.ispickup = TRUE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
+      : queryString.concat(' AND ' + deliveryOption);
     mealTime = "HAVING 'Lunch' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (isPickup && !isDelivery && !isLunch && isDinner) {
-    deliveryOption = "users.ispickup = TRUE";
+    deliveryOption = 'users.ispickup = TRUE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
+      : queryString.concat(' AND ' + deliveryOption);
     mealTime = "HAVING 'Dinner' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (isPickup && !isDelivery && isLunch && isDinner) {
-    deliveryOption = "users.ispickup = TRUE";
+    deliveryOption = 'users.ispickup = TRUE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
+      : queryString.concat(' AND ' + deliveryOption);
     mealTime =
       "HAVING 'Lunch' = ANY(ARRAY_AGG(dishes.timeframe)) AND 'Dinner' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (!isPickup && isDelivery && isLunch && isDinner) {
-    deliveryOption = "users.isdelivery = TRUE";
+    deliveryOption = 'users.isdelivery = TRUE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
+      : queryString.concat(' AND ' + deliveryOption);
     mealTime =
       "HAVING 'Lunch' = ANY(ARRAY_AGG(dishes.timeframe)) AND 'Dinner' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (isPickup && isDelivery && isLunch && isDinner) {
-    deliveryOption = "users.isdelivery = TRUE AND users.ispickup = FALSE";
+    deliveryOption = 'users.isdelivery = TRUE AND users.ispickup = FALSE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
+      : queryString.concat(' AND ' + deliveryOption);
     mealTime =
       "HAVING 'Lunch' = ANY(ARRAY_AGG(dishes.timeframe)) AND 'Dinner' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (isPickup && isDelivery && !isLunch && isDinner) {
-    deliveryOption = "users.isdelivery = TRUE AND users.ispickup = FALSE";
+    deliveryOption = 'users.isdelivery = TRUE AND users.ispickup = FALSE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
+      : queryString.concat(' AND ' + deliveryOption);
     mealTime = "HAVING 'Dinner' = ANY(ARRAY_AGG(dishes.timeframe))";
   } else if (isPickup && isDelivery && isLunch && !isDinner) {
-    deliveryOption = "users.isdelivery = TRUE AND users.ispickup = FALSE";
+    deliveryOption = 'users.isdelivery = TRUE AND users.ispickup = FALSE';
     queryString = !cusineIds.length
       ? deliveryOption
-      : queryString.concat(" AND " + deliveryOption);
+      : queryString.concat(' AND ' + deliveryOption);
     mealTime = "HAVING 'Lunch' = ANY(ARRAY_AGG(dishes.timeframe))";
   }
+
   if (queryString !== "") {
     let x = queryString;
     queryString = "WHERE " + x;
@@ -126,7 +130,7 @@ const filterByTypeAndCuisine = (req, res, next) => {
   db.any(
     `SELECT users.id AS id, longitude, latitude,
     first_name, last_name,  profile_pic, ARRAY_AGG(dishes.timeframe)
-    AS timeframes, cuisines.type AS cuisine_type, users.isdelivery AS delivery, users.ispickup AS pickup
+    AS timeframes, cuisines.type AS cuisine_type, users.isdelivery AS delivery, users.ispickup AS pickup, ARRAY_AGG(dishes.img_url) AS dishImgs
     FROM users
     LEFT JOIN dishes ON users.id = dishes.user_id
     LEFT JOIN cuisines ON cuisines.id = users.cuisine_id ${queryString}

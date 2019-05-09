@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import icon from "../../assets/icon.png";
-import axios from "axios";
-import MapView from "./MapView";
+import React, { Component } from 'react';
+import icon from '../../assets/icon.png';
+import axios from 'axios';
+import MapView from './MapView';
 
 class ListView extends Component {
   render() {
     let { grandmas, handleClick, handleGrandmaListItemHover } = this.props;
 
     const grannies = grandmas.map(granny => {
-      if (!granny.dishimgs.length) return null;
+      // if (!granny.dishimgs.length) return null;
 
       return (
         <div
