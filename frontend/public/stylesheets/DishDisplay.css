@@ -24,10 +24,10 @@
 }
 
 .dish-view {
-  margin: 2%;
+  /* margin: 2%; */
   padding: 3px;
   display: grid;
-  grid-template-columns: 5% 60% 35%;
+  grid-template-columns: 1% 67% 30%;
   grid-template-rows: 15% 65% 20%;
   grid-template-areas:
     " leftside leftside rightside  "
@@ -41,7 +41,7 @@
   margin: 1px;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 20% 50% 30%;
+  grid-template-rows: 25% 50% 25%;
   grid-template-areas:
     " dishheader dishheader   "
     " dishInfo dishInfo  "
@@ -93,8 +93,14 @@
 }
 
 .dish-right-side {
+  padding-top: 10px;
+}
+
+.dish-right-side img {
   grid-area: rightside;
   margin: 1px;
+  height: 115px;
+  width: 115px;
   object-fit: cover;
 }
 
