@@ -26,13 +26,14 @@
   margin-left: 10%;
 }
 #grandma-navbar {
-  margin-right: 10%;
+  display: flex;
+  width: 30%;
 }
 
 #grandma-navbar h1 {
   font-family: Futura;
   font-size: 15px;
-  color: #f23232;
+  color: gray;
 }
 .middle-options {
   width: 60%;
@@ -42,7 +43,7 @@
 .middle-options h1 {
   font-family: Futura;
   font-size: 15px;
-  color: #f23232;
+  color: gray;
 }
 
 .auth-div {
