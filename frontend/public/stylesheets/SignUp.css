@@ -20,7 +20,19 @@
 }
 
 .side-signup p {
-  color: red;
+  color: white;
+  width: 100%;
+  height: 22px;
+  font-family: Futura;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.5;
+  letter-spacing: normal;
+  padding-left: 10px;
+  color: #ffffff;
 }
 
 .signup-login a {
@@ -30,6 +42,9 @@
 .side-signup {
   background: linear-gradient(rgb(52, 49, 49, 0.2), rgb(7, 7, 7, 0.55)),
     url("https://civileats.com/wp-content/uploads/2018/03/180316-grandmas-cook-top1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
 }
 
 .signup-div {

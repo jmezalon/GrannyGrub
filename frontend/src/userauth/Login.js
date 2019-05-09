@@ -8,7 +8,7 @@ export default class Login extends React.Component {
     return (
       <div className="grandma-signup">
         <div className="side-signup">
-          <h1>GrannyGrub</h1>
+          <h1>grannygrub</h1>
           <p>
             Where hungry New Yorkers are connected with professional Grandmas
           </p>
@@ -23,7 +23,7 @@ export default class Login extends React.Component {
           </div>
           <form className="login-form" onSubmit={handleLogin}>
             <div>
-              <label for="email">
+              <label htmlFor="email">
                 <b>Email: </b>
               </label>{" "}
               <input
@@ -35,7 +35,7 @@ export default class Login extends React.Component {
               />
             </div>
             <div>
-              <label for="password">
+              <label htmlFor="password">
                 <b>Password: </b>
               </label>{" "}
               <input
