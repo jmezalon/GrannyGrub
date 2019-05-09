@@ -93,7 +93,7 @@ INSERT INTO cuisines (type, description, img_url) VALUES ('Chinese', 'we have de
 ('Italian', 'not just pizza, but a whole lot more', 'https://serafinamia.com/wp-content/uploads/2018/09/10-Italian-Fun-Facts-The-Food-Fashion-and-Culture-of-Italy.jpg');
 
 INSERT INTO cuisines (type) VALUES ('Indian'),
-('Greek'), ('Polish'),('Mexican'), ('Thai'), ('Turksih'),('Middle-Eastern'), ('Korean'), ('Japanese'),('Bengali');
+('Greek'), ('Polish'),('Mexican'), ('Thai'), ('Turkish'),('Middle-Eastern'), ('Korean'), ('Japanese'),('Bengali'), ('Southern'),('American');
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic) VALUES
 ('Max', 'Mezalon', 'jmezalon@gmail.com', '123-234,4067', false, 1234, 'https://media.licdn.com/dms/image/C5603AQGRdf5YV2R8_g/profile-displayphoto-shrink_200_200/0?e=1559779200&v=beta&t=RyKqHF_KvRhK4pD2Di5ywRbTVql5MYD_1iHS7ASkoUM'),
@@ -127,14 +127,10 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 ('Ibtisam', 'Amous', 'samAmous@gmail.com','929-964-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/29496114_10155658796157017_1511877918970609664_n.jpg?_nc_cat=101&_nc_ht=scontent-lga3-1.xx&oh=0cf95c3d108fecfb0dfdcd9b9e3b6f78&oe=5D3883AA', 87 ,'Magnolia Street, Flushing ', 11355, 'I really love my grandchildren!!', 40.751021, -73.821798, false, true, true, 10);
 
 
-INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES (' fillin', 'fillin', 'more@gmail.com', '959-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/283973_435238149860470_307754462_n.jpg?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=b7aec7361b720688c301571f2adaed8e&oe=5D2A05EC',144, ' Marsh St, Bronx,', 10453, 'I cook what I love!', 40.852346, -73.91222, true, false, true, 7),
-('fillin', 'fillin', 'fillin@gmail.com','927-951-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p228x119/431084_2790698652891_1639254729_n.jpg?_nc_cat=103&_nc_ht=scontent-lga3-1.xx&oh=c358e4cb164217af42c59aa134bb0773&oe=5D4743DD', 94,' Wild Horse Drive, Brooklyn', 11233, 'I really love my grandchildren!!', 40.67783, -73.919096, false, false, true,7),
+INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES (' Jeana', 'Azar', 'phulla@gmail.com', '959-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/37181317_10212342874474409_7526437566376050688_n.jpg?_nc_cat=111&_nc_ht=scontent-lga3-1.xx&oh=1d0254b068bc35aa98d24e8274030941&oe=5D651B0B', 144, ' Marsh St, Bronx,', 10453, 'I cook what I love!', 40.852346, -73.91222, true, false, true, 14),
+('Jasmine', 'Gaines', 'fillin@gmail.com','927-951-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/170791_185973308103983_698815_o.jpg?_nc_cat=109&_nc_ht=scontent-lga3-1.xx&oh=bf7ec26dc132edfa02217a4d163a5f93&oe=5D5E4242', 94,' Wild Horse Drive, Brooklyn', 11233, 'I really love my grandchildren!!', 40.67783, -73.919096, false, false, true, 15),
 ('Nipapun', 'Tanasootr', 'NTanasootr@gmail.com','909-164-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/53480594_386776818782513_2756106975136710656_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=e6c7d641b2536b2270b5334caf7416d8&oe=5D2ADEBE', 9825 ,'West Mammoth Drive, New York', 10011, 'Let me cook for you!!!', 40.741625, -74.000479, true, false, true, 8);
 
-
-INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, cuisine_id) VALUES ('fill in ', 'fillin', 'moresomething@gmail.com', '959-888-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/283973_435238149860470_307754462_n.jpg?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=b7aec7361b720688c301571f2adaed8e&oe=5D2A05EC',144, ' Marsh St, Bronx,', 10453, 'I cook what I love!', 40.852346, -73.91222, 7),
-('fillin', 'fillin', 'fillinSomething@gmail.com','917-951-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p228x119/431084_2790698652891_1639254729_n.jpg?_nc_cat=103&_nc_ht=scontent-lga3-1.xx&oh=c358e4cb164217af42c59aa134bb0773&oe=5D4743DD', 94,' Wild Horse Drive, Brooklyn', 11233, 'I really love my grandchildren!!', 40.67783, -73.919096, 7),
-('Nipapun', 'Tanasootr', 'Noanasootr@gmail.com','999-164-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/53480594_386776818782513_2756106975136710656_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=e6c7d641b2536b2270b5334caf7416d8&oe=5D2ADEBE', 9825 ,'West Mammoth Drive, New York', 10011, 'Let me cook for you!!!', 40.741625, -74.000479, 8);
 
 
 
@@ -143,9 +139,9 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 ('Japanese okonomiyaki', 'This Japanese pancake is full of authentic flavours and textures, with fresh squid or prawns and a mirin and a honey sauce. Garnish with bonito flakes', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/12/okonomiyaki.jpg?itok=xyEqSNSU', 9.99,'2019-05-21','Lunch',9),
 ('Taramasalata', 'This creamy blend of pink or white fish roe, with either a potato or bread base, is best with a drizzle of virgin olive oil or a squeeze of lemon.', 12, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/taramasalata.jpg', 7.99,'2019-05-21','Lunch', 6),
 ('Japanese katsudon', 'Use up leftovers and provide a hearty meal with this tasty pork katsudon. Using our tonkatsu recipe, it is great to make the day after a Japanese feast', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/04/the-day-after-dish-katsudon.jpg?itok=xxTIulFS', 8.89,'2019-05-21','Dinner', 10),
+('Chinese chicken Soup', 'Yum!', 5, 1, 'https://www.waitrose.com/content/dam/waitrose/recipes/images/g/Ginger-chicken-noodle-soup.jpg/_jcr_content/renditions/cq5dam.thumbnail.400.400.png', 10.75, '2019-05-21','Dinner', 7),
+('Chinese orange chicken', 'white rice with chicken and scallion', 5, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 5.73, '2019-05-22','Lunch',6),
 
-('chinese orange chicken', 'white rice with chicken and scallion', 5, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 5.73, '2019-05-22','Lunch',6),
-('egg rolls', 'great egg rools, you can even add chicken to it.', 5, 1, 'https://i.ytimg.com/vi/MoZAkumC7ps/hqdefault.jpg', 3.75, '2019-05-21','Dinner', 7),
 
 ('rice with beans gravy and legume', 'the name says it all, now just taste it and see', 6, 2, 'https://i.ytimg.com/vi/ojqGPMv4rBw/maxresdefault.jpg', 9.99,'2019-05-23','Lunch',6),
 ('fritay', 'you will enjoy this, better than mcdonals fries', 5, 2, 'https://pbs.twimg.com/media/C5eanfJWMAAV4Ot.jpg', 7.89,'2019-05-27','Dinner',8)
@@ -178,8 +174,8 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, date
 ('Mexican bake', 'Raid your storecupboard and try out this fresh idea for canned beans with fajita spices - top with tortillas and cheese', 5, 7, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1096460_11.jpg?itok=LCx-8aST', 7.75, '2019-05-22','Dinner',8),
 
 -- thai
-('Thai pork & peanut curry', 'Use fragrant hot red curry paste as the base to this coconut curry dish with baby sweetcorn, coriander and soy', 5, 8, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1173688_12.jpg?itok=SupgDzZY', 7.89,'2019-05-22','Dinner',8),
-('Thai chicken curry', 'Peel shallots or onion and cut in half from top to root. Lay the cut sides flat on a board and thinly slice.', 7, 8, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1035606_11.jpg?itok=3ny7oaux', 6.89,'2019-05-21','Dinner',6);
+('Thai pork & peanut curry', 'Use fragrant hot red curry paste as the base to this coconut curry dish with baby sweetcorn, coriander and soy', 22, 8, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1173688_12.jpg?itok=SupgDzZY', 7.89,'2019-05-22','Dinner',8),
+('Thai chicken curry', 'Peel shallots or onion and cut in half from top to root. Lay the cut sides flat on a board and thinly slice.', 22, 8, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1035606_11.jpg?itok=3ny7oaux', 6.89,'2019-05-21','Dinner',6);
 
 
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe,quantity) VALUES
@@ -190,14 +186,14 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 -- filipino
 ('Pork & caramelised pineapple adobo', 'This Filipino adobo with sharp, salty-sweet notes is well worth the effort. It is a hearty stew with chunks of melt-in-the-mouth pork belly', 7, 13, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/pork-adobo.jpg?itok=o0Eztwxk', 6.89,'2019-05-21','Dinner',8);
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe,quantity) VALUES
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe, quantity) VALUES
 
 -- bengali
 ('Bengali mustard fish', 'A simple seafood curry of white fish, tomatoes and whole green chillies that is deliciously spicy, healthy and quick enough for every day', 7, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/bengali-mustard-fish_0.jpg?itok=KfunH1Zb', 5.73, '2019-05-21','Lunch',8),
 
 -- southern
-('Southern-style mac ‘n’ cheese', 'Round out this cheesy pasta classic with roasted sweet potato, a staple food in the southern US states, and turn up the temperature with a pinch of cayenne', 7, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/12/mac-n-cheese.jpg?itok=vs4eBfiK', 10.89,'2019-05-21','Dinner',8),
-('Southern fried chicken', 'Great for feeding a crowd, simply kick back, enjoy and relax this fried chicken recipe with homemade slaw', 6, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273636_8.jpg?itok=VxE-1zWU', 8.9,'2019-05-21', 'Lunch',7);
+('Southern-style mac ‘n’ cheese', 'Round out this cheesy pasta classic with roasted sweet potato, a staple food in the southern US states, and turn up the temperature with a pinch of cayenne', 20, 14, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/12/mac-n-cheese.jpg?itok=vs4eBfiK', 10.89,'2019-05-21','Dinner',8),
+('Southern fried chicken', 'Great for feeding a crowd, simply kick back, enjoy and relax this fried chicken recipe with homemade slaw', 21, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273636_8.jpg?itok=VxE-1zWU', 8.9,'2019-05-21', 'Lunch',7);
 
 
 
