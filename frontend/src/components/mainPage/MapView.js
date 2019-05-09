@@ -203,9 +203,10 @@ class MapView extends Component {
       });
       const handleClick = this.props.handleClick.bind(this);
       window.google.maps.event.addListener(infoWindow, "domready", function() {
-        document
-          .getElementById(grandma.id)
-          .addEventListener("click", function(e) {
+        console.log("infoWindow", "domready", grandma.id);
+        const popup = document.getElementById(grandma.id);
+        popup &&
+          popup.addEventListener("click", function(e) {
             handleClick(grandma.id);
           });
       });
