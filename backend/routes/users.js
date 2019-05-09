@@ -12,7 +12,7 @@ const {
   loginUser,
   getAllUsersListView,
   isLoggedIn
-} = require("../db/queries/UserQueries.js");
+} = require("../db/queries/userQueries.js");
 
 const { loginRequired } = require("../auth/helpers");
 const passport = require("../auth/local");
