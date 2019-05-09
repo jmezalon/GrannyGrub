@@ -39,7 +39,7 @@ class SignUp extends React.Component {
     return (
       <div className="grandma-signup">
         <div className="side-signup">
-          <h1>GrannyGrub</h1>
+          <h1>grannygrub</h1>
           <p>
             Where hungry New Yorkers are connected with professional Grandmas
           </p>
@@ -55,7 +55,7 @@ class SignUp extends React.Component {
 
           <form className="signup-form" onSubmit={handleRegisterUser}>
             <div className="full-name">
-              <label for="first-name">
+              <label htmlFor="first-name">
                 <b>First name: </b>
               </label>{" "}
               <input
@@ -65,7 +65,7 @@ class SignUp extends React.Component {
                 type="text"
                 value={first_name}
               />
-              <label for="last-name">
+              <label htmlFor="last-name">
                 <b>Last name: </b>
               </label>{" "}
               <input
@@ -78,7 +78,7 @@ class SignUp extends React.Component {
             </div>
 
             <div className="contact-info">
-              <label for="email">
+              <label htmlFor="email">
                 <b>Email: </b>
               </label>{" "}
               <input
@@ -88,7 +88,7 @@ class SignUp extends React.Component {
                 value={email}
                 type="text"
               />
-              <label for="phone-number">
+              <label htmlFor="phone-number">
                 <b>Phone number: </b>
               </label>{" "}
               <input
@@ -102,7 +102,7 @@ class SignUp extends React.Component {
 
             {isGrandma ? (
               <div>
-                <label for="cuisine">
+                <label htmlFor="cuisine">
                   <b>Cuisines selection: </b>
                 </label>{" "}
                 <div className="cuisine-selection">
@@ -114,7 +114,7 @@ class SignUp extends React.Component {
                   </select>
                 </div>
                 <div className="address">
-                  <label for="address">
+                  <label htmlFor="address">
                     <b>address: </b>
                   </label>{" "}
                   <span>
@@ -153,7 +153,7 @@ class SignUp extends React.Component {
               ""
             )}
             <div className="">
-              <label for="password">
+              <label htmlFor="password">
                 <b>Password: </b>
               </label>{" "}
               <input
