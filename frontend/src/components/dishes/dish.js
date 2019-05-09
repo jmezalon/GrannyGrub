@@ -1,8 +1,9 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 const Dish = ({ dish, handleClick }) => {
   let dish_name = dish.name.toUpperCase();
+
   return (
     <div id="dish-container">
       <div className="dish-view" key={dish.dish_id}>
@@ -28,24 +29,24 @@ const Dish = ({ dish, handleClick }) => {
               }
             >
               <button id="orderBtn">
-                {" "}
+                {' '}
                 {dish.remaining_quantity === 0
-                  ? "sold out"
-                  : dish.type === "sit-down"
-                  ? "order"
-                  : "order"}{" "}
+                  ? 'sold out'
+                  : dish.type === 'sit-down'
+                  ? 'order'
+                  : 'order'}{' '}
               </button>
             </Link>
 
             <div className="dish-quantity">
               <p className="remaining-quantity">
-                {dish.type === "pick-up"
-                  ? "Available Dishes:"
-                  : "Available Dishes:"}{" "}
+                {dish.type === 'pick-up'
+                  ? 'Available Dishes:'
+                  : 'Available Dishes:'}{' '}
                 {dish.remaining_quantity === null
                   ? dish.quantity
-                  : dish.remaining_quantity}{" "}
-                / {dish.quantity}{" "}
+                  : dish.remaining_quantity}{' '}
+                / {dish.quantity}{' '}
               </p>
             </div>
           </div>
