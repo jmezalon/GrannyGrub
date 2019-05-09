@@ -56,9 +56,8 @@ const addNewDish = (req, res, next) => {
   // req.body.date = req.body.date ? req.body.date : null;
   // req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
-
   db.one(
-    'INSERT INTO dishes( name, description,type, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${type}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity}) RETURNING *',
+    "INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${type}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity}) RETURNING *",
     {
       name: req.body.name,
       description: req.body.description,
@@ -67,7 +66,6 @@ const addNewDish = (req, res, next) => {
       img_url: req.body.img_url,
       price: req.body.price,
       date: req.body.date,
-      type: req.body.type,
       timeframe: req.body.timeframe,
       quantity: parseInt(req.body.quantity)
     }
@@ -75,18 +73,16 @@ const addNewDish = (req, res, next) => {
     .then(dish => {
       console.log(dish);
       db.none(
-        'INSERT INTO label_dishes(dish_id, label_id) VALUES (${dish_id}, ${label_id})',
+        "INSERT INTO label_dishes(dish_id, label_id) VALUES (${dish_id}, ${label_id})",
         {
           dish_id: parseInt(dish.id),
-          label_id: parseInt(req.body.label_id),
+          label_id: parseInt(req.body.label_id)
         }
       );
     })
     .then(() => {
       res.status(200).json({
-
         message: "success"
-
       });
     })
 
@@ -108,7 +104,7 @@ const getSingleDish = (req, res, next) => {
   const dish_id = parseInt(req.params.dish_id);
 
   db.one(
-    "SELECT d.*, u.first_name, u.last_name, u.profile_pic, u.building_number, u.address, u.zip_code FROM dishes AS d FULL JOIN users AS u ON d.user_id = u.id  WHERE d.id=$1",
+    "SELECT DISTINCT d.*, u.first_name, u.ispickup, u.last_name, u.profile_pic, u.building_number, u.address, u.zip_code, ARRAY_AGG(l.label_name) AS lable_list FROM dishes AS d FULL JOIN users AS u ON d.user_id = u.id FULL JOIN label_dishes AS l_d ON l_d.dish_id = d.id JOIN labels AS l ON l_d.label_id  = l.id WHERE d.id=$1 GROUP BY u.id, d.id",
     [dish_id]
   )
     .then(dish => {

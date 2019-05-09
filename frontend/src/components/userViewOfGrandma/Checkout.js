@@ -12,6 +12,7 @@ const Checkout = ({
   count,
   dish,
   price,
+  address,
   confirmation
 }) => {
   return (
@@ -20,11 +21,6 @@ const Checkout = ({
         <div id="dish-image-order">
           <img src={dish.img_url} alt="dish" />
         </div>
-        <h4 id="provide-info-message" className="checkout-order-info">
-          Please provide your contact information below.
-        </h4>
-
-        <OrderForm full_name={full_name} dish={dish} count={count} />
 
         <div id="name-price-time">
           <p id="dish-name">
@@ -36,11 +32,24 @@ const Checkout = ({
             {dish.type === "pick-up" ? "for" : "to"}{" "}
             {dish.type === "pick-up" ? "Pick-up" : "Stay"}
           </p>
+
+          <Link to={`/order/dish/${parseInt(dish.id)}`}>
+            <button id="edit-button">edit</button>
+          </Link>
         </div>
 
-        <Link to={`/order/dish/${parseInt(dish.id)}`}>
-          <button id="edit-button">edit</button>
-        </Link>
+        <h4 id="provide-info-message" className="checkout-order-info">
+          Please provide your contact information below.
+        </h4>
+
+        <div>
+          <OrderForm
+            full_name={full_name}
+            dish={dish}
+            count={count}
+            address={address}
+          />
+        </div>
       </div>
     </Modal>
   );

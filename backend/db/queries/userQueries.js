@@ -48,6 +48,7 @@ isPickup, price,timeframe, date, quantity, remaining_quantity,
 isGrandma, users.id AS user_id FROM dishes
 JOIN users ON users.id = dishes.user_id WHERE dishes.user_id= $1
 GROUP BY dishes.id, users.id`,
+
     [userId]
   )
     .then(dishes => {
@@ -109,7 +110,7 @@ const createNewUser = (req, res, next) => {
   req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
   db.none(
-    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id, latitude, longitude) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id},${latitude}, ${longitude})",
+    "INSERT INTO users( first_name, last_name, email, phone_number, isGrandma, password_digest, building_number, address, zip_code, cuisine_id, latitude, longitude, isDelivery) VALUES( ${first_name}, ${last_name}, ${email}, ${phone_number}, ${isGrandma}, ${password}, ${building_number}, ${address}, ${zip_code}, ${cuisine_id},${latitude}, ${longitude}, ${isDelivery})",
 
     {
       first_name: req.body.first_name,
@@ -123,7 +124,8 @@ const createNewUser = (req, res, next) => {
       zip_code: req.body.zip_code,
       cuisine_id: req.body.cuisine_id,
       latitude: Number(req.body.latitude),
-      longitude: Number(req.body.longitude)
+      longitude: Number(req.body.longitude),
+      isDelivery: req.body.isDelivery
     }
   )
     .then(() => {
