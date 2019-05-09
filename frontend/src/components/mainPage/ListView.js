@@ -6,9 +6,10 @@ import MapView from "./MapView";
 class ListView extends Component {
   render() {
     let { grandmas, handleClick, handleGrandmaListItemHover } = this.props;
-    // if (!grandmas.length) return null;
 
     const grannies = grandmas.map(granny => {
+      if (!granny.dishimgs.length) return null;
+
       return (
         <div
           className="list-view-item"
@@ -17,7 +18,7 @@ class ListView extends Component {
           onMouseLeave={() => handleGrandmaListItemHover(false)}
           onClick={() => handleClick(granny.id)}
         >
-          <img src={granny.profile_pic} alt="" />
+          <img src={granny.dishimgs[0]} alt="" />
           <div className="grandma-list-info">
             <h3>Grandma {granny.last_name}</h3>
             <p>{granny.cuisine_type} style</p>
