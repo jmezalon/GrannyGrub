@@ -27,11 +27,16 @@ class Navbar extends Component {
         ) : (
           <div id="grandma-navbar">
             {this.props.location.pathname === "/" ? (
-              <Link to="/auth/signup">
-                <h1 onClick={this.props.handleUserSignUpType2}>
-                  Become a granny
-                </h1>
-              </Link>
+              <div className="middle-options">
+                <Link to="/auth/signup">
+                  <h1 onClick={this.props.handleUserSignUpType2}>
+                    Become a granny
+                  </h1>
+                </Link>
+                <NavLink to="/about">
+                  <h1>About us</h1>
+                </NavLink>
+              </div>
             ) : (
               ""
             )}
