@@ -17,8 +17,8 @@ class MainPage extends Component {
     isDinner: false,
     cuisinesSelected: [],
     address: "",
-    center: { lat: 40.692053, lng: -73.991104 },
-    zoom: 12.5,
+    center: { lat: 40.702049, lng: -73.944221 },
+    zoom: 13,
     hoveredGrandmaId: false,
     selectedAll: true
   };
