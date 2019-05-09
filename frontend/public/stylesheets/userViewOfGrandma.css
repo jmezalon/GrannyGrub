@@ -10,7 +10,7 @@
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 380px;
+  height: 300px;
   display: flex;
   box-sizing: content-box;
   object-fit: cover;
@@ -18,8 +18,8 @@
 
 .granny-profile-display {
   display: flex;
-  padding-left: 30%;
-  padding-top: 27px;
+  padding-left: 15%;
+  padding-top: 30px;
 }
 /*
 .granny-profile-display {
@@ -36,7 +36,7 @@
   grid-area: img;
   width: 220px;
   height: 200px;
-  border-radius: 13px;
+  border-radius: 50%;
   object-fit: cover;
   object-position: 50% 0;
   margin: 2px;
@@ -59,13 +59,19 @@
   width: 350px;
   height: 190px;
   grid-area: info;
-  background-color: white;
-  border: 1px double #ed3941;
-  border-radius: 3px;
-  color: #ed3941;
+  background-color: transparent;
+  /* border: 1px double #ed3941; */
+  border-radius: 5px;
+  color: black;
   padding: 15px;
   margin: 10px;
   font-family: "Cormorant Garamond", serif;
+}
+
+#main-info p {
+  font-size: 19px;
+  font-weight: bold;
+  color: white;
 }
 
 #back-link {
@@ -118,7 +124,7 @@
   font-family: "Libre Baskerville", serif;
 
   border-bottom: 1px solid #ed3941;
-  color: #1a4951;
+  color: white;
 }
 
 .tag {

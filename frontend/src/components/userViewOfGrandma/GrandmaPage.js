@@ -50,9 +50,7 @@ class GrandmaPage extends Component {
               <h3 id="granny_name"> Granny {grandma.first_name}</h3>
 
               <p> Granny's Specialty: {grandma.cuisine_type} Cuisine</p>
-              <p>
-                A little about granny {grandma.first_name}: {grandma.bio}
-              </p>
+              <p>Quote: {grandma.bio}</p>
 
               {grandma.ispublic ? (
                 <div>
@@ -63,7 +61,7 @@ class GrandmaPage extends Component {
               ) : (
                 <div>
                   <p> Email: {grandma.email} </p>
-                  <p>{grandma.zip_code}</p>
+                  <p>Zip Code: {grandma.zip_code}</p>
                 </div>
               )}
             </div>
