@@ -21,11 +21,11 @@ class GrandmaPage extends Component {
     let id = parseInt(this.props.match.params.id);
     if (!Object.values(grandma).length) return null;
 
-    if (dishes.length && !this.state.type) {
-      this.setState({
-        type: dishes[0].type
-      });
-    }
+    // if (dishes.length && !this.state.type) {
+    //   this.setState({
+    //     type: dishes[0].type
+    //   });
+    // }
 
     return (
       <div className="user-view-granny-page">
@@ -70,14 +70,7 @@ class GrandmaPage extends Component {
           </div>
         </div>
         <div>
-          <GrandmasDishes
-            dishes={this.props.dishes}
-            type={this.state.type}
-            handleClick={this.handleClick}
-            setSelectedDish={this.props.setSelectedDish}
-            getGrandmasDishes={this.props.getGrandmasDishes}
-            id={id}
-          />
+          <GrandmasDishes dishes={this.props.dishes} id={id} />
         </div>
       </div>
     );
