@@ -66,9 +66,11 @@ export const receiveOneDish = dish => {
 
 export const getOneDish = id => dispatch => {
   // let id = parseInt(this.props.match.params.id);
+
   axios
     .get(`/dishes/${id}`)
     .then(res => {
+      console.log("getting one dish");
       dispatch(receiveOneDish(res.data.dish));
     })
     .catch(err => {
