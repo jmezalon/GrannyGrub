@@ -10,11 +10,39 @@
 }
 
 .confirm-info-container > h1 {
-  font-size: 30px;
+  font-size: 35px;
+  font-family: Futura;
+  font-weight: bold;
+  color: #ed3941;
 }
 
 .confirm-granny-img {
   border-radius: 6%;
   margin: 0;
   height: 300px;
+  width: 90%;
+  object-fit: contain;
+}
+
+#confirm-user-info {
+}
+#confirm-user-info h3 {
+  font-family: HiraMinPro-W3;
+}
+
+#confirm-user-info h4 {
+  font-family: Futura;
+  color: #ed3941;
+}
+
+#confirm-user-info h5 {
+  font-family: HiraMinPro-W3;
+  font-size: 17px;
+}
+
+#confirm-user-info p {
+  font-family: HiraMinPro-W3;
+}
+
+#confirm-date {
 }

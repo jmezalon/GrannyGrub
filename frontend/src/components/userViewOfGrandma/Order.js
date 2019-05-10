@@ -77,7 +77,9 @@ class Order extends React.Component {
                       </button>
                     </div>
                   ) : (
-                    <button className="order-type-btns">Delivery</button>
+                    <button className="order-type-btns-selected">
+                      Delivery
+                    </button>
                   )}{" "}
                 </p>
               </div>
