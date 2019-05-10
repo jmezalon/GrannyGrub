@@ -1,17 +1,17 @@
-import axios from 'axios';
-import { GET_GRANDMAS_ORDERS, GOT_ERROR } from './actionTypes';
+import axios from "axios";
+import { GET_GRANDMAS_ORDERS, GOT_ERROR } from "./actionTypes";
 
 export const gotError = err => {
   return {
     type: GOT_ERROR,
-    payload: err,
+    payload: err
   };
 };
 
 const receiveAllOrders = orders => {
   return {
     type: GET_GRANDMAS_ORDERS,
-    payload: orders,
+    payload: orders
   };
 };
 
