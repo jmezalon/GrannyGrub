@@ -1,7 +1,7 @@
- DROP DATABASE IF EXISTS grannygrub;
-CREATE DATABASE grannygrub;
-
-\c grannygrub;
+--  DROP DATABASE IF EXISTS grannygrub;
+-- CREATE DATABASE grannygrub;
+--
+-- \c grannygrub;
 
 CREATE TABLE cuisines (
   id SERIAL PRIMARY KEY,
