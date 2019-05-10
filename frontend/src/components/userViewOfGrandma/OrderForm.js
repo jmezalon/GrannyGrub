@@ -13,6 +13,12 @@ function OrderForm({ dish, count }) {
     e.preventDefault();
 
     setHasAttemptedToSubmit(true);
+    let customSuccessUrl;
+    if (process.env.NODE_ENV !== "production") {
+      customSuccessUrl = `https://grannygrub.herokuapp.com/order/dish/6/confirmation`;
+    } else {
+      customSuccessUrl = `https://localhost:3000/order/dish/6/confirmation`;
+    }
 
     if (
       dish.quantity &&
@@ -25,7 +31,7 @@ function OrderForm({ dish, count }) {
       stripe
         .redirectToCheckout({
           items: [{ sku: "sku_F2eK1FqKuFI7aa", quantity: count }],
-          successUrl: `http://localhost:3000/order/dish/10/confirmation`,
+          successUrl: customSuccessUrl,
           cancelUrl: "https://example.com/cancel"
         })
         .then(result => {

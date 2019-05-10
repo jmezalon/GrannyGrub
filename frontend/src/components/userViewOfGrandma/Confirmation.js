@@ -19,7 +19,7 @@ const Confirmation = ({ location: { search } }) => {
       <div className="confirm-info-container">
         <h1>Order Summary</h1>
 
-        <img className="confirm-granny-img" src={dish.img_url} alt={"Kaira"} />
+        <img className="confirm-granny-img" src={dish.img_url} alt={"Wei"} />
 
         <div id="confirm-user-info">
           <h3>
