@@ -103,7 +103,7 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic, building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES
 
-('Debra ', 'Wei', 'grannanna@gmail.com', '123-999-4567', true, 1234, 'http://economists-pick-research.hktdc.com/resources/MI_Portal/Article/rp/2015/07/470473/1436836534321_eChinaSeniors2-p2i_470473.jpg', 47-10, 'Austell Pl, Long Island City', 11101, 'I love cooking and taking care of my young people.', 40.742442, -73.941235, false, false, true, 1),
+('Debra ', 'Wei', 'grannanna@gmail.com', '123-999-4567', true, 1234, 'http://economists-pick-research.hktdc.com/resources/MI_Portal/Article/rp/2015/07/470473/1436836534321_eChinaSeniors2-p2i_470473.jpg', 47-10, 'Austell Pl, Long Island City', 11101, 'I shop at Costco. Its much easier to make in bulk, trust me.', 40.742442, -73.941235, false, false, true, 1),
 ('Lindy', 'Joseph', 'granbubbu@yahoo.com', '123-999-0987', true, 1234, 'http://www.historymiami.org/wp-content/uploads/2017/12/gg-e1512752178541-265x300.jpg', 1463, 'E 96th St, Brooklyn NY', 11236, 'My grandson told me that my meals are delicious and I wanted to share my good cooking with everyone else to see themselves.',  40.637195, -73.894472, true, true, true, 2),
 ('Kaira', 'Olivier','mandygrannyu@hotmail.com', '123-219-4567', true, 1234,'https://steamuserimages-a.akamaihd.net/ugc/498028597176892886/1D8DB1CBEB5BF1F5BECEADB535572E4CBEDB1918/', 1250, 'Rogers Ave, Brooklyn NY', 11226, 'cooking is my life.', 40.639286, -73.951499, false, false, true, 3);
 
