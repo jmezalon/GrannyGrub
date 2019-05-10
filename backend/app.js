@@ -44,8 +44,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/upload", imageRouter);
 app.use("/labels", labelsRouter);
@@ -53,6 +53,9 @@ app.use("/dishes", dishesRouter);
 app.use("/cuisines", cuisinesRouter);
 app.use("/orders", ordersRouter);
 app.use("/filter", filterRouter);
+app.use("*", function(req, res, next) {
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

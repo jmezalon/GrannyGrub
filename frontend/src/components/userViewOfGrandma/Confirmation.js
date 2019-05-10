@@ -4,7 +4,13 @@ import { Modal } from "./Modal.js";
 // import queryString from "query-string";
 
 const Confirmation = ({ location: { search } }) => {
+  // componentDidMount() = {
+  //
+  //   //post request goes here
+  // };
+
   // TODO update our server side db.
+
   let dish = JSON.parse(window.localStorage.getItem("grandma")).dish;
   let count = JSON.parse(window.localStorage.getItem("grandma")).count;
   let name = JSON.parse(window.localStorage.getItem("grandma")).name;
@@ -19,7 +25,7 @@ const Confirmation = ({ location: { search } }) => {
       <div className="confirm-info-container">
         <h1>Order Summary</h1>
 
-        <img className="confirm-granny-img" src={dish.img_url} alt={"Kaira"} />
+        <img className="confirm-granny-img" src={dish.img_url} alt={"Wei"} />
 
         <div id="confirm-user-info">
           <h3>
