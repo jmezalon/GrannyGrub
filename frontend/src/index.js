@@ -10,15 +10,22 @@ import RootReducer from "./reducers/rootReducer";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 
-const store = createStore(
-  RootReducer,
-  {},
-  compose(
-    applyMiddleware(thunk, logger),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
-
+let store;
+if (process.env.NODE_ENV !== "production") {
+  // only in non prod.
+  store = createStore(
+    RootReducer,
+    {},
+    compose(
+      applyMiddleware(thunk, logger),
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
+  );
+} else {
+  // default
+  store = createStore(RootReducer, {}, applyMiddleware(thunk, logger));
+}
 window.store = store;
 
 // console.log(store.getState());

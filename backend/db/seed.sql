@@ -1,7 +1,7 @@
- DROP DATABASE IF EXISTS grannygrub;
-CREATE DATABASE grannygrub;
-
-\c grannygrub;
+--  DROP DATABASE IF EXISTS grannygrub;
+-- CREATE DATABASE grannygrub;
+--
+-- \c grannygrub;
 
 CREATE TABLE cuisines (
   id SERIAL PRIMARY KEY,
@@ -103,7 +103,7 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic, building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES
 
-('Debra ', 'Wei', 'grannanna@gmail.com', '123-999-4567', true, 1234, 'http://economists-pick-research.hktdc.com/resources/MI_Portal/Article/rp/2015/07/470473/1436836534321_eChinaSeniors2-p2i_470473.jpg', 47-10, 'Austell Pl, Long Island City', 11101, 'I love cooking and taking care of my young people.', 40.742442, -73.941235, false, false, true, 1),
+('Debra ', 'Wei', 'grannanna@gmail.com', '123-999-4567', true, 1234, 'http://economists-pick-research.hktdc.com/resources/MI_Portal/Article/rp/2015/07/470473/1436836534321_eChinaSeniors2-p2i_470473.jpg', 47-10, 'Austell Pl, Long Island City', 11101, 'I shop at Costco. Its much easier to make in bulk, trust me.', 40.742442, -73.941235, false, false, true, 1),
 ('Lindy', 'Joseph', 'granbubbu@yahoo.com', '123-999-0987', true, 1234, 'http://www.historymiami.org/wp-content/uploads/2017/12/gg-e1512752178541-265x300.jpg', 1463, 'E 96th St, Brooklyn NY', 11236, 'My grandson told me that my meals are delicious and I wanted to share my good cooking with everyone else to see themselves.',  40.637195, -73.894472, true, true, true, 2),
 ('Kaira', 'Olivier','mandygrannyu@hotmail.com', '123-219-4567', true, 1234,'https://steamuserimages-a.akamaihd.net/ugc/498028597176892886/1D8DB1CBEB5BF1F5BECEADB535572E4CBEDB1918/', 1250, 'Rogers Ave, Brooklyn NY', 11226, 'cooking is my life.', 40.639286, -73.951499, false, false, true, 3);
 
@@ -133,7 +133,6 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 
 
 
-
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe, quantity) VALUES ('Tarator-style salmon', 'Salmon fillets are topped with walnuts, parsley, sumac onion and hummus in this Middle Eastern inspired fish dish', 8, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/tarator-style-salmon.jpg?itok=p1JuHet5', 5.73,'2019-05-21', 'Lunch', 5),
 ('Spiced cauliflower with chickpeas, herbs & pine nuts', 'Roast cauliflower with cumin and caraway then serve with healthy chickpeas and herbs in this Middle Eastern-style salad', 11, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--983480_10.jpg?itok=z3XvGH3-', 3.75,'2019-05-21', 'Lunch', 8),
 ('Japanese okonomiyaki', 'This Japanese pancake is full of authentic flavours and textures, with fresh squid or prawns and a mirin and a honey sauce. Garnish with bonito flakes', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/12/okonomiyaki.jpg?itok=xyEqSNSU', 9.99,'2019-05-21','Lunch',9),
@@ -144,7 +143,7 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 
 
 ('rice with beans gravy and legume', 'the name says it all, now just taste it and see', 6, 2, 'https://i.ytimg.com/vi/ojqGPMv4rBw/maxresdefault.jpg', 9.99,'2019-05-23','Lunch',6),
-('fritay', 'you will enjoy this, better than mcdonals fries', 5, 2, 'https://pbs.twimg.com/media/C5eanfJWMAAV4Ot.jpg', 7.89,'2019-05-27','Dinner',8)
+('fritay', 'you will enjoy this, better than mcdonals fries', 6, 2, 'https://pbs.twimg.com/media/C5eanfJWMAAV4Ot.jpg', 7.89,'2019-05-27','Dinner',8)
 ,
 ('lasagna', 'the best one ever', 7, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-I9R_mZmC8hPg9bml5_sP3YEHjwTpsiLGrwoGkUx8dJDuFkIqQw', 6.8,'2019-05-21','Dinner',8),
 ('Moussaka', 'Variations on moussaka are found throughout the Mediterranean and the Balkans.', 13, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/moussaka.jpg', 7.89,'2019-05-21','Dinner',7),
@@ -171,7 +170,7 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, date
 
 -- mexican
 ('Mexican penne with avocado', 'Get all five of your 5-a-day in this mildly spiced, healthy pasta dish. It is rich in iron, fibre and vitamin C as well as being low-fat and low-calorie', 6, 7, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/11/mexican-penne.jpg?itok=Me76nQgF', 9.99,'2019-05-21','Dinner',9),
-('Mexican bake', 'Raid your storecupboard and try out this fresh idea for canned beans with fajita spices - top with tortillas and cheese', 5, 7, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1096460_11.jpg?itok=LCx-8aST', 7.75, '2019-05-22','Dinner',8),
+('Mexican bake', 'Raid your storecupboard and try out this fresh idea for canned beans with fajita spices - top with tortillas and cheese', 11, 7, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1096460_11.jpg?itok=LCx-8aST', 7.75, '2019-05-22','Dinner',8),
 
 -- thai
 ('Thai pork & peanut curry', 'Use fragrant hot red curry paste as the base to this coconut curry dish with baby sweetcorn, coriander and soy', 22, 8, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1173688_12.jpg?itok=SupgDzZY', 7.89,'2019-05-22','Dinner',8),
@@ -180,8 +179,8 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, date
 
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe,quantity) VALUES
 -- korean
-('Korean-style fried rice', 'This speedy Korean dish is super satisfying and a great way to use up leftover cooked rice - it is full of iron too', 6, 11, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/01/korean-style-fried-rice.jpg?itok=OWPmym9e', 9.99,'2019-05-21','Lunch', 8),
-('Korean chicken wings with sesame slaw', 'Gochujang is a savoury Korean condiment that adds a rich spiciness to these chicken wings. Drizzle with sesame oil and our crunchy side slaw', 5, 11, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/korean-wings.jpg?itok=5YQZPdmc', 7.89,'2019-05-21','Dinner',7),
+('Chinese-style fried rice', 'This speedy Chinese dish is super satisfying and a great way to use up leftover cooked rice - it is full of iron too', 6, 11, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/01/korean-style-fried-rice.jpg?itok=OWPmym9e', 9.99,'2019-05-21','Lunch', 8),
+('Chinese chicken wings with sesame slaw', 'Gochujang is a savoury Chinese condiment that adds a rich spiciness to these chicken wings. Drizzle with sesame oil and our crunchy side slaw', 5, 11, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/korean-wings.jpg?itok=5YQZPdmc', 7.89,'2019-05-21','Dinner',7),
 
 -- filipino
 ('Pork & caramelised pineapple adobo', 'This Filipino adobo with sharp, salty-sweet notes is well worth the effort. It is a hearty stew with chunks of melt-in-the-mouth pork belly', 7, 13, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/pork-adobo.jpg?itok=o0Eztwxk', 6.89,'2019-05-21','Dinner',8);

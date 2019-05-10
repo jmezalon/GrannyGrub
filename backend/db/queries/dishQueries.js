@@ -124,7 +124,7 @@ const getSingleDish = (req, res, next) => {
   const dish_id = parseInt(req.params.dish_id);
 
   db.one(
-    "SELECT DISTINCT d.*, u.ispickup, ARRAY_AGG(l.label_name) AS lable_list FROM dishes AS d FULL JOIN users AS u ON d.user_id = u.id FULL JOIN label_dishes AS l_d ON l_d.dish_id = d.id Full JOIN labels AS l ON l_d.label_id  = l.id WHERE d.id=$1 GROUP BY u.ispickup, d.id",
+    "SELECT DISTINCT d.*, u.first_name, u.last_name, u.ispickup, ARRAY_AGG(l.label_name) AS lable_list FROM dishes AS d FULL JOIN users AS u ON d.user_id = u.id FULL JOIN label_dishes AS l_d ON l_d.dish_id = d.id FULL JOIN labels AS l ON l_d.label_id  = l.id WHERE d.id=$1 GROUP BY u.first_name, u.last_name,u.ispickup, d.id",
     [dish_id]
   )
     .then(dish => {

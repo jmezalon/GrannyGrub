@@ -4,9 +4,16 @@ import { Modal } from "./Modal.js";
 // import queryString from "query-string";
 
 const Confirmation = ({ location: { search } }) => {
+  // componentDidMount() = {
+  //
+  //   //post request goes here
+  // };
+
   // TODO update our server side db.
+
   let dish = JSON.parse(window.localStorage.getItem("grandma")).dish;
   let count = JSON.parse(window.localStorage.getItem("grandma")).count;
+  let name = JSON.parse(window.localStorage.getItem("grandma")).name;
 
   // const { count } = queryString.parse(search);
   let formattedPrice = (parseFloat(dish.price, 10) * parseInt(count)).toFixed(
@@ -16,41 +23,43 @@ const Confirmation = ({ location: { search } }) => {
   return (
     <Modal>
       <div className="confirm-info-container">
-        <h1>Your receipt:</h1>
-        <p>Order Total: ${formattedPrice}</p>
-        <h2>
-          {dish.type === "pick-up" ? (
-            <label>
-              {count} {dish.name}(s) for {dish.type}
-            </label>
-          ) : (
-            <label>
-              {count} {dish.name}(s) to {dish.type}
-            </label>
-          )}
-        </h2>
+        <h1>Order Summary</h1>
 
-        <h2>From Grandma {dish.first_name}</h2>
-        <img
-          className="confirm-granny-img"
-          src={dish.profile_pic}
-          alt={"Kaira"}
-        />
-        <p>
-          {/* Address: {dish.building_number} {dish.address} {dish.zip_code} */}
-          Address: {dish.address} {dish.zip_code}
-        </p>
+        <img className="confirm-granny-img" src={dish.img_url} alt={"Wei"} />
 
-        <p>
-          Time: {dish.type === "pick-up" ? "around" : "at"} {dish.timeframe}{" "}
-          {dish.date.slice(0, 10) ? "on" : ""}{" "}
-          {dish.date.slice(0, 10) ? dish.date.slice(0, 10) : ""}
-        </p>
-        <p>Grandma {dish.first_name} cannot wait to see you!!!</p>
-        <h1>Thank You!</h1>
+        <div id="confirm-user-info">
+          <h3>
+            {" "}
+            Your order from Granny {dish.first_name} will be delivered to:{" "}
+          </h3>
+          <h4> {name} </h4>
+          <div id="confirm-user-address">
+            <h5> At: 4321 56th st, Astoria, NY 11307</h5>
+
+            <div className="confirm-date">
+              <h6> {dish.timeframe} </h6>
+              <h6> | </h6>
+              <h6>{dish.date.slice(0, 10)} </h6>
+            </div>
+          </div>
+        </div>
+
+        <div id="confirm-order-info">
+          <h3> Order details: </h3>
+          <p id="checkout-dish-name">
+            {count} X {dish.name}
+            {count > 1 ? "s" : ""}
+          </p>
+          <br />
+          <p>Order Total: ${formattedPrice}</p>
+        </div>
+
+        <h2>Thank you for using grannygrub!</h2>
       </div>
     </Modal>
   );
 };
 
 export default withRouter(Confirmation);
+
+// <p> *Withen the hour</p>

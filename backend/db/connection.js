@@ -1,4 +1,6 @@
-const pgp = require('pg-promise')({});
-const db = pgp('postgres://localhost:5432/grannygrub')
+const pgp = require("pg-promise")({});
+const db = pgp(
+  process.env.DATABASE_URL || "postgres://localhost:5432/grannygrub"
+);
 
-module.exports = db 
+module.exports = db;
