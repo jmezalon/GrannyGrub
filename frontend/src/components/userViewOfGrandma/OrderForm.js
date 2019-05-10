@@ -13,11 +13,13 @@ function OrderForm({ dish, count }) {
     e.preventDefault();
 
     setHasAttemptedToSubmit(true);
+    console.log("process.env ", process.env.NODE_ENV);
+    debugger;
     let customSuccessUrl;
     if (process.env.NODE_ENV !== "production") {
-      customSuccessUrl = `https://grannygrub.herokuapp.com/order/dish/6/confirmation`;
+      customSuccessUrl = `http://localhost:3000/order/dish/6/confirmation`;
     } else {
-      customSuccessUrl = `https://localhost:3000/order/dish/6/confirmation`;
+      customSuccessUrl = `https://grannygrub.herokuapp.com/order/dish/6/confirmation`;
     }
 
     if (
