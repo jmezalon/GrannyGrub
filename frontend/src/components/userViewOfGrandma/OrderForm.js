@@ -25,7 +25,7 @@ function OrderForm({ dish, count }) {
       stripe
         .redirectToCheckout({
           items: [{ sku: "sku_F07j4svNDL4kN4", quantity: count }],
-          successUrl: `https://grannygrub.herokuapp.com/order/dish/10/confirmation`,
+          successUrl: `http://localhost:3000/order/dish/10/confirmation`,
           cancelUrl: "https://example.com/cancel"
         })
         .then(result => {
