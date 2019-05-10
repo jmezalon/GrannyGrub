@@ -24,19 +24,28 @@ const Confirmation = ({ location: { search } }) => {
         <div id="confirm-user-info">
           <h3>
             {" "}
-            Your order from Granny {dish.first_name} will be delivered to{" "}
+            Your order from Granny {dish.first_name} will be delivered to:{" "}
           </h3>
           <h4> {name} </h4>
-          <p> at </p>
-          <h5>user address </h5>
+          <div id="confirm-user-address">
+            <h5> At: 4321 56th st, Astoria, NY 11307</h5>
 
-          <p>Withen the hour</p>
+            <div className="confirm-date">
+              <h6> {dish.timeframe} </h6>
+              <h6> | </h6>
+              <h6>{dish.date.slice(0, 10)} </h6>
+            </div>
+          </div>
         </div>
 
-        <div id="confirm-date">
-          <p> {dish.timeframe} </p>
-
-          <p>{dish.date.slice(0, 10)} </p>
+        <div id="confirm-order-info">
+          <h3> Order details: </h3>
+          <p id="checkout-dish-name">
+            {count} X {dish.name}
+            {count > 1 ? "s" : ""}
+          </p>
+          <br />
+          <p>Order Total: ${formattedPrice}</p>
         </div>
 
         <h2>Thank you for using grannygrub!</h2>
@@ -46,3 +55,5 @@ const Confirmation = ({ location: { search } }) => {
 };
 
 export default withRouter(Confirmation);
+
+// <p> *Withen the hour</p>
