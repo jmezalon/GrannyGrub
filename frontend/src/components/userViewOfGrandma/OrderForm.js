@@ -13,8 +13,7 @@ function OrderForm({ dish, count }) {
     e.preventDefault();
 
     setHasAttemptedToSubmit(true);
-    console.log("process.env ", process.env.NODE_ENV);
-    debugger;
+
     let customSuccessUrl;
     if (process.env.NODE_ENV !== "production") {
       customSuccessUrl = `http://localhost:3000/order/dish/6/confirmation`;
