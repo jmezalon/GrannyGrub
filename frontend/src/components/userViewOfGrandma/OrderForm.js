@@ -24,7 +24,7 @@ function OrderForm({ dish, count }) {
       window.localStorage.setItem("grandma", JSON.stringify(granny));
       stripe
         .redirectToCheckout({
-          items: [{ sku: "sku_F07j4svNDL4kN4", quantity: count }],
+          items: [{ sku: "sku_F2eK1FqKuFI7aa", quantity: count }],
           successUrl: `http://localhost:3000/order/dish/10/confirmation`,
           cancelUrl: "https://example.com/cancel"
         })

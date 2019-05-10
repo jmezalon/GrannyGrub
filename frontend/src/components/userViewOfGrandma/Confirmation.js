@@ -31,11 +31,7 @@ const Confirmation = ({ location: { search } }) => {
         </h2>
 
         <h2>From Grandma {dish.first_name}</h2>
-        <img
-          className="confirm-granny-img"
-          src={dish.profile_pic}
-          alt={"Kaira"}
-        />
+        <img className="confirm-granny-img" src={dish.img_url} alt={"Kaira"} />
         <p>
           {/* Address: {dish.building_number} {dish.address} {dish.zip_code} */}
           Address: {dish.address} {dish.zip_code}
