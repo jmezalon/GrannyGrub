@@ -194,7 +194,6 @@ class MainPage extends Component {
 
   render() {
     var addressInput = document.getElementById("input");
-    console.log(this.state.address, this.state.center);
     const {
       center,
       zoom,
