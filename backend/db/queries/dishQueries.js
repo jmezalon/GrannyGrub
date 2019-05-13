@@ -57,7 +57,7 @@ const addNewDish = (req, res, next) => {
   // req.body.cuisine_id = req.body.cuisine_id ? req.body.cuisine_id : null;
 
   db.one(
-    "INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${type}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity}) RETURNING *",
+    "INSERT INTO dishes( name, description, user_id, cuisine_id, img_url, price, date, timeframe, quantity) VALUES( ${name}, ${description}, ${user_id}, ${cuisine_id}, ${img_url}, ${price}, ${date}, ${timeframe}, ${quantity}) RETURNING *",
     {
       name: req.body.name,
       description: req.body.description,
