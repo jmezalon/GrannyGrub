@@ -80,9 +80,9 @@ function OrderForm({
           onChange={e => setAddress(e.target.value)}
         />
       </div>
-      {currentUser ? (
+      {!currentUser ? (
         (currentUser !== null, <p>just add your address</p>)
-      ) : !currentUser ? (
+      ) : !currentUser.last_name ? (
         <>
           <br />
           <h1>OR</h1>
