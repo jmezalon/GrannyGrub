@@ -29,7 +29,6 @@ function OrderForm({ dish, count, order_type }) {
     ) {
       let granny = { name, phoneNumber, dish, count: count, order_type };
       window.localStorage.setItem("grandma", JSON.stringify(granny));
-      console.log("expecting granny here ", granny, JSON.stringify(granny));
       stripe
         .redirectToCheckout({
           items: [{ sku: "sku_F2eK1FqKuFI7aa", quantity: count }],
