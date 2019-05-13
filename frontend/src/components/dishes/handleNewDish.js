@@ -74,7 +74,6 @@ class HandleNewDish extends React.Component {
       cuisine_id,
       description,
       timeframe,
-      type,
       price,
       date,
       selectedQuantity
@@ -85,7 +84,7 @@ class HandleNewDish extends React.Component {
     // if (this.props.imgPreview) {
     //   await this.uploadImage();
     // }
-    let newDish = await axios.post("/dishes/new", {
+    await axios.post("/dishes/new", {
       name: name,
       description: description,
       user_id: parseInt(this.props.id),
