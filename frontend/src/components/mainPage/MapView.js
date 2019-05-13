@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-// import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
-//import secret from "../../secret.js";
-// import { MainPageLoader } from "./loadingPages/MainpageLoader";
 import icon from "../../assets/icon.png";
-import axios from "axios";
 
 class MapView extends Component {
   constructor(props) {
@@ -14,7 +10,6 @@ class MapView extends Component {
   }
 
   infoWindow = (lastname, pic, cuisine, id) => {
-    const divstyle = { width: "20px", height: "20px" };
     return `
     <div id=${id} class="info">
       <div id="image">
@@ -203,7 +198,6 @@ class MapView extends Component {
       });
       const handleClick = this.props.handleClick.bind(this);
       window.google.maps.event.addListener(infoWindow, "domready", function() {
-        console.log("infoWindow", "domready", grandma.id);
         const popup = document.getElementById(grandma.id);
         popup &&
           popup.addEventListener("click", function(e) {
@@ -219,9 +213,9 @@ class MapView extends Component {
       });
       this.markers.push([marker, infoWindow]);
 
-      var myListener = marker.addListener("mouseover", () => {
+      marker.addListener("mouseover", () => {
         this.markers.map(markInfo => {
-          markInfo[1].close(this.map, markInfo[0]);
+          return markInfo[1].close(this.map, markInfo[0]);
         });
         infoWindow.open(this.map, marker);
       });
@@ -233,12 +227,6 @@ class MapView extends Component {
   };
 
   render() {
-    let { grandmas, handleClick, addressInput } = this.props;
-    // if (!grandmas.length) return null;
-    const divStyle = {
-      width: "500px",
-      height: "500px"
-    };
     return (
       <div className="map-main">
         <div id="map" />

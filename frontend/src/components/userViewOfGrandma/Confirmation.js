@@ -1,14 +1,9 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Modal } from "./Modal.js";
 // import queryString from "query-string";
 
 const Confirmation = ({ location: { search } }) => {
-  // componentDidMount() = {
-  //
-  //   //post request goes here
-  // };
-
   // TODO update our server side db.
 
   let dish = JSON.parse(window.localStorage.getItem("grandma")).dish;
@@ -61,5 +56,3 @@ const Confirmation = ({ location: { search } }) => {
 };
 
 export default withRouter(Confirmation);
-
-// <p> *Withen the hour</p>

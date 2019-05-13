@@ -16,7 +16,7 @@ class GrandmaPage extends Component {
   }
 
   render() {
-    let { grandma, dishes } = this.props;
+    let { grandma } = this.props;
 
     let id = parseInt(this.props.match.params.id);
     if (!Object.values(grandma).length) return null;
