@@ -4,7 +4,7 @@
 }
 
 .top-mainpage {
-  width: 96%;
+  width: 98%;
   margin: auto;
   /* padding-top: 1%; */
   padding-bottom: 1%;
@@ -18,6 +18,8 @@
 }
 
 .button-mainpage {
+  margin: auto;
+  width: 98%;
   display: flex;
   justify-content: flex-start;
 }
