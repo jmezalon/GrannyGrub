@@ -14,7 +14,8 @@ const Checkout = ({
   price,
   order_type,
   address,
-  confirmation
+  confirmation,
+  handleUserSignUpType
 }) => {
   return (
     <Modal>
@@ -54,6 +55,7 @@ const Checkout = ({
               dish={dish}
               count={count}
               address={address}
+              handleUserSignUpType={handleUserSignUpType}
             />
           </div>
         </div>
