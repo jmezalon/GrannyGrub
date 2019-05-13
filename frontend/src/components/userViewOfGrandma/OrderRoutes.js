@@ -91,6 +91,7 @@ class OrderRoutes extends React.Component {
               price={price}
               goBack={this.props.goBack}
               order_type={order_type}
+              handleUserSignUpType={this.props.handleUserSignUpType}
             />
           )}
         />

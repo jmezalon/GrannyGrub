@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_GRANDMAS_ORDERS, GOT_ERROR } from "./actionTypes";
+import { GET_GRANDMAS_ORDERS, GOT_ERROR, ADD_NEW_ORDER } from "./actionTypes";
 
 export const gotError = err => {
   return {
