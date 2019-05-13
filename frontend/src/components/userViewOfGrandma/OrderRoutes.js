@@ -75,7 +75,6 @@ class OrderRoutes extends React.Component {
     //   grandma={grandma}
     //   confirmation={this.state.confirmation}
     // />
-
     return (
       <Switch>
         <Route path={"/order/dish/:id/confirmation"} render={Confirmation} />
@@ -84,6 +83,7 @@ class OrderRoutes extends React.Component {
           path={"/order/dish/:id/checkout"}
           render={props => (
             <Checkout
+              currentUser={this.props.currentUser}
               address={this.state.address}
               count={this.state.count}
               dish={dish}
@@ -105,7 +105,7 @@ class OrderRoutes extends React.Component {
               phone_number={phone_number}
               price={price}
               count={this.state.count}
-              // handleUserSignUpType={this.props.handleUserSignUpType}
+              currentUser={this.props.currentUser}
               dish={dish}
               confirmation={this.state.confirmation}
               handleCheckOutClick={this.handleCheckOutClick}

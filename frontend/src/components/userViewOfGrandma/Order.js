@@ -10,7 +10,7 @@ class Order extends React.Component {
       <>
         <button className="back-to-grandma">
           <Link className="grandma-link" to={`/grandma/${dish.user_id}`}>
-            Back to Grandma's Page
+            Back to Grandmas Page
           </Link>
         </button>
 

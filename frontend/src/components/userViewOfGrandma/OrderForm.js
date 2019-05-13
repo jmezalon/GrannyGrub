@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 
 const stripe = window.Stripe("pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk");
 
-function OrderForm({ dish, count, order_type, handleUserSignUpType }) {
+function OrderForm({
+  dish,
+  count,
+  order_type,
+  currentUser,
+  handleUserSignUpType
+}) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -52,7 +58,7 @@ function OrderForm({ dish, count, order_type, handleUserSignUpType }) {
           id="full-name"
           name="full_name"
           placeholder="Your Full Name"
-          value={name}
+          value={currentUser ? currentUser.first_name : name}
           onChange={e => setName(e.target.value)}
         />
 
@@ -61,7 +67,7 @@ function OrderForm({ dish, count, order_type, handleUserSignUpType }) {
           id="phone-number"
           name="phone_number"
           placeholder="Phone Number"
-          value={phoneNumber}
+          value={currentUser ? currentUser.phone_number : phoneNumber}
           onChange={e => setPhoneNumber(e.target.value)}
         />
 
@@ -74,21 +80,30 @@ function OrderForm({ dish, count, order_type, handleUserSignUpType }) {
           onChange={e => setAddress(e.target.value)}
         />
       </div>
-      <br />
-      <h1>OR</h1>
-      <br />
-      <div>
-        <h1 id="checkout-as"> Join the grannygrub family </h1>
-        <label>First time user? Register here: </label>
-        <Link to="/auth/signup">
-          <button onClick={handleUserSignUpType}> Sign Up </button>
-        </Link>
-        <br />
-        <label> Already a member? Login here:</label>
-        <Link to="/auth/login">
-          <button> Login </button>
-        </Link>
-      </div>
+      {currentUser ? (
+        (currentUser !== null, <p>just add your address</p>)
+      ) : !currentUser ? (
+        <>
+          <br />
+          <h1>OR</h1>
+          <br />
+
+          <div>
+            <h1 id="checkout-as"> Join the grannygrub family </h1>
+            <label>First time user? Register here: </label>
+            <Link to="/auth/signup">
+              <button onClick={handleUserSignUpType}> Sign Up </button>
+            </Link>
+            <br />
+            <label> Already a member? Login here:</label>
+            <Link to="/auth/login">
+              <button onClick={handleUserSignUpType}> Login </button>
+            </Link>
+          </div>
+        </>
+      ) : (
+        ""
+      )}
 
       {hasAttemptedToSubmit && (
         <div id="required-info">

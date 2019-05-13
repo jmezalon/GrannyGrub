@@ -6,7 +6,7 @@ import axios from "axios";
 
 class Confirmation extends React.Component {
   componentDidMount = () => {
-    let { dish, name, order_type, count, phoneNumber } = JSON.parse(
+    let { dish, name, order_type, phoneNumber } = JSON.parse(
       window.localStorage.getItem("grandma")
     );
 
