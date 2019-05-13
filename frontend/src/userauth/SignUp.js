@@ -21,7 +21,6 @@ class SignUp extends React.Component {
       last_name,
       email,
       phone_number,
-      isUser,
       isGrandma,
       building_number,
       address,

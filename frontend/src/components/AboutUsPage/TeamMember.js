@@ -5,7 +5,7 @@ const TeamMember = ({ name, linkedin, github, img }) => {
     <div className="team-member">
       <p className="about-us-name">{name}</p>
       <a href={github}>
-        <img src={img} />
+        <img alt={name} src={img} />
       </a>
       <a className="linkedin" href={linkedin}>
         <i class="fab fa-linkedin" />
