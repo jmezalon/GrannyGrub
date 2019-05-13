@@ -13,46 +13,28 @@
 #dish-container {
   border: solid 1px #ed3941;
   width: 35%;
-  height: 55%;
+  height: 250px;
   margin: 3%;
   padding: 10px;
   object-fit: cover;
   border-radius: 6px;
-  /* background-image: URL("https://images.unsplash.com/photo-1509746840536-510fb809a015?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"); */
-  object-fit: cover;
-  object-position: center;
 }
 
 .dish-view {
-  /* margin: 2%; */
-  padding: 3px;
-  display: grid;
-  grid-template-columns: 1% 67% 30%;
-  grid-template-rows: 15% 65% 20%;
-  grid-template-areas:
-    " leftside leftside rightside  "
-    " leftside leftside rightside "
-    " leftside leftside  . ";
-  background-color: white;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dish-left-side {
-  grid-area: leftside;
-  margin: 1px;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 25% 50% 25%;
-  grid-template-areas:
-    " dishheader dishheader   "
-    " dishInfo dishInfo  "
-    " dishbtn dishbtn   ";
+  text-align: left;
+  width: 45%;
+  margin: 5px;
 }
 
 .dishInfo {
   grid-area: dishInfo;
   margin-top: 8px;
-  padding: 5px;
-  padding-left: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -62,13 +44,14 @@
 }
 
 #dish-header {
+  align-items: center;
+  height: 32px;
   padding-bottom: 5px;
   grid-area: dishheader;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-family: "Libre Baskerville", serif;
   border-bottom: 2px solid #ed3941;
-  object-fit: contain;
 }
 
 #dish_name {
@@ -76,11 +59,6 @@
 }
 
 #dish-bottom-left {
-  grid-area: dishbtn;
-  display: flex;
-  justify-content: space-around;
-  padding: 5px;
-  align-items: center;
   font-family: "Libre Baskerville", serif;
 }
 
@@ -93,14 +71,14 @@
 }
 
 .dish-right-side {
-  padding-top: 10px;
+  height: 91%;
+  width: 55%;
 }
 
 .dish-right-side img {
-  grid-area: rightside;
-  margin: 1px;
-  height: 115px;
-  width: 115px;
+  padding: 6px 0;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -126,4 +104,8 @@
   border-radius: 3px;
   font-size: 1rem;
   font-family: "Libre Baskerville", serif;
+}
+
+.dish-view p {
+  padding-bottom: 10px;
 }
