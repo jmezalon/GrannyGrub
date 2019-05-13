@@ -90,6 +90,7 @@ class OrderRoutes extends React.Component {
               confirmation={this.state.confirmation}
               price={price}
               goBack={this.props.goBack}
+              handleUserSignUpType={this.props.handleUserSignUpType}
               order_type={order_type}
             />
           )}
@@ -104,6 +105,7 @@ class OrderRoutes extends React.Component {
               phone_number={phone_number}
               price={price}
               count={this.state.count}
+              // handleUserSignUpType={this.props.handleUserSignUpType}
               dish={dish}
               confirmation={this.state.confirmation}
               handleCheckOutClick={this.handleCheckOutClick}

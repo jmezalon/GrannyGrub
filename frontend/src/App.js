@@ -140,7 +140,13 @@ class App extends Component {
           />
           <Route
             path={"/order/dish/:id"}
-            render={props => <OrderContainer {...props} goBack={this.goBack} />}
+            render={props => (
+              <OrderContainer
+                {...props}
+                goBack={this.goBack}
+                handleUserSignUpType={this.handleUserSignUpType}
+              />
+            )}
           />
           <Route exact path="/grandma/:id" component={GrandmaPageContainer} />
         </Switch>

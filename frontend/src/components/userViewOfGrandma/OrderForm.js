@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const stripe = window.Stripe("pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk");
 
-function OrderForm({ dish, count, order_type }) {
+function OrderForm({ dish, count, order_type, handleUserSignUpType }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -81,7 +81,7 @@ function OrderForm({ dish, count, order_type }) {
         <h1 id="checkout-as"> Join the grannygrub family </h1>
         <label>First time user? Register here: </label>
         <Link to="/auth/signup">
-          <button> Sign Up </button>
+          <button onClick={handleUserSignUpType}> Sign Up </button>
         </Link>
         <br />
         <label> Already a member? Login here:</label>
