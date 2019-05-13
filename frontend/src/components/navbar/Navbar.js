@@ -13,19 +13,25 @@ class Navbar extends Component {
             <img id="logo" alt="" src={logo} />
           </NavLink>
         </div>
+
         {this.props.location.pathname === "/mainpage" ? (
-          <div className="middle-options">
-            <NavLink to="/auth/signup">
-              <h1 onClick={this.props.handleUserSignUpType}>
-                create a user account
-              </h1>
-            </NavLink>
-            <NavLink to="/about">
-              <h1>About us</h1>
-            </NavLink>
+          <div id="right-nav">
+            <div className="middle-options">
+              <NavLink to="/auth/signup">
+                <h1 onClick={this.props.handleUserSignUpType}>
+                  create a user account
+                </h1>
+              </NavLink>
+              <NavLink to="/about">
+                <h1>About us</h1>
+              </NavLink>
+              <NavLink to="/">
+                <h1>Home</h1>
+              </NavLink>
+            </div>
           </div>
         ) : (
-          <div id="grandma-navbar">
+          <div id="right-nav">
             {this.props.location.pathname === "/" ? (
               <div className="middle-options">
                 <Link to="/auth/signup">
@@ -38,7 +44,9 @@ class Navbar extends Component {
                 </NavLink>
               </div>
             ) : (
-              ""
+              <NavLink to="/">
+                <h1>Home</h1>
+              </NavLink>
             )}
           </div>
         )}
