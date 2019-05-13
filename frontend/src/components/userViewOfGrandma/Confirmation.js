@@ -24,7 +24,8 @@ class Confirmation extends React.Component {
     let { dish, name, count } = JSON.parse(
       window.localStorage.getItem("grandma")
     );
-    debugger;
+    console.log("1st log ", window.localStorage.getItem("grandma"));
+    console.log("2nd log ", JSON.parse(window.localStorage.getItem("grandma")));
     // const { count } = queryString.parse(search);
     let formattedPrice = (parseFloat(dish.price, 10) * parseInt(count)).toFixed(
       2
