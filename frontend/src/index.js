@@ -11,7 +11,9 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 
 let store;
-if (process.env.NODE_ENV !== "production") {
+// console.log({ environment: process.env.ENVIRONMENT });
+// console.log({ node_env: process.env.NODE_ENV });
+if (process.env.ENVIRONMENT !== "production") {
   // only in non prod.
   store = createStore(
     RootReducer,

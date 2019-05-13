@@ -1,6 +1,6 @@
 .topLanding {
   background: linear-gradient(rgb(52, 49, 49, 0.3), rgb(7, 7, 7, 0.65)),
-    url("../assets/grandmas-cook-top1.jpg");
+    url("../src/assets/grandmas-cook-top1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

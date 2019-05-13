@@ -14,7 +14,6 @@ class GrandmasDishes extends React.Component {
       return (
         <div className="granny-dish-display" key={dish.dish_id}>
           <div id="time-date-div">
-            <p> Meal type: {dish.type} dish </p>
             <p>Set For: {dish.timeframe} time </p>
             <p id="dish-date"> On: {dish.date.slice(0, 10)} </p>
           </div>

@@ -49,6 +49,7 @@ const Checkout = ({
 
           <div>
             <OrderForm
+              order_type={order_type}
               full_name={full_name}
               dish={dish}
               count={count}

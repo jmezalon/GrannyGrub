@@ -83,7 +83,7 @@ class NewDishForm extends React.Component {
                   }
                 >
                   {" "}
-                  to-go{" "}
+                  Pick-up{" "}
                 </button>
 
                 <button
@@ -95,7 +95,7 @@ class NewDishForm extends React.Component {
                   }
                 >
                   {" "}
-                  sit down{" "}
+                  Delivery{" "}
                 </button>
               </div>
             </span>

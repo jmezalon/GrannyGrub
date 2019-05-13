@@ -7,7 +7,6 @@ import serviceIcon from "../../assets/people.png";
 import MapView from "./MapView";
 import ListView from "./ListView";
 import secret from "../../secret.js";
-import icon from "../../assets/icon.png";
 
 class MainPage extends Component {
   state = {
@@ -71,7 +70,6 @@ class MainPage extends Component {
 
   handleClickMealType = async e => {
     e.preventDefault();
-    let { isDelivery, isPickup } = this.state;
     await this.setState({
       [e.target.name]: !this.state[e.target.name],
       selectedAll: false
@@ -196,7 +194,6 @@ class MainPage extends Component {
 
   render() {
     var addressInput = document.getElementById("input");
-    console.log(this.state.address, this.state.center);
     const {
       center,
       zoom,

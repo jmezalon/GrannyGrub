@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter, Redirect } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Modal } from "./Modal.js";
 
 class Order extends React.Component {

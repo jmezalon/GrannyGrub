@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-import icon from '../../assets/icon.png';
-import axios from 'axios';
-import MapView from './MapView';
+import React, { Component } from "react";
 
 class ListView extends Component {
   render() {
