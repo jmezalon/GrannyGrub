@@ -154,7 +154,6 @@ class EditNewDishForm extends React.Component {
       );
     });
 
-    const { timeframe, type } = this.props;
     console.log(this.state.date, "date");
 
     let dateFormState = !this.state.date ? null : this.state.date.slice(0, 10);

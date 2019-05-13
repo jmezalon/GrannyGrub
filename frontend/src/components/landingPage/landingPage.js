@@ -2,9 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../css/Landingpage.css";
 
-import UserPortal from "./userPortal";
-import CookPortal from "./cookPortal";
-
 class LandingPage extends React.Component {
   render() {
     return (
