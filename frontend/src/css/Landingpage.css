@@ -158,18 +158,6 @@
   height: 443px;
 }
 
-.userPortal {
-  border: 1px solid pink;
-  margin: 2%;
-  padding: 10px;
-}
-
-.cookPortal {
-  border: 1px solid orange;
-  margin: 2%;
-  padding: 10px;
-}
-
 .logInBtn {
   width: 160px;
   height: 40px;
