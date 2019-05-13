@@ -51,7 +51,7 @@ class Order extends React.Component {
                   <p>
                     Order Type:{" "}
                     {dish.ispickup ? (
-                      <div>
+                      <div id="order-type-btns">
                         <button
                           className={
                             this.props.order_type === "delivery"

@@ -30,8 +30,8 @@
 #checkout-left-side {
   grid-area: leftside;
   margin: 2%;
+  align-self: center;
 }
-
 #checkout-left-side h3 {
   margin-top: 15px;
   padding: 3px;
@@ -46,6 +46,7 @@
 #checkout-right-side {
   grid-area: rightside;
   margin: 2%;
+  align-self: center;
 }
 
 #checkout-as {
@@ -83,7 +84,7 @@
   width: 100px;
   height: 35px;
   border-radius: 4px;
-  background-color: #f23232;
+  background-color: #ed3941;
   margin-top: 2%;
   /* font-family: Futura; */
   font-size: 20px;
@@ -98,4 +99,36 @@
 #checkout-order-btn {
   margin-top: 60px;
   margin-left: 40px;
+}
+
+#full-name,
+#phone-number,
+#address {
+  padding-left: 6px;
+  border-radius: 3px;
+  border: 1px solid grey;
+  width: 60%;
+  height: 25px;
+  margin: 3px;
+}
+
+#provide-info-message {
+  margin-top: 15px;
+}
+
+.checkout-login-btn {
+  width: 100px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: 1px solid #ed3941;
+  margin-top: 2%;
+  /* font-family: Futura; */
+  font-size: 19px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ed3941;
 }

@@ -47,9 +47,6 @@ const Checkout = ({
         </div>
 
         <div id="checkout-right-side">
-          <h1 id="checkout-as"> Checkout As Guest: </h1>
-          <h6>Please provide your contact information below.</h6>
-
           <div>
             <OrderForm
               full_name={full_name}

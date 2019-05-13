@@ -70,6 +70,14 @@
 #order-page-type {
   width: 50%;
 }
+
+#order-type-btns {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 .checkout-order-info p {
   display: flex;
   padding: 10px;
@@ -139,8 +147,9 @@
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: baseline;
+  padding: 10px;
 }
 
 .dish-checkout p {
@@ -168,20 +177,6 @@
   font-family: Futura;
 }
 
-#full-name,
-#phone-number {
-  padding-left: 6px;
-  border-radius: 3px;
-  border: 1px solid grey;
-  width: 200px;
-  height: 25px;
-  margin: 12px;
-}
-
-#provide-info-message {
-  margin-top: 15px;
-}
-
 #info-container {
   margin: 1%;
   padding: 2%;
@@ -200,9 +195,9 @@
   line-height: normal;
   letter-spacing: normal;
   color: #ed3941;
+  border: 1px solid #ed3941;
   font-family: Futura;
   margin: 1%;
-  align-self: baseline;
 }
 
 .order-type-btns-selected {
@@ -220,5 +215,4 @@
   color: #ffffff;
   font-family: Futura;
   margin: 1%;
-  align-self: baseline;
 }
