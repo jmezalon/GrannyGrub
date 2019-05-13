@@ -93,12 +93,10 @@ class HandleNewDish extends React.Component {
       img_url: img_url,
       price: price,
       date: date,
-      type: type,
       timeframe: timeframe,
       quantity: selectedQuantity,
       label_id: this.state.label_id
     });
-    console.log(newDish);
 
     // await axios.post("/labels/new", {
     //   dish_id: newDish.data.dish.id,
@@ -131,7 +129,7 @@ class HandleNewDish extends React.Component {
     e.preventDefault();
     if (e.target.value === "0") {
       this.setState({
-        type: "sit-down"
+        type: "delivery"
       });
     } else if (e.target.value === "1") {
       this.setState({
