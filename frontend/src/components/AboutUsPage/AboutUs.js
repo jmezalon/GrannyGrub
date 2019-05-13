@@ -57,7 +57,7 @@ const AboutUs = () => {
             <TeamMember
               name="Morteza Khaki"
               img={
-                "https://media.licdn.com/dms/image/C4D03AQE9CB7TIg5eUw/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=l1cLjb7TPzeN93lo5oqdl4D-qPmMpVy8arjaaDARvkM"
+                "https://media.licdn.com/dms/image/C4D03AQHCTKGRV7pCTw/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=g9khW_qo_raiosbnKhEOejb2iZzFdx5bXzQQrKwRSa4"
               }
               linkedin={"https://www.linkedin.com/in/morteza-khaki-a7b207175/"}
               github={"https://github.com/khakimorteza"}
