@@ -2,13 +2,14 @@ const db = require("../connection");
 
 const postNewOrder = (req, res, next) => {
   db.none(
-    "INSERT INTO orders (dish_id, user_id, name, phone_number, isCompleted) VALUES (${dish_id}, ${user_id}, ${full_name}, ${phone_number}, ${isCompleted})",
+    "INSERT INTO orders (dish_id, user_id, name, phone_number, isCompleted, order_type) VALUES (${dish_id}, ${user_id}, ${full_name}, ${phone_number}, ${isCompleted}, ${order_type})",
     {
       dish_id: parseInt(req.body.dish_id),
       user_id: parseInt(req.body.user_id),
       full_name: req.body.full_name,
       phone_number: req.body.phone_number,
-      isCompleted: false
+      isCompleted: false,
+      order_type: req.body.order_type
     }
   )
     .then(() => {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const stripe = window.Stripe("pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk");
 
-function OrderForm({ dish, count }) {
+function OrderForm({ dish, count, order_type }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -27,8 +27,9 @@ function OrderForm({ dish, count }) {
       phoneNumber !== "" &&
       dish.remaining_quantity !== 0
     ) {
-      let granny = { name, phoneNumber, dish, count: count };
+      let granny = { name, phoneNumber, dish, count: count, order_type };
       window.localStorage.setItem("grandma", JSON.stringify(granny));
+      debugger;
       stripe
         .redirectToCheckout({
           items: [{ sku: "sku_F2eK1FqKuFI7aa", quantity: count }],
