@@ -5,25 +5,27 @@ import axios from "axios";
 // import queryString from "query-string";
 
 class Confirmation extends React.Component {
-  componentDidMount = () => {
-    let { dish, name, order_type, phoneNumber } = JSON.parse(
-      window.localStorage.getItem("grandma")
-    );
-
-    axios
-      .post("/orders/new", {
-        user_id: parseInt(dish.user_id),
-        dish_id: parseInt(dish.id),
-        full_name: name,
-        phone_number: phoneNumber,
-        order_type
-      })
-      .catch(err => console.log(err));
-  };
+  // componentDidMount = () => {
+  //   let { dish, name, order_type, count, phoneNumber } = JSON.parse(
+  //     window.localStorage.getItem("grandma")
+  //   );
+  //
+  //   axios
+  //     .post("/orders/new", {
+  //       user_id: parseInt(dish.user_id),
+  //       dish_id: parseInt(dish.id),
+  //       full_name: name,
+  //       phone_number: phoneNumber,
+  //       order_type
+  //     })
+  //     .catch(err => console.log(err));
+  // };
   render() {
     let { dish, name, count } = JSON.parse(
       window.localStorage.getItem("grandma")
     );
+    console.log("1st log ", window.localStorage.getItem("grandma"));
+    console.log("2nd log ", JSON.parse(window.localStorage.getItem("grandma")));
     // const { count } = queryString.parse(search);
     let formattedPrice = (parseFloat(dish.price, 10) * parseInt(count)).toFixed(
       2
