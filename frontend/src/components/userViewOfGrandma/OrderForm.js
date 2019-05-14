@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const stripe = window.Stripe('pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk');
-
+const stripe = window.Stripe("pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk");
 
 function OrderForm({
   dish,
@@ -23,7 +22,7 @@ function OrderForm({
     setHasAttemptedToSubmit(true);
 
     let customSuccessUrl;
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== "production") {
       customSuccessUrl = `http://localhost:3000/order/dish/6/confirmation`;
     } else {
       customSuccessUrl = `https://grannygrub.herokuapp.com/order/dish/6/confirmation`;
@@ -31,22 +30,28 @@ function OrderForm({
 
     if (
       dish.quantity &&
-      name !== '' &&
-      phoneNumber !== '' &&
+      name !== "" &&
+      phoneNumber !== "" &&
       dish.remaining_quantity !== 0
     ) {
-
-      let granny = { name, phoneNumber,address, dish, count: count, order_type };
+      let granny = {
+        name,
+        phoneNumber,
+        address,
+        dish,
+        count: count,
+        order_type
+      };
       window.localStorage.setItem("grandma", JSON.stringify(granny));
 
       stripe
         .redirectToCheckout({
-          items: [{ sku: 'sku_F2eK1FqKuFI7aa', quantity: count }],
+          items: [{ sku: "sku_F2eK1FqKuFI7aa", quantity: count }],
           successUrl: customSuccessUrl,
-          cancelUrl: 'https://example.com/cancel',
+          cancelUrl: "https://example.com/cancel"
         })
         .then(result => {
-          console.log('where am I?!');
+          console.log("where am I?!");
           // If `redirectToCheckout` fails due to a browser or network
           // error, display the localized error message to your customer
           // using `result.error.message`.
@@ -57,20 +62,31 @@ function OrderForm({
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
       <div>
-        <h1 id="checkout-as"> Join GrannyGrub </h1>
+        {!currentUser ? (
+          (currentUser !== null, <p>just add your address</p>)
+        ) : !currentUser.last_name ? (
+          <>
+            <h1 id="checkout-as"> Join GrannyGrub </h1>
 
-        <label>First time user? </label>
-        <Link to="/auth/signup">
-          <button onClick={handleUserSignUpType} className="checkout-login-btn">
-            {' '}
-            Sign Up{' '}
-          </button>
-        </Link>
-        <br />
-        <label> Already a member? </label>
-        <Link to="/auth/login">
-          <button className="checkout-login-btn"> Login </button>
-        </Link>
+            <label>First time user? </label>
+            <Link to="/auth/signup">
+              <button
+                onClick={handleUserSignUpType}
+                className="checkout-login-btn"
+              >
+                {" "}
+                Sign Up{" "}
+              </button>
+            </Link>
+            <br />
+            <label> Already a member? </label>
+            <Link to="/auth/login">
+              <button className="checkout-login-btn"> Login </button>
+            </Link>
+          </>
+        ) : (
+          ""
+        )}
       </div>
 
       <br />
@@ -84,11 +100,8 @@ function OrderForm({
           required
           id="full-name"
           name="full_name"
-
           placeholder="Full Name"
           value={currentUser ? currentUser.first_name : name}
-
-        
           onChange={e => setName(e.target.value)}
         />
 
@@ -110,33 +123,7 @@ function OrderForm({
           onChange={e => setAddress(e.target.value)}
         />
       </div>
-
-      {!currentUser ? (
-        (currentUser !== null, <p>just add your address</p>)
-      ) : !currentUser.last_name ? (
-        <>
-          <br />
-          <h1>OR</h1>
-          <br />
-
-          <div>
-            <h1 id="checkout-as"> Join the grannygrub family </h1>
-            <label>First time user? Register here: </label>
-            <Link to="/auth/signup">
-              <button onClick={handleUserSignUpType}> Sign Up </button>
-            </Link>
-            <br />
-            <label> Already a member? Login here:</label>
-            <Link to="/auth/login">
-              <button onClick={handleUserSignUpType}> Login </button>
-            </Link>
-          </div>
-        </>
-      ) : (
-        ""
-      )}
-
-
+      <br />
       {hasAttemptedToSubmit && (
         <div id="required-info">
           {!name && <p>Please add your name</p>}

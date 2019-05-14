@@ -21,10 +21,11 @@ class UserDashboard extends Component {
     // console.log(this.props.id);
     return (
       <>
-        <div className="usera_dash">
+        <div className="user_dash">
           <div className="top-user-dash">
             <UserInfo grandma={this.props.grandma} id={this.props.id} />
           </div>
+
           <div id="bottom-user-dash">
             <PreviousOrders hasOrder={this.state.hasOrder} />
             <div>
