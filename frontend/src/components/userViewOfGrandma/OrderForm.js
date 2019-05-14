@@ -62,6 +62,7 @@ function OrderForm({
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
       <div>
+
         {!currentUser ? (
           (currentUser !== null, <p>just add your address</p>)
         ) : !currentUser.last_name ? (
@@ -123,7 +124,9 @@ function OrderForm({
           onChange={e => setAddress(e.target.value)}
         />
       </div>
+
       <br />
+
       {hasAttemptedToSubmit && (
         <div id="required-info">
           {!name && <p>Please add your name</p>}

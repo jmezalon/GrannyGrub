@@ -1,7 +1,7 @@
 #dish-display-main {
   margin-top: 30px;
   margin: 2%;
-  margin-top: 1%;
+  margin-top: 2%;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -9,7 +9,6 @@
   box-sizing: content-box;
   object-fit: cover;
 }
-
 #dish-container {
   border: solid 1px #ed3941;
   width: 35%;
@@ -19,19 +18,16 @@
   object-fit: cover;
   border-radius: 6px;
 }
-
 .dish-view {
   height: 90%;
   display: flex;
   justify-content: space-between;
 }
-
 .dish-left-side {
   text-align: left;
   width: 45%;
   margin: 5px;
 }
-
 .dishInfo {
   grid-area: dishInfo;
   margin-top: 8px;
@@ -42,7 +38,6 @@
   font-family: "Gentium Basic", serif;
   font-size: 18px;
 }
-
 #dish-header {
   align-items: center;
   height: 32px;
@@ -53,35 +48,28 @@
   font-family: "Libre Baskerville", serif;
   border-bottom: 2px solid #ed3941;
 }
-
 #dish_name {
   font-weight: bold;
 }
-
 #dish-bottom-left {
   font-family: "Libre Baskerville", serif;
 }
-
 .dish-quantity {
   width: 50%;
 }
-
 .remaining_quantity {
   font-family: "Libre Baskerville", serif;
 }
-
 .dish-right-side {
   height: 91%;
   width: 55%;
 }
-
 .dish-right-side img {
   padding: 6px 0;
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-
 .dish_img {
   width: 85%;
   height: auto;
@@ -89,11 +77,9 @@
   object-fit: cover;
   border-radius: 15px;
 }
-
 #dish-lables {
   font-family: "Cormorant Garamond", serif;
 }
-
 #orderBtn {
   width: 113px;
   height: 32px;
@@ -105,7 +91,6 @@
   font-size: 1rem;
   font-family: "Libre Baskerville", serif;
 }
-
 .dish-view p {
   padding-bottom: 10px;
 }
