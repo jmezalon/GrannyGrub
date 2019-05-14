@@ -3,10 +3,17 @@ import { Link } from "react-router-dom";
 
 const stripe = window.Stripe("pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk");
 
-function OrderForm({ dish, count, order_type }) {
+function OrderForm({
+  dish,
+  count,
+  order_type,
+  currentUser,
+  handleUserSignUpType
+}) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+
   const [hasAttemptedToSubmit, setHasAttemptedToSubmit] = useState(false);
 
   const handleSubmit = async e => {
@@ -27,9 +34,16 @@ function OrderForm({ dish, count, order_type }) {
       phoneNumber !== "" &&
       dish.remaining_quantity !== 0
     ) {
-      let granny = { name, phoneNumber, dish, count: count, order_type };
+      let granny = {
+        name,
+        phoneNumber,
+        address,
+        dish,
+        count: count,
+        order_type
+      };
       window.localStorage.setItem("grandma", JSON.stringify(granny));
-      console.log("expecting granny here ", granny, JSON.stringify(granny));
+
       stripe
         .redirectToCheckout({
           items: [{ sku: "sku_F2eK1FqKuFI7aa", quantity: count }],
@@ -47,13 +61,36 @@ function OrderForm({ dish, count, order_type }) {
 
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
+      <div>
+        <h1 id="checkout-as"> Join GrannyGrub </h1>
+
+        <label>First time user? </label>
+        <Link to="/auth/signup">
+          <button onClick={handleUserSignUpType} className="checkout-login-btn">
+            {" "}
+            Sign Up{" "}
+          </button>
+        </Link>
+        <br />
+        <label> Already a member? </label>
+        <Link to="/auth/login">
+          <button className="checkout-login-btn"> Login </button>
+        </Link>
+      </div>
+
+      <br />
+      <h2>OR</h2>
+      <br />
+
       <div className="user-input">
+        <h1 id="checkout-as"> Checkout As Guest: </h1>
+        <h6>Please provide your contact information below.</h6>
         <input
           required
           id="full-name"
           name="full_name"
-          placeholder="Your Full Name"
-          value={name}
+          placeholder="Full Name"
+          value={currentUser ? currentUser.first_name : name}
           onChange={e => setName(e.target.value)}
         />
 
@@ -62,7 +99,7 @@ function OrderForm({ dish, count, order_type }) {
           id="phone-number"
           name="phone_number"
           placeholder="Phone Number"
-          value={phoneNumber}
+          value={currentUser ? currentUser.phone_number : phoneNumber}
           onChange={e => setPhoneNumber(e.target.value)}
         />
 
@@ -70,25 +107,10 @@ function OrderForm({ dish, count, order_type }) {
           required
           id="address"
           name="address"
-          placeholder="address"
+          placeholder="Full Address"
           value={address}
           onChange={e => setAddress(e.target.value)}
         />
-      </div>
-      <br />
-      <h1>OR</h1>
-      <br />
-      <div>
-        <h1 id="checkout-as"> Join the grannygrub family </h1>
-        <label>First time user? Register here: </label>
-        <Link to="/auth/signup">
-          <button> Sign Up </button>
-        </Link>
-        <br />
-        <label> Already a member? Login here:</label>
-        <Link to="/auth/login">
-          <button> Login </button>
-        </Link>
       </div>
 
       {hasAttemptedToSubmit && (

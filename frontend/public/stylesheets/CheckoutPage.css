@@ -79,6 +79,11 @@
   align-content: flex-start;
 }
 
+
+#checkout-edit {
+  padding-left: 10px;
+}
+
 #edit-button {
   width: 100px;
   height: 35px;
