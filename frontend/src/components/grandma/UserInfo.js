@@ -6,7 +6,6 @@ const UserInfo = ({ grandma, id }) => {
     <>
       <div className="granny-profile-display">
         <label htmlFor="full Name" />
-        <h1> Welcome User {grandma.last_name}</h1>
       </div>
 
       <img
@@ -19,7 +18,8 @@ const UserInfo = ({ grandma, id }) => {
         }
       />
       <div id="info-box">
-        <p>Your Info</p>
+        <h1> Welcome User {grandma.last_name}</h1>
+
         <label htmlFor="contact" />
         <h3> Contact information: </h3>
         <p>{grandma.email}</p>
