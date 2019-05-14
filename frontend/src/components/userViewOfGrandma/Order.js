@@ -6,6 +6,11 @@ class Order extends React.Component {
   render() {
     const { dish, count } = this.props;
     let price = (dish.price * count).toFixed(2);
+
+    // let labels = dish.label_list.map(label => {
+    //   return <div>
+    //   </div>;
+    // });
     return (
       <>
         <button className="back-to-grandma">
