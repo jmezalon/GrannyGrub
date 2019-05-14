@@ -161,14 +161,35 @@
 
 .map-main {
   width: 100%;
-  height: 800px;
+  height: 600px;
+}
+
+@media screen and (max-width: 1920px) {
+  .map-main {
+    height: 800px;
+  }
+}
+@media screen and (max-width: 1920px) {
+  .list-view-container {
+    height: 800px;
+  }
+}
+@media screen and (max-width> 1920px) {
+  .map-main {
+    height: 1000px;
+  }
+}
+@media screen and (max-width> 1920px) {
+  .list-view-container {
+    height: 1000px;
+  }
 }
 
 /* ListView css */
 
 .list-view-container {
   width: 100%;
-  height: 800px;
+  height: 600px;
   overflow-y: scroll;
   /* border: 1px solid gray; */
 }
