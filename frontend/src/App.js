@@ -30,6 +30,8 @@ class App extends Component {
     isGrandma: true
   };
 
+  //small change
+
   handleGetATaste = () => {
     if (!this.state.currentUser) {
       this.setState({ isOrdering: true });
