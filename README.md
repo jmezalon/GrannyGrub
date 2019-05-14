@@ -1,91 +1,49 @@
 # GrannyGrub
 
-ABOUT OUR APP:
+Connecting hungry New Yorker’s to cooking grandmothers in their area.
+
+## Abstract
 
 There’s a plethora of food delivery platforms that cater to restaurant deliveries locally and commercially, thus offering a variety of options for business entities to reach customers.
-Yet, there are less than a handful of platforms that provide delivery of home cooked meals by individuals. Currently, the only platform in the NYC market that caters to home cooked meals is Chachi’s, and it falls short in various areas.
 
-With GrannyGrub, we plan on solving this problem by connecting hungry New Yorkers to a home-cooked meal.  
-Home cooked meals are a novelty for many, especially in a city like NYC. When you aren’t feeling well, feeling homesick, or just have a very specific craving for an authentic dish, GrannyGrub can help by bringing a home cooked meal to your door.
+Yet, there are less than a handful of platforms that provide delivery of home cooked meals by individuals. With GrannyGrub, we plan on solving this problem by connecting hungry New Yorkers to a granny cooked home-cooked meal.
 
-GrannyGrub  will also benefit cooks, or “grandmas”, by providing them with a platform that gives them the choice to share their personal creations, home cooked meals to go or served on their own dinner tables with other New Yorkers. It will also allow them the opportunity to make some extra money doing what they love.
-You might be asking, why home cooked meals?
-Well, It provides the user with a variety of unique takes on culturally traditional cuisine since each dish would be that grandmas' own recipe and  her own take on the dish. It will allow for a more diverse and versatile menu.
+When you aren’t feeling well, feeling homesick, or just have a very specific craving for an authentic dish, GrannyGrub can help by bringing a home cooked meal to your door.
 
-# MVP
+Why home cooked meals?
 
-The MVP for Granny’s Grub will need to be completed in ~250 hours. The important components we tend to complete within that time frame are as follow:
+Home cooked meals provided the user with a variety of unique takes on culturally traditional cuisine. Each dish on grannyGrub is a grandmas' own recipe and her own take on the dish. This will allow for a more diverse and versatile menu in the food delivery market.
 
-  1. Create Express Backend ~ 30
+## Main Page
 
-      - Create Database with following tables ~8hrs
-      - Grandmas
-      - Grandchildren (users)
-      - Dishes
-      - Reviews
-      - Rating
+On the main page of the app, users can use our interactive map and list to find and browse a grandma that serves what she is looking for. Users can hover on the list items and pinpoint their location on the map, or they can use the map to hover over the pins and see the grandmothers name and cuisine type.
 
-  2. Create a seed.js file to seed the database with temporary data ~2hrs
+Users can filter based on which cuisines they are craving, as well as filtering based on time, either lunch or dinner, and type of service, pickup or delivery.
 
-      -Create route JS files for above tables ~1hr
-      -Create Delete/Get/Post/Patch Queries for above routes ~8hrs
+## Granny page
 
-  3. UserAuth ~10hrs
+Once a user is on the Granny page, they will be presented with the selected grandmas dashboard where they can learn more about the granny. There, they will also be able to browse through all the different dishes that the grandma is currently offering, each of which is her own recipe and take on the dish!
 
-  4. Figure out how to get the google maps api to work with the front end ~8hrs
+## Checkoutpage
 
-    - Geolocate users
-    - Populate the map with all the grandmas
-    - Display filtered grandmas based on the criteria
+Once a dish is selected, and an order is initiated, the user is taken to the Checkout page. On this page, the user will be presented with their order information, and they will be prompted to either sign-up or checkout as a guest.
 
+Once their information is filled out, they will be then taken to the third party payment system, stripe, where they can pay and complete their order.
 
-  5. Frontend Features/Components
+## Future Implementations
 
-    - UserAuth ~4-5 hrs
-    - User Signup/login page
-    - Landing Page ~3-4hrs
-    - Navbar/logo
-    - Button “Get a Taste” to direct user to rest of the site
+- Creating a mobile version of the app
+- Implementing an experience feature where users can book a granny to come to their home and teach them how to cook
 
-  6. Grandmas view page (map displaying all the grandmas in the area)
+## Frameworks used
 
-    - Map area in the middle of the page that shows all the grandmas available in the area
-    - Search bar that allows users to filter grandmas based on search terms for cuisine or dishes
-    - Sidebar that allows users to filter based on location, cuisine, availability
+###Built with:
 
+- Google Maps API
+- React - Redux
+- Node, Express
+- SQL
 
-# Sprint
+# Wireframes
 
-Week 1
-  - Set up and planning
-  - Project proposal
-  - Work on  logo
-  - Setting team expectations and roles
-
-Week 2
-  - Prototype
-
-Week 3
-  - Revised Prototype
-
-Week 4
-  - MVP completed
-
-
-
-# Components
-  - Grandma Profile page
-  - Grandma profile sidebar
-  - Dish component
-  - Toggle Buttons
-  - Book a Seat/table
-  - Order for pickup
-
-  - Grandma login/signup page
-  - Grandma profile edit page
-  - Offerings page for grandma
-  - Add recipes offered
-  - Pick times offered for pickup or dine-in
-
-# wireframes
 [wireframes](https://github.com/jmezalon/GrannyGrub/tree/master/Wireframes)
