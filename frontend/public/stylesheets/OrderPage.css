@@ -94,6 +94,15 @@
   padding-right: 5px;
 }
 
+#back-link-order {
+  z-index: 2;
+  margin: 2%;
+}
+
+.xyz {
+  display: flex;
+}
+
 .back-to-grandma a {
   text-decoration: none;
   color: red;
