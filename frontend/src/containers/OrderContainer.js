@@ -10,8 +10,7 @@ const mapStateToProps = state => {
     grandma: state.grandmas.grandma,
     dish: state.dishes.dish,
     orders: state.orders.orders,
-    id: state.userAuth.userId,
-    currentUser: state.userAuth.currentUser
+    id: state.userAuth.userId
   };
 };
 
@@ -20,7 +19,6 @@ const mapDispatchToProps = dispatch => {
     getAllOrdersForGrandma: id => dispatch(getAllOrdersForGrandma(id)),
     getOneGrandma: id => dispatch(getOneGrandma(id)),
     getOneDish: id => dispatch(getOneDish(id))
-    // setCurrentUser: currentUser => dispatch(setCurrentUser(currentUser)),
   };
 };
 

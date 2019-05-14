@@ -6,35 +6,18 @@ class Order extends React.Component {
   render() {
     const { dish, count } = this.props;
     let price = (dish.price * count).toFixed(2);
-    // let onedish = [];
-    let labels;
-    if (dish.length > 0) {
-      return (labels = dish.lable_list.map(label => {
-        return <div>label</div>;
-      }));
-    }
-    console.log("labels here", labels);
     return (
-      <div className="xyz">
-        {
-          // <button className="back-to-grandma">
-          //     <Link className="grandma-link" to={`/grandma/${dish.user_id}`}>
-          //       Back to Grandmas Page
-          //     </Link>
-          //   </button>
-        }
-
-        <Link to={`/grandma/${dish.user_id}`} id="back-link-order">
-          <i className="fas fa-arrow-left" id="order-back-arrow" />
-        </Link>
+      <>
+        <button className="back-to-grandma">
+          <Link className="grandma-link" to={`/grandma/${dish.user_id}`}>
+            Back to Grandma's Page
+          </Link>
+        </button>
 
         <Modal>
           <div>
             <div id="dish-image">
               <img src={dish.img_url} alt="dish" />
-            </div>
-            <div>
-              <p> {dish.lable_list ? dish.lable_list.join(" - ") : ""}</p>
             </div>
 
             <div className="dish-info">
@@ -47,7 +30,7 @@ class Order extends React.Component {
                 <div id="dish-desc">
                   <p>{dish.description}</p>
 
-                  <h4>For {dish.timeframe}</h4>
+                  <h4>Timeframe: {dish.timeframe}</h4>
                 </div>
               </div>
 
@@ -64,42 +47,41 @@ class Order extends React.Component {
                     className="fas fa-plus-square"
                   />
                 </div>
-                <div id="order-page-type">
-                  <p>
-                    Order Type:{" "}
-                    {dish.ispickup ? (
-                      <div id="order-type-btns">
-                        <button
-                          className={
-                            this.props.order_type === "delivery"
-                              ? "order-type-btns-selected"
-                              : "order-type-btns"
-                          }
-                          value="Delivery"
-                          onClick={this.props.handleTypeChange}
-                        >
-                          Delivery
-                        </button>
 
-                        <button
-                          onClick={this.props.handleTypeChange}
-                          className={
-                            this.props.order_type === "pickup"
-                              ? "order-type-btns-selected"
-                              : "order-type-btns"
-                          }
-                          value="Pick-up"
-                        >
-                          Pick-up
-                        </button>
-                      </div>
-                    ) : (
-                      <button className="order-type-btns-selected">
+                <p>
+                  Order Type:{" "}
+                  {dish.ispickup ? (
+                    <div>
+                      <button
+                        className={
+                          this.props.order_type === "delivery"
+                            ? "order-type-btns-selected"
+                            : "order-type-btns"
+                        }
+                        value="delivery"
+                        onClick={this.props.handleTypeChange}
+                      >
                         Delivery
                       </button>
-                    )}{" "}
-                  </p>
-                </div>
+
+                      <button
+                        onClick={this.props.handleTypeChange}
+                        className={
+                          this.props.order_type === "pickup"
+                            ? "order-type-btns-selected"
+                            : "order-type-btns"
+                        }
+                        value="pickup"
+                      >
+                        Pick-up
+                      </button>
+                    </div>
+                  ) : (
+                    <button className="order-type-btns-selected">
+                      Delivery
+                    </button>
+                  )}{" "}
+                </p>
               </div>
 
               <div className="dish-checkout">
@@ -124,7 +106,7 @@ class Order extends React.Component {
             </div>
           </div>
         </Modal>
-      </div>
+      </>
     );
   }
 }

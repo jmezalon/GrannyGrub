@@ -16,6 +16,7 @@
   height: 90%;
   margin: 2%;
   padding-bottom: 10px;
+  border-bottom: 1px solid #ed3941;
 }
 
 #dish-image-order img {
@@ -28,15 +29,13 @@
 
 #checkout-left-side {
   grid-area: leftside;
-  margin-top: 12%;
-  align-self: baseline;
-  text-align: left;
+  margin: 2%;
 }
 
 #checkout-left-side h3 {
   margin-top: 15px;
-  padding-left: 7px;
-  font-size: 25px;
+  padding: 3px;
+  font-size: 30px;
   font-family: Futura;
   font-weight: bold;
   color: #ed3941;
@@ -47,37 +46,24 @@
 #checkout-right-side {
   grid-area: rightside;
   margin: 2%;
-  align-self: center;
-  width: 100%;
 }
 
 #checkout-as {
   margin-top: 15px;
   margin-bottom: 10px;
   padding: 3px;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
   font-family: Futura;
   color: #ed3941;
   display: flex;
   align-content: flex-start;
-  text-align: left;
 }
 
 .user-info-form {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
-  border-left: 1px solid #ed3941;
-  padding-left: 29px;
-}
-
-.user-info-form h2 {
-  font-size: 27px;
-  font-weight: 500;
-  font-family: Futura;
-  margin-top: 3%;
-  padding-top: 18px;
 }
 
 #required-info p {
@@ -86,28 +72,21 @@
 
 #checkout-dish-name {
   margin-top: 15px;
-  padding-left: 10px;
+  padding: 3px;
   font-size: 20px;
   color: #ed3941;
   display: flex;
   align-content: flex-start;
 }
 
-#checkout-edit {
-  padding-left: 10px;
-}
-
-.checkout-order-info {
-  font-size: 19px;
-}
 #edit-button {
   width: 100px;
   height: 35px;
   border-radius: 4px;
-  background-color: #ed3941;
+  background-color: #f23232;
   margin-top: 2%;
   /* font-family: Futura; */
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
@@ -119,36 +98,4 @@
 #checkout-order-btn {
   margin-top: 60px;
   margin-left: 40px;
-}
-
-#full-name,
-#phone-number,
-#address {
-  padding-left: 6px;
-  border-radius: 3px;
-  border: 1px solid grey;
-  width: 60%;
-  height: 25px;
-  margin: 3px;
-}
-
-#provide-info-message {
-  margin-top: 15px;
-}
-
-.checkout-login-btn {
-  width: 100px;
-  height: 30px;
-  border-radius: 4px;
-  background-color: #ffffff;
-  border: 1px solid grey;
-  margin-top: 2%;
-  font-family: Futura;
-  font-size: 18px;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #ed3941;
 }
