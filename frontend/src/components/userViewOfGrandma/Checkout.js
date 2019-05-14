@@ -35,10 +35,13 @@ const Checkout = ({
 
           <div className="checkout-order-info">
             <p>Order Total: ${price}</p>
-            <p>Order Type: {order_type}</p>
+            <p>
+              {order_type} Time:{" "}
+              {dish.timeframe === "Lunch" ? "12:00pm-2:00pm" : "6:00pm-8:00pm"}
+            </p>
           </div>
 
-          <div>
+          <div id="checkout-edit">
             <p> Need to make changes to this order? </p>
             <Link to={`/order/dish/${parseInt(dish.id)}`}>
               <button id="edit-button">edit</button>

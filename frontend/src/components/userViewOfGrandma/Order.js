@@ -58,7 +58,7 @@ class Order extends React.Component {
                               ? "order-type-btns-selected"
                               : "order-type-btns"
                           }
-                          value="delivery"
+                          value="Delivery"
                           onClick={this.props.handleTypeChange}
                         >
                           Delivery
@@ -71,7 +71,7 @@ class Order extends React.Component {
                               ? "order-type-btns-selected"
                               : "order-type-btns"
                           }
-                          value="pickup"
+                          value="Pick-up"
                         >
                           Pick-up
                         </button>

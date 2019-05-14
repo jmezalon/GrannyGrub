@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const stripe = window.Stripe("pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk");
+const stripe = window.Stripe('pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk');
 
 function OrderForm({ dish, count, handleUserSignUpType }) {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
   const [hasAttemptedToSubmit, setHasAttemptedToSubmit] = useState(false);
 
   const handleSubmit = async e => {
@@ -15,7 +15,7 @@ function OrderForm({ dish, count, handleUserSignUpType }) {
     setHasAttemptedToSubmit(true);
 
     let customSuccessUrl;
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== 'production') {
       customSuccessUrl = `http://localhost:3000/order/dish/6/confirmation`;
     } else {
       customSuccessUrl = `https://grannygrub.herokuapp.com/order/dish/6/confirmation`;
@@ -23,20 +23,20 @@ function OrderForm({ dish, count, handleUserSignUpType }) {
 
     if (
       dish.quantity &&
-      name !== "" &&
-      phoneNumber !== "" &&
+      name !== '' &&
+      phoneNumber !== '' &&
       dish.remaining_quantity !== 0
     ) {
       let granny = { name, phoneNumber, dish, count: count };
-      window.localStorage.setItem("grandma", JSON.stringify(granny));
+      window.localStorage.setItem('grandma', JSON.stringify(granny));
       stripe
         .redirectToCheckout({
-          items: [{ sku: "sku_F2eK1FqKuFI7aa", quantity: count }],
+          items: [{ sku: 'sku_F2eK1FqKuFI7aa', quantity: count }],
           successUrl: customSuccessUrl,
-          cancelUrl: "https://example.com/cancel"
+          cancelUrl: 'https://example.com/cancel',
         })
         .then(result => {
-          console.log("where am I?!");
+          console.log('where am I?!');
           // If `redirectToCheckout` fails due to a browser or network
           // error, display the localized error message to your customer
           // using `result.error.message`.
@@ -47,13 +47,13 @@ function OrderForm({ dish, count, handleUserSignUpType }) {
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
       <div>
-        <h1 id="checkout-as"> Join the grannygrub family </h1>
+        <h1 id="checkout-as"> Join GrannyGrub </h1>
 
         <label>First time user? </label>
         <Link to="/auth/signup">
           <button onClick={handleUserSignUpType} className="checkout-login-btn">
-            {" "}
-            Sign Up{" "}
+            {' '}
+            Sign Up{' '}
           </button>
         </Link>
         <br />
@@ -64,7 +64,7 @@ function OrderForm({ dish, count, handleUserSignUpType }) {
       </div>
 
       <br />
-      <h1>OR</h1>
+      <h2>OR</h2>
       <br />
 
       <div className="user-input">
