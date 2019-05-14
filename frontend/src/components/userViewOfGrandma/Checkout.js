@@ -18,8 +18,6 @@ const Checkout = ({
   handleUserSignUpType,
   currentUser
 }) => {
-  console.log("here");
-
   return (
     <div className="xyz">
       <Link to={`/order/dish/${parseInt(dish.id)}`} id="back-link-order">
