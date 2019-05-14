@@ -57,6 +57,10 @@
   padding-right: 15px;
 }
 
+#order-header p {
+  font-size: 20px;
+}
+
 .checkout-order-info {
   font-size: 20px;
   margin: 5px;
@@ -71,7 +75,7 @@
 }
 
 #delivery-option {
-  margin: 0 7%;
+  margin: 0 6%;
 }
 
 #order-type-btns {
@@ -87,9 +91,8 @@
 }
 
 .plus-minus-button {
-  padding-bottom: 25px;
   display: flex;
-  padding: 10px;
+  padding: 0 15px;
 }
 
 .fas {
@@ -139,7 +142,7 @@
 }
 
 #dish-desc p {
-  margin: 1%;
+  margin: 1% 0;
   display: flex;
   margin-bottom: 10px;
   font-size: 14px;
@@ -147,7 +150,7 @@
 }
 
 #dish-desc h4 {
-  margin: 1%;
+  margin: 1% 0;
   margin-top: 10px;
   display: flex;
   color: #ed3941;
@@ -156,6 +159,7 @@
 }
 
 .dish-checkout {
+  margin-left: 10px;
   margin-top: 10px;
   display: flex;
   flex-direction: row;
