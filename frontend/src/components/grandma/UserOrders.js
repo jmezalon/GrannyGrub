@@ -1,8 +1,9 @@
-import React from "react";
+import React from 'react';
 
 class PreviousOrders extends React.Component {
   render() {
     let orderDisplay;
+    //
     // const orderDisplay = this.props.orders.map(order => {
     //   return (
     //     <div key={order.order_id} className="dish-view">
@@ -26,11 +27,11 @@ class PreviousOrders extends React.Component {
     // });
 
     return (
-      <div>
+      <div id="user-orders">
         <h1>Your orders</h1>
         {this.props.hasOrder
           ? orderDisplay
-          : "you currently have no orders yet"}
+          : 'you currently have no orders yet'}
       </div>
     );
   }

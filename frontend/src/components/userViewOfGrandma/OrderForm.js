@@ -62,20 +62,32 @@ function OrderForm({
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
       <div>
-        <h1 id="checkout-as"> Join GrannyGrub </h1>
 
-        <label>First time user? </label>
-        <Link to="/auth/signup">
-          <button onClick={handleUserSignUpType} className="checkout-login-btn">
-            {" "}
-            Sign Up{" "}
-          </button>
-        </Link>
-        <br />
-        <label> Already a member? </label>
-        <Link to="/auth/login">
-          <button className="checkout-login-btn"> Login </button>
-        </Link>
+        {!currentUser ? (
+          (currentUser !== null, <p>just add your address</p>)
+        ) : !currentUser.last_name ? (
+          <>
+            <h1 id="checkout-as"> Join GrannyGrub </h1>
+
+            <label>First time user? </label>
+            <Link to="/auth/signup">
+              <button
+                onClick={handleUserSignUpType}
+                className="checkout-login-btn"
+              >
+                {" "}
+                Sign Up{" "}
+              </button>
+            </Link>
+            <br />
+            <label> Already a member? </label>
+            <Link to="/auth/login">
+              <button className="checkout-login-btn"> Login </button>
+            </Link>
+          </>
+        ) : (
+          ""
+        )}
       </div>
 
       <br />
@@ -112,6 +124,8 @@ function OrderForm({
           onChange={e => setAddress(e.target.value)}
         />
       </div>
+
+      <br />
 
       {hasAttemptedToSubmit && (
         <div id="required-info">
