@@ -13,7 +13,7 @@ class OrderRoutes extends React.Component {
     orderSummary: false,
     empty_field_name: false,
     empty_field_number: false,
-    order_type: "Delivery",
+    order_type: "delivery",
     confirmation: false
   };
 
@@ -75,6 +75,7 @@ class OrderRoutes extends React.Component {
     //   grandma={grandma}
     //   confirmation={this.state.confirmation}
     // />
+
     return (
       <Switch>
         <Route path={"/order/dish/:id/confirmation"} render={Confirmation} />
@@ -83,16 +84,13 @@ class OrderRoutes extends React.Component {
           path={"/order/dish/:id/checkout"}
           render={props => (
             <Checkout
-              currentUser={this.props.currentUser}
               address={this.state.address}
               count={this.state.count}
               dish={dish}
               confirmation={this.state.confirmation}
               price={price}
               goBack={this.props.goBack}
-              handleUserSignUpType={this.props.handleUserSignUpType}
               order_type={order_type}
-              handleUserSignUpType={this.props.handleUserSignUpType}
             />
           )}
         />
@@ -106,7 +104,6 @@ class OrderRoutes extends React.Component {
               phone_number={phone_number}
               price={price}
               count={this.state.count}
-              currentUser={this.props.currentUser}
               dish={dish}
               confirmation={this.state.confirmation}
               handleCheckOutClick={this.handleCheckOutClick}
