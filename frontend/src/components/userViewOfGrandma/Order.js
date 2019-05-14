@@ -7,7 +7,7 @@ class Order extends React.Component {
     const { dish } = this.props;
     return (
       <div id="order-page-type">
-        <p id="delivery-option">
+        <p className="order-font" id="delivery-option">
           Order Type:{" "}
           {dish.ispickup ? (
             <div id="order-type-btns">
@@ -48,7 +48,7 @@ class Order extends React.Component {
     let price = (dish.price * count).toFixed(2);
     return (
       <div className="dish-checkout">
-        <p>Order Total: ${price} </p>
+        <p className="order-font">Order Total: ${price} </p>
         <Link
           to={
             dish.remaining_quantity !== 0
@@ -83,12 +83,15 @@ class Order extends React.Component {
         </Link>
 
         <Modal>
-          <div>
+          <div className="order-page-container">
             <div id="dish-image">
               <img src={dish.img_url} alt="dish" />
             </div>
             <div>
-              <p> {dish.lable_list ? dish.lable_list.join(" - ") : ""}</p>
+              <p className="label-tags">
+                {" "}
+                {dish.lable_list ? dish.lable_list.join(" - ") : ""}
+              </p>
             </div>
 
             <div className="dish-info">
@@ -100,13 +103,13 @@ class Order extends React.Component {
               <div id="info-container">
                 <div id="dish-desc">
                   <p>{dish.description}</p>
-                  <h4>For {dish.timeframe}</h4>
+                  <h4 className="order-font">For {dish.timeframe}</h4>
                 </div>
               </div>
               {this.displayOrderType()}
               <div className="checkout-order-info">
                 <div className="plus-minus-button">
-                  <label>Quantity: </label>
+                  <label className="order-font">Quantity: </label>
                   <i
                     onClick={this.props.handleSubChange}
                     className="fas fa-minus-square"
