@@ -3,10 +3,18 @@ import { Link } from 'react-router-dom';
 
 const stripe = window.Stripe('pk_test_7q9J4KUlXUhL4lc4wOXrOyPG00jnL2yhFk');
 
-function OrderForm({ dish, count, handleUserSignUpType }) {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
+
+function OrderForm({
+  dish,
+  count,
+  order_type,
+  currentUser,
+  handleUserSignUpType
+}) {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+
   const [hasAttemptedToSubmit, setHasAttemptedToSubmit] = useState(false);
 
   const handleSubmit = async e => {
@@ -27,8 +35,10 @@ function OrderForm({ dish, count, handleUserSignUpType }) {
       phoneNumber !== '' &&
       dish.remaining_quantity !== 0
     ) {
-      let granny = { name, phoneNumber, dish, count: count };
-      window.localStorage.setItem('grandma', JSON.stringify(granny));
+
+      let granny = { name, phoneNumber,address, dish, count: count, order_type };
+      window.localStorage.setItem("grandma", JSON.stringify(granny));
+
       stripe
         .redirectToCheckout({
           items: [{ sku: 'sku_F2eK1FqKuFI7aa', quantity: count }],
@@ -74,8 +84,11 @@ function OrderForm({ dish, count, handleUserSignUpType }) {
           required
           id="full-name"
           name="full_name"
+
           placeholder="Full Name"
-          value={name}
+          value={currentUser ? currentUser.first_name : name}
+
+        
           onChange={e => setName(e.target.value)}
         />
 
@@ -84,7 +97,7 @@ function OrderForm({ dish, count, handleUserSignUpType }) {
           id="phone-number"
           name="phone_number"
           placeholder="Phone Number"
-          value={phoneNumber}
+          value={currentUser ? currentUser.phone_number : phoneNumber}
           onChange={e => setPhoneNumber(e.target.value)}
         />
 
@@ -97,6 +110,33 @@ function OrderForm({ dish, count, handleUserSignUpType }) {
           onChange={e => setAddress(e.target.value)}
         />
       </div>
+
+      {!currentUser ? (
+        (currentUser !== null, <p>just add your address</p>)
+      ) : !currentUser.last_name ? (
+        <>
+          <br />
+          <h1>OR</h1>
+          <br />
+
+          <div>
+            <h1 id="checkout-as"> Join the grannygrub family </h1>
+            <label>First time user? Register here: </label>
+            <Link to="/auth/signup">
+              <button onClick={handleUserSignUpType}> Sign Up </button>
+            </Link>
+            <br />
+            <label> Already a member? Login here:</label>
+            <Link to="/auth/login">
+              <button onClick={handleUserSignUpType}> Login </button>
+            </Link>
+          </div>
+        </>
+      ) : (
+        ""
+      )}
+
+
       {hasAttemptedToSubmit && (
         <div id="required-info">
           {!name && <p>Please add your name</p>}

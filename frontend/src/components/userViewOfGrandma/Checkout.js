@@ -15,7 +15,9 @@ const Checkout = ({
   order_type,
   address,
   confirmation,
-  handleUserSignUpType
+  handleUserSignUpType,
+  currentUser
+
 }) => {
   console.log("here");
 
@@ -52,10 +54,14 @@ const Checkout = ({
         <div id="checkout-right-side">
           <div>
             <OrderForm
+              order_type={order_type}
               full_name={full_name}
               dish={dish}
               count={count}
               address={address}
+
+              currentUser={currentUser}
+
               handleUserSignUpType={handleUserSignUpType}
             />
           </div>
