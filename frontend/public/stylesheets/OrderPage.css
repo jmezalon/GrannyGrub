@@ -15,6 +15,7 @@
   display: flex;
   width: 100%;
   height: 40%;
+  object-fit: cover;
 }
 
 #dish-image img {
@@ -38,37 +39,50 @@
 #dish-name {
   margin-top: 15px;
   padding: 3px;
-  font-size: 45px;
+  font-size: 30px;
   font-weight: bold;
   color: #ed3941;
   display: flex;
   align-content: flex-start;
+  font-family: Futura;
+  padding-left: 19px;
 }
 
 #order-header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-family: Futura;
   align-items: baseline;
   object-fit: contain;
+  padding-right: 15px;
 }
 
 .checkout-order-info {
-  font-size: 22px;
+  font-size: 20px;
   margin: 5px;
-  border-bottom: 1px solid #ed3941;
   font-weight: 500;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
+#order-page-type {
+  width: 50%;
+}
+
+#order-type-btns {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 .checkout-order-info p {
   display: flex;
   padding: 10px;
 }
 
 .plus-minus-button {
-  font-size: 22px;
   padding-bottom: 25px;
   display: flex;
   padding: 10px;
@@ -78,6 +92,15 @@
   color: red;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+#back-link-order {
+  z-index: 2;
+  margin: 2%;
+}
+
+.xyz {
+  display: flex;
 }
 
 .back-to-grandma a {
@@ -105,9 +128,8 @@
 
 #dish-desc {
   margin-top: 1%;
-
   font-family: "Libre Baskerville", serif;
-
+  text-align: left;
   /* display: flex; */
   /* align-items: flex-start; */
 }
@@ -116,7 +138,7 @@
   margin: 1%;
   display: flex;
   margin-bottom: 10px;
-  font-size: 17px;
+  font-size: 14px;
   justify-content: flex-start;
 }
 
@@ -133,12 +155,14 @@
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: baseline;
+  padding: 10px;
 }
 
 .dish-checkout p {
   font-size: 19 px;
+  font-weight: bold;
 }
 
 /* .dish-checkout a {
@@ -146,7 +170,7 @@
 } */
 
 #dish-checkout-button {
-  width: 200px;
+  width: 140px;
   height: 35px;
   border-radius: 4px;
   background-color: #ed3941;
@@ -161,51 +185,36 @@
   font-family: Futura;
 }
 
-#full-name,
-#phone-number {
-  padding-left: 6px;
-  border-radius: 3px;
-  border: 1px solid grey;
-  width: 200px;
-  height: 25px;
-  margin: 12px;
-}
-
-#provide-info-message {
-  margin-top: 15px;
-}
-
 #info-container {
-  border-bottom: 1px solid #ed3941;
   margin: 1%;
   padding: 2%;
 }
 
 .order-type-btns {
-  width: 150px;
-  height: 35px;
+  width: 100px;
+  height: 30px;
   border-radius: 4px;
   background-color: #ffffff;
   margin-top: 2%;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
   color: #ed3941;
+  border: 1px solid #ed3941;
   font-family: Futura;
   margin: 1%;
-  align-self: baseline;
 }
 
 .order-type-btns-selected {
-  width: 150px;
-  height: 35px;
+  width: 100px;
+  height: 30px;
   border-radius: 4px;
   background-color: #ed3941;
   margin-top: 2%;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
@@ -214,5 +223,4 @@
   color: #ffffff;
   font-family: Futura;
   margin: 1%;
-  align-self: baseline;
 }

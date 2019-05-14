@@ -14,8 +14,13 @@ const Checkout = ({
   price,
   order_type,
   address,
-  confirmation
+  confirmation,
+  handleUserSignUpType,
+  currentUser
+
 }) => {
+  console.log("here");
+
   return (
     <Modal>
       <div className="info-order">
@@ -32,10 +37,13 @@ const Checkout = ({
 
           <div className="checkout-order-info">
             <p>Order Total: ${price}</p>
-            <p>Order Type: {order_type}</p>
+            <p>
+              {order_type} Time:{" "}
+              {dish.timeframe === "Lunch" ? "12:00pm-2:00pm" : "6:00pm-8:00pm"}
+            </p>
           </div>
 
-          <div>
+          <div id="checkout-edit">
             <p> Need to make changes to this order? </p>
             <Link to={`/order/dish/${parseInt(dish.id)}`}>
               <button id="edit-button">edit</button>
@@ -44,9 +52,6 @@ const Checkout = ({
         </div>
 
         <div id="checkout-right-side">
-          <h1 id="checkout-as"> Checkout As Guest: </h1>
-          <h6>Please provide your contact information below.</h6>
-
           <div>
             <OrderForm
               order_type={order_type}
@@ -54,6 +59,10 @@ const Checkout = ({
               dish={dish}
               count={count}
               address={address}
+
+              currentUser={currentUser}
+
+              handleUserSignUpType={handleUserSignUpType}
             />
           </div>
         </div>

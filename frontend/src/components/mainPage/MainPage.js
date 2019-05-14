@@ -168,7 +168,7 @@ class MainPage extends Component {
           let coords = res.data.results[0].geometry.location;
           this.setState({
             center: coords,
-            zoom: 13,
+            zoom: 18,
             address: ""
           });
         }
@@ -316,7 +316,7 @@ class MainPage extends Component {
             {this.submitFormHandler()}
           </div>
         </div>
-        <div className="button-mainpage">
+        <div className="buttom-mainpage">
           <div className="left-mainpage">
             <ListView
               zoom={zoom}
