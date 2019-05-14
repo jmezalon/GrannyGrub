@@ -16,14 +16,6 @@ class Order extends React.Component {
     console.log("labels here", labels);
     return (
       <div className="xyz">
-        {
-          // <button className="back-to-grandma">
-          //     <Link className="grandma-link" to={`/grandma/${dish.user_id}`}>
-          //       Back to Grandmas Page
-          //     </Link>
-          //   </button>
-        }
-
         <Link to={`/grandma/${dish.user_id}`} id="back-link-order">
           <i className="fas fa-arrow-left" id="order-back-arrow" />
         </Link>
