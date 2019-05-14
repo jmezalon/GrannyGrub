@@ -1,6 +1,6 @@
 .mainpage {
   min-height: 100vh;
-  background-color: #9abad0;
+  background-color: whitesmoke;
 }
 
 .top-mainpage {
@@ -13,11 +13,12 @@
   flex-direction: column;
   height: 20%;
   background-color: whitesmoke;
+  /* background-color: #fffada; */
   box-shadow: 3px 3px 4px gray;
   /* border: 1px solid #fb4b37; */
 }
 
-.button-mainpage {
+.buttom-mainpage {
   margin: auto;
   width: 98%;
   display: flex;
@@ -140,6 +141,17 @@
   box-shadow: 3px 3px 4px gray; */
   /* border: 1px solid lightblue; */
   /* position: relative !important; */
+}
+
+@media screen and (max-width: 800px) {
+  .left-mainpage {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .right-mainpage {
+    display: none;
+  }
 }
 
 #map {
