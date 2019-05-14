@@ -6,11 +6,14 @@ class Order extends React.Component {
   render() {
     const { dish, count } = this.props;
     let price = (dish.price * count).toFixed(2);
-
-    // let labels = dish.label_list.map(label => {
-    //   return <div>
-    //   </div>;
-    // });
+    // let onedish = [];
+    let labels;
+    if (dish.length > 0) {
+      return (labels = dish.lable_list.map(label => {
+        return <div>label</div>;
+      }));
+    }
+    console.log("labels here", labels);
     return (
       <>
         <button className="back-to-grandma">
@@ -23,6 +26,9 @@ class Order extends React.Component {
           <div>
             <div id="dish-image">
               <img src={dish.img_url} alt="dish" />
+            </div>
+            <div>
+              <p> {dish.lable_list ? dish.lable_list.join(" - ") : ""}</p>
             </div>
 
             <div className="dish-info">
