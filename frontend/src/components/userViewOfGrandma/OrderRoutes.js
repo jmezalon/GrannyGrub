@@ -1,20 +1,20 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import Confirmation from "./Confirmation";
-import Checkout from "./Checkout";
-import Order from "./Order";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Confirmation from './Confirmation';
+import Checkout from './Checkout';
+import Order from './Order';
 
 class OrderRoutes extends React.Component {
   state = {
     count: 1,
-    full_name: "",
-    phone_number: "",
-    address: "",
+    full_name: '',
+    phone_number: '',
+    address: '',
     orderSummary: false,
     empty_field_name: false,
     empty_field_number: false,
-    order_type: "delivery",
-    confirmation: false
+    order_type: 'Delivery',
+    confirmation: false,
   };
 
   componentDidMount() {
@@ -36,7 +36,7 @@ class OrderRoutes extends React.Component {
   handleSubChange = () => {
     if (this.state.count > 1) {
       this.setState({
-        count: this.state.count - 1
+        count: this.state.count - 1,
       });
     }
   };
@@ -44,7 +44,7 @@ class OrderRoutes extends React.Component {
   handleTypeChange = e => {
     e.preventDefault();
     this.setState({
-      order_type: e.target.value
+      order_type: e.target.value,
     });
   };
 
@@ -55,7 +55,7 @@ class OrderRoutes extends React.Component {
       phone_number,
       empty_field_name,
       empty_field_number,
-      order_type
+      order_type,
     } = this.state;
 
     let dish = this.props.dish;
@@ -78,10 +78,10 @@ class OrderRoutes extends React.Component {
 
     return (
       <Switch>
-        <Route path={"/order/dish/:id/confirmation"} render={Confirmation} />
+        <Route path={'/order/dish/:id/confirmation'} render={Confirmation} />
 
         <Route
-          path={"/order/dish/:id/checkout"}
+          path={'/order/dish/:id/checkout'}
           render={props => (
             <Checkout
               address={this.state.address}
@@ -96,7 +96,7 @@ class OrderRoutes extends React.Component {
         />
         <Route
           exact
-          path={"/order/dish/:id"}
+          path={'/order/dish/:id'}
           render={props => (
             <Order
               getOneDish={this.props.getOneDish}
