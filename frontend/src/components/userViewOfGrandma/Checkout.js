@@ -36,7 +36,7 @@ const Checkout = ({
               {count > 1 ? "s" : ""}
             </p>
 
-            <div className="checkout-order-info">
+            <div className="checkout-info">
               <p>
                 {order_type} Time:{" "}
                 {dish.timeframe === "Lunch"

@@ -9,7 +9,6 @@ class Order extends React.Component {
     return (
       <div id="order-page-type">
         <div className="order-font" id="delivery-option">
-
           Order Type:{" "}
           {dish.ispickup ? (
             <div id="order-type-btns">
@@ -59,7 +58,7 @@ class Order extends React.Component {
           }
         >
           <button
-            id="dish-checkout-button"
+            id="dish-checkout-button-order"
             onClick={this.props.handleCheckOutClick}
           >
             {dish.remaining_quantity === 0 ? "back to grandma" : "Checkout"}
@@ -91,7 +90,6 @@ class Order extends React.Component {
               <img src={dish.img_url} alt="dish" />
             </div>
             <div>
-
               <p className="label-tags">
                 {" "}
                 {dish.lable_list ? dish.lable_list.join(" - ") : ""}
