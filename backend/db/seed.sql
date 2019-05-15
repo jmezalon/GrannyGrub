@@ -1,5 +1,4 @@
-
-  DROP DATABASE IF EXISTS grannygrub;
+DROP DATABASE IF EXISTS grannygrub;
 CREATE DATABASE grannygrub;
 
 \c grannygrub;
@@ -32,7 +31,6 @@ CREATE TABLE users (
   isDelivery BOOLEAN,
   cuisine_id INT REFERENCES cuisines(id)
 );
-
 
 
 CREATE TABLE dishes (
@@ -110,7 +108,8 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 ('Kaira', 'Olivier','mandygrannyu@hotmail.com', '123-219-4567', true, 1234,'https://steamuserimages-a.akamaihd.net/ugc/498028597176892886/1D8DB1CBEB5BF1F5BECEADB535572E4CBEDB1918/', 1250, 'Rogers Ave, Brooklyn NY', 11226, 'cooking is my life.', 40.639286, -73.951499, false, false, true, 3);
 
 
-INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES ('Asil ', 'Demir', 'Asildemir@gmail.com', '323-909-4062', true, 1234,'https://external-preview.redd.it/cPPIF6OlEUUtLBovAUghOlj3ghBc-xbWzaFOsCX_N40.jpg?auto=webp&s=4e4bf2613036d32207ba74916864e02bd27b110b', 9039, 'Theatre Drive, New York', 10024, 'Cooking makes me happy!', 40.711161, -74.007271, true, false, true, 9),
+INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES
+('Asil ', 'Demir', 'Asildemir@gmail.com', '323-909-4062', true, 1234,'https://external-preview.redd.it/cPPIF6OlEUUtLBovAUghOlj3ghBc-xbWzaFOsCX_N40.jpg?auto=webp&s=4e4bf2613036d32207ba74916864e02bd27b110b', 9039, 'Theatre Drive, New York', 10024, 'Cooking makes me happy!', 40.711161, -74.007271, true, false, true, 9),
 ('Kiral ', 'Osman', 'KOsman@gmail.com','323-909-4962', true, 1234, 'https://preview.redd.it/sufregue6pn21.jpg?width=640&crop=smart&auto=webp&s=090b17352883a36f81064e74fda1077a09a2b60f', 9430 ,'Vale Street
 
 Rego Park', 11374, 'I love to cook, and i’m grateful to share it!!', 40.726729, -73.86152, false, false, true,9),
@@ -129,20 +128,14 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 'I don’t know how to cook for a few, I’d rather feed everyone i can', 40.751948, -73.883959, false, false, true,5);
 
 
-
-
-INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic,isPickup, isDelivery, cuisine_id) VALUES ('Lena ', 'Ali', 'LenaAli@gmail.com', '323-809-4062', true, 1234,'https://preview.redd.it/nmibyopd3kn21.jpg?width=640&crop=smart&auto=webp&s=b202704ab86e0271dd2fa9dc9b97d06387cb062b', 6, 'Ann Ave, Woodside', 11377, 'Everyone is welcome here!!', 40.74462, -73.904361, true, false, true, 10),
-('Cynthia ', 'Nikolaidis', 'CNikolaidis@gmail.com','917-909-4962', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/180310_1456163396622_2274193_n.jpg?_nc_cat=102&_nc_ht=scontent-lga3-1.xx&oh=3ab614c0937832739b0c4a8e28392866&oe=5D320678', 46 ,'Charles Ave, Staten Island', 10312, 'I love my grandchildren!!', 40.535385, -74.161575, false, false, true, 5), ('Pamela', 'Papantoniou', 'pamelaPap@gmail.com','909-081-3098', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/s403x403/378205_502769929738427_1214178709_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=b3cc12890f39199d6787af8b8bfe328c&oe=5D42B1EF', 7688  ,'Ramblewood St, Jackson Heights', 11372,
-'Cooking makes me very happy!', 40.751948, -73.883959, false, false, true,5);
-
-INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES ('Farha ', 'Qureshi', 'farhaQ@gmail.com', '929-809-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/17191280_1012718378861105_4456290895696198744_n.jpg?_nc_cat=107&_nc_ht=scontent-lga3-1.xx&oh=7f7bddeda0e547cea07ffbdf5a7b6bf5&oe=5D389F2E', 223, 'Newcastle Dr, Jamaicae', 11432, 'I cook what I love!', 40.715188, 73.792888, false, false, true, 4),
+INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES
 ('Naseem ', 'Khan', 'naseemKhan@gmail.com','917-919-5962', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/38700_104063922984070_517661_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=488ae51078dc3d240e57649a105d5d3b&oe=5D3F2020', 63 ,'Old Country St,
 Brooklyn', 11233, 'I love my grandchildren!!', 40.67783, -73.919096, true, false, true, 4), ('Karolina',
 'Brendowska', 'polishGma@gmail.com','919-681-3798', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/264349_108704745889039_1915707_n.jpg?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=816a4eea9ad48d6c28b551b7a962e812&oe=5D3BD9D6', 9781  ,'Goldfield Street, Brooklyn', 11211, 'Cooking makes me very happy!', 40.712587, -73.950866, false, false, true, 6);
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES ('Marie ', 'Pastorino', 'maroeP@gmail.com', '919-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/283973_435238149860470_307754462_n.jpg?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=b7aec7361b720688c301571f2adaed8e&oe=5D2A05EC',175, ' Norman Ave, Brooklyn', 11222, 'I cook what I love!', 40.72692, -73.94725, true, true, true, 6),
 ('Sylvia', 'Piotrowski', 'Sylviapio@gmail.com','927-919-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p228x119/431084_2790698652891_1639254729_n.jpg?_nc_cat=103&_nc_ht=scontent-lga3-1.xx&oh=c358e4cb164217af42c59aa134bb0773&oe=5D4743DD', 9909 ,'Center St, Brooklyn', 11234, 'I really love my grandchildren!!',  40.673389, -73.997964, false, false, true, 6),
-('Ibtisam', 'Amous', 'samAmous@gmail.com','929-964-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/29496114_10155658796157017_1511877918970609664_n.jpg?_nc_cat=101&_nc_ht=scontent-lga3-1.xx&oh=0cf95c3d108fecfb0dfdcd9b9e3b6f78&oe=5D3883AA', 87 ,'Magnolia Street, Flushing ', 11355, 'I really love my grandchildren!!', 40.751021, -73.821798, false, true, true, 10);
+('Ibtisam', 'Amous', 'samAmous@gmail.com','929-964-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/29496114_10155658796157017_1511877918970609664_n.jpg?_nc_cat=101&_nc_ht=scontent-lga3-1.xx&oh=0cf95c3d108fecfb0dfdcd9b9e3b6f78&oe=5D3883AA', 87 ,'Magnolia Street, Flushing ', 11355, 'I really love my grandchildren!!', 40.751021, -73.821798, false, true, true, 10),
 
 
 (' Jeana', 'Azar', 'phulla@gmail.com', '959-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/37181317_10212342874474409_7526437566376050688_n.jpg?_nc_cat=111&_nc_ht=scontent-lga3-1.xx&oh=1d0254b068bc35aa98d24e8274030941&oe=5D651B0B', 144, ' Marsh St, Bronx,', 10453, 'I make food from the heart, with just enough salt', 40.852346, -73.91222, true, false, true, 14),
@@ -160,24 +153,17 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 
 
 
-INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES (' Jeana', 'Azar', 'phulla@gmail.com', '959-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/37181317_10212342874474409_7526437566376050688_n.jpg?_nc_cat=111&_nc_ht=scontent-lga3-1.xx&oh=1d0254b068bc35aa98d24e8274030941&oe=5D651B0B', 144, ' Marsh St, Bronx,', 10453, 'I cook what I love!', 40.852346, -73.91222, true, false, true, 14),
-('Jasmine', 'Gaines', 'fillin@gmail.com','927-951-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/170791_185973308103983_698815_o.jpg?_nc_cat=109&_nc_ht=scontent-lga3-1.xx&oh=bf7ec26dc132edfa02217a4d163a5f93&oe=5D5E4242', 94,' Wild Horse Drive, Brooklyn', 11233, 'I really love my grandchildren!!', 40.67783, -73.919096, false, false, true, 15),
-('Nipapun', 'Tanasootr', 'NTanasootr@gmail.com','909-164-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/53480594_386776818782513_2756106975136710656_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=e6c7d641b2536b2270b5334caf7416d8&oe=5D2ADEBE', 9825 ,'West Mammoth Drive, New York', 10011, 'Let me cook for you!!!', 40.741625, -74.000479, true, false, true, 8);
-
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe, quantity) VALUES
 
 
-('Spiced cauliflower with chickpeas', 'Roast cauliflower with cumin and caraway then serve with healthy chickpeas and herbs in this Middle Eastern-style salad', 11, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--983480_10.jpg?itok=z3XvGH3-', 3.75,'2019-05-21', 'Lunch', 8),
-
-('Mulukhiyah with Chicken & rice', 'Tossa jute plant based stew cooked with chunks of boneless chicken breast and served with rice and freshly squeezed lemon', 11, 10, 'https://thefooddoctor.files.wordpress.com/2017/05/mulukhyia-a-stew-fit-for-royals.jpg?w=800', 10.75,'2019-05-21', 'Lunch', 8),
 
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe, quantity) VALUES ('Tarator-style salmon', 'Salmon fillets are topped with walnuts, parsley, sumac onion and hummus in this Middle Eastern inspired fish dish', 8, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/tarator-style-salmon.jpg?itok=p1JuHet5', 5.73,'2019-05-21', 'Lunch', 5),
 ('Spiced cauliflower with chickpeas, herbs & pine nuts', 'Roast cauliflower with cumin and caraway then serve with healthy chickpeas and herbs in this Middle Eastern-style salad', 11, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--983480_10.jpg?itok=z3XvGH3-', 3.75,'2019-05-21', 'Lunch', 8),
+('Mulukhiyah with Chicken & rice', 'Tossa jute plant based stew cooked with chunks of boneless chicken breast and served with rice and freshly squeezed lemon', 11, 10, 'https://thefooddoctor.files.wordpress.com/2017/05/mulukhyia-a-stew-fit-for-royals.jpg?w=800', 10.75,'2019-05-21', 'Lunch', 8),
 ('Japanese okonomiyaki', 'This Japanese pancake is full of authentic flavours and textures, with fresh squid or prawns and a mirin and a honey sauce. Garnish with bonito flakes', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/12/okonomiyaki.jpg?itok=xyEqSNSU', 9.99,'2019-05-21','Lunch',9),
 ('Taramasalata', 'This creamy blend of pink or white fish roe, with either a potato or bread base, is best with a drizzle of virgin olive oil or a squeeze of lemon.', 12, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/taramasalata.jpg', 7.99,'2019-05-21','Lunch', 6),
+
 ('Japanese katsudon', 'Use up leftovers and provide a hearty meal with this tasty pork katsudon. Using our tonkatsu recipe, it is great to make the day after a Japanese feast', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/04/the-day-after-dish-katsudon.jpg?itok=xxTIulFS', 8.89,'2019-05-21','Dinner', 10),
 ('Chinese chicken Soup', 'Yum!', 5, 1, 'https://www.waitrose.com/content/dam/waitrose/recipes/images/g/Ginger-chicken-noodle-soup.jpg/_jcr_content/renditions/cq5dam.thumbnail.400.400.png', 10.75, '2019-05-21','Dinner', 7),
-('Chinese orange chicken', 'white rice with chicken and scallion', 5, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 5.73, '2019-05-22','Lunch',6),
 
 
 ('Chinese orange chicken', 'White rice with chicken and scallion', 5, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 15.73, '2019-05-22','Lunch',6),
@@ -258,10 +244,11 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price, date
 
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe,quantity) VALUES
 -- korean
-('Chinese-style fried rice', 'This speedy Chinese dish is super satisfying and a great way to use up leftover cooked rice - it is full of iron too', 6, 11, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/01/korean-style-fried-rice.jpg?itok=OWPmym9e', 9.99,'2019-05-21','Lunch', 8),
+('Chinese-style fried rice', 'This speedy Chinese dish is super satisfying and a great way to use up leftover cooked rice - it is full of iron too', 5, 11, 'https://www.gimmesomeoven.com/wp-content/uploads/2017/07/How-To-Make-Fried-Rice-Recipe-3-1.jpg', 9.99,'2019-05-21','Lunch', 8),
 
-(' Deep fried chicken wings', 'Six wings per serving. Gochujang is a savoury condiment that adds a rich spiciness to the chicken wings. Drizzled with sesame oil with a side of my crunchy side slaw', 21, 14, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/korean-wings.jpg?itok=5YQZPdmc', 7.89,'2019-05-21','Dinner', 10),
+(' Deep fried chicken wings', 'Six wings per serving. Gochujang is a savoury condiment that adds a rich spiciness to the chicken wings. Drizzled with sesame oil with a side of my crunchy side slaw', 5, 14, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/korean-wings.jpg?itok=5YQZPdmc', 7.89,'2019-05-21','Dinner', 10),
 
+--add dishes for users 6 and 21
 
 ('Pork & caramelised pineapple adobo', 'Sharp, salty-sweet notes is well worth the effort. It is a hearty stew with chunks of melt-in-the-mouth pork belly', 24, 13, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/02/pork-adobo.jpg?itok=o0Eztwxk', 6.89,'2019-05-21','Dinner',11);
 
@@ -286,18 +273,18 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'),('Contains-Eggs'),('Contains-nuts'),('Contains-Shellfish');
 
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 8),(3, 7),(3, 6), (4, 9), (5,7), (6, 1);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 8),(3, 4),(3, 5),(4,9),(4,7), (5, 9), (5,7), (6, 7);
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (6,6), (7, 5),(7, 4), (8, 3), (8, 2), (9,8), (10,1), (10,6), (11, 1), (11,6);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (6,6), (7, 5),(8, 1),(9,2),(9,3),(10,1), (10,7), (11, 6), (11,7);
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (12,5), (12, 1), (13, 9), (13,6), (14,4), (14,5), (15, 1);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (12,6), (12, 7), (13, 1), (13,8), (14,4), (14,5), (15, 6), (15,9);
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (15,2),(15,3),(16,4),(16,2),(17,4),(18,1),(18,7),(20,1),(21,2),(21,3),(22,2),(22,6);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (16,4),(17,4),(17,5),(18,1),(19,2),(19,3),(20,4),(20,8),(21,2),(21,6),(22,6),(22,4);
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (23,5),(23,8),(24,1),(25,2),(25,3),(26,5), (28,4),(29,6),(29,2), (30,6), (31, 2), (31,3),(32,8),(33,5);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (23,3),(23,2),(25,1),(25,7),(26,5),(27,1),(27,2),(28,1), (29,1), (29, 5),(30,1),(31,3),(33,5);
 
 INSERT INTO label_dishes (dish_id, label_id) VALUES
-(34,2),(34,)
+(34,2),(34,7),(36,5),(37,4),(38,5),(39,2),(39,6),(40,9),(40,6),(41,7);
 
 
 
