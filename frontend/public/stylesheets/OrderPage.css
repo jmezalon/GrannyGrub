@@ -49,7 +49,6 @@
 }
 
 #order-header {
-  font-size: 20px;
   display: flex;
   justify-content: space-between;
   font-family: Futura;
@@ -58,24 +57,13 @@
   padding-right: 15px;
 }
 
-/* #order-header p {
-  font-size: 20px;
-} */
-
-.checkout-order-info {
-  margin: 5px;
-  font-weight: 500;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
 #order-page-type {
   text-align: left;
   width: 50%;
 }
 
 #delivery-option {
-  margin: 0 6%;
+  margin: 0 7%;
 }
 
 #order-type-btns {
@@ -85,16 +73,25 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.checkout-order-info {
+  font-size: 20px;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  font-weight: 500;
+  flex-direction: row;
+  justify-content: space-around;
+}
 .checkout-order-info p {
   display: flex;
-  padding: 10px;
+  margin-bottom: 2%;
+  /* padding: 10px; */
 }
 
 .plus-minus-button {
-  margin: 2% 0;
+  padding-bottom: 25px;
   display: flex;
-  padding: 0 15px;
-  font-size: 22px;
+  padding: 10px;
 }
 
 .fas {
@@ -144,41 +141,24 @@
 }
 
 #dish-desc p {
-  margin: 1% 0;
+  margin: 1%;
   display: flex;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 14px;
   justify-content: flex-start;
-  line-height: 22px;
-}
-
-.order-page-container {
-  width: 100%;
-}
-
-.label-tags {
-  margin-top: 5px;
-  font-family: "Libre Baskerville", serif;
-  font-size: 13px;
 }
 
 #dish-desc h4 {
-  margin: 2% 0;
-  margin-top: 25px;
+  margin: 1%;
+  margin-top: 10px;
   display: flex;
   color: #ed3941;
   font-weight: bold;
   justify-content: flex-start;
 }
 
-.order-font {
-  font-family: "Libre Baskerville", serif;
-  font-size: 19px;
-  font-weight: normal;
-}
-
 .dish-checkout {
-  margin-left: 2%;
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -188,6 +168,7 @@
 
 .dish-checkout p {
   font-size: 19 px;
+  font-weight: bold;
 }
 
 /* .dish-checkout a {
@@ -195,11 +176,12 @@
 } */
 
 #dish-checkout-button {
-  width: 140px;
+  width: 83%;
   height: 35px;
   border-radius: 4px;
   background-color: #ed3941;
   margin-top: 2%;
+  margin-right: 20%;
   font-size: 20px;
   font-weight: 500;
   font-style: normal;
@@ -211,8 +193,8 @@
 }
 
 #info-container {
-  margin: 0 1%;
-  padding: 1% 2%;
+  margin: 1%;
+  padding: 2%;
 }
 
 .order-type-btns {

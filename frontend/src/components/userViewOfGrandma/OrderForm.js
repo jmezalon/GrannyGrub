@@ -63,28 +63,27 @@ function OrderForm({
     <form className="user-info-form" onSubmit={handleSubmit}>
       <div>
         <h1 id="checkout-as"> Join GrannyGrub </h1>
+        <div className="join">
+          <Link to="/auth/signup">
+            <button
+              onClick={handleUserSignUpType}
+              className="checkout-login-btn"
+            >
+              {" "}
+              Sign Up{" "}
+            </button>
+          </Link>
+          <br />
 
-        <label>First time user? </label>
-        <Link to="/auth/signup">
-          <button onClick={handleUserSignUpType} className="checkout-login-btn">
-            {" "}
-            Sign Up{" "}
-          </button>
-        </Link>
-        <br />
-        <label> Already a member? </label>
-        <Link to="/auth/login">
-          <button className="checkout-login-btn"> Login </button>
-        </Link>
+          <Link to="/auth/login">
+            <button className="checkout-login-btn"> Login </button>
+          </Link>
+        </div>
       </div>
 
-      <br />
-      <h2>OR</h2>
-      <br />
-
       <div className="user-input">
-        <h1 id="checkout-as"> Checkout As Guest: </h1>
-        <h6>Please provide your contact information below.</h6>
+        <h1 id="checkout-as"> Checkout As Guest </h1>
+
         <input
           required
           id="full-name"
@@ -120,7 +119,7 @@ function OrderForm({
         </div>
       )}
       <div id="checkout-order-btn">
-        <button id="dish-checkout-button">order</button>
+        <button id="dish-checkout-button">Order</button>
       </div>
     </form>
   );
