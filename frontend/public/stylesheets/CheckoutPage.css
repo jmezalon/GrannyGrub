@@ -9,6 +9,25 @@
     " leftside rightside ";
 }
 
+.checkout-info {
+  font-weight: 500;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.checkout-info {
+  font-size: 20px;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  font-weight: 500;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.checkout-info p {
+  display: flex;
+  margin-bottom: 2%;
+}
+
 #dish-image-order {
   grid-area: img;
   display: flex;
