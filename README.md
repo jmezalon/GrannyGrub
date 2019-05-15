@@ -16,6 +16,7 @@ Home cooked meals provided the user with a variety of unique takes on culturally
 
 ## Main Page
 
+![](./proposal/Screenshots/mainpage.png)
 On the main page of the app, users can use our interactive map and list to find and browse a grandma that serves what she is looking for. Users can hover on the list items and pinpoint their location on the map, or they can use the map to hover over the pins and see the grandmothers name and cuisine type.
 
 Users can filter based on which cuisines they are craving, as well as filtering based on time, either lunch or dinner, and type of service, pickup or delivery.
