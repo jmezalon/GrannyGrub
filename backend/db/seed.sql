@@ -265,7 +265,10 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 
 ('Cajun shrimp and grits', 'Cajun Shrimp and Grits- Creamy Grits with Cajun Shrimp , a Southern Classic Elevated! With Bold and Spicy Seasonings', 20, 14, 'https://www.familysavvy.com/wp-content/uploads/2012/11/Screen-Shot-2015-03-01-at-10.15.23-AM.png',15.89,'2019-05-21','Dinner',8),
 
-('Southern fried chicken', 'Great for feeding a crowd, simply kick back, enjoy and relax this fried chicken recipe with homemade slaw', 21, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273636_8.jpg?itok=VxE-1zWU', 13.99,'2019-05-21', 'Lunch',7);
+('Southern fried chicken', 'Great for feeding a crowd, simply kick back, enjoy and relax this fried chicken recipe with homemade slaw', 21, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273636_8.jpg?itok=VxE-1zWU', 13.99,'2019-05-21', 'Lunch',7),
+
+
+('Oven Smoked BBQ Ribs', 'Fall off the bone tender ribs with a smoky-sweet crunchy crust! Served with cole slaw and cornbread', 21, 15, 'https://sweetcsdesigns.com/wp-content/uploads/2017/05/The-Best-Oven-Smoked-Ribs-Picture418-1024x683.jpg', 13.99,'2019-05-21', 'Dinner',7);
 
 
 
@@ -284,7 +287,7 @@ INSERT INTO label_dishes (dish_id, label_id) VALUES (16,4),(17,4),(17,5),(18,1),
 INSERT INTO label_dishes (dish_id, label_id) VALUES (23,3),(23,2),(25,1),(25,7),(26,5),(27,1),(27,2),(28,1), (29,1), (29, 5),(30,1),(31,3),(33,5);
 
 INSERT INTO label_dishes (dish_id, label_id) VALUES
-(34,2),(34,7),(36,5),(37,4),(38,5),(39,2),(39,6),(40,9),(40,6),(41,7);
+(34,2),(34,7),(36,5),(37,4),(38,5),(39,2),(39,6),(40,9),(40,6),(41,7),(42,5);
 
 
 
