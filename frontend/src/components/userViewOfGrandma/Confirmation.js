@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Modal } from "./Modal.js";
-import axios from "axios";
+// import axios from "axios";
 // import queryString from "query-string";
 
 class Confirmation extends React.Component {

@@ -9,7 +9,6 @@ class Order extends React.Component {
     return (
       <div id="order-page-type">
         <div className="order-font" id="delivery-option">
-
           Order Type:{" "}
           {dish.ispickup ? (
             <div id="order-type-btns">
@@ -70,14 +69,14 @@ class Order extends React.Component {
   };
 
   render() {
-    const { dish, count } = this.props;
-    let price = (dish.price * count).toFixed(2);
-    let labels;
-    if (dish.length > 0) {
-      return (labels = dish.lable_list.map(label => {
-        return <div>label</div>;
-      }));
-    }
+    const { dish } = this.props;
+    // let price = (dish.price * count).toFixed(2);
+    // let labels;
+    // if (dish.length > 0) {
+    //   return (labels = dish.lable_list.map(label => {
+    //     return <div>label</div>;
+    //   }));
+    // }
 
     return (
       <div className="xyz">
@@ -91,7 +90,6 @@ class Order extends React.Component {
               <img src={dish.img_url} alt="dish" />
             </div>
             <div>
-
               <p className="label-tags">
                 {" "}
                 {dish.lable_list ? dish.lable_list.join(" - ") : ""}

@@ -74,7 +74,10 @@ function OrderForm({
         <br />
         <label> Already a member? </label>
         <Link to="/auth/login">
-          <button className="checkout-login-btn"> Login </button>
+          <button className="checkout-login-btn" onClick={handleUserSignUpType}>
+            {" "}
+            Login{" "}
+          </button>
         </Link>
       </div>
 
