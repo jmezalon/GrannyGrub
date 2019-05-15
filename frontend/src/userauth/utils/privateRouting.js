@@ -56,8 +56,7 @@ class Authorize extends React.Component {
     let Component = this.props.component;
     let locationState = this.state.location.state;
     // { component: Component, ...this.props } = this.props
-    debugger;
-    console.log(props.location);
+
     return (
       <Route
         path={props.path}
