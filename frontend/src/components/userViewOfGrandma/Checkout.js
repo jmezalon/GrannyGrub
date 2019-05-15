@@ -16,7 +16,8 @@ const Checkout = ({
   address,
   confirmation,
   handleUserSignUpType,
-  currentUser
+  currentUser,
+  loggedIn
 }) => {
   return (
     <div className="xyz">

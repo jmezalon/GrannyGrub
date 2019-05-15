@@ -5,7 +5,7 @@ import {
 } from "../actions/actionTypes";
 
 const initialState = {
-  currentUser: [],
+  currentUser: {},
   userId: "",
   loggedIn: false
 };

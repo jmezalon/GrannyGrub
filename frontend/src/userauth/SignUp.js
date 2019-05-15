@@ -21,7 +21,7 @@ class SignUp extends React.Component {
       last_name,
       email,
       phone_number,
-      isGrandma,
+      isUser,
       building_number,
       address,
       zip_code,
@@ -47,7 +47,7 @@ class SignUp extends React.Component {
           <div className="signup-login">
             <div id={zip_code ? "login" : "signup"}>
               <Link to="/auth/login">
-                <h1>Sign up for {isGrandma ? " Grandma" : " User"}</h1>
+                <h1>Sign up for {!isUser ? " Grandma" : " User"}</h1>
               </Link>
             </div>
           </div>
@@ -99,7 +99,7 @@ class SignUp extends React.Component {
               />
             </div>
 
-            {isGrandma ? (
+            {!isUser ? (
               <div>
                 <label htmlFor="cuisine">
                   <b>Cuisines selection: </b>
