@@ -148,6 +148,7 @@ class App extends Component {
                 handleUserSignUpType={this.handleUserSignUpType}
                 goBack={this.goBack}
                 loggedIn={this.props.loggedIn}
+                currentUser={this.props.currentUser}
               />
             )}
           />

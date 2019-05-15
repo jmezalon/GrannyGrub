@@ -93,6 +93,7 @@ class OrderRoutes extends React.Component {
               loggedIn={this.props.loggedIn}
               order_type={order_type}
               handleUserSignUpType={this.props.handleUserSignUpType}
+              currentUser={this.props.currentUser}
             />
           )}
         />
