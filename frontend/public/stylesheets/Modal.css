@@ -14,15 +14,12 @@
   justify-content: space-around;
   position: absolute;
   width: 50%;
-  height: 90%;
+  height: 85%;
   z-index: 2;
   overflow-x: hidden;
   left: calc(25%);
   background-color: white;
-  border: 1px solid #ed3941;
   top: 2%;
-
   padding: 20px;
-
   border-radius: 10px;
 }

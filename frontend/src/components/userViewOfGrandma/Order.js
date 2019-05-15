@@ -58,7 +58,7 @@ class Order extends React.Component {
           }
         >
           <button
-            id="dish-checkout-button"
+            id="dish-checkout-button-order"
             onClick={this.props.handleCheckOutClick}
           >
             {dish.remaining_quantity === 0 ? "back to grandma" : "Checkout"}

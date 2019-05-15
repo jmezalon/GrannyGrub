@@ -31,26 +31,26 @@ const Checkout = ({
           </div>
 
           <div id="checkout-left-side">
-            <h3> Order details: </h3>
+            <h3> Order details </h3>
             <p id="checkout-dish-name">
               {count} X {dish.name}
               {count > 1 ? "s" : ""}
             </p>
 
-            <div className="checkout-order-info">
-              <p>Order Total: ${price}</p>
+            <div className="checkout-info">
               <p>
                 {order_type} Time:{" "}
                 {dish.timeframe === "Lunch"
                   ? "12:00pm-2:00pm"
                   : "6:00pm-8:00pm"}
               </p>
+              <p>Total: ${price}</p>
             </div>
 
             <div id="checkout-edit">
               <p> Need to make changes to this order? </p>
               <Link to={`/order/dish/${parseInt(dish.id)}`}>
-                <button id="edit-button">edit</button>
+                <button id="edit-button">Edit</button>
               </Link>
             </div>
           </div>

@@ -162,7 +162,11 @@
   width: 100%;
   height: 600px;
 }
-
+.list-view-container {
+  width: 100%;
+  height: 600px;
+  overflow-y: scroll;
+}
 @media screen and (min-width: 1920px) {
   .map-main {
     height: 800px;
@@ -173,12 +177,12 @@
     height: 800px;
   }
 }
-@media screen and (min-width> 1920px) {
+@media screen and (min-width: 2400px) {
   .map-main {
     height: 1000px;
   }
 }
-@media screen and (min-width> 1920px) {
+@media screen and (min-width: 2400px) {
   .list-view-container {
     height: 1000px;
   }
@@ -186,12 +190,6 @@
 
 /* ListView css */
 
-.list-view-container {
-  width: 100%;
-  height: 600px;
-  overflow-y: scroll;
-  /* border: 1px solid gray; */
-}
 .list-view-container::-webkit-scrollbar {
   -webkit-appearance: none;
 }

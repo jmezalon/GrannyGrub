@@ -62,11 +62,13 @@ function OrderForm({
 
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
-      {!currentUser.first_name ? (
-        <div>
-          <h1 id="checkout-as"> Join GrannyGrub </h1>
 
-          <label>First time user? </label>
+      {!currentUser.first_name ? (
+
+      <div>
+        <h1 id="checkout-as"> Join GrannyGrub </h1>
+        <div className="join">
+
           <Link to="/auth/signup">
             <button
               onClick={handleUserSignUpType}
@@ -77,7 +79,8 @@ function OrderForm({
             </button>
           </Link>
           <br />
-          <label> Already a member? </label>
+
+          
           <Link to="/auth/login">
             <button
               className="checkout-login-btn"
@@ -87,11 +90,8 @@ function OrderForm({
               Login{" "}
             </button>
           </Link>
-          <br />
-          <br />
-          <h2>OR</h2>
-          <br />
         </div>
+    </div>
       ) : (
         ""
       )}
@@ -101,15 +101,9 @@ function OrderForm({
           {" "}
           {currentUser.first_name && !currentUser.isgrandma
             ? `Welcome ${currentUser.first_name}`
-            : "Checkout As Guest:"}{" "}
+            : "Checkout As Guest"}{" "}
         </h1>
-        <h6>
-          Please provide your{" "}
-          {currentUser.first_name && !currentUser.isgrandma
-            ? " address "
-            : " contact information "}{" "}
-          below.
-        </h6>
+
         <input
           required
           id="full-name"
@@ -151,7 +145,7 @@ function OrderForm({
         </div>
       )}
       <div id="checkout-order-btn">
-        <button id="dish-checkout-button">order</button>
+        <button id="dish-checkout-button">Order</button>
       </div>
     </form>
   );
