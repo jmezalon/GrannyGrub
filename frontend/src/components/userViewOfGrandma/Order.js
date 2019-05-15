@@ -5,20 +5,21 @@ import { Modal } from "./Modal.js";
 class Order extends React.Component {
   displayOrderType = () => {
     const { dish } = this.props;
+
     return (
       <div id="order-page-type">
-        <p id="delivery-option">
+        <div id="delivery-option">
           Order Type:{" "}
           {dish.ispickup ? (
             <div id="order-type-btns">
               <button
+                onClick={this.props.handleTypeChange}
                 className={
-                  this.props.order_type === "delivery"
+                  this.props.order_type === "Delivery"
                     ? "order-type-btns-selected"
                     : "order-type-btns"
                 }
                 value="Delivery"
-                onClick={this.props.handleTypeChange}
               >
                 Delivery
               </button>
@@ -26,9 +27,9 @@ class Order extends React.Component {
               <button
                 onClick={this.props.handleTypeChange}
                 className={
-                  this.props.order_type === "pickup"
-                    ? "order-type-btns-selected"
-                    : "order-type-btns"
+                  this.props.order_type === "Delivery"
+                    ? "order-type-btns"
+                    : "order-type-btns-selected"
                 }
                 value="Pick-up"
               >
@@ -38,7 +39,7 @@ class Order extends React.Component {
           ) : (
             <button className="order-type-btns-selected">Delivery</button>
           )}{" "}
-        </p>
+        </div>
       </div>
     );
   };
@@ -76,6 +77,7 @@ class Order extends React.Component {
         return <div>label</div>;
       }));
     }
+
     return (
       <div className="xyz">
         <Link to={`/grandma/${dish.user_id}`} id="back-link-order">
@@ -88,7 +90,10 @@ class Order extends React.Component {
               <img src={dish.img_url} alt="dish" />
             </div>
             <div>
-              <p> {dish.lable_list ? dish.lable_list.join(" - ") : ""}</p>
+              <p className="dish-label">
+                {" "}
+                {dish.lable_list ? dish.lable_list.join(" - ") : ""}
+              </p>
             </div>
 
             <div className="dish-info">

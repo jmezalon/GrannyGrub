@@ -158,13 +158,13 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 
 ('Amilia', 'Cabrera', 'gCabrera@gmail.com','977-991-6902', true, 1234, 'https://live.staticflickr.com/2913/32760510623_a997e2276b_b.jpg', 358 , 'East Mountainview St', 11691, 'I make food from the heart, with just enough salt',40.599546, -73.750523, false, true, true, 7);
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe, quantity) VALUES
 
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES (' Jeana', 'Azar', 'phulla@gmail.com', '959-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/37181317_10212342874474409_7526437566376050688_n.jpg?_nc_cat=111&_nc_ht=scontent-lga3-1.xx&oh=1d0254b068bc35aa98d24e8274030941&oe=5D651B0B', 144, ' Marsh St, Bronx,', 10453, 'I cook what I love!', 40.852346, -73.91222, true, false, true, 14),
 ('Jasmine', 'Gaines', 'fillin@gmail.com','927-951-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/170791_185973308103983_698815_o.jpg?_nc_cat=109&_nc_ht=scontent-lga3-1.xx&oh=bf7ec26dc132edfa02217a4d163a5f93&oe=5D5E4242', 94,' Wild Horse Drive, Brooklyn', 11233, 'I really love my grandchildren!!', 40.67783, -73.919096, false, false, true, 15),
 ('Nipapun', 'Tanasootr', 'NTanasootr@gmail.com','909-164-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/53480594_386776818782513_2756106975136710656_n.jpg?_nc_cat=100&_nc_ht=scontent-lga3-1.xx&oh=e6c7d641b2536b2270b5334caf7416d8&oe=5D2ADEBE', 9825 ,'West Mammoth Drive, New York', 10011, 'Let me cook for you!!!', 40.741625, -74.000479, true, false, true, 8);
 
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe, quantity) VALUES
 
 
 ('Spiced cauliflower with chickpeas', 'Roast cauliflower with cumin and caraway then serve with healthy chickpeas and herbs in this Middle Eastern-style salad', 11, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--983480_10.jpg?itok=z3XvGH3-', 3.75,'2019-05-21', 'Lunch', 8),
@@ -286,13 +286,20 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'),('Contains-Eggs'),('Contains-nuts'),('Contains-Shellfish');
 
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 4),(3, 9),(3, 6), (4, 9), (4,4), (5,5), (5,6), (5,7), (6, 1);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 8),(3, 7),(3, 6), (4, 9), (5,7), (6, 1);
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (6,6), (7, 2),(7, 4), (8, 3), (8, 2), (8, 4), (9,8), (10,1), (10,6), (11,7), (11, 1), (11,6);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (6,6), (7, 5),(7, 4), (8, 3), (8, 2), (9,8), (10,1), (10,6), (11, 1), (11,6);
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (12,6), (12, 5),(12, 9), (8, 3), (13, 6), (13,4), (14,4), (14,7), (14,5), (15, 1), (15,4);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (12,5), (12, 1), (13, 9), (13,6), (14,4), (14,5), (15, 1);
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (15,2),(15,5);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (15,2),(15,3),(16,4),(16,2),(17,4),(18,1),(18,7),(20,1),(21,2),(21,3),(22,2),(22,6);
+
+INSERT INTO label_dishes (dish_id, label_id) VALUES (23,5),(23,8),(24,1),(25,2),(25,3),(26,5), (28,4),(29,6),(29,2), (30,6), (31, 2), (31,3),(32,8),(33,5);
+
+INSERT INTO label_dishes (dish_id, label_id) VALUES
+(34,2),(34,)
+
+
 
 
 -- INSERT INTO reviews (stars, comment, user_id) VALUES
