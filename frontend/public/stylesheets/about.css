@@ -26,7 +26,7 @@
   box-shadow: 3px 3px 4px #ccc;
 }
 .team-about-card {
-  height: 500px;
+  height: 530px;
   width: 65%;
   border: 1px solid rgba(211, 211, 211, 0.3);
   margin: 30px auto;
@@ -35,9 +35,9 @@
 
 #card-header {
   font-size: 40px;
-  font-family: fantasy;
+  font-family: sans-serif;
   margin-top: 30px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 #card-desc {
