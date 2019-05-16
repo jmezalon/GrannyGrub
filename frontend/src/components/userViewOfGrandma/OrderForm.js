@@ -30,10 +30,11 @@ function OrderForm({
     }
 
     if (
-      dish.quantity &&
-      name !== "" &&
-      phoneNumber !== "" &&
-      dish.remaining_quantity !== 0
+      (dish.quantity &&
+        name !== "" &&
+        phoneNumber !== "" &&
+        dish.remaining_quantity !== 0) ||
+      !loggedIn
     ) {
       let granny = {
         name,
@@ -62,36 +63,32 @@ function OrderForm({
 
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
-
       {!currentUser.first_name ? (
+        <div>
+          <h1 id="checkout-as"> Join GrannyGrub </h1>
+          <div className="join">
+            <Link to="/auth/signup">
+              <button
+                onClick={handleUserSignUpType}
+                className="checkout-login-btn"
+              >
+                {" "}
+                Sign Up{" "}
+              </button>
+            </Link>
+            <br />
 
-      <div>
-        <h1 id="checkout-as"> Join GrannyGrub </h1>
-        <div className="join">
-
-          <Link to="/auth/signup">
-            <button
-              onClick={handleUserSignUpType}
-              className="checkout-login-btn"
-            >
-              {" "}
-              Sign Up{" "}
-            </button>
-          </Link>
-          <br />
-
-          
-          <Link to="/auth/login">
-            <button
-              className="checkout-login-btn"
-              onClick={handleUserSignUpType}
-            >
-              {" "}
-              Login{" "}
-            </button>
-          </Link>
+            <Link to="/auth/login">
+              <button
+                className="checkout-login-btn"
+                onClick={handleUserSignUpType}
+              >
+                {" "}
+                Login{" "}
+              </button>
+            </Link>
+          </div>
         </div>
-    </div>
       ) : (
         ""
       )}
@@ -138,12 +135,6 @@ function OrderForm({
         />
       </div>
 
-      {hasAttemptedToSubmit && (
-        <div id="required-info">
-          {!name && <p>Please add your name</p>}
-          {!phoneNumber && <p>Please add your phone number</p>}
-        </div>
-      )}
       <div id="checkout-order-btn">
         <button id="dish-checkout-button">Order</button>
       </div>
