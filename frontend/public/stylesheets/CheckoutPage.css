@@ -53,7 +53,7 @@
 }
 
 #checkout-left-side h3 {
-  margin-top: 18px;
+  margin-top: 15px;
   margin-bottom: 10px;
   /* padding: 3px; */
   font-size: 22px;
@@ -148,7 +148,7 @@
   width: 40%;
   height: 30px;
   border-radius: 4px;
-  background-color: #f23232;
+  background-color: #ed3941;
   margin-top: 2%;
   /* font-family: Futura; */
   font-size: 20px;
