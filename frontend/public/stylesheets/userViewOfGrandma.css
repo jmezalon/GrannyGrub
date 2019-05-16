@@ -143,3 +143,11 @@
   margin: 0;
   margin-left: 3%;
 }
+
+.grandma-delivery-type {
+  font-family: "Libre Baskerville", serif;
+  color: #ed3941;
+  font-weight: 22px;
+  font-weight: bold;
+  margin-top: 2%;
+}

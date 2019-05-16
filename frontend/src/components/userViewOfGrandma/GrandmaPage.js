@@ -66,6 +66,15 @@ class GrandmaPage extends Component {
           </div>
         </div>
         <div>
+          <div>
+            {grandma.ispickup ? (
+              <p className="grandma-delivery-type">
+                Avialable For Pickup Or Delivery
+              </p>
+            ) : (
+              <p className="grandma-delivery-type">Avaialable For Delivery</p>
+            )}
+          </div>
           <GrandmasDishes dishes={this.props.dishes} id={id} />
         </div>
       </div>
