@@ -23,3 +23,15 @@
   padding: 20px;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 800px) {
+  .modal-container {
+    width: 90%;
+    height: 96%;
+    padding: 0px;
+
+    z-index: 2;
+    overflow-x: hidden;
+    left: calc(5%);
+  }
+}
