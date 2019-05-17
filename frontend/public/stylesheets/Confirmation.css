@@ -2,7 +2,6 @@
   width: 80%;
   border-radius: 5%;
 
-
 }
 
 .confirm-info-container > * {
@@ -97,4 +96,42 @@
 #confirm-order-info h3 {
   font-size: 21px;
 
+}
+
+#confirmation-icon {
+  display: flex;
+  flex-direction: row;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+justify-content: center;
+margin-top: 2%;
+}
+
+#printIcon{
+  width: 30px;
+  height: 30px;
+  margin-left: 5%;
+}
+
+#emailIcon {
+  width: 25px;
+  height: 25px;
+  margin-right: 5%;
+}
+
+#confirmation-card {
+width: 55%;
+display: flex;
+flex-direction: column;
+margin-left: auto;
+margin-right: auto;
+}
+
+#confirmation-card h2{
+color: #ed3941;
+font-size: 17px;
+font-weight: bold;
+font-family: Futura;
+margin-bottom: 1%;
 }

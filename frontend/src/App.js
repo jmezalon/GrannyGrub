@@ -138,11 +138,19 @@ class App extends Component {
             path={"/auth"}
             component={UserAuthContainer}
             isUser={this.state.isUser}
-            isGrandma={this.state.isGrandma}
+            isGrandma={this.props.currentUser.isgrandma}
           />
           <Route
             path={"/order/dish/:id"}
-            render={props => <OrderContainer {...props} goBack={this.goBack} />}
+            render={props => (
+              <OrderContainer
+                {...props}
+                handleUserSignUpType={this.handleUserSignUpType}
+                goBack={this.goBack}
+                loggedIn={this.props.loggedIn}
+                currentUser={this.props.currentUser}
+              />
+            )}
           />
           <Route exact path="/grandma/:id" component={GrandmaPageContainer} />
         </Switch>

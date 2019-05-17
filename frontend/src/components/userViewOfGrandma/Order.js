@@ -69,14 +69,14 @@ class Order extends React.Component {
   };
 
   render() {
-    const { dish, count } = this.props;
-    let price = (dish.price * count).toFixed(2);
-    let labels;
-    if (dish.length > 0) {
-      return (labels = dish.lable_list.map(label => {
-        return <div>label</div>;
-      }));
-    }
+    const { dish } = this.props;
+    // let price = (dish.price * count).toFixed(2);
+    // let labels;
+    // if (dish.length > 0) {
+    //   return (labels = dish.lable_list.map(label => {
+    //     return <div>label</div>;
+    //   }));
+    // }
 
     return (
       <div className="xyz">

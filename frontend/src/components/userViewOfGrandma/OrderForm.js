@@ -8,6 +8,7 @@ function OrderForm({
   count,
   order_type,
   currentUser,
+  loggedIn,
   handleUserSignUpType
 }) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -29,10 +30,11 @@ function OrderForm({
     }
 
     if (
-      dish.quantity &&
-      name !== "" &&
-      phoneNumber !== "" &&
-      dish.remaining_quantity !== 0
+      (dish.quantity &&
+        name !== "" &&
+        phoneNumber !== "" &&
+        dish.remaining_quantity !== 0) ||
+      !loggedIn
     ) {
       let granny = {
         name,
@@ -61,35 +63,54 @@ function OrderForm({
 
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
-      <div>
-        <h1 id="checkout-as"> Join GrannyGrub </h1>
-        <div className="join">
-          <Link to="/auth/signup">
-            <button
-              onClick={handleUserSignUpType}
-              className="checkout-login-btn"
-            >
-              {" "}
-              Sign Up{" "}
-            </button>
-          </Link>
-          <br />
+      {!currentUser.first_name ? (
+        <div>
+          <h1 id="checkout-as"> Join GrannyGrub </h1>
+          <div className="join">
+            <Link to="/auth/signup">
+              <button
+                onClick={handleUserSignUpType}
+                className="checkout-login-btn"
+              >
+                {" "}
+                Sign Up{" "}
+              </button>
+            </Link>
+            <br />
 
-          <Link to="/auth/login">
-            <button className="checkout-login-btn"> Login </button>
-          </Link>
+            <Link to="/auth/login">
+              <button
+                className="checkout-login-btn"
+                onClick={handleUserSignUpType}
+              >
+                {" "}
+                Login{" "}
+              </button>
+            </Link>
+          </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
 
       <div className="user-input">
-        <h1 id="checkout-as"> Checkout As Guest </h1>
+        <h1 id="checkout-as">
+          {" "}
+          {currentUser.first_name && !currentUser.isgrandma
+            ? `Welcome ${currentUser.first_name}`
+            : "Checkout As Guest"}{" "}
+        </h1>
 
         <input
           required
           id="full-name"
           name="full_name"
           placeholder="Full Name"
-          value={currentUser ? currentUser.first_name : name}
+          value={
+            currentUser.first_name
+              ? currentUser.first_name + " " + currentUser.last_name
+              : name
+          }
           onChange={e => setName(e.target.value)}
         />
 
@@ -98,7 +119,9 @@ function OrderForm({
           id="phone-number"
           name="phone_number"
           placeholder="Phone Number"
-          value={currentUser ? currentUser.phone_number : phoneNumber}
+          value={
+            currentUser.phone_number ? currentUser.phone_number : phoneNumber
+          }
           onChange={e => setPhoneNumber(e.target.value)}
         />
 
@@ -112,12 +135,6 @@ function OrderForm({
         />
       </div>
 
-      {hasAttemptedToSubmit && (
-        <div id="required-info">
-          {!name && <p>Please add your name</p>}
-          {!phoneNumber && <p>Please add your phone number</p>}
-        </div>
-      )}
       <div id="checkout-order-btn">
         <button id="dish-checkout-button">Order</button>
       </div>
