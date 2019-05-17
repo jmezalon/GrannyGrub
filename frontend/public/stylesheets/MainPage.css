@@ -102,8 +102,9 @@
 
 .lunch-dinner {
   margin-left: 2%;
+  margin-right: 4%;
   /* margin-top: 1%; */
-  width: 25%;
+  /* width: 25%; */
   display: flex;
   align-items: center;
 }
@@ -111,25 +112,27 @@
 .lunch-dinner-form {
   margin-left: 4%;
   display: flex;
-  width: 40%;
+  /* width: 40%; */
 }
 
 .order-type {
   /* margin-top: 1%; */
-  width: 25%;
+  /* width: 25%; */
   display: flex;
   align-items: center;
-  margin-left: 4%;
+  margin-left: 2%;
+  margin-right: 4%;
 }
 
 .order-type-form {
   margin-left: 4%;
   display: flex;
-  width: 40%;
+  /* width: 40%; */
 }
 
 .search-address {
   width: 35%;
+  margin-top: 1%;
   margin-left: 5%;
   margin-bottom: 0.2%;
 }
@@ -140,6 +143,12 @@
   font-size: 13px;
   border-radius: 6px;
   border-style: none;
+}
+
+@media screen and (max-width: 800px) {
+  .search-address {
+    width: 50%;
+  }
 }
 .map-list {
   align-items: center;
