@@ -35,10 +35,7 @@ class LandingPage extends React.Component {
               </p>
             </div>
             <div className="middle-landing-right">
-              <h3>Food, folks and fun!</h3>
-              <p>
-                Plan an event at a grandma's place or order a delicious meal now
-              </p>
+              <p>Get a Taset of Home With the Click of a Button</p>
               <Link to="/mainpage">
                 <button id="taste-button2"> Get started </button>
               </Link>

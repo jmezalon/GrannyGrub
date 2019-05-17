@@ -66,7 +66,7 @@ class UserAuthForm extends React.Component {
       last_name,
       email,
       phone_number,
-      isGrandma: this.props.isGrandma,
+      isGrandma: !this.props.isUser,
       password,
       building_number,
       address,
@@ -81,7 +81,7 @@ class UserAuthForm extends React.Component {
       last_name,
       email,
       phone_number,
-      isGrandma: this.props.isGrandma,
+      isGrandma: !this.props.isUser,
       password
     };
 
@@ -103,12 +103,11 @@ class UserAuthForm extends React.Component {
   };
 
   render() {
-    if (this.props.id && this.props.isGrandma) {
-      this.props.history.push(`/grandma/${this.props.id}/dashboard`);
-    } else if (this.props.id && !this.props.isGrandma) {
-      this.props.history.push(`/user/${this.props.id}/dashboard`);
-    }
-
+    // if (this.props.id && this.props.isGrandma) {
+    //   this.props.history.push(`/grandma/${this.props.id}/dashboard`);
+    // } else if (this.props.id && !this.props.isGrandma) {
+    //   this.props.history.push(`/user/${this.props.id}/dashboard`);
+    // }
     const {
       first_name,
       last_name,
@@ -129,7 +128,7 @@ class UserAuthForm extends React.Component {
         <Switch>
           <Route
             path="/auth/login"
-            render={() => {
+            render={props => {
               return (
                 <LogIn
                   email={email}
