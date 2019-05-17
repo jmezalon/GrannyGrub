@@ -103,7 +103,7 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic, building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES
 
-('Debra ', 'Wei', 'grannanna@gmail.com', '123-999-4567', true, 1234, 'http://economists-pick-research.hktdc.com/resources/MI_Portal/Article/rp/2015/07/470473/1436836534321_eChinaSeniors2-p2i_470473.jpg', 47-10, 'Austell Pl, Long Island City', 11101, 'I shop at Costco. Its much easier to make in bulk, trust me.', 40.742442, -73.941235, false, false, true, 1),
+('Debra ', 'Wei', 'grannanna@gmail.com', '123-999-4567', true, 1234, 'http://economists-pick-research.hktdc.com/resources/MI_Portal/Article/rp/2015/07/470473/1436836534321_eChinaSeniors2-p2i_470473.jpg', 47-10, 'Austell Pl, Long Island City', 11101, 'I shop at Costco. Its much easier to make in bulk, trust me.', 40.742442, -73.941235, false, true, true, 1),
 ('Lindy', 'Joseph', 'granbubbu@yahoo.com', '123-999-0987', true, 1234, 'http://www.historymiami.org/wp-content/uploads/2017/12/gg-e1512752178541-265x300.jpg', 1463, 'E 96th St, Brooklyn NY', 11236, 'My grandson told me that my meals are delicious and I wanted to share my good cooking with everyone else to see themselves.',  40.637195, -73.894472, true, true, true, 2),
 ('Kaira', 'Olivier','mandygrannyu@hotmail.com', '123-219-4567', true, 1234,'https://steamuserimages-a.akamaihd.net/ugc/498028597176892886/1D8DB1CBEB5BF1F5BECEADB535572E4CBEDB1918/', 1250, 'Rogers Ave, Brooklyn NY', 11226, 'cooking is my life.', 40.639286, -73.951499, false, false, true, 3);
 
@@ -163,7 +163,8 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 ('Taramasalata', 'This creamy blend of pink or white fish roe, with either a potato or bread base, is best with a drizzle of virgin olive oil or a squeeze of lemon.', 12, 5, 'https://www.bbcgoodfood.com/sites/default/files/editor_files/2018/08/taramasalata.jpg', 7.99,'2019-05-21','Lunch', 6),
 
 ('Japanese katsudon', 'Use up leftovers and provide a hearty meal with this tasty pork katsudon. Using our tonkatsu recipe, it is great to make the day after a Japanese feast', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/04/the-day-after-dish-katsudon.jpg?itok=xxTIulFS', 8.89,'2019-05-21','Dinner', 10),
-('Chinese chicken Soup', 'Yum!', 5, 1, 'https://www.waitrose.com/content/dam/waitrose/recipes/images/g/Ginger-chicken-noodle-soup.jpg/_jcr_content/renditions/cq5dam.thumbnail.400.400.png', 10.75, '2019-05-21','Dinner', 7),
+
+('Chinese Chicken Soup', 'If you’re feeling under the weather or just want a pick-me-up—this herb-packed chicken soup can get you back up on your feet in no time!', 5, 1, 'https://www.waitrose.com/content/dam/waitrose/recipes/images/g/Ginger-chicken-noodle-soup.jpg/_jcr_content/renditions/cq5dam.thumbnail.400.400.png', 10.75, '2019-05-21','Dinner', 7),
 
 
 ('Chinese orange chicken', 'White rice with chicken and scallion', 5, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 15.73, '2019-05-22','Lunch',6),
