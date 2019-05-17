@@ -1,6 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Modal } from "./Modal.js";
+
+import emailIcon from "../../assets/email.png";
+import printIcon from "../../assets/print.png";
+
 // import axios from "axios";
 // import queryString from "query-string";
 
@@ -45,7 +49,7 @@ class Confirmation extends React.Component {
             </h3>
             <h4> {name} </h4>
             <div id="confirm-user-address">
-              <h5> At: 4321 56th st, Astoria, NY 11307</h5>
+              <h5> At: 47-10 Austell Pl, LIC, NY 11307</h5>
 
               <div className="confirm-date">
                 <h6> {dish.timeframe} </h6>
@@ -64,8 +68,14 @@ class Confirmation extends React.Component {
             <br />
             <p>Order Total: ${formattedPrice}</p>
           </div>
+          <div id="confirmation-card">
+            <h2>Thank you for using GrannyGrub!</h2>
 
-          <h2>Thank you for using grannygrub!</h2>
+            <div id="confirmation-icon">
+              <img src={emailIcon} alt="" id="emailIcon" />
+              <img src={printIcon} alt="" id="printIcon" />
+            </div>
+          </div>
         </div>
       </Modal>
     );
