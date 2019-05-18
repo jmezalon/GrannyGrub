@@ -205,6 +205,7 @@ class MainPage extends Component {
       isDelivery,
       selectedAll
     } = this.state;
+
     const cuisinesType = this.props.cuisines.cuisines.map(cuisine => {
       return (
         <div
