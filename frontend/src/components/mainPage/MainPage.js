@@ -205,6 +205,7 @@ class MainPage extends Component {
       isDelivery,
       selectedAll
     } = this.state;
+
     const sortedCuisines = this.props.cuisines.cuisines.sort((a, b) =>
       a.type > b.type ? 1 : -1
     );
