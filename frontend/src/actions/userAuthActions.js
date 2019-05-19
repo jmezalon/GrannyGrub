@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   SET_CURRENT_USER,
   REMOVE_CURRENT_USER,
   GOT_ERROR
-} from './actionTypes';
+} from "./actionTypes";
 
-import Auth from '../userauth/utils/Auth';
+import Auth from "../userauth/utils/Auth";
 
 export const setCurrentUser = currentUser => {
   return { type: SET_CURRENT_USER, payload: currentUser };
@@ -14,7 +14,7 @@ export const setCurrentUser = currentUser => {
 export const gotError = err => {
   return {
     type: GOT_ERROR,
-    payload: err,
+    payload: err
   };
 };
 
@@ -23,14 +23,14 @@ export const removeCurrentUser = currentUser => {
 };
 
 export const registerUser = (user, loginPrams) => dispatch => {
-  return axios.post('/users/new', user).then(() => {
+  return axios.post("/users/new", user).then(() => {
     return dispatch(loginUser(loginPrams));
   });
 };
 
 export const loginUser = user => dispatch => {
   return axios
-    .post('/users/login', user)
+    .post("/users/login", user)
     .then(res => {
       Auth.authenticateUser(res.data.email);
       return dispatch(setCurrentUser(res.data));
@@ -42,7 +42,7 @@ export const loginUser = user => dispatch => {
 
 export const getCurrentUser = user => dispatch => {
   return axios
-    .post('/users/isLoggedIn', user)
+    .post("/users/isLoggedIn", user)
     .then(res => {
       Auth.authenticateUser(res.data.email);
       return dispatch(setCurrentUser(res.data));
@@ -54,7 +54,7 @@ export const getCurrentUser = user => dispatch => {
 };
 
 export const checkAuthenticateStatus = () => dispatch => {
-  return axios.post('/users/isLoggedIn').then(user => {
+  return axios.post("/users/isLoggedIn").then(user => {
     if (user.data.email === Auth.getToken()) {
       return dispatch(setCurrentUser(user.data));
     } else {
@@ -69,14 +69,14 @@ export const checkAuthenticateStatus = () => dispatch => {
 
 export const logoutUser = () => dispatch => {
   return axios
-    .post('/users/logout')
+    .post("/users/logout")
     .then(() => {
       Auth.deauthenticateUser();
-      return dispatch(removeCurrentUser(null));
+      return dispatch(removeCurrentUser({}));
     })
 
     .catch(err => {
-      console.log('logout err', err);
+      console.log("logout err", err);
     });
 };
 

@@ -2,7 +2,6 @@
   width: 80%;
   border-radius: 5%;
 
-
 }
 
 .confirm-info-container > * {
@@ -51,7 +50,7 @@
 
 #confirm-user-info p {
 }
-
+/*
 #confirm-user-address {
   font-family: HiraMinPro-W3;
   display: flex;
@@ -67,7 +66,56 @@
   padding-right: 100px;
   background-color: #ed3941;
   margin-bottom: 3%;
+} */
+
+#confirm-user-address {
+  width: 90%;
+  height: 100%;
+  position: relative;
+  font-family: HiraMinPro-W3;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border: 1px solid #ed3941;
+  border-left: none;
+  margin: 1%;
+  margin-left: 90px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-right: 100px;
+  background-color: #ed3941;
+  margin-bottom: 3%;
 }
+#confirm-user-address:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 39px solid white;
+  border-top: 39px solid transparent;
+  border-bottom: 39px solid transparent;
+}
+
+@media screen and (max-width: 800px) {
+  #confirm-user-address {
+    margin-left: 0;
+    padding-left: 25px;
+  }
+}
+/* #confirm-user-address:before {
+  content: "";
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid red;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+} */
+
 
 .confirm-date {
   display: flex;
@@ -97,4 +145,42 @@
 #confirm-order-info h3 {
   font-size: 21px;
 
+}
+
+#confirmation-icon {
+  display: flex;
+  flex-direction: row;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+justify-content: center;
+margin-top: 2%;
+}
+
+#printIcon{
+  width: 30px;
+  height: 30px;
+  margin-left: 5%;
+}
+
+#emailIcon {
+  width: 25px;
+  height: 25px;
+  margin-right: 5%;
+}
+
+#confirmation-card {
+width: 55%;
+display: flex;
+flex-direction: column;
+margin-left: auto;
+margin-right: auto;
+}
+
+#confirmation-card h2{
+color: #ed3941;
+font-size: 17px;
+font-weight: bold;
+font-family: Futura;
+margin-bottom: 1%;
 }

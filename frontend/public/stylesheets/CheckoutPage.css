@@ -9,14 +9,31 @@
     " leftside rightside ";
 }
 
+.checkout-info {
+  font-weight: 500;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.checkout-info {
+  font-size: 20px;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  font-weight: 500;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.checkout-info p {
+  display: flex;
+  margin-bottom: 2%;
+}
+
 #dish-image-order {
   grid-area: img;
   display: flex;
   width: 100%;
   height: 90%;
-  margin: 2%;
   padding-bottom: 10px;
-  border-bottom: 1px solid #ed3941;
 }
 
 #dish-image-order img {
@@ -30,14 +47,27 @@
 #checkout-left-side {
   grid-area: leftside;
   margin: 2%;
+  margin-left: 3%;
+  margin-top: 8%;
+  text-align: left;
 }
 
 #checkout-left-side h3 {
   margin-top: 15px;
-  padding: 3px;
-  font-size: 30px;
+  margin-bottom: 10px;
+  /* padding: 3px; */
+  font-size: 22px;
   font-family: Futura;
   font-weight: bold;
+  color: #ed3941;
+  display: flex;
+  align-content: flex-start;
+}
+
+#checkout-dish-name {
+  margin-top: 3%;
+  /* padding: 3px; */
+  font-size: 20px;
   color: #ed3941;
   display: flex;
   align-content: flex-start;
@@ -51,7 +81,7 @@
 #checkout-as {
   margin-top: 15px;
   margin-bottom: 10px;
-  padding: 3px;
+
   font-size: 22px;
   font-weight: bold;
   font-family: Futura;
@@ -60,34 +90,65 @@
   align-content: flex-start;
 }
 
+.join {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.join a {
+  margin-right: 2%;
+}
+
+.join button {
+  width: 100%;
+  height: 22px;
+  border-radius: 4px;
+  background-color: white;
+  color: #f23232;
+  border-color: black;
+  margin-top: 2%;
+
+  /* font-family: Futura; */
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.user-input {
+  margin-top: 10%;
+  text-align: left;
+}
+
+.user-input input {
+  width: 80%;
+  margin-top: 2%;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 4px;
+}
 .user-info-form {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
+  margin-top: 5%;
 }
 
 #required-info p {
   color: red;
 }
 
-#checkout-dish-name {
-  margin-top: 15px;
-  padding: 3px;
-  font-size: 20px;
-  color: #ed3941;
-  display: flex;
-  align-content: flex-start;
-}
-
 #checkout-edit {
-  padding-left: 10px;
+  margin-top: 7%;
 }
 
 #edit-button {
-  width: 100px;
-  height: 35px;
+  width: 40%;
+  height: 30px;
   border-radius: 4px;
-  background-color: #f23232;
+  background-color: #ed3941;
   margin-top: 2%;
   /* font-family: Futura; */
   font-size: 20px;
@@ -100,6 +161,6 @@
 }
 
 #checkout-order-btn {
-  margin-top: 60px;
-  margin-left: 40px;
+  margin-top: 10%;
+  /* margin-left: 40px; */
 }
