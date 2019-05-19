@@ -50,7 +50,7 @@
 
 #confirm-user-info p {
 }
-
+/*
 #confirm-user-address {
   font-family: HiraMinPro-W3;
   display: flex;
@@ -66,7 +66,56 @@
   padding-right: 100px;
   background-color: #ed3941;
   margin-bottom: 3%;
+} */
+
+#confirm-user-address {
+  width: 90%;
+  height: 100%;
+  position: relative;
+  font-family: HiraMinPro-W3;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border: 1px solid #ed3941;
+  border-left: none;
+  margin: 1%;
+  margin-left: 90px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-right: 100px;
+  background-color: #ed3941;
+  margin-bottom: 3%;
 }
+#confirm-user-address:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 38px solid white;
+  border-top: 38px solid transparent;
+  border-bottom: 38px solid transparent;
+}
+
+@media screen and (max-width: 800px) {
+  #confirm-user-address {
+    margin-left: 0;
+    padding-left: 25px;
+  }
+}
+/* #confirm-user-address:before {
+  content: "";
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid red;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+} */
+
 
 .confirm-date {
   display: flex;
