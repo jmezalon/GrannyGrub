@@ -93,9 +93,9 @@
   bottom: 0;
   width: 0;
   height: 0;
-  border-left: 38px solid white;
-  border-top: 38px solid transparent;
-  border-bottom: 38px solid transparent;
+  border-left: 39px solid white;
+  border-top: 39px solid transparent;
+  border-bottom: 39px solid transparent;
 }
 
 @media screen and (max-width: 800px) {
