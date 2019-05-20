@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { NavLink, Link, withRouter } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import React, { Component } from 'react';
+import { NavLink, Link, withRouter } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 
 class Navbar extends Component {
   render() {
@@ -14,13 +14,11 @@ class Navbar extends Component {
           </NavLink>
         </div>
 
-        {this.props.location.pathname === "/mainpage" ? (
+        {this.props.location.pathname === '/mainpage' ? (
           <div id="right-nav">
             <div className="middle-options">
               <NavLink to="/auth/signup">
-                <h1 onClick={this.props.handleUserSignUpType}>
-                  create a user account
-                </h1>
+                <h1 onClick={this.props.handleUserSignUpType}>Join us</h1>
               </NavLink>
               <NavLink to="/about">
                 <h1>About us</h1>
@@ -32,7 +30,7 @@ class Navbar extends Component {
           </div>
         ) : (
           <div id="right-nav">
-            {this.props.location.pathname === "/" ? (
+            {this.props.location.pathname === '/' ? (
               <div className="middle-options">
                 <Link to="/auth/signup">
                   <h1 onClick={this.props.handleUserSignUpType2}>
