@@ -44,8 +44,6 @@ Once their information is filled out, they will be then taken to the third party
 
 ## Frameworks used
 
-###Built with:
-
 - Google Maps API
 - React - Redux
 - Node, Express
