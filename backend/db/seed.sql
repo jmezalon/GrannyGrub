@@ -135,10 +135,10 @@ Brooklyn', 11233, 'I love my grandchildren!!', 40.67783, -73.919096, true, false
 
 INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, password_digest, profile_pic,  building_number, address, zip_code, bio, latitude, longitude, isPublic, isPickup, isDelivery, cuisine_id) VALUES ('Marie ', 'Pastorino', 'maroeP@gmail.com', '919-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/283973_435238149860470_307754462_n.jpg?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=b7aec7361b720688c301571f2adaed8e&oe=5D2A05EC',175, ' Norman Ave, Brooklyn', 11222, 'I cook what I love!', 40.72692, -73.94725, true, true, true, 6),
 ('Sylvia', 'Piotrowski', 'Sylviapio@gmail.com','927-919-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-0/p228x119/431084_2790698652891_1639254729_n.jpg?_nc_cat=103&_nc_ht=scontent-lga3-1.xx&oh=c358e4cb164217af42c59aa134bb0773&oe=5D4743DD', 9909 ,'Center St, Brooklyn', 11234, 'I really love my grandchildren!!',  40.673389, -73.997964, false, false, true, 6),
-('Ibtisam', 'Amous', 'samAmous@gmail.com','929-964-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/29496114_10155658796157017_1511877918970609664_n.jpg?_nc_cat=101&_nc_ht=scontent-lga3-1.xx&oh=0cf95c3d108fecfb0dfdcd9b9e3b6f78&oe=5D3883AA', 87 ,'Magnolia Street, Flushing ', 11355, 'I really love my grandchildren!!', 40.751021, -73.821798, false, true, true, 10),
+('Ibtisam', 'Amous', 'samAmous@gmail.com','929-964-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/49831893_10156463737872017_524413204739129344_n.jpg?_nc_cat=107&_nc_ht=scontent-lga3-1.xx&oh=e880d5bbd481344a4d3f4299be398f47&oe=5D547D27', 87 ,'Magnolia Street, Flushing ', 11355, 'I really love my grandchildren!!', 40.751021, -73.821798, false, true, true, 10),
 
 
-(' Jeana', 'Azar', 'phulla@gmail.com', '959-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/37181317_10212342874474409_7526437566376050688_n.jpg?_nc_cat=111&_nc_ht=scontent-lga3-1.xx&oh=1d0254b068bc35aa98d24e8274030941&oe=5D651B0B', 144, ' Marsh St, Bronx,', 10453, 'I make food from the heart, with just enough salt', 40.852346, -73.91222, true, false, true, 14),
+('Jeana', 'Azar', 'phulla@gmail.com', '959-810-4062', true, 1234,'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/37181317_10212342874474409_7526437566376050688_n.jpg?_nc_cat=111&_nc_ht=scontent-lga3-1.xx&oh=1d0254b068bc35aa98d24e8274030941&oe=5D651B0B', 144, ' Marsh St, Bronx,', 10453, 'I make food from the heart, with just enough salt', 40.852346, -73.91222, true, false, true, 14),
 
 
 ('Jasmine', 'Gaines', 'fillin@gmail.com','927-951-6902', true, 1234, 'https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/170791_185973308103983_698815_o.jpg?_nc_cat=109&_nc_ht=scontent-lga3-1.xx&oh=bf7ec26dc132edfa02217a4d163a5f93&oe=5D5E4242', 94,' Wild Horse Drive, Brooklyn', 11233, 'DJ Khaled hired me to be his chef first, but my food was too spicy for him, i only used black pepper', 40.67783, -73.919096, false, false, true, 15),
@@ -156,7 +156,7 @@ INSERT INTO users (first_name, last_name, email, phone_number, isGrandma, passwo
 
 
 
-INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe, quantity) VALUES ('Tarator-style salmon', 'Salmon fillets are topped with walnuts, parsley, sumac onion and hummus in this Middle Eastern inspired fish dish', 8, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/tarator-style-salmon.jpg?itok=p1JuHet5', 5.73,'2019-05-21', 'Lunch', 5),
+INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe, quantity) VALUES ('Tarator-style salmon', 'Salmon fillets are topped with walnuts, parsley, sumac onion and hummus in this Middle Eastern inspired fish dish', 8, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/tarator-style-salmon.jpg?itok=p1JuHet5', 5.75,'2019-05-21', 'Lunch', 5),
 ('Spiced cauliflower with chickpeas, herbs & pine nuts', 'Roast cauliflower with cumin and caraway then serve with healthy chickpeas and herbs in this Middle Eastern-style salad', 11, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--983480_10.jpg?itok=z3XvGH3-', 3.75,'2019-05-21', 'Lunch', 8),
 ('Mulukhiyah with Chicken & rice', 'Tossa jute plant based stew cooked with chunks of boneless chicken breast and served with rice and freshly squeezed lemon', 11, 10, 'https://thefooddoctor.files.wordpress.com/2017/05/mulukhyia-a-stew-fit-for-royals.jpg?w=800', 10.75,'2019-05-21', 'Lunch', 8),
 ('Japanese okonomiyaki', 'This Japanese pancake is full of authentic flavours and textures, with fresh squid or prawns and a mirin and a honey sauce. Garnish with bonito flakes', 10, 12, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/12/okonomiyaki.jpg?itok=xyEqSNSU', 9.99,'2019-05-21','Lunch',9),
@@ -167,7 +167,7 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 ('Chinese Chicken Soup', 'If you’re feeling under the weather or just want a pick-me-up—this herb-packed chicken soup can get you back up on your feet in no time!', 5, 1, 'https://www.waitrose.com/content/dam/waitrose/recipes/images/g/Ginger-chicken-noodle-soup.jpg/_jcr_content/renditions/cq5dam.thumbnail.400.400.png', 10.75, '2019-05-21','Dinner', 7),
 
 
-('Chinese orange chicken', 'White rice with chicken and scallion', 5, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 15.73, '2019-05-22','Lunch',6),
+('Chinese orange chicken', 'White rice with chicken and scallion', 5, 1, 'https://s23209.pcdn.co/wp-content/uploads/2013/10/IMG_4012edit1.jpg', 15.75, '2019-05-22','Lunch',6),
 
 
 ('Rice with beans gravy and legume', 'the name says it all, now just taste it and see', 6, 2, 'https://i.ytimg.com/vi/ojqGPMv4rBw/maxresdefault.jpg', 9.99,'2019-05-23','Lunch',6),
@@ -192,7 +192,7 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 
 ('Turkish Beef Kufta', 'Served with french fries, rice and tomatoes with a side of jalapeno yodurt suauce.', 9, 9, 'https://www.recipetineats.com/wp-content/uploads/2016/02/Turkish-Kebabs-1_3.jpg', 12.99,'2019-05-21', 'Dinner', 8),
 
-('Turkish Chicken Kebab', 'The chicken is placed overnight in a simple marinade made from plain yogurt, onion, garlic, and spices. Served with a side of Rice', 8, 9, 'https://images.media-allrecipes.com/userphotos/720x405/5827752.jpg', 13.73,'2019-05-21', 'Lunch', 9),
+('Turkish Chicken Kebab', 'The chicken is placed overnight in a simple marinade made from plain yogurt, onion, garlic, and spices. Served with a side of Rice', 8, 9, 'https://images.media-allrecipes.com/userphotos/720x405/5827752.jpg', 13.75,'2019-05-21', 'Lunch', 9),
 
 -- middle Eastern
 
@@ -205,9 +205,9 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 
 -- indian
 
-('Tomato Upma', 'A tangy and spicy upma made with sooji-rave cream of wheat, tomatoes and spices.', 14, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2016/01/tomato-upma-recipe-2.jpg', 5.73, '2019-05-23', 'Lunch', 10),
+('Tomato Upma', 'A tangy and spicy upma made with sooji-rave cream of wheat, tomatoes and spices.', 14, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2016/01/tomato-upma-recipe-2.jpg', 5.75, '2019-05-23', 'Lunch', 10),
 
-('Chicken tikka masala', 'Aromatic golden chicken pieces swimming in an incredible and spicy curry sauce. Served with jasmine rice', 15, 4,'https://twosleevers.com/wp-content/uploads/2017/05/Instant-Pot-Chicken-Tikka-Masala.jpg', 5.73, '2019-05-23', 'Lunch', 10),
+('Chicken tikka masala', 'Aromatic golden chicken pieces swimming in an incredible and spicy curry sauce. Served with jasmine rice', 15, 4,'https://twosleevers.com/wp-content/uploads/2017/05/Instant-Pot-Chicken-Tikka-Masala.jpg', 5.75, '2019-05-23', 'Lunch', 10),
 
 ('Varan Bhaat', 'Best serve with steamed rice', 15, 4, 'https://www.vegrecipesofindia.com/wp-content/uploads/2013/09/varan-bhaat-recipe.jpg', 5.75, '2019-05-22', 'Dinner',9),
 
@@ -223,9 +223,9 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 
 ('Polish potato pancakes', 'Delicious potato pancakes with a generous amount of mushroom sauce. 3 pancakes per serving', 17, 6, 'https://s3.envato.com/files/261599890/img_8024.jpg', 15.99, '2019-05-22','Lunch',5),
 
-('Inside-out chicken puff', 'Chicken, a little bit of butter,and veggies ', 18, 13, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--520471_11.jpg?itok=6JxupEw4', 9.73, '2019-05-21','Lunch',7),
+('Inside-out chicken puff', 'Chicken, a little bit of butter,and veggies ', 18, 13, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--520471_11.jpg?itok=6JxupEw4', 9.75, '2019-05-21','Lunch',7),
 
-('Bigos Hunters Stew', 'Beef sausage, sauerkraut, chunks of beef and cabbage ', 18, 13, 'https://paleoleap.com/pictures/bigos.jpg', 9.73, '2019-05-21','Dinner',7);
+('Bigos Hunters Stew', 'Beef sausage, sauerkraut, chunks of beef and cabbage ', 18, 13, 'https://paleoleap.com/pictures/bigos.jpg', 9.75, '2019-05-21','Dinner',7);
 
 
 
@@ -256,28 +256,32 @@ INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  dat
 INSERT INTO dishes (name, description, user_id, cuisine_id, img_url, price,  date, timeframe, quantity) VALUES
 
 -- bengali
-('Bengali mustard fish', 'A simple seafood curry of white fish, tomatoes and whole green chillies that is deliciously spicy and healthy', 14, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/bengali-mustard-fish_0.jpg?itok=KfunH1Zb', 5.73, '2019-05-21','Lunch',8),
+('Bengali mustard fish', 'A simple seafood curry of white fish, tomatoes and whole green chillies that is deliciously spicy and healthy', 14, 10, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/bengali-mustard-fish_0.jpg?itok=KfunH1Zb', 10.50, '2019-05-21','Lunch',8),
 
 ('Cochinita Pibil', 'Mexican cochinita pibil, or pulled pork shoulder marinated and braised in achiote paste, orange juice, and lime.', 24, 15, 'https://images.media-allrecipes.com/userphotos/250x250/65569.jpg', 13.99,'2019-05-21', 'Dinner',8),
 
 -- southern
 
-('Southern-style mac ‘n’ cheese with collard green', 'Round out this cheesy pasta classic with roasted sweet potato, a staple food in the southern US states, and turn up the temperature with a pinch of cayenne', 20, 14, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/12/mac-n-cheese.jpg?itok=vs4eBfiK', 10.89,'2019-05-21','Dinner',8),
+('Southern-style mac ‘n’ cheese with collard green', 'Round out this cheesy pasta classic with roasted sweet potato, a staple food in the southern US states, and turn up the temperature with a pinch of cayenne', 20, 14, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/12/mac-n-cheese.jpg?itok=vs4eBfiK', 10.75,'2019-05-21','Dinner',8),
 
-('Cajun shrimp and grits', 'Cajun Shrimp and Grits- Creamy Grits with Cajun Shrimp , a Southern Classic Elevated! With Bold and Spicy Seasonings', 20, 14, 'https://www.familysavvy.com/wp-content/uploads/2012/11/Screen-Shot-2015-03-01-at-10.15.23-AM.png',15.89,'2019-05-21','Dinner',8),
+('Cajun shrimp and grits', 'Cajun Shrimp and Grits- Creamy Grits with Cajun Shrimp , a Southern Classic Elevated! With Bold and Spicy Seasonings', 20, 14, 'https://www.familysavvy.com/wp-content/uploads/2012/11/Screen-Shot-2015-03-01-at-10.15.23-AM.png',15.99,'2019-05-21','Dinner',8),
 
 ('Southern fried chicken', 'Great for feeding a crowd, simply kick back, enjoy and relax this fried chicken recipe with homemade slaw', 21, 15, 'https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1273636_8.jpg?itok=VxE-1zWU', 13.99,'2019-05-21', 'Lunch',7),
 
 
-('Oven Smoked BBQ Ribs', 'Fall off the bone tender ribs with a smoky-sweet crunchy crust! Served with cole slaw and cornbread', 21, 15, 'https://sweetcsdesigns.com/wp-content/uploads/2017/05/The-Best-Oven-Smoked-Ribs-Picture418-1024x683.jpg', 13.99,'2019-05-21', 'Dinner',7);
+('Oven Smoked BBQ Ribs', 'Fall off the bone tender ribs with a smoky-sweet crunchy crust! Served with cole slaw and cornbread', 21, 15, 'https://sweetcsdesigns.com/wp-content/uploads/2017/05/The-Best-Oven-Smoked-Ribs-Picture418-1024x683.jpg', 13.99,'2019-05-21', 'Dinner',7),
+
+('Braised Beef Noodle', 'Delicious braised beef cooked with wheat noodles and Chinese cabbage in a beef broth.', 5, 1, 'https://www.chinesefoodrecipes.cc/wp-content/uploads/2017/07/Pasta-soup-with-red-braised-beef-11.jpg', 13.99,'2019-05-22', 'Dinner',5),
+
+('Spring Rolls', 'Fried vegetarian spring rolls filled with carrots, onions, bamboo shoots, and cabbage. 6 pieces per order', 5, 1, 'https://dinnerthendessert.com/wp-content/uploads/2018/08/Spring-Rolls-688x459.jpg', 5.00,'2019-05-21', 'Lunch', 8);
 
 
 
 
-INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'),('Contains-Eggs'),('Contains-nuts'),('Contains-Shellfish');
+INSERT INTO labels (label_name) VALUES ('Kosher'), ('Vegetarian'), ('Vegan'), ('Halal'), ('Gluten-Free'), ('Contains-dairy'),('Contains-Eggs'),('Contains-nuts'),('Contains-Shellfish'),('Spicy');
 
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 8),(3, 4),(3, 5),(4,9),(4,7), (5, 9), (5,7), (6, 7);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (1, 5),(1,4), (2, 2),(2, 10),(3, 4),(3, 5),(4,9),(4,7), (5, 9), (5,7), (6, 7);
 
 INSERT INTO label_dishes (dish_id, label_id) VALUES (6,6), (7, 5),(8, 1),(9,2),(9,3),(10,1), (10,7), (11, 6), (11,7);
 
@@ -285,10 +289,10 @@ INSERT INTO label_dishes (dish_id, label_id) VALUES (12,6), (12, 7), (13, 1), (1
 
 INSERT INTO label_dishes (dish_id, label_id) VALUES (16,4),(17,4),(17,5),(18,1),(19,2),(19,3),(20,4),(20,8),(21,2),(21,6),(22,6),(22,4);
 
-INSERT INTO label_dishes (dish_id, label_id) VALUES (23,3),(23,2),(25,1),(25,7),(26,5),(27,1),(27,2),(28,1), (29,1), (29, 5),(30,1),(31,3),(33,5);
+INSERT INTO label_dishes (dish_id, label_id) VALUES (23,3),(23,2),(25,1),(25,7),(26,5),(27,1),(27,2),(28,1), (29,1), (29, 5),(30,1),(31,3),(33,5),(33,10);
 
 INSERT INTO label_dishes (dish_id, label_id) VALUES
-(34,2),(34,7),(36,5),(37,4),(38,5),(39,2),(39,6),(40,9),(40,6),(41,7),(42,5);
+(34,2),(34,7),(36,5),(37,4),(38,5),(39,2),(39,6),(40,9),(40,6),(40,10),(41,7),(42,5),(43,10),(44,2);
 
 
 
