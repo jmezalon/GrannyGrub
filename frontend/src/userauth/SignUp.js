@@ -55,7 +55,7 @@ class SignUp extends React.Component {
           <form className="signup-form" onSubmit={handleRegisterUser}>
             <div className="full-name">
               <label htmlFor="first-name">
-                <b>First name: </b>
+                <p>First name: </p>
               </label>{" "}
               <input
                 id="first-name"
@@ -65,7 +65,7 @@ class SignUp extends React.Component {
                 value={first_name}
               />
               <label htmlFor="last-name">
-                <b>Last name: </b>
+                <p>Last name: </p>
               </label>{" "}
               <input
                 id="last-name"
@@ -78,7 +78,7 @@ class SignUp extends React.Component {
 
             <div className="contact-info">
               <label htmlFor="email">
-                <b>Email: </b>
+                <p>Email: </p>
               </label>{" "}
               <input
                 id="email"
@@ -88,7 +88,7 @@ class SignUp extends React.Component {
                 type="text"
               />
               <label htmlFor="phone-number">
-                <b>Phone number: </b>
+                <p>Phone number: </p>
               </label>{" "}
               <input
                 id="phone_number"
