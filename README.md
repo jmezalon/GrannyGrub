@@ -2,6 +2,8 @@
 
 Connecting hungry New Yorker’s to cooking grandmothers in their area.
 
+Look for yourself: (https://grannygrub.herokuapp.com/)
+
 ## Abstract
 
 There’s a plethora of food delivery platforms that cater to restaurant deliveries locally and commercially, thus offering a variety of options for business entities to reach customers.
@@ -23,9 +25,13 @@ Users can filter based on which cuisines they are craving, as well as filtering 
 
 ## Granny page
 
+![](./proposal/Screenshots/granny.png)
+
 Once a user is on the Granny page, they will be presented with the selected grandmas dashboard where they can learn more about the granny. There, they will also be able to browse through all the different dishes that the grandma is currently offering, each of which is her own recipe and take on the dish!
 
 ## Checkoutpage
+
+![](./proposal/Screenshots/order.png)
 
 Once a dish is selected, and an order is initiated, the user is taken to the Checkout page. On this page, the user will be presented with their order information, and they will be prompted to either sign-up or checkout as a guest.
 
@@ -34,7 +40,7 @@ Once their information is filled out, they will be then taken to the third party
 ## Future Implementations
 
 - Creating a mobile version of the app
-- Implementing an experience feature where users can book a granny to come to their home and teach them how to cook
+- Implementing a Home Experience feature where users can book a granny to come to their home and teach them how to cook
 
 ## Frameworks used
 

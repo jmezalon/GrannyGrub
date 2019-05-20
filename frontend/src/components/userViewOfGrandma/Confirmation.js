@@ -25,7 +25,7 @@ class Confirmation extends React.Component {
   //     .catch(err => console.log(err));
   // };
   render() {
-    let { dish, name, count } = JSON.parse(
+    let { dish, name, count, address } = JSON.parse(
       window.localStorage.getItem("grandma")
     );
     console.log("1st log ", window.localStorage.getItem("grandma"));
@@ -49,7 +49,7 @@ class Confirmation extends React.Component {
             </h3>
             <h4> {name} </h4>
             <div id="confirm-user-address">
-              <h5> At: 47-10 Austell Pl, LIC, NY 11307</h5>
+              <h5> At: {address} NY </h5>
 
               <div className="confirm-date">
                 <h6> {dish.timeframe} </h6>
