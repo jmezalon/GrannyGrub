@@ -58,7 +58,7 @@ const AboutUs = () => {
               <TeamMember
                 name="Morteza Khaki"
                 img={
-                  "https://media.licdn.com/dms/image/C4D03AQHCTKGRV7pCTw/profile-displayphoto-shrink_200_200/0?e=1563408000&v=beta&t=bfeef678xUCZg9WiJHqPCGS5lnQfxZH_1zF_h4yEWn0"
+                  "https://media.licdn.com/dms/image/C4D03AQG_U2hk8CFGMw/profile-displayphoto-shrink_800_800/0?e=1564012800&v=beta&t=JgCpz0INqEXYt4jB9y4pCe_R962sA-mVhAZgTYVcmx4"
                 }
                 linkedin={
                   "https://www.linkedin.com/in/morteza-khaki-a7b207175/"
@@ -77,7 +77,7 @@ const AboutUs = () => {
               <TeamMember
                 name="Jean Max Mezalon"
                 img={
-                  "https://media.licdn.com/dms/image/C5603AQGRdf5YV2R8_g/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=2vVK6MFkqAgYnsdmFQQxQSd-qrtDY2UsFUOvSE42yPA"
+                  "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/60523897_107654597141765_3829923226624983040_n.jpg?_nc_cat=110&_nc_ht=scontent-lga3-1.xx&oh=f7178c2ed76331826b8481dfb03531ac&oe=5D50EB66"
                 }
                 linkedin={"https://www.linkedin.com/in/jean-mezalon/"}
                 github={"https://github.com/jmezalon"}
