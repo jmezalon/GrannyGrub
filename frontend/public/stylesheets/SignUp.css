@@ -146,3 +146,14 @@
 #switch-p2 {
   padding-top: 160px;
 }
+
+@media screen and (max-width: 800px) {
+  .side-signup {
+    display: none;
+  }
+
+  .signup-form {
+    text-align: left;
+    padding-left: 15px;
+  }
+}
